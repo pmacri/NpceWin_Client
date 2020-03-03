@@ -1,5 +1,7 @@
 ﻿using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data;
+using NPCE_WinClient.UI.Event;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,13 +12,22 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class ServiceDetailViewModel : ViewModelBase, IServiceDetailViewModel
     {
-        public ServiceDetailViewModel(INpceDataService dataService)
+        public ServiceDetailViewModel(INpceDataService dataService, IEventAggregator eventAggregator)
         {
             _dataService = dataService;
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<OpenDetailServiceViewEvent>()
+                .Subscribe(OnOpenServiceDetailEvent);
+        }
+
+        private async void OnOpenServiceDetailEvent(long serviceId)
+        {
+            await LoadServiceById(serviceId);
         }
 
         private Service _service;
         private INpceDataService _dataService;
+        private IEventAggregator _eventAggregator;
 
         public Service Service
         {

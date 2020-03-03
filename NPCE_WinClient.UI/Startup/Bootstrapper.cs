@@ -2,6 +2,7 @@
 using NPCE_WinClient.DataAccess;
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.ViewModel;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace NPCE_WinClient.UI.Startup
         public IContainer Bootstrap()
         {
             var builder = new ContainerBuilder();
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+
             builder.RegisterType<NpceDbContext>().AsSelf();
 
             builder.RegisterType<MainWindow>().AsSelf();
