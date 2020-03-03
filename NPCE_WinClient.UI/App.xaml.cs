@@ -1,4 +1,6 @@
-﻿using NPCE_WinClient.UI.Data;
+﻿using Autofac;
+using NPCE_WinClient.UI.Data;
+using NPCE_WinClient.UI.Startup;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,9 +18,10 @@ namespace NPCE_WinClient.UI
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            var mainWindow = new MainWindow(new ViewModel.MainViewModel(new NpceDataService()));
-
-            mainWindow.ShowDialog();
+            var bootstrapper = new Bootstrapper();
+            var container = bootstrapper.Bootstrap();
+            var mainWindow = container.Resolve<MainWindow>();
+            mainWindow.Show();
         }
     }
 }

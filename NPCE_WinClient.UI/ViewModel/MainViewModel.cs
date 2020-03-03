@@ -34,9 +34,9 @@ namespace NPCE_WinClient.UI.ViewModel
             Services = new ObservableCollection<Service>();
         }
 
-        public void LoadAll()
+        public async Task LoadAllAsync()
         {
-            var services = _npceDataService.GetAll();
+            var services = await _npceDataService.GetAllAsync();
             Services.Clear();
             foreach (var service in services)
             {

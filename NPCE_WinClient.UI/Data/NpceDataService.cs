@@ -1,7 +1,9 @@
-﻿using NPCE_WinClient.Model;
+﻿using NPCE_WinClient.DataAccess;
+using NPCE_WinClient.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +12,17 @@ namespace NPCE_WinClient.UI.Data
 {
     public class NpceDataService : INpceDataService
     {
-        public IEnumerable<Service> GetAll()
+        private readonly Func<NpceDbContext> _contextCreator;
+        public NpceDataService(Func<NpceDbContext> contextCreator)
         {
-            yield return new Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" };
-            yield return new Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" };
-            yield return new Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" };
-            yield return new Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" };
+            this._contextCreator = contextCreator;
+        }
+        public async Task<List<Service>> GetAllAsync()
+        {
+            using (var ctx = _contextCreator())
+            {
+                return await ctx.Services.AsNoTracking().ToListAsync();
+            }
         }
     }
 }
