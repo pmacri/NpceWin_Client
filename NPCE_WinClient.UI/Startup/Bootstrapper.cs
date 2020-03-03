@@ -20,9 +20,15 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MainViewModel>().AsSelf();
 
+
+            // LookupDataService sarà usato per ogni Interfaccia che esso implementa
+            // Sarà usata per il lookup di altri tipi con altre interfacce
+            builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<NpceDataService>().As<INpceDataService>();
+            builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
 
             return builder.Build();
         }
     }
 }
+

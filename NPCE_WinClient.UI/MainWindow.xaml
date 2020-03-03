@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NPCE_WinClient.UI"
+        xmlns:view="clr-namespace:NPCE_WinClient.UI.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -11,17 +12,9 @@
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding Services}"
-                  SelectedItem="{Binding SelectedService, Mode=TwoWay}" Margin="5 5">
-            <ListView.ItemTemplate>
-                <DataTemplate >
-                    <StackPanel>
-                        <TextBlock FontSize="14" Text="{Binding IdRichiesta}" Margin="0"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
+        <view:NavigationView DataContext="{Binding NavigationViewModel}">
+            
+        </view:NavigationView>        
         <Grid Grid.Column="1" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>

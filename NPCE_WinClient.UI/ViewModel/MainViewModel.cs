@@ -28,20 +28,17 @@ namespace NPCE_WinClient.UI.ViewModel
 
             }
         }
-        public MainViewModel(INpceDataService npceDataService)
+
+        public INavigationViewModel NavigationViewModel { get; private set; }
+
+        public MainViewModel(INavigationViewModel navigationViewModel)
         {
-            _npceDataService = npceDataService;
-            Services = new ObservableCollection<Service>();
+            NavigationViewModel = navigationViewModel;
         }
 
         public async Task LoadAllAsync()
         {
-            var services = await _npceDataService.GetAllAsync();
-            Services.Clear();
-            foreach (var service in services)
-            {
-                Services.Add(service);
-            }
+            await NavigationViewModel.LoadServicesAsync();
         }
 
     }
