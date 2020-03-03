@@ -7,5 +7,6 @@ namespace NPCE_WinClient.UI.Data
     public interface INpceDataService
     {
        Task<List<Service>> GetAllAsync();
+        Task<Service> GetServiceByIdAsync(long id);
     }
 }

@@ -24,5 +24,13 @@ namespace NPCE_WinClient.UI.Data
                 return await ctx.Services.AsNoTracking().ToListAsync();
             }
         }
+
+        public async Task<Service> GetServiceByIdAsync(long id)
+        {
+            using (var ctx = _contextCreator())
+            {
+                return await ctx.Services.AsNoTracking().SingleOrDefaultAsync(s => s.Id== id);
+            }
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<NpceDataService>().As<INpceDataService>();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
+            builder.RegisterType<ServiceDetailViewModel>().As<IServiceDetailViewModel>();
 
             return builder.Build();
         }

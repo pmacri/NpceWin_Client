@@ -29,11 +29,13 @@ namespace NPCE_WinClient.UI.ViewModel
             }
         }
 
-        public INavigationViewModel NavigationViewModel { get; private set; }
+        public INavigationViewModel NavigationViewModel { get;}
+        public IServiceDetailViewModel ServiceDetailViewModel { get; }
 
-        public MainViewModel(INavigationViewModel navigationViewModel)
+        public MainViewModel(INavigationViewModel navigationViewModel, IServiceDetailViewModel serviceDetailViewModel)
         {
             NavigationViewModel = navigationViewModel;
+            ServiceDetailViewModel = serviceDetailViewModel;
         }
 
         public async Task LoadAllAsync()
