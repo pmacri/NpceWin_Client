@@ -16,6 +16,7 @@ namespace NPCE_WinClient.DataAccess
 
         }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Mittente> Mittente { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

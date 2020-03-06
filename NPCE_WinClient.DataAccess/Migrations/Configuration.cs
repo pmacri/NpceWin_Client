@@ -25,6 +25,45 @@
                 new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
                 new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" }
                 );
+            context.Mittente.AddOrUpdate(m => m.Cognome,
+                new Model.Mittente
+                {
+                    Nome = "Paolo",
+                    Cognome = "Rossi",
+                    DUG = "Via",
+                    Citta = "ROMA",
+                    Cap = "00144",
+                    Toponimo = "dei ciclamini",
+                    NumeroCivico = "180",
+                    Provincia = "RM",
+                    Stato = "ITALIA"
+                },
+
+                new Model.Mittente
+                {
+                    Nome = "Matteo",
+                    Cognome = "Bianchi",
+                    DUG = "Via",
+                    Citta = "AGRIGENTO",
+                    Cap = "00144",
+                    Toponimo = "DEI TULIPANI",
+                    NumeroCivico = "180",
+                    Provincia = "AG",
+                    Stato = "ITALIA"
+                },
+                new Model.Mittente
+                {
+                    Nome = "Paolo",
+                    Cognome = "Verdi",
+                    DUG = "Via",
+                    Citta = "TERNI",
+                    Cap = "00144",
+                    Toponimo = "delle Rose",
+                    NumeroCivico = "18",
+                    Provincia = "TR",
+                    Stato = "ITALIA"
+                }
+                );
         }
     }
 }

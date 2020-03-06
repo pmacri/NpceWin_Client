@@ -12,35 +12,23 @@ namespace NPCE_WinClient.UI.ViewModel
     public class MainViewModel: ViewModelBase
     {
 
-        INpceDataService _npceDataService;
         public ObservableCollection<Service> Services { get; set; }
-
-        private Service _selectedService;
-        public Service SelectedService
-        {
-            get { return _selectedService; }
-            set { 
-                if (value != _selectedService)
-                {
-                    _selectedService = value;
-                    OnPropertyChanged();
-                }
-
-            }
-        }
-
         public INavigationViewModel NavigationViewModel { get;}
         public IServiceDetailViewModel ServiceDetailViewModel { get; }
+        public IMittenteDetailViewModel MittenteDetailViewModel { get; private set; }
 
-        public MainViewModel(INavigationViewModel navigationViewModel, IServiceDetailViewModel serviceDetailViewModel)
+        public MainViewModel(INavigationViewModel navigationViewModel, 
+                            IServiceDetailViewModel serviceDetailViewModel,
+                            IMittenteDetailViewModel mittenteDetailViewModel)
         {
             NavigationViewModel = navigationViewModel;
             ServiceDetailViewModel = serviceDetailViewModel;
+            MittenteDetailViewModel = mittenteDetailViewModel;
         }
 
         public async Task LoadAllAsync()
         {
-            await NavigationViewModel.LoadServicesAsync();
+            await NavigationViewModel.LoadAsync();
         }
 
     }

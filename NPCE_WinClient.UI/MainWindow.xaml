@@ -13,7 +13,8 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <view:NavigationView DataContext="{Binding NavigationViewModel}"></view:NavigationView>
-        <view:ServiceDetailView Grid.Column="1" DataContext="{Binding ServiceDetailViewModel}"></view:ServiceDetailView>
+        <!--<view:ServiceDetailView Grid.Column="1" DataContext="{Binding ServiceDetailViewModel}"></view:ServiceDetailView>-->
+        <view:MittenteDetailView Grid.Column="1" DataContext="{Binding MittenteDetailViewModel}"></view:MittenteDetailView>
     </Grid>
 
 </Window>

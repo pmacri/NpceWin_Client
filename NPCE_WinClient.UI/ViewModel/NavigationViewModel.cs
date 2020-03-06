@@ -13,20 +13,19 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
-        private IServiceLookupDataService _serviceLookupDataService;
-        private IEventAggregator _eventAggregator;
-        private LookupItem selectedService;
+        
+        private IMittenteLookupDataService _serviceLookupDataService;
 
-        public NavigationViewModel(IServiceLookupDataService serviceLookupDataService, IEventAggregator eventAggregator)
+        private IEventAggregator _eventAggregator;
+        public NavigationViewModel(IMittenteLookupDataService serviceLookupDataService, IEventAggregator eventAggregator)
         {
             _serviceLookupDataService = serviceLookupDataService;
             _eventAggregator = eventAggregator;
             Services = new ObservableCollection<LookupItem>();
         }
-
-        public async Task LoadServicesAsync()
+        public async Task LoadAsync()
         {
-            var lookups = await _serviceLookupDataService.GetServiceLookupAsync();
+            var lookups = await _serviceLookupDataService.GetMittenteLookupAsync();
 
             Services.Clear();
 
@@ -35,24 +34,21 @@ namespace NPCE_WinClient.UI.ViewModel
                 Services.Add(lookup);
             }
         }
-
         public ObservableCollection<LookupItem> Services { get; set; }
 
-        private LookupItem _selectedService;
-
-        public LookupItem SelectedService
+        private LookupItem _selectedMittente;
+        public LookupItem SelectedMittente
         {
-            get { return _selectedService; }
+            get { return _selectedMittente; }
             set { 
-                _selectedService = value;
+                _selectedMittente = value;
                 OnPropertyChanged();
-                if(_selectedService != null)
+                if(_selectedMittente != null)
                 {
-                    _eventAggregator.GetEvent<OpenDetailServiceViewEvent>().Publish(_selectedService.Id);
+                    _eventAggregator.GetEvent<OpenDetailMittenteViewEvent>().Publish(_selectedMittente.Id);
                 }
             }
         }
-
 
     }
 }

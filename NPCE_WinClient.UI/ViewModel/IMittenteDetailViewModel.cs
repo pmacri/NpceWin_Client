@@ -2,8 +2,8 @@
 
 namespace NPCE_WinClient.UI.ViewModel
 {
-    public interface INavigationViewModel
+    public interface IMittenteDetailViewModel
     {
-        Task LoadAsync();
+        Task LoadMittenteById(long id);
     }
 }

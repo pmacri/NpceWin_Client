@@ -55,6 +55,10 @@
     <Compile Include="Migrations\202003022309035_Init.designer.cs">
       <DependentUpon>202003022309035_Init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003061843300_Mittente.cs" />
+    <Compile Include="Migrations\202003061843300_Mittente.designer.cs">
+      <DependentUpon>202003061843300_Mittente.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003022309035_Init.resx">
       <DependentUpon>202003022309035_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003061843300_Mittente.resx">
+      <DependentUpon>202003061843300_Mittente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

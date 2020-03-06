@@ -30,6 +30,7 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<NpceDataService>().As<INpceDataService>();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<ServiceDetailViewModel>().As<IServiceDetailViewModel>();
+            builder.RegisterType<MittenteDetailViewModel>().As<IMittenteDetailViewModel>();
 
             return builder.Build();
         }

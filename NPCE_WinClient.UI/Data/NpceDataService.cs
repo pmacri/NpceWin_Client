@@ -25,6 +25,14 @@ namespace NPCE_WinClient.UI.Data
             }
         }
 
+        public async Task<Mittente> GetMittenteByIdAsync(long id)
+        {
+            using (var ctx = _contextCreator())
+            {
+                return await ctx.Mittente.AsNoTracking().FirstAsync(m => m.Id==id);
+            }
+        }
+
         public async Task<Service> GetServiceByIdAsync(long id)
         {
             using (var ctx = _contextCreator())

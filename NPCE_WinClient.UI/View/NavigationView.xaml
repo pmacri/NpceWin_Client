@@ -9,7 +9,7 @@
              DataContext="NavigationViewModel">
     <Grid>
         <ListView ItemsSource="{Binding Services}"
-                  SelectedItem="{Binding SelectedService, Mode=TwoWay}" Margin="5 5">
+                  SelectedItem="{Binding SelectedMittente, Mode=TwoWay}" Margin="5 5">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <StackPanel>
