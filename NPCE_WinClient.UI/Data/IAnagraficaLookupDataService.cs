@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Data
 {
-    public interface IMittenteLookupDataService
+    public interface IAnagraficaLookupDataService
     {
-        Task<IEnumerable<LookupItem>> GetMittenteLookupAsync();
+        Task<IEnumerable<LookupItem>> GetAnagraficaLookupAsync();
 
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Event
 {
-    public class OpenDetailMittenteViewEvent:PubSubEvent<long>
+    public class OpenDetailAnagraficaViewEvent:PubSubEvent<long>
     {
     }
 }

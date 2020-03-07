@@ -8,6 +8,8 @@ namespace NPCE_WinClient.UI.Data
     {
        Task<List<Service>> GetAllAsync();
         Task<Service> GetServiceByIdAsync(long id);
-        Task<Mittente> GetMittenteByIdAsync(long id);
+        Task<Anagrafica> GetAnagraficaByIdAsync(long id);
+        Task SaveAsync(Anagrafica anagrafica);
+
     }
 }

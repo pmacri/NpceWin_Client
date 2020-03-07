@@ -25,11 +25,11 @@ namespace NPCE_WinClient.UI.Data
             }
         }
 
-        public async Task<Mittente> GetMittenteByIdAsync(long id)
+        public async Task<Anagrafica> GetAnagraficaByIdAsync(long id)
         {
             using (var ctx = _contextCreator())
             {
-                return await ctx.Mittente.AsNoTracking().FirstAsync(m => m.Id==id);
+                return await ctx.Anagrafica.AsNoTracking().FirstAsync(m => m.Id==id);
             }
         }
 
@@ -38,6 +38,16 @@ namespace NPCE_WinClient.UI.Data
             using (var ctx = _contextCreator())
             {
                 return await ctx.Services.AsNoTracking().SingleOrDefaultAsync(s => s.Id== id);
+            }
+        }
+
+        public async Task SaveAsync(Anagrafica anagrafica)
+        {
+            using (var ctx = _contextCreator())
+            {
+                ctx.Anagrafica.Add(anagrafica);
+                ctx.Entry(anagrafica).State = EntityState.Modified;
+                await ctx.SaveChangesAsync();
             }
         }
     }

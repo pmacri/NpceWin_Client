@@ -7,13 +7,13 @@ namespace NPCE_WinClient.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class Mittente : IMigrationMetadata
+    public sealed partial class reset : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Mittente));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(reset));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003061843300_Mittente"; }
+            get { return "202003071141335_reset"; }
         }
         
         string IMigrationMetadata.Source

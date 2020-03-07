@@ -14,7 +14,7 @@
         </Grid.ColumnDefinitions>
         <view:NavigationView DataContext="{Binding NavigationViewModel}"></view:NavigationView>
         <!--<view:ServiceDetailView Grid.Column="1" DataContext="{Binding ServiceDetailViewModel}"></view:ServiceDetailView>-->
-        <view:MittenteDetailView Grid.Column="1" DataContext="{Binding MittenteDetailViewModel}"></view:MittenteDetailView>
+        <view:AnagraficaDetailView Grid.Column="1" DataContext="{Binding AnagraficaDetailViewModel}"></view:AnagraficaDetailView>
     </Grid>
 
 </Window>

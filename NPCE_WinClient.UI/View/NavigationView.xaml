@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="NavigationViewModel">
     <Grid>
-        <ListView ItemsSource="{Binding Services}"
-                  SelectedItem="{Binding SelectedMittente, Mode=TwoWay}" Margin="5 5">
+        <ListView ItemsSource="{Binding Anagrafiche}"
+                  SelectedItem="{Binding SelectedAnagrafica, Mode=TwoWay}" Margin="5 5">
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <StackPanel>

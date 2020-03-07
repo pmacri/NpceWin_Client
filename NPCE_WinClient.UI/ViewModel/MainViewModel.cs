@@ -15,15 +15,15 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<Service> Services { get; set; }
         public INavigationViewModel NavigationViewModel { get;}
         public IServiceDetailViewModel ServiceDetailViewModel { get; }
-        public IMittenteDetailViewModel MittenteDetailViewModel { get; private set; }
+        public IAnagraficaDetailViewModel AnagraficaDetailViewModel { get; private set; }
 
         public MainViewModel(INavigationViewModel navigationViewModel, 
                             IServiceDetailViewModel serviceDetailViewModel,
-                            IMittenteDetailViewModel mittenteDetailViewModel)
+                            IAnagraficaDetailViewModel AnagraficaDetailViewModelIn)
         {
             NavigationViewModel = navigationViewModel;
             ServiceDetailViewModel = serviceDetailViewModel;
-            MittenteDetailViewModel = mittenteDetailViewModel;
+            AnagraficaDetailViewModel = AnagraficaDetailViewModelIn;
         }
 
         public async Task LoadAllAsync()

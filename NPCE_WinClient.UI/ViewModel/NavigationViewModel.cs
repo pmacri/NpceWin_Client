@@ -14,38 +14,47 @@ namespace NPCE_WinClient.UI.ViewModel
     public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
         
-        private IMittenteLookupDataService _serviceLookupDataService;
+        private IAnagraficaLookupDataService _serviceLookupDataService;
 
         private IEventAggregator _eventAggregator;
-        public NavigationViewModel(IMittenteLookupDataService serviceLookupDataService, IEventAggregator eventAggregator)
+        public NavigationViewModel(IAnagraficaLookupDataService serviceLookupDataService, IEventAggregator eventAggregator)
         {
             _serviceLookupDataService = serviceLookupDataService;
             _eventAggregator = eventAggregator;
-            Services = new ObservableCollection<LookupItem>();
+            Anagrafiche = new ObservableCollection<NavigationItemViewModel>();
+            _eventAggregator.GetEvent<AfterAnagraficaSavedEvent>().Subscribe(AfterAnagraficaSaved);
         }
+
+        private void AfterAnagraficaSaved(AfterAnagraficaSavedEventArgs obj)
+        {
+            var lookupItem = Anagrafiche.First(l => l.Id == obj.Id);
+
+            lookupItem.DisplayMember = obj.DisplayMember;
+        }
+
         public async Task LoadAsync()
         {
-            var lookups = await _serviceLookupDataService.GetMittenteLookupAsync();
+            var lookups = await _serviceLookupDataService.GetAnagraficaLookupAsync();
 
-            Services.Clear();
+            Anagrafiche.Clear();
 
             foreach (var lookup in lookups)
             {
-                Services.Add(lookup);
+                Anagrafiche.Add(new NavigationItemViewModel(lookup.Id, lookup.DisplayMember));
             }
         }
-        public ObservableCollection<LookupItem> Services { get; set; }
+        public ObservableCollection<NavigationItemViewModel> Anagrafiche { get; set; }
 
-        private LookupItem _selectedMittente;
-        public LookupItem SelectedMittente
+        private NavigationItemViewModel _selectedAnagrafica;
+        public NavigationItemViewModel SelectedAnagrafica
         {
-            get { return _selectedMittente; }
+            get { return _selectedAnagrafica; }
             set { 
-                _selectedMittente = value;
+                _selectedAnagrafica = value;
                 OnPropertyChanged();
-                if(_selectedMittente != null)
+                if(_selectedAnagrafica != null)
                 {
-                    _eventAggregator.GetEvent<OpenDetailMittenteViewEvent>().Publish(_selectedMittente.Id);
+                    _eventAggregator.GetEvent<OpenDetailAnagraficaViewEvent>().Publish(_selectedAnagrafica.Id);
                 }
             }
         }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace NPCE_WinClient.UI.View
 {
     /// <summary>
-    /// Interaction logic for MittenteDetailView.xaml
+    /// Interaction logic for AnagraficaDetailView.xaml
     /// </summary>
-    public partial class MittenteDetailView : UserControl
+    public partial class AnagraficaDetailView : UserControl
     {
-        public MittenteDetailView()
+        public AnagraficaDetailView()
         {
             InitializeComponent();
         }

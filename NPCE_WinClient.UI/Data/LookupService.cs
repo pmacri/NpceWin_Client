@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Data
 {
-    public class LookupDataService : IServiceLookupDataService, IMittenteLookupDataService
+    public class LookupDataService : IServiceLookupDataService, IAnagraficaLookupDataService
     {
         private Func<NpceDbContext> _contextCreator;
 
@@ -18,11 +18,11 @@ namespace NPCE_WinClient.UI.Data
             _contextCreator = contextCreator;
         }
 
-        public async Task<IEnumerable<LookupItem>> GetMittenteLookupAsync()
+        public async Task<IEnumerable<LookupItem>> GetAnagraficaLookupAsync()
         {
             using (var ctx = _contextCreator())
             {
-                return await ctx.Mittente.AsNoTracking().Select(m =>
+                return await ctx.Anagrafica.AsNoTracking().Select(m =>
                 new LookupItem
                 {
                     Id = m.Id,

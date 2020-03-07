@@ -18,18 +18,27 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            context.Services.AddOrUpdate(s => s.IdRichiesta,
-                new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-                new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-                new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-                new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-                new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" }
-                );
-            context.Mittente.AddOrUpdate(m => m.Cognome,
-                new Model.Mittente
+            //context.Services.AddOrUpdate(s => s.IdRichiesta,
+            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
+            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
+            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
+            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
+            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" }
+            //    );
+
+            var allAnagrafiche = context.Anagrafica.ToList();
+
+            if (allAnagrafiche != null)
+            {
+                context.Anagrafica.RemoveRange(allAnagrafiche);
+            }
+            context.SaveChanges();
+            context.Anagrafica.AddOrUpdate(m => m.Cognome,
+                new Model.Anagrafica
                 {
                     Nome = "Paolo",
                     Cognome = "Rossi",
+                    RagioneSociale="Paolo Rossi SpA",
                     DUG = "Via",
                     Citta = "ROMA",
                     Cap = "00144",
@@ -39,7 +48,7 @@
                     Stato = "ITALIA"
                 },
 
-                new Model.Mittente
+                new Model.Anagrafica
                 {
                     Nome = "Matteo",
                     Cognome = "Bianchi",
@@ -51,7 +60,7 @@
                     Provincia = "AG",
                     Stato = "ITALIA"
                 },
-                new Model.Mittente
+                new Model.Anagrafica
                 {
                     Nome = "Paolo",
                     Cognome = "Verdi",

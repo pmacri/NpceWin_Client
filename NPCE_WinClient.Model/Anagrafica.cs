@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.Model
 {
-    public class Mittente
+    public class Anagrafica
     {
         public int Id { get; set; }
         public string Cognome { get; set; }
