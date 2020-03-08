@@ -1,6 +1,7 @@
 ﻿using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Event;
+using NPCE_WinClient.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
@@ -25,7 +26,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private async void OnSaveExecute()
         {
-            await _dataService.SaveAsync(Anagrafica);
+            await _dataService.SaveAsync(Anagrafica.Model);
 
             _eventAggregator.GetEvent<AfterAnagraficaSavedEvent>()
                 .Publish(new AfterAnagraficaSavedEventArgs { Id = Anagrafica.Id, DisplayMember = $"{Anagrafica.Nome} {Anagrafica.Cognome}" });
@@ -42,12 +43,12 @@ namespace NPCE_WinClient.UI.ViewModel
             await LoadAnagraficaById(AnagraficaId);
         }
 
-        private Anagrafica _Anagrafica;
+        private AnagraficaWrapper _Anagrafica;
         private INpceDataService _dataService;
         private IEventAggregator _eventAggregator;
 
 
-        public Anagrafica Anagrafica
+        public AnagraficaWrapper Anagrafica
         {
             get { return _Anagrafica; }
             set
@@ -58,7 +59,16 @@ namespace NPCE_WinClient.UI.ViewModel
         }
         public async Task LoadAnagraficaById(long id)
         {
-            Anagrafica = await _dataService.GetAnagraficaByIdAsync(id);
+            var anagrafica = await _dataService.GetAnagraficaByIdAsync(id);
+            Anagrafica = new AnagraficaWrapper(anagrafica);
+            Anagrafica.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(Anagrafica.HasErrors))
+                {
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            };
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
 

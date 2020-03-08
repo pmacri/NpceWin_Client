@@ -111,6 +111,9 @@
     <Compile Include="View\ServiceDetailView.xaml.cs">
       <DependentUpon>ServiceDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\AnagraficaWrapper.cs" />
+    <Compile Include="Wrapper\ModelWrapper.cs" />
+    <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

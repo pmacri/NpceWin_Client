@@ -13,7 +13,6 @@ namespace NPCE_WinClient.Model
         public string Nome { get; set; }
         public string RagioneSociale { get; set; }
         public string ComplementoNominativo { get; set; }
-
         public string DUG { get; set; }
         public string Toponimo { get; set; }
         public string Esponente { get; set; }
@@ -22,14 +21,11 @@ namespace NPCE_WinClient.Model
         public string Frazione { get; set; }
         public string Citta { get; set; }
         public string Cap { get; set; }
-
         public string Telefono { get; set; }
-
         public string CasellaPostale { get; set; }
-
-
         public string Provincia { get; set; }
         public string Stato { get; set; }
-
+        public bool IsMittente { get; set; }
+        public bool IsDefaultMittente { get; set; }
     }
 }
