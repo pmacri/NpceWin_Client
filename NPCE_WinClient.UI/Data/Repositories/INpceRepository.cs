@@ -2,14 +2,15 @@
 using System.Threading.Tasks;
 using NPCE_WinClient.Model;
 
-namespace NPCE_WinClient.UI.Data
+namespace NPCE_WinClient.UI.Data.Repositories
 {
-    public interface INpceDataService
+    public interface INpceRepository
     {
        Task<List<Service>> GetAllAsync();
         Task<Service> GetServiceByIdAsync(long id);
-        Task<Anagrafica> GetAnagraficaByIdAsync(long id);
-        Task SaveAsync(Anagrafica anagrafica);
+        Task<Anagrafica> GetByIdAsync(long id);
+        Task SaveAsync();
+        bool HasChanges();
 
     }
 }

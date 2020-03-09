@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using NPCE_WinClient.DataAccess;
 using NPCE_WinClient.UI.Data;
+using NPCE_WinClient.UI.Data.Lookups;
+using NPCE_WinClient.UI.Data.Repositories;
 using NPCE_WinClient.UI.ViewModel;
 using Prism.Events;
 using System;
@@ -27,7 +29,7 @@ namespace NPCE_WinClient.UI.Startup
             // LookupDataService sarà usato per ogni Interfaccia che esso implementa
             // Sarà usata per il lookup di altri tipi con altre interfacce
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
-            builder.RegisterType<NpceDataService>().As<INpceDataService>();
+            builder.RegisterType<NpceRepository>().As<INpceRepository>();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<ServiceDetailViewModel>().As<IServiceDetailViewModel>();
             builder.RegisterType<AnagraficaDetailViewModel>().As<IAnagraficaDetailViewModel>();

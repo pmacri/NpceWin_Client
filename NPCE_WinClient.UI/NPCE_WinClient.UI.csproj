@@ -85,9 +85,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\IAnagraficaLookupDataService.cs" />
-    <Compile Include="Data\INpceDataService.cs" />
-    <Compile Include="Data\IServiceLookupDataService.cs" />
-    <Compile Include="Data\LookupService.cs" />
+    <Compile Include="Data\Repositories\INpceRepository.cs" />
+    <Compile Include="Data\Lookups\IServiceLookupDataService.cs" />
+    <Compile Include="Data\Lookups\LookupService.cs" />
     <Compile Include="Event\AfterAnagraficaSavedEvent.cs" />
     <Compile Include="Event\OpenDetailAnagraficaViewEvent.cs" />
     <Compile Include="Event\OpenDetailServiceViewEvent.cs" />
@@ -122,7 +122,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\NpceDataService.cs" />
+    <Compile Include="Data\Repositories\NpceRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

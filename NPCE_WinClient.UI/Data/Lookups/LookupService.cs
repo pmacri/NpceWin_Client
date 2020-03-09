@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NPCE_WinClient.UI.Data
+namespace NPCE_WinClient.UI.Data.Lookups
 {
     public class LookupDataService : IServiceLookupDataService, IAnagraficaLookupDataService
     {

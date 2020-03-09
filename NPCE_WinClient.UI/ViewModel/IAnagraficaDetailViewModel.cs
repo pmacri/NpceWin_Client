@@ -4,6 +4,6 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public interface IAnagraficaDetailViewModel
     {
-        Task LoadAnagraficaById(long id);
+        Task LoadById(long id);
     }
 }
