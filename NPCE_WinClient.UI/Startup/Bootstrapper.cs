@@ -3,6 +3,7 @@ using NPCE_WinClient.DataAccess;
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Data.Lookups;
 using NPCE_WinClient.UI.Data.Repositories;
+using NPCE_WinClient.UI.View.Services;
 using NPCE_WinClient.UI.ViewModel;
 using Prism.Events;
 using System;
@@ -23,6 +24,8 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<NpceDbContext>().AsSelf();
 
             builder.RegisterType<MainWindow>().AsSelf();
+            builder.RegisterType<MessageDialogService>().As< IMessageDialogService>();
+
             builder.RegisterType<MainViewModel>().AsSelf();
 
 
