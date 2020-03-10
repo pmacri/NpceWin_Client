@@ -40,24 +40,12 @@ namespace NPCE_WinClient.UI.ViewModel
 
             foreach (var lookup in lookups)
             {
-                Anagrafiche.Add(new NavigationItemViewModel(lookup.Id, lookup.DisplayMember));
+                Anagrafiche.Add(new NavigationItemViewModel(lookup.Id, lookup.DisplayMember,_eventAggregator));
             }
         }
         public ObservableCollection<NavigationItemViewModel> Anagrafiche { get; set; }
 
-        private NavigationItemViewModel _selectedAnagrafica;
-        public NavigationItemViewModel SelectedAnagrafica
-        {
-            get { return _selectedAnagrafica; }
-            set { 
-                _selectedAnagrafica = value;
-                OnPropertyChanged();
-                if(_selectedAnagrafica != null)
-                {
-                    _eventAggregator.GetEvent<OpenDetailAnagraficaViewEvent>().Publish(_selectedAnagrafica.Id);
-                }
-            }
-        }
+        
 
     }
 }
