@@ -14,25 +14,89 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <TextBlock Text="Nome" Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="1"  Text="{Binding Anagrafica.Nome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5"></TextBox>
+        <TextBox Grid.Row="1"  Text="{Binding Anagrafica.Nome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Cognome" Grid.Column="1" Margin="5 5"/>
+        <TextBox Grid.Row="1" Grid.Column="1" 
+                 Text="{Binding Anagrafica.Cognome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5"></TextBox>
+
+        <TextBlock Text="Ragione Sociale" 
+                   Grid.Column="2" Grid.ColumnSpan="2" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="2" Text="{Binding Anagrafica.RagioneSociale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5"></TextBox>
+
+
+        <TextBlock Text="DUG" Grid.Row="2" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="3" Text="{Binding Anagrafica.DUG, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Toponimo" Grid.Column="1" Grid.Row="2" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="1"  Text="{Binding Anagrafica.Toponimo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Num Civico" Grid.Row="2" Grid.Column="2" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="2"  Text="{Binding Anagrafica.NumeroCivico, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Esponente" Grid.Column="3" Grid.Row="2" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="3" Text="{Binding Anagrafica.Esponente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Complemento Indirizzo"  Grid.ColumnSpan="4" Grid.Row="4" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="5" Grid.ColumnSpan="5"  Text="{Binding Anagrafica.ComplementoIndirizzo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Comune" Grid.Row="6" Margin="5 5"/>
+        <TextBox Grid.Row="7" Text="{Binding Anagrafica.Citta, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Frazione" Grid.Column="1" Grid.Row="6" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Anagrafica.Frazione, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
         
-        <TextBlock Text="Cognome" Grid.Column="1" Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Anagrafica.Cognome, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5"></TextBox>
+        
+        <TextBlock Text="Cap" Grid.Column="2" Grid.Row="6" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="2" Text="{Binding Anagrafica.Cap, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
 
-        <TextBlock Text="Ragione Sociale" Grid.Column="2" Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Anagrafica.RagioneSociale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5 5"></TextBox>
+        <TextBlock Text="Provincia" Grid.Column="3" Grid.Row="6" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Anagrafica.Provincia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
 
-        <StackPanel Grid.Row="7" Grid.ColumnSpan="3" Orientation="Horizontal">
+        <TextBlock Text="Casella Postale" Grid.ColumnSpan="4" Grid.Row="8" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="9" Grid.ColumnSpan="4" Text="{Binding Anagrafica.CasellaPostale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+        
+        <CheckBox x:Name="checkBoxMittente" Content="Mittente" 
+                  IsChecked="{Binding Anagrafica.IsMittente}" HorizontalAlignment="Left" 
+                  Margin="5 5" Grid.Row="14" VerticalAlignment="Top"/>
+
+        <CheckBox x:Name="checkBoxMittenteDefault" Content="Default" 
+                  IsChecked="{Binding Anagrafica.IsDefaultMittente}" HorizontalAlignment="Left" 
+                  Margin="5 5" Grid.Row="14" Grid.Column="2" VerticalAlignment="Top"/>
+
+
+        <StackPanel Grid.Row="16" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>
