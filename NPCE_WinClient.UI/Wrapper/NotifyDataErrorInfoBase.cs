@@ -48,7 +48,10 @@ namespace NPCE_WinClient.UI.Wrapper
 
         IEnumerable INotifyDataErrorInfo.GetErrors(string propertyName)
         {
-            throw new NotImplementedException();
+            return _errorsByPropertyName.ContainsKey(propertyName)
+        ? _errorsByPropertyName[propertyName]
+        : null;
+
         }
     }
 

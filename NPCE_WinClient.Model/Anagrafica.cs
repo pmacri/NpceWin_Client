@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace NPCE_WinClient.Model
     public class Anagrafica
     {
         public int Id { get; set; }
+
+        [Required]
         public string Cognome { get; set; }
         public string Nome { get; set; }
         public string RagioneSociale { get; set; }
