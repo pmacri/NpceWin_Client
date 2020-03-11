@@ -48,6 +48,8 @@ namespace NPCE_WinClient.UI.ViewModel
 
             _eventAggregator.GetEvent<OpenDetailAnagraficaViewEvent>()
                 .Subscribe(OnOpenAnagraficaDetailEvent);
+            _eventAggregator.GetEvent<AfterAnagraficaDeletedEvent>()
+                .Subscribe(AfterFriendDeleted);
 
             _anagraficaDetailViewModelCreator = anagraficaDetailViewModelCreator;
             NavigationViewModel = navigationViewModel;
@@ -55,11 +57,7 @@ namespace NPCE_WinClient.UI.ViewModel
             CreateNewAnagraficaCommand = new DelegateCommand(OnCreateNewAnagraficaExecute);
         }
 
-        private void OnCreateNewAnagraficaExecute()
-        {
-            OnOpenAnagraficaDetailEvent(null);
-        }
-
+        
         public ICommand CreateNewAnagraficaCommand { get; set; }
         public async Task LoadAllAsync()
         {
@@ -85,6 +83,18 @@ namespace NPCE_WinClient.UI.ViewModel
             AnagraficaDetailViewModel = _anagraficaDetailViewModelCreator();
             await AnagraficaDetailViewModel.LoadById(AnagraficaId);
         }
+
+        private void AfterFriendDeleted(long anagraficaId)
+        {
+            // The corrisponding view will be hidden
+            AnagraficaDetailViewModel = null;
+        }
+
+        private void OnCreateNewAnagraficaExecute()
+        {
+            OnOpenAnagraficaDetailEvent(null);
+        }
+
 
 
     }

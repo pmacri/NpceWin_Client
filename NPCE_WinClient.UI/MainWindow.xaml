@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NPCE_WinClient.UI"
         xmlns:view="clr-namespace:NPCE_WinClient.UI.View"
+        xmlns:viewModel="clr-namespace:NPCE_WinClient.UI.ViewModel"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:AnagraficaDetailViewModel}">
+            <view:AnagraficaDetailView/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -22,7 +28,9 @@
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>
-        <view:AnagraficaDetailView Grid.Row="1" Grid.Column="1" DataContext="{Binding AnagraficaDetailViewModel}"></view:AnagraficaDetailView>
+        <ContentControl Grid.Row="1" 
+                        Grid.Column="1" 
+                        Content="{Binding AnagraficaDetailViewModel}"/>
     </Grid>
 
 </Window>

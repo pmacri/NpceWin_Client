@@ -2,6 +2,7 @@
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Data.Repositories;
 using NPCE_WinClient.UI.Event;
+using NPCE_WinClient.UI.View.Services;
 using NPCE_WinClient.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
@@ -16,13 +17,13 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class AnagraficaDetailViewModel : ViewModelBase, IAnagraficaDetailViewModel
     {
-        public AnagraficaDetailViewModel(INpceRepository npceRepository, IEventAggregator eventAggregator)
+        public AnagraficaDetailViewModel(INpceRepository npceRepository, IEventAggregator eventAggregator,
+            IMessageDialogService messageDialogService)
         {
             _npceRepository = npceRepository;
             _eventAggregator = eventAggregator;
-            
+            _messageDialogService = messageDialogService;
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
-
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
         }
 
@@ -37,6 +38,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private AnagraficaWrapper _Anagrafica;
         private INpceRepository _npceRepository;
         private IEventAggregator _eventAggregator;
+        private readonly IMessageDialogService _messageDialogService;
         private bool _hasChanges;
         public AnagraficaWrapper Anagrafica
         {
@@ -97,6 +99,12 @@ namespace NPCE_WinClient.UI.ViewModel
         }
         private async void OnDeleteExecute()
         {
+            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the anagrafica {Anagrafica.Nome} {Anagrafica.Cognome}", 
+                                                                   "Question");
+            if (result==MessageDialogResult.Cancel)
+            {
+                return;
+            }
             _npceRepository.Remove(Anagrafica.Model);
             await _npceRepository.SaveAsync();
             _eventAggregator.GetEvent<AfterAnagraficaDeletedEvent>().Publish(Anagrafica.Id);
