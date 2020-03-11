@@ -2,6 +2,7 @@
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Event;
 using NPCE_WinClient.UI.View.Services;
+using Prism.Commands;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace NPCE_WinClient.UI.ViewModel
 {
@@ -49,13 +51,25 @@ namespace NPCE_WinClient.UI.ViewModel
 
             _anagraficaDetailViewModelCreator = anagraficaDetailViewModelCreator;
             NavigationViewModel = navigationViewModel;
+
+            CreateNewAnagraficaCommand = new DelegateCommand(OnCreateNewAnagraficaExecute);
         }
+
+        private void OnCreateNewAnagraficaExecute()
+        {
+            OnOpenAnagraficaDetailEvent(null);
+        }
+
+        public ICommand CreateNewAnagraficaCommand { get; set; }
         public async Task LoadAllAsync()
         {
             await NavigationViewModel.LoadAsync();
         }
 
-        private async void OnOpenAnagraficaDetailEvent(long AnagraficaId)
+
+        // Viene riusato sia per visualizzare un'anagrafica esistente sia per crearne una nuova.
+        // In questo secondo caso viene passato null come parametro
+        private async void OnOpenAnagraficaDetailEvent(long? AnagraficaId)
         {
             //Verificare se il view model corrente HasChanges
             if (AnagraficaDetailViewModel!=null && AnagraficaDetailViewModel.HasChanges)

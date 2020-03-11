@@ -88,6 +88,7 @@
     <Compile Include="Data\Repositories\INpceRepository.cs" />
     <Compile Include="Data\Lookups\IServiceLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
+    <Compile Include="Event\AfterAnagraficaDeletedEvent.cs" />
     <Compile Include="Event\AfterAnagraficaSavedEvent.cs" />
     <Compile Include="Event\OpenDetailAnagraficaViewEvent.cs" />
     <Compile Include="Event\OpenDetailServiceViewEvent.cs" />

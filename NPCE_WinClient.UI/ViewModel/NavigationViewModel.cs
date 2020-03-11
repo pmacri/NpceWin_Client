@@ -23,13 +23,22 @@ namespace NPCE_WinClient.UI.ViewModel
             _eventAggregator = eventAggregator;
             Anagrafiche = new ObservableCollection<NavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterAnagraficaSavedEvent>().Subscribe(AfterAnagraficaSaved);
+            _eventAggregator.GetEvent<AfterAnagraficaDeletedEvent>().Subscribe(AfterAnagraficaDeleted);
         }
 
+        
         private void AfterAnagraficaSaved(AfterAnagraficaSavedEventArgs obj)
         {
-            var lookupItem = Anagrafiche.First(l => l.Id == obj.Id);
-
-            lookupItem.DisplayMember = obj.DisplayMember;
+            var lookupItem = Anagrafiche.SingleOrDefault(l => l.Id == obj.Id);
+            if (lookupItem==null)
+            {
+                lookupItem = new NavigationItemViewModel(obj.Id, obj.DisplayMember, _eventAggregator);
+                Anagrafiche.Add(lookupItem);
+            }
+            else
+            {
+                lookupItem.DisplayMember = obj.DisplayMember;
+            }
         }
 
         public async Task LoadAsync()
@@ -43,6 +52,16 @@ namespace NPCE_WinClient.UI.ViewModel
                 Anagrafiche.Add(new NavigationItemViewModel(lookup.Id, lookup.DisplayMember,_eventAggregator));
             }
         }
+
+        private void AfterAnagraficaDeleted(long anagraficaId)
+        {
+            var anagrafica = Anagrafiche.SingleOrDefault(a => a.Id == anagraficaId);
+            if (anagrafica != null)
+            {
+                Anagrafiche.Remove(anagrafica);
+            }
+        }
+
         public ObservableCollection<NavigationItemViewModel> Anagrafiche { get; set; }
 
         

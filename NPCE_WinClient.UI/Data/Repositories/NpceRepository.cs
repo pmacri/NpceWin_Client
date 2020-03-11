@@ -17,6 +17,12 @@ namespace NPCE_WinClient.UI.Data.Repositories
         {
             _context = context;
         }
+
+        public void Add(Anagrafica anagrafica)
+        {
+            _context.Anagrafica.Add(anagrafica);
+        }
+
         public async Task<List<Service>> GetAllAsync()
         {
             return await _context.Services.ToListAsync();
@@ -36,6 +42,11 @@ namespace NPCE_WinClient.UI.Data.Repositories
         public bool HasChanges()
         {
             return _context.ChangeTracker.HasChanges();
+        }
+
+        public void Remove(Anagrafica anagrafica)
+        {
+            _context.Anagrafica.Remove(anagrafica);
         }
 
         public async Task SaveAsync()

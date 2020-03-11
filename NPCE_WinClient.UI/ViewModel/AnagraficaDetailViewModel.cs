@@ -22,6 +22,8 @@ namespace NPCE_WinClient.UI.ViewModel
             _eventAggregator = eventAggregator;
             
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
+
+            DeleteCommand = new DelegateCommand(OnDeleteExecute);
         }
 
         private async void OnSaveExecute()
@@ -30,10 +32,6 @@ namespace NPCE_WinClient.UI.ViewModel
             HasChanges = _npceRepository.HasChanges();
             _eventAggregator.GetEvent<AfterAnagraficaSavedEvent>()
                 .Publish(new AfterAnagraficaSavedEventArgs { Id = Anagrafica.Id, DisplayMember = $"{Anagrafica.Nome} {Anagrafica.Cognome}" });
-        }
-        private bool OnSaveCanExecute()
-        {
-            return (_Anagrafica != null) && (!_Anagrafica.HasErrors) && (HasChanges);
         }
 
         private AnagraficaWrapper _Anagrafica;
@@ -49,9 +47,11 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-        public async Task LoadById(long id)
+        public async Task LoadById(long? id)
         {
-            var anagrafica = await _npceRepository.GetByIdAsync(id);
+            var anagrafica = (id.HasValue)
+                ? await _npceRepository.GetByIdAsync(id.Value)
+                : CreateNewAnagrafica();
             Anagrafica = new AnagraficaWrapper(anagrafica);
             Anagrafica.PropertyChanged += (s, e) =>
             {
@@ -65,10 +65,16 @@ namespace NPCE_WinClient.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+
+
+            // Little trick to trigger validation on a new anagrafica
+            if(Anagrafica.Id==0)
+            {
+                Anagrafica.Cognome = "";
+            }
         }
-
+        
         // E' necessario definirla come proprietà per usarla nel DataBinding della View
-
         public bool HasChanges
         {
             get { return _hasChanges; }
@@ -81,7 +87,24 @@ namespace NPCE_WinClient.UI.ViewModel
                 }                
             }
         }
-
         public ICommand SaveCommand { get; }
+        public ICommand DeleteCommand { get; set; }
+        private Anagrafica CreateNewAnagrafica()
+        {
+            var anagrafica = new Anagrafica();
+            _npceRepository.Add(anagrafica);
+            return anagrafica;
+        }
+        private async void OnDeleteExecute()
+        {
+            _npceRepository.Remove(Anagrafica.Model);
+            await _npceRepository.SaveAsync();
+            _eventAggregator.GetEvent<AfterAnagraficaDeletedEvent>().Publish(Anagrafica.Id);
+        }
+        private bool OnSaveCanExecute()
+        {
+            return (_Anagrafica != null) && (!_Anagrafica.HasErrors) && (HasChanges);
+        }
+
     }
 }

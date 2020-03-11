@@ -6,11 +6,12 @@ namespace NPCE_WinClient.UI.Data.Repositories
 {
     public interface INpceRepository
     {
-       Task<List<Service>> GetAllAsync();
+        Task<List<Service>> GetAllAsync();
         Task<Service> GetServiceByIdAsync(long id);
         Task<Anagrafica> GetByIdAsync(long id);
         Task SaveAsync();
         bool HasChanges();
-
+        void Add(Anagrafica anagrafica);
+        void Remove(Anagrafica model);
     }
 }
