@@ -20,17 +20,17 @@ namespace NPCE_WinClient.UI.ViewModel
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogservice;
         private Func<IAnagraficaDetailViewModel> _anagraficaDetailViewModelCreator;
-        private IAnagraficaDetailViewModel _anagraficaDetailViewModel;
+        private IDetailViewModel _detailViewModel;
 
         public ObservableCollection<Service> Services { get; set; }
         public INavigationViewModel NavigationViewModel { get;}
         public IServiceDetailViewModel ServiceDetailViewModel { get; }
 
-        public IAnagraficaDetailViewModel AnagraficaDetailViewModel
+        public IDetailViewModel DetailViewModel
         {
-            get { return _anagraficaDetailViewModel; }
+            get { return _detailViewModel; }
             set { 
-                _anagraficaDetailViewModel = value;
+                _detailViewModel = value;
                 OnPropertyChanged();
             }
         }
@@ -68,10 +68,10 @@ namespace NPCE_WinClient.UI.ViewModel
 
         // Viene riusato sia per visualizzare un'anagrafica esistente sia per crearne una nuova.
         // In questo secondo caso viene passato null come parametro
-        private async void OnOpenAnagraficaDetailEvent(long? AnagraficaId)
+        private async void OnOpenAnagraficaDetailEvent(int? AnagraficaId)
         {
             //Verificare se il view model corrente HasChanges
-            if (AnagraficaDetailViewModel!=null && AnagraficaDetailViewModel.HasChanges)
+            if (DetailViewModel!=null && DetailViewModel.HasChanges)
             {
                var result = _messageDialogservice.ShowOKCancelDialog("You've made changes. Navigate away ?", "Question");
 
@@ -81,14 +81,14 @@ namespace NPCE_WinClient.UI.ViewModel
                 }
 
             }
-            AnagraficaDetailViewModel = _anagraficaDetailViewModelCreator();
-            await AnagraficaDetailViewModel.LoadById(AnagraficaId);
+            DetailViewModel = _anagraficaDetailViewModelCreator();
+            await DetailViewModel.LoadAsync(AnagraficaId);
         }
 
         private void AfterFriendDeleted(long anagraficaId)
         {
             // The corrisponding view will be hidden
-            AnagraficaDetailViewModel = null;
+            DetailViewModel = null;
         }
 
         private void OnCreateNewAnagraficaExecute()

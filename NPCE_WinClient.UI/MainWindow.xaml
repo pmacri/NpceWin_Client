@@ -30,7 +30,7 @@
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>
         <ContentControl Grid.Row="1" 
                         Grid.Column="1" 
-                        Content="{Binding AnagraficaDetailViewModel}"/>
+                        Content="{Binding DetailViewModel}"/>
     </Grid>
 
 </Window>

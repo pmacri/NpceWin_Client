@@ -15,7 +15,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private string _displayMember;
         private IEventAggregator _eventAggregator;
         
-        public NavigationItemViewModel(long id, string displayMember,
+        public NavigationItemViewModel(int id, string displayMember,
             IEventAggregator eventAggregator)
         {
             _displayMember = displayMember;
@@ -31,7 +31,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         }
 
-        public long Id { get; set; }
+        public int Id { get; set; }
 
 
         public string DisplayMember

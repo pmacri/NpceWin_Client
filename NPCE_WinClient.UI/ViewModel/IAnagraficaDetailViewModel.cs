@@ -1,10 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace NPCE_WinClient.UI.ViewModel
+﻿namespace NPCE_WinClient.UI.ViewModel
 {
-    public interface IAnagraficaDetailViewModel
+    public interface IAnagraficaDetailViewModel: IDetailViewModel
     {
-        Task LoadById(long? id);
-        bool HasChanges { get; }
+        
     }
 }

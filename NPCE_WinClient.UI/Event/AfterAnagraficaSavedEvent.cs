@@ -13,7 +13,7 @@ namespace NPCE_WinClient.UI.Event
 
     public class AfterAnagraficaSavedEventArgs
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string DisplayMember { get; set; }
 
     }

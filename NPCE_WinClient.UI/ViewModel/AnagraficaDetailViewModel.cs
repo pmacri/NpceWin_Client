@@ -49,7 +49,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-        public async Task LoadById(long? id)
+        public async Task LoadAsync(int? id)
         {
             var anagrafica = (id.HasValue)
                 ? await _npceRepository.GetByIdAsync(id.Value)
