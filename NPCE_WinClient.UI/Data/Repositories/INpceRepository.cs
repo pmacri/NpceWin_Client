@@ -4,14 +4,18 @@ using NPCE_WinClient.Model;
 
 namespace NPCE_WinClient.UI.Data.Repositories
 {
-    public interface INpceRepository
+
+    public interface IGenericRepository<T>
     {
-        Task<List<Service>> GetAllAsync();
-        Task<Service> GetServiceByIdAsync(long id);
-        Task<Anagrafica> GetByIdAsync(long id);
+        Task<T> GetByIdAsync(int id);
         Task SaveAsync();
         bool HasChanges();
-        void Add(Anagrafica anagrafica);
-        void Remove(Anagrafica model);
+        void Add(T model);
+        void Remove(T model);
+
+    }
+    public interface INpceRepository: IGenericRepository<Anagrafica>
+    {
+
     }
 }

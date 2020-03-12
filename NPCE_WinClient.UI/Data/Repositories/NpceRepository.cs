@@ -28,12 +28,12 @@ namespace NPCE_WinClient.UI.Data.Repositories
             return await _context.Services.ToListAsync();
         }
 
-        public async Task<Anagrafica> GetByIdAsync(long id)
+        public async Task<Anagrafica> GetByIdAsync(int id)
         {
             return await _context.Anagrafica.FirstAsync(m => m.Id == id);
         }
 
-        public async Task<Service> GetServiceByIdAsync(long id)
+        public async Task<Service> GetServiceByIdAsync(int id)
         {
 
             return await _context.Services.AsNoTracking().SingleOrDefaultAsync(s => s.Id == id);

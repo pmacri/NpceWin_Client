@@ -22,9 +22,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private Func<IAnagraficaDetailViewModel> _anagraficaDetailViewModelCreator;
         private IDetailViewModel _detailViewModel;
 
-        public ObservableCollection<Service> Services { get; set; }
         public INavigationViewModel NavigationViewModel { get;}
-        public IServiceDetailViewModel ServiceDetailViewModel { get; }
 
         public IDetailViewModel DetailViewModel
         {
@@ -37,12 +35,10 @@ namespace NPCE_WinClient.UI.ViewModel
 
 
         public MainViewModel(INavigationViewModel navigationViewModel, 
-                            IServiceDetailViewModel serviceDetailViewModel,
                             Func<IAnagraficaDetailViewModel> anagraficaDetailViewModelCreator, 
                             IEventAggregator eventAggregator,
                             IMessageDialogService messageDialogservice)
         {
-            ServiceDetailViewModel = serviceDetailViewModel;
             _eventAggregator = eventAggregator;
 
             _messageDialogservice = messageDialogservice;

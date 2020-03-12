@@ -34,7 +34,6 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<NpceRepository>().As<INpceRepository>();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
-            builder.RegisterType<ServiceDetailViewModel>().As<IServiceDetailViewModel>();
             builder.RegisterType<AnagraficaDetailViewModel>().As<IAnagraficaDetailViewModel>();
 
             return builder.Build();
