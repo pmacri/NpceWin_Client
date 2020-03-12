@@ -15,29 +15,21 @@ using System.Windows.Input;
 
 namespace NPCE_WinClient.UI.ViewModel
 {
-    public class AnagraficaDetailViewModel : ViewModelBase, IAnagraficaDetailViewModel
+    public class AnagraficaDetailViewModel : DetailViewModelBase, IAnagraficaDetailViewModel
     {
         public AnagraficaDetailViewModel(IAnagraficaRepository AnagraficaRepository, IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService)
+            IMessageDialogService messageDialogService): base(eventAggregator)
         {
             _AnagraficaRepository = AnagraficaRepository;
-            _eventAggregator = eventAggregator;
             _messageDialogService = messageDialogService;
-            SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
-            DeleteCommand = new DelegateCommand(OnDeleteExecute);
+            
         }
 
-        private async void OnSaveExecute()
+        protected override async void OnSaveExecute()
         {
             await _AnagraficaRepository.SaveAsync();
             HasChanges = _AnagraficaRepository.HasChanges();
-            _eventAggregator.GetEvent<AfterDetailSavedEvent>()
-                .Publish(new AfterDetailSavedEventArgs
-                {
-                    Id = Anagrafica.Id,
-                    DisplayMember = $"{Anagrafica.Nome} {Anagrafica.Cognome}",
-                    ViewModelName = nameof(AnagraficaDetailViewModel)
-                });
+            RaiseDetailSavedEvent(Anagrafica.Id, $"{Anagrafica.Nome} {Anagrafica.Cognome}");
         }
 
         private AnagraficaWrapper _Anagrafica;
@@ -54,7 +46,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-        public async Task LoadAsync(int? id)
+        public override async Task LoadAsync(int? id)
         {
             var anagrafica = (id.HasValue)
                 ? await _AnagraficaRepository.GetByIdAsync(id.Value)
@@ -80,30 +72,13 @@ namespace NPCE_WinClient.UI.ViewModel
                 Anagrafica.Cognome = "";
             }
         }
-
-        // E' necessario definirla come proprietà per usarla nel DataBinding della View
-        public bool HasChanges
-        {
-            get { return _hasChanges; }
-            set
-            {
-                if (_hasChanges != value)
-                {
-                    _hasChanges = value;
-                    OnPropertyChanged();
-                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-                }
-            }
-        }
-        public ICommand SaveCommand { get; }
-        public ICommand DeleteCommand { get; set; }
         private Anagrafica CreateNewAnagrafica()
         {
             var anagrafica = new Anagrafica();
             _AnagraficaRepository.Add(anagrafica);
             return anagrafica;
         }
-        private async void OnDeleteExecute()
+        protected override async void OnDeleteExecute()
         {
             var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the anagrafica {Anagrafica.Nome} {Anagrafica.Cognome}",
                                                                    "Question");
@@ -113,14 +88,10 @@ namespace NPCE_WinClient.UI.ViewModel
             }
             _AnagraficaRepository.Remove(Anagrafica.Model);
             await _AnagraficaRepository.SaveAsync();
-            _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Publish(
-                new AfterDetailDeletedEventArgs
-                {
-                    Id = Anagrafica.Id,
-                    ViewModelName = nameof(AnagraficaDetailViewModel)
-                });
+            RaiseDetailDeletedEvent(Anagrafica.Id);
+
         }
-        private bool OnSaveCanExecute()
+        protected override bool OnSaveCanExecute()
         {
             return (_Anagrafica != null) && (!_Anagrafica.HasErrors) && (HasChanges);
         }
