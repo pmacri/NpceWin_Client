@@ -17,10 +17,10 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class AnagraficaDetailViewModel : ViewModelBase, IAnagraficaDetailViewModel
     {
-        public AnagraficaDetailViewModel(INpceRepository npceRepository, IEventAggregator eventAggregator,
+        public AnagraficaDetailViewModel(IAnagraficaRepository AnagraficaRepository, IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService)
         {
-            _npceRepository = npceRepository;
+            _AnagraficaRepository = AnagraficaRepository;
             _eventAggregator = eventAggregator;
             _messageDialogService = messageDialogService;
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
@@ -29,8 +29,8 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private async void OnSaveExecute()
         {
-            await _npceRepository.SaveAsync();
-            HasChanges = _npceRepository.HasChanges();
+            await _AnagraficaRepository.SaveAsync();
+            HasChanges = _AnagraficaRepository.HasChanges();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>()
                 .Publish(new AfterDetailSavedEventArgs
                 {
@@ -41,7 +41,7 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         private AnagraficaWrapper _Anagrafica;
-        private INpceRepository _npceRepository;
+        private IAnagraficaRepository _AnagraficaRepository;
         private IEventAggregator _eventAggregator;
         private readonly IMessageDialogService _messageDialogService;
         private bool _hasChanges;
@@ -57,14 +57,14 @@ namespace NPCE_WinClient.UI.ViewModel
         public async Task LoadAsync(int? id)
         {
             var anagrafica = (id.HasValue)
-                ? await _npceRepository.GetByIdAsync(id.Value)
+                ? await _AnagraficaRepository.GetByIdAsync(id.Value)
                 : CreateNewAnagrafica();
             Anagrafica = new AnagraficaWrapper(anagrafica);
             Anagrafica.PropertyChanged += (s, e) =>
             {
                 if (!HasChanges)
                 {
-                    HasChanges = _npceRepository.HasChanges();
+                    HasChanges = _AnagraficaRepository.HasChanges();
                 }
                 if (e.PropertyName == nameof(Anagrafica.HasErrors))
                 {
@@ -100,7 +100,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private Anagrafica CreateNewAnagrafica()
         {
             var anagrafica = new Anagrafica();
-            _npceRepository.Add(anagrafica);
+            _AnagraficaRepository.Add(anagrafica);
             return anagrafica;
         }
         private async void OnDeleteExecute()
@@ -111,8 +111,8 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 return;
             }
-            _npceRepository.Remove(Anagrafica.Model);
-            await _npceRepository.SaveAsync();
+            _AnagraficaRepository.Remove(Anagrafica.Model);
+            await _AnagraficaRepository.SaveAsync();
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Publish(
                 new AfterDetailDeletedEventArgs
                 {

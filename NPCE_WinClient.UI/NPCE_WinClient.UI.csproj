@@ -85,7 +85,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\IAnagraficaLookupDataService.cs" />
-    <Compile Include="Data\Repositories\INpceRepository.cs" />
+    <Compile Include="Data\Repositories\GenericRepository.cs" />
+    <Compile Include="Data\Repositories\IAnagraficaRepository.cs" />
+    <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Lookups\IServiceLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
@@ -121,7 +123,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Repositories\NpceRepository.cs" />
+    <Compile Include="Data\Repositories\AnagraficaRepository.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
