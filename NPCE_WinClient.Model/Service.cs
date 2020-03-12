@@ -8,7 +8,6 @@ namespace NPCE_WinClient.Model
 {
     public class Service
     {
-
         public long Id { get; set; }
         public Guid IdRichiesta { get; set; }
         public DateTime CreationTime { get; set; }

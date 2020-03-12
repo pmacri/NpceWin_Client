@@ -20,11 +20,12 @@ namespace NPCE_WinClient.UI.ViewModel
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogservice;
         private Func<IAnagraficaDetailViewModel> _anagraficaDetailViewModelCreator;
+        private IAnagraficaDetailViewModel _anagraficaDetailViewModel;
+
         public ObservableCollection<Service> Services { get; set; }
         public INavigationViewModel NavigationViewModel { get;}
         public IServiceDetailViewModel ServiceDetailViewModel { get; }
 
-        private IAnagraficaDetailViewModel _anagraficaDetailViewModel;
         public IAnagraficaDetailViewModel AnagraficaDetailViewModel
         {
             get { return _anagraficaDetailViewModel; }
