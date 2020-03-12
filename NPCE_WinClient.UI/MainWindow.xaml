@@ -24,7 +24,8 @@
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="20">
             <MenuItem Header="Create">
-                <MenuItem Header="New Anagrafica" Command="{Binding CreateNewAnagraficaCommand}"/>
+                <MenuItem Header="New Anagrafica" Command="{Binding CreateNewDetailCommand}"
+                          CommandParameter="{x:Type viewModel:AnagraficaDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>

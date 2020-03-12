@@ -31,8 +31,13 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             await _npceRepository.SaveAsync();
             HasChanges = _npceRepository.HasChanges();
-            _eventAggregator.GetEvent<AfterAnagraficaSavedEvent>()
-                .Publish(new AfterAnagraficaSavedEventArgs { Id = Anagrafica.Id, DisplayMember = $"{Anagrafica.Nome} {Anagrafica.Cognome}" });
+            _eventAggregator.GetEvent<AfterDetailSavedEvent>()
+                .Publish(new AfterDetailSavedEventArgs
+                {
+                    Id = Anagrafica.Id,
+                    DisplayMember = $"{Anagrafica.Nome} {Anagrafica.Cognome}",
+                    ViewModelName = nameof(AnagraficaDetailViewModel)
+                });
         }
 
         private AnagraficaWrapper _Anagrafica;
@@ -70,23 +75,24 @@ namespace NPCE_WinClient.UI.ViewModel
 
 
             // Little trick to trigger validation on a new anagrafica
-            if(Anagrafica.Id==0)
+            if (Anagrafica.Id == 0)
             {
                 Anagrafica.Cognome = "";
             }
         }
-        
+
         // E' necessario definirla come proprietà per usarla nel DataBinding della View
         public bool HasChanges
         {
             get { return _hasChanges; }
-            set { 
-                if (_hasChanges!= value)
+            set
+            {
+                if (_hasChanges != value)
                 {
                     _hasChanges = value;
                     OnPropertyChanged();
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-                }                
+                }
             }
         }
         public ICommand SaveCommand { get; }
@@ -99,15 +105,20 @@ namespace NPCE_WinClient.UI.ViewModel
         }
         private async void OnDeleteExecute()
         {
-            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the anagrafica {Anagrafica.Nome} {Anagrafica.Cognome}", 
+            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the anagrafica {Anagrafica.Nome} {Anagrafica.Cognome}",
                                                                    "Question");
-            if (result==MessageDialogResult.Cancel)
+            if (result == MessageDialogResult.Cancel)
             {
                 return;
             }
             _npceRepository.Remove(Anagrafica.Model);
             await _npceRepository.SaveAsync();
-            _eventAggregator.GetEvent<AfterAnagraficaDeletedEvent>().Publish(Anagrafica.Id);
+            _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Publish(
+                new AfterDetailDeletedEventArgs
+                {
+                    Id = Anagrafica.Id,
+                    ViewModelName = nameof(AnagraficaDetailViewModel)
+                });
         }
         private bool OnSaveCanExecute()
         {

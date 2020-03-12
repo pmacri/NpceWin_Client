@@ -47,19 +47,19 @@ namespace NPCE_WinClient.UI.ViewModel
 
             _messageDialogservice = messageDialogservice;
 
-            _eventAggregator.GetEvent<OpenDetailAnagraficaViewEvent>()
-                .Subscribe(OnOpenAnagraficaDetailEvent);
-            _eventAggregator.GetEvent<AfterAnagraficaDeletedEvent>()
-                .Subscribe(AfterFriendDeleted);
+            _eventAggregator.GetEvent<OpenDetailViewEvent>()
+                .Subscribe(OnOpenDetailEvent);
+            _eventAggregator.GetEvent<AfterDetailDeletedEvent>()
+                .Subscribe(AfterDetailDeleted);
 
             _anagraficaDetailViewModelCreator = anagraficaDetailViewModelCreator;
             NavigationViewModel = navigationViewModel;
 
-            CreateNewAnagraficaCommand = new DelegateCommand(OnCreateNewAnagraficaExecute);
+            CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
         }
 
         
-        public ICommand CreateNewAnagraficaCommand { get; set; }
+        public ICommand CreateNewDetailCommand { get; set; }
         public async Task LoadAllAsync()
         {
             await NavigationViewModel.LoadAsync();
@@ -68,9 +68,9 @@ namespace NPCE_WinClient.UI.ViewModel
 
         // Viene riusato sia per visualizzare un'anagrafica esistente sia per crearne una nuova.
         // In questo secondo caso viene passato null come parametro
-        private async void OnOpenAnagraficaDetailEvent(int? AnagraficaId)
+        private async void OnOpenDetailEvent(OpenDetailViewEventargs args)
         {
-            //Verificare se il view model corrente HasChanges
+            // Verificare se il view model corrente HasChanges
             if (DetailViewModel!=null && DetailViewModel.HasChanges)
             {
                var result = _messageDialogservice.ShowOKCancelDialog("You've made changes. Navigate away ?", "Question");
@@ -79,21 +79,31 @@ namespace NPCE_WinClient.UI.ViewModel
                 {
                     return;
                 }
+            }
+
+            // Additional switches for others view models
+            switch(args.ViewModelName)
+            {
+                case nameof(AnagraficaDetailViewModel) :
+                    DetailViewModel = _anagraficaDetailViewModelCreator();
+                    break;
 
             }
-            DetailViewModel = _anagraficaDetailViewModelCreator();
-            await DetailViewModel.LoadAsync(AnagraficaId);
+            await DetailViewModel.LoadAsync(args.Id);
         }
 
-        private void AfterFriendDeleted(long anagraficaId)
+        private void AfterDetailDeleted(AfterDetailDeletedEventArgs args )
         {
             // The corrisponding view will be hidden
             DetailViewModel = null;
         }
 
-        private void OnCreateNewAnagraficaExecute()
+        private void OnCreateNewDetailExecute(Type viewModelType)
         {
-            OnOpenAnagraficaDetailEvent(null);
+            OnOpenDetailEvent(new OpenDetailViewEventargs
+            {
+                ViewModelName = viewModelType.Name
+            });
         }
 
 
