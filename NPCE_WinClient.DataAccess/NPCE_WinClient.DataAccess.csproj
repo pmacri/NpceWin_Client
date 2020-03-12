@@ -71,6 +71,10 @@
     <Compile Include="Migrations\202003111041080_CognomeRequired.designer.cs">
       <DependentUpon>202003111041080_CognomeRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003121220115_RefactoringViewModel2.cs" />
+    <Compile Include="Migrations\202003121220115_RefactoringViewModel2.designer.cs">
+      <DependentUpon>202003121220115_RefactoringViewModel2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003111041080_CognomeRequired.resx">
       <DependentUpon>202003111041080_CognomeRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003121220115_RefactoringViewModel2.resx">
+      <DependentUpon>202003121220115_RefactoringViewModel2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
