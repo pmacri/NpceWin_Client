@@ -10,6 +10,7 @@
     public abstract class DetailViewModelBase : ViewModelBase, IDetailViewModel
     {
         private bool _hasChanges;
+
         protected readonly IEventAggregator EventAggregator;
 
         public DetailViewModelBase(IEventAggregator eventAggregator)

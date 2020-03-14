@@ -17,6 +17,10 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class AnagraficaDetailViewModel : DetailViewModelBase, IAnagraficaDetailViewModel
     {
+        private AnagraficaWrapper _anagrafica;
+        private IAnagraficaRepository _AnagraficaRepository;
+        private readonly IMessageDialogService _messageDialogService;
+
         public AnagraficaDetailViewModel(IAnagraficaRepository AnagraficaRepository, IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService): base(eventAggregator)
         {
@@ -24,25 +28,18 @@ namespace NPCE_WinClient.UI.ViewModel
             _messageDialogService = messageDialogService;
             
         }
-
         protected override async void OnSaveExecute()
         {
             await _AnagraficaRepository.SaveAsync();
             HasChanges = _AnagraficaRepository.HasChanges();
             RaiseDetailSavedEvent(Anagrafica.Id, $"{Anagrafica.Nome} {Anagrafica.Cognome}");
-        }
-
-        private AnagraficaWrapper _Anagrafica;
-        private IAnagraficaRepository _AnagraficaRepository;
-        private IEventAggregator _eventAggregator;
-        private readonly IMessageDialogService _messageDialogService;
-        private bool _hasChanges;
+        }       
         public AnagraficaWrapper Anagrafica
         {
-            get { return _Anagrafica; }
+            get { return _anagrafica; }
             set
             {
-                _Anagrafica = value;
+                _anagrafica = value;
                 OnPropertyChanged();
             }
         }
@@ -64,7 +61,6 @@ namespace NPCE_WinClient.UI.ViewModel
                 }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-
 
             // Little trick to trigger validation on a new anagrafica
             if (Anagrafica.Id == 0)
@@ -93,7 +89,7 @@ namespace NPCE_WinClient.UI.ViewModel
         }
         protected override bool OnSaveCanExecute()
         {
-            return (_Anagrafica != null) && (!_Anagrafica.HasErrors) && (HasChanges);
+            return (_anagrafica != null) && (!_anagrafica.HasErrors) && (HasChanges);
         }
 
     }

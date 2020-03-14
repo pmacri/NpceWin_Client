@@ -12,6 +12,9 @@
         <DataTemplate DataType="{x:Type viewModel:AnagraficaDetailViewModel}">
             <view:AnagraficaDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:DocumentoDetailViewModel}">
+            <view:DocumentoDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -26,7 +29,9 @@
             <MenuItem Header="Create">
                 <MenuItem Header="New Anagrafica" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AnagraficaDetailViewModel}"/>
-            </MenuItem>
+                <MenuItem Header="New Documento" Command="{Binding CreateNewDetailCommand}"
+                          CommandParameter="{x:Type viewModel:DocumentoDetailViewModel}"/>
+            </MenuItem>            
         </Menu>
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>
         <ContentControl Grid.Row="1" 

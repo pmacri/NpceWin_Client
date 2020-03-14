@@ -85,8 +85,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\IAnagraficaLookupDataService.cs" />
+    <Compile Include="Data\Repositories\DocumentoRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IAnagraficaRepository.cs" />
+    <Compile Include="Data\Repositories\IDocumentoRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Lookups\IServiceLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
@@ -95,8 +97,10 @@
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
+    <Compile Include="ViewModel\DocumentoDetailViewModel.cs" />
     <Compile Include="ViewModel\IAnagraficaDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />
+    <Compile Include="ViewModel\IDocumentoDetailViewModel.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
     <Compile Include="ViewModel\IServiceDetailViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
@@ -108,12 +112,16 @@
     <Compile Include="View\AnagraficaDetailView.xaml.cs">
       <DependentUpon>AnagraficaDetailView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\DocumentoDetailView.xaml.cs">
+      <DependentUpon>DocumentoDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
+    <Compile Include="Wrapper\DocumentoWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Page Include="MainWindow.xaml">
@@ -130,6 +138,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AnagraficaDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DocumentoDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,6 +20,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogservice;
         private Func<IAnagraficaDetailViewModel> _anagraficaDetailViewModelCreator;
+        private Func<IDocumentoDetailViewModel> _documentoDetailViewModelCreator;
         private IDetailViewModel _detailViewModel;
 
         public INavigationViewModel NavigationViewModel { get;}
@@ -35,7 +36,8 @@ namespace NPCE_WinClient.UI.ViewModel
 
 
         public MainViewModel(INavigationViewModel navigationViewModel, 
-                            Func<IAnagraficaDetailViewModel> anagraficaDetailViewModelCreator, 
+                            Func<IAnagraficaDetailViewModel> anagraficaDetailViewModelCreator,
+                            Func<IDocumentoDetailViewModel> documentoDetailViewModelCreator,
                             IEventAggregator eventAggregator,
                             IMessageDialogService messageDialogservice)
         {
@@ -49,6 +51,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 .Subscribe(AfterDetailDeleted);
 
             _anagraficaDetailViewModelCreator = anagraficaDetailViewModelCreator;
+            _documentoDetailViewModelCreator = documentoDetailViewModelCreator;
+
             NavigationViewModel = navigationViewModel;
 
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
@@ -82,6 +86,9 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 case nameof(AnagraficaDetailViewModel) :
                     DetailViewModel = _anagraficaDetailViewModelCreator();
+                    break;
+                case nameof(DocumentoDetailViewModel):
+                    DetailViewModel = _documentoDetailViewModelCreator();
                     break;
 
             }

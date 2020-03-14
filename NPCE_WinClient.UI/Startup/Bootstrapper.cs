@@ -33,8 +33,10 @@ namespace NPCE_WinClient.UI.Startup
             // Sarà usata per il lookup di altri tipi con altre interfacce
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<AnagraficaRepository>().As<IAnagraficaRepository>();
+            builder.RegisterType<DocumentoRepository>().As<IDocumentoRepository>();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<AnagraficaDetailViewModel>().As<IAnagraficaDetailViewModel>();
+            builder.RegisterType<DocumentoDetailViewModel>().As<IDocumentoDetailViewModel>();
 
             return builder.Build();
         }

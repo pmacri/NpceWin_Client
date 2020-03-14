@@ -79,6 +79,26 @@
     <Compile Include="Migrations\202003121335576_RefactoringViewModel3.designer.cs">
       <DependentUpon>202003121335576_RefactoringViewModel3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003141639105_DocumentoAdded.cs" />
+    <Compile Include="Migrations\202003141639105_DocumentoAdded.designer.cs">
+      <DependentUpon>202003141639105_DocumentoAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003141641198_DocumentoAdded1.cs" />
+    <Compile Include="Migrations\202003141641198_DocumentoAdded1.designer.cs">
+      <DependentUpon>202003141641198_DocumentoAdded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003141759091_DocumentoAdded2.cs" />
+    <Compile Include="Migrations\202003141759091_DocumentoAdded2.designer.cs">
+      <DependentUpon>202003141759091_DocumentoAdded2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003141808120_DocumentoAdded3.cs" />
+    <Compile Include="Migrations\202003141808120_DocumentoAdded3.designer.cs">
+      <DependentUpon>202003141808120_DocumentoAdded3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003141834350_DocumentoAdded4.cs" />
+    <Compile Include="Migrations\202003141834350_DocumentoAdded4.designer.cs">
+      <DependentUpon>202003141834350_DocumentoAdded4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +134,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003121335576_RefactoringViewModel3.resx">
       <DependentUpon>202003121335576_RefactoringViewModel3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003141639105_DocumentoAdded.resx">
+      <DependentUpon>202003141639105_DocumentoAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003141641198_DocumentoAdded1.resx">
+      <DependentUpon>202003141641198_DocumentoAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003141759091_DocumentoAdded2.resx">
+      <DependentUpon>202003141759091_DocumentoAdded2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003141808120_DocumentoAdded3.resx">
+      <DependentUpon>202003141808120_DocumentoAdded3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003141834350_DocumentoAdded4.resx">
+      <DependentUpon>202003141834350_DocumentoAdded4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

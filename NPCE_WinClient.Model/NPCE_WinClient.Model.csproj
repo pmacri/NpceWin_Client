@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Documento.cs" />
     <Compile Include="LookupItem.cs" />
     <Compile Include="Anagrafica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
