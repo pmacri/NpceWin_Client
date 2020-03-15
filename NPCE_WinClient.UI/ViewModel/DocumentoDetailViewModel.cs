@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace NPCE_WinClient.UI.ViewModel
 {
@@ -16,15 +17,27 @@ namespace NPCE_WinClient.UI.ViewModel
     {
         private IDocumentoRepository _documentoRepository;
         private IMessageDialogService _messageDialogService;
+        private IFileService _fileService;
         private DocumentoWrapper _documento;
 
 
         public DocumentoDetailViewModel(IDocumentoRepository documentoRepository, IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService) : base(eventAggregator)
+            IMessageDialogService messageDialogService,
+            IFileService fileService) : base(eventAggregator)
         {
             _documentoRepository = documentoRepository;
             _messageDialogService = messageDialogService;
+            _fileService = fileService;
+            SelectDocumentCommand = new DelegateCommand(OnSelectDocumentExecute);
 
+        }
+
+        private void OnSelectDocumentExecute()
+        {
+            var selectFileResult = _fileService.SelectFile();
+            Documento.Content = selectFileResult.Content;
+            Documento.FileName = selectFileResult.FileName;
+            Documento.Size = selectFileResult.FileSize;
         }
 
         public DocumentoWrapper Documento
@@ -36,6 +49,7 @@ namespace NPCE_WinClient.UI.ViewModel
             }
         }
 
+        public ICommand SelectDocumentCommand { get; private set; }
 
         public override async Task LoadAsync(int? id)
         {
@@ -80,9 +94,10 @@ namespace NPCE_WinClient.UI.ViewModel
             return (_documento != null) && (!_documento.HasErrors) && (HasChanges);
         }
 
-        protected override void OnSaveExecute()
+        protected override async  void OnSaveExecute()
         {
-            throw new NotImplementedException();
+            await _documentoRepository.SaveAsync();
+            HasChanges = _documentoRepository.HasChanges();
         }
     }
 

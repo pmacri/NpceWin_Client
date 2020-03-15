@@ -8,12 +8,14 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"></RowDefinition>
-        <RowDefinition Height="Auto"></RowDefinition>
-        <RowDefinition Height="Auto"></RowDefinition>
-        <RowDefinition Height="Auto"></RowDefinition>        
-        <RowDefinition></RowDefinition>
-        <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <TextBlock Text="Tag" Margin="5 5"></TextBlock>
@@ -21,10 +23,16 @@
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="2" Text="Estensione" Margin="5 5"/>
-        <TextBox   Grid.Row="3" Text="{Binding Documento.Estensione, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBox   Grid.Row="3" Text="{Binding Documento.Extension, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                    Margin="5 5"></TextBox>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal">
+        <Button Grid.Row="4" Content="Browse" Width="125" Margin="10" Command="{Binding SelectDocumentCommand}"/>
+        <TextBox Grid.Row="5" Text="{Binding Documento.Size, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                   Margin="5 5"></TextBox>
+
+
+
+        <StackPanel Grid.Row="7" Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>

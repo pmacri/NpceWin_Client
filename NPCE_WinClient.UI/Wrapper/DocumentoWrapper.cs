@@ -15,7 +15,14 @@ namespace NPCE_WinClient.UI.Wrapper
         }
         public int Id { get; set; }
 
-        public string FileName { get; set; }
+        public string FileName {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
 
         public long Size
         {
@@ -36,7 +43,14 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public byte[] Content { get; set; }
+        public byte[] Content {
+            get { return GetValue<byte[]>(); }
+
+            set
+            {
+                SetValue<byte[]>(value);
+            }
+        }
 
         public string Tag {
             get { return GetValue<string>(); }

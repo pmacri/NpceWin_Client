@@ -25,6 +25,7 @@ namespace NPCE_WinClient.UI.Startup
 
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<MessageDialogService>().As< IMessageDialogService>();
+            builder.RegisterType<FileService>().As<IFileService>();
 
             builder.RegisterType<MainViewModel>().AsSelf();
 
