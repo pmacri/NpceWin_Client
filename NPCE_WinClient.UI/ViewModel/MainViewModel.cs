@@ -90,7 +90,6 @@ namespace NPCE_WinClient.UI.ViewModel
                 case nameof(DocumentoDetailViewModel):
                     DetailViewModel = _documentoDetailViewModelCreator();
                     break;
-
             }
             await DetailViewModel.LoadAsync(args.Id);
         }

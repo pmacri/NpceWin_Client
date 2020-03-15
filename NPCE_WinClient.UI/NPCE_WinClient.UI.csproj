@@ -85,13 +85,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\IAnagraficaLookupDataService.cs" />
+    <Compile Include="Data\Lookups\IAnagraficaLookupDataService.cs" />
+    <Compile Include="Data\Lookups\IDocumentoLookupDataService.cs" />
     <Compile Include="Data\Repositories\DocumentoRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IAnagraficaRepository.cs" />
     <Compile Include="Data\Repositories\IDocumentoRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
-    <Compile Include="Data\Lookups\IServiceLookupDataService.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />

@@ -84,9 +84,17 @@ namespace NPCE_WinClient.UI.ViewModel
             return documento;
         }
 
-        protected override void OnDeleteExecute()
+        protected override async void OnDeleteExecute()
         {
-            throw new NotImplementedException();
+            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the document {Documento.Tag} {Documento.FileName}",
+                                                                   "Question");
+            if (result == MessageDialogResult.Cancel)
+            {
+                return;
+            }
+            _documentoRepository.Remove(Documento.Model);
+            await _documentoRepository.SaveAsync();
+            RaiseDetailDeletedEvent(Documento.Id);
         }
 
         protected override bool OnSaveCanExecute()
@@ -98,6 +106,7 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             await _documentoRepository.SaveAsync();
             HasChanges = _documentoRepository.HasChanges();
+            RaiseDetailSavedEvent(Documento.Id, $"{Documento.Tag} {Documento.FileName}");
         }
     }
 

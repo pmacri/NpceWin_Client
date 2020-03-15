@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Data.Lookups
 {
-    public class LookupDataService : IServiceLookupDataService, IAnagraficaLookupDataService
+    public class LookupDataService : IAnagraficaLookupDataService, IDocumentoLookupDataService
     {
         private Func<NpceDbContext> _contextCreator;
 
@@ -31,18 +31,20 @@ namespace NPCE_WinClient.UI.Data.Lookups
             }
         }
 
-        public async Task<IEnumerable<LookupItem>> GetServiceLookupAsync()
+        public async Task<IEnumerable<LookupItem>> GetDocumentoLookupAsync()
         {
             using (var ctx = _contextCreator())
             {
-                return await ctx.Services.AsNoTracking().Select(s =>
+                return await ctx.Documento.AsNoTracking().Select(m =>
                 new LookupItem
                 {
-                    Id = s.Id,
-                    DisplayMember = s.Id + " " + s.State
+                    Id = m.Id,
+                    DisplayMember = m.Tag + " " + m.FileName
                 }).ToListAsync();
             }
         }
+
+
 
     }
 }

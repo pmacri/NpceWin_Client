@@ -8,35 +8,75 @@
              d:DesignHeight="450" d:DesignWidth="800"
              DataContext="NavigationViewModel">
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Header="Anagrafiche">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
                       VerticalScrollBarVisibility="Auto">
-            <ItemsControl ItemsSource="{Binding Anagrafiche}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding DisplayMember}"
+                <ItemsControl ItemsSource="{Binding Anagrafiche}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding DisplayMember}"
                                 Command="{Binding OpenAnagraficaDetailViewCommand}">
-                            <Button.Template>
-                                <ControlTemplate TargetType="Button">
-                                    <Grid x:Name="grid">
-                                        <ContentPresenter 
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid x:Name="grid">
+                                            <ContentPresenter 
                                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Cursor" Value="Hand"/>
-                                            <Setter Property="FontWeight" Value="Bold"/>
-                                        </Trigger>
-                                        <Trigger Property="IsPressed" Value="True">
-                                            <Setter Property="FontWeight" Value="Normal"/>
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </Button.Template>
-                        </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="FontWeight" Value="Normal"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
+
+        <GroupBox Header="Documenti" Grid.Row="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" 
+                      VerticalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding Documenti}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Content="{Binding DisplayMember}"
+                                Command="{Binding OpenDocumentoDetailViewCommand}">
+                                <Button.Template>
+                                    <ControlTemplate TargetType="Button">
+                                        <Grid x:Name="grid">
+                                            <ContentPresenter 
+                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Cursor" Value="Hand"/>
+                                                <Setter Property="FontWeight" Value="Bold"/>
+                                            </Trigger>
+                                            <Trigger Property="IsPressed" Value="True">
+                                                <Setter Property="FontWeight" Value="Normal"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
     </Grid>
 </UserControl>

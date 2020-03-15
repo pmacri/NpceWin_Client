@@ -13,7 +13,14 @@ namespace NPCE_WinClient.UI.Wrapper
         {
 
         }
-        public int Id { get; set; }
+        public int Id {
+            get { return GetValue<int>(); }
+
+            set
+            {
+                SetValue<int>(value);
+            }
+        }
 
         public string FileName {
             get { return GetValue<string>(); }
