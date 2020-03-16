@@ -26,6 +26,7 @@ namespace NPCE_WinClient.UI.ViewModel
             _eventAggregator = eventAggregator;
             OpenAnagraficaDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
             OpenDocumentoDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
+            OpenAmbienteDetailViewCommand = new DelegateCommand(OnOpenDetailViewExecute);
         }
 
         private void OnOpenDetailViewExecute()
@@ -55,6 +56,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         public ICommand OpenAnagraficaDetailViewCommand { get; }
         public ICommand OpenDocumentoDetailViewCommand { get; }
+        public ICommand OpenAmbienteDetailViewCommand { get; }
 
     }
 }

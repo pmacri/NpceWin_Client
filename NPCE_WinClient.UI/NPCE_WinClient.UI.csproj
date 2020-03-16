@@ -85,20 +85,25 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Lookups\IAmbienteLookupDataService.cs" />
     <Compile Include="Data\Lookups\IAnagraficaLookupDataService.cs" />
     <Compile Include="Data\Lookups\IDocumentoLookupDataService.cs" />
+    <Compile Include="Data\Repositories\AmbienteRepository.cs" />
     <Compile Include="Data\Repositories\DocumentoRepository.cs" />
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IAnagraficaRepository.cs" />
     <Compile Include="Data\Repositories\IDocumentoRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
+    <Compile Include="Data\Repositories\IAmbienteRepository.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModel\AmbienteDetailViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
     <Compile Include="ViewModel\DocumentoDetailViewModel.cs" />
+    <Compile Include="ViewModel\IAmbienteDetailViewModel.cs" />
     <Compile Include="ViewModel\IAnagraficaDetailViewModel.cs" />
     <Compile Include="ViewModel\IDetailViewModel.cs" />
     <Compile Include="ViewModel\IDocumentoDetailViewModel.cs" />
@@ -123,6 +128,7 @@
     <Compile Include="View\Services\IFileService.cs" />
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
+    <Compile Include="Wrapper\AmbienteWrapper.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
     <Compile Include="Wrapper\DocumentoWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />

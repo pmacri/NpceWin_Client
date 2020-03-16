@@ -15,18 +15,22 @@ namespace NPCE_WinClient.UI.ViewModel
     public class NavigationViewModel : ViewModelBase, INavigationViewModel
     {
         private IAnagraficaLookupDataService _anagraficaLookupDataService;
+        private readonly IAmbienteLookupDataService _ambienteLookupDataService;
         private IDocumentoLookupDataService _documentoLookupDataService;
         private IEventAggregator _eventAggregator;
         public NavigationViewModel(
             IEventAggregator eventAggregator, 
             IDocumentoLookupDataService documentoLookupDataService,
-            IAnagraficaLookupDataService anagraficaLookupDataService)
+            IAnagraficaLookupDataService anagraficaLookupDataService,
+            IAmbienteLookupDataService ambienteLookupDataService)
         {
+            _ambienteLookupDataService = ambienteLookupDataService;
             _anagraficaLookupDataService = anagraficaLookupDataService;
             _documentoLookupDataService = documentoLookupDataService;
             _eventAggregator = eventAggregator;
             Anagrafiche = new ObservableCollection<NavigationItemViewModel>();
             Documenti = new ObservableCollection<NavigationItemViewModel>();
+            Ambienti = new ObservableCollection<NavigationItemViewModel>();
             _eventAggregator.GetEvent<AfterDetailSavedEvent>().Subscribe(AfterDetailSaved);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>().Subscribe(AfterDetailDeleted);
         }
@@ -41,6 +45,9 @@ namespace NPCE_WinClient.UI.ViewModel
                     break;
                 case nameof(DocumentoDetailViewModel):
                     AfterDetailSaved(Documenti, obj);
+                    break;
+                case nameof(AmbienteDetailViewModel):
+                    AfterDetailSaved(Ambienti, obj);
                     break;
             }            
         }
@@ -82,6 +89,16 @@ namespace NPCE_WinClient.UI.ViewModel
                 Documenti.Add(new NavigationItemViewModel(lookup.Id, lookup.DisplayMember,
                     _eventAggregator, nameof(DocumentoDetailViewModel)));
             }
+
+            lookups = await _ambienteLookupDataService.GetAmbienteLookupAsync();
+
+            Ambienti.Clear();
+
+            foreach (var lookup in lookups)
+            {
+                Ambienti.Add(new NavigationItemViewModel(lookup.Id, lookup.DisplayMember,
+                    _eventAggregator, nameof(AmbienteDetailViewModel)));
+            }
         }
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args)
@@ -94,6 +111,10 @@ namespace NPCE_WinClient.UI.ViewModel
 
                 case nameof(DocumentoDetailViewModel):
                     AfterDetailDeleted(Documenti, args);
+                    break;
+
+                case nameof(AmbienteDetailViewModel):
+                    AfterDetailDeleted(Ambienti, args);
                     break;
             }
         }
@@ -111,6 +132,8 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<NavigationItemViewModel> Anagrafiche { get; set; }
 
         public ObservableCollection<NavigationItemViewModel> Documenti { get; set; }
+
+        public ObservableCollection<NavigationItemViewModel> Ambienti { get; set; }
 
 
 

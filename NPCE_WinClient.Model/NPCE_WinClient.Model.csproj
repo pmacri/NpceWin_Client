@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ambiente.cs" />
     <Compile Include="Documento.cs" />
     <Compile Include="LookupItem.cs" />
     <Compile Include="Anagrafica.cs" />
