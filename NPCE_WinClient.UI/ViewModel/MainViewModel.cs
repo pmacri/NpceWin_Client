@@ -21,6 +21,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private IMessageDialogService _messageDialogservice;
         private Func<IAnagraficaDetailViewModel> _anagraficaDetailViewModelCreator;
         private Func<IDocumentoDetailViewModel> _documentoDetailViewModelCreator;
+        private Func<IAmbienteDetailViewModel> _ambienteDetailViewModelCreator;
         private IDetailViewModel _detailViewModel;
 
         public INavigationViewModel NavigationViewModel { get;}
@@ -38,6 +39,7 @@ namespace NPCE_WinClient.UI.ViewModel
         public MainViewModel(INavigationViewModel navigationViewModel, 
                             Func<IAnagraficaDetailViewModel> anagraficaDetailViewModelCreator,
                             Func<IDocumentoDetailViewModel> documentoDetailViewModelCreator,
+                            Func<IAmbienteDetailViewModel> ambienteDetailViewModelCreator,
                             IEventAggregator eventAggregator,
                             IMessageDialogService messageDialogservice)
         {
@@ -52,6 +54,8 @@ namespace NPCE_WinClient.UI.ViewModel
 
             _anagraficaDetailViewModelCreator = anagraficaDetailViewModelCreator;
             _documentoDetailViewModelCreator = documentoDetailViewModelCreator;
+
+            _ambienteDetailViewModelCreator = ambienteDetailViewModelCreator;
 
             NavigationViewModel = navigationViewModel;
 
@@ -89,6 +93,9 @@ namespace NPCE_WinClient.UI.ViewModel
                     break;
                 case nameof(DocumentoDetailViewModel):
                     DetailViewModel = _documentoDetailViewModelCreator();
+                    break;
+                case nameof(AmbienteDetailViewModel):
+                    DetailViewModel = _ambienteDetailViewModelCreator();
                     break;
             }
             await DetailViewModel.LoadAsync(args.Id);

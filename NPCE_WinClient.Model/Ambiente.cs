@@ -22,6 +22,7 @@ namespace NPCE_WinClient.Model
     {
         public int Id { get; set; }
 
+        [Required]
         public string Description { get; set; }
         public string customerid { get; set; }
         public string costcenter { get; set; }
@@ -37,5 +38,8 @@ namespace NPCE_WinClient.Model
         public string usertype { get; set; }
         public string codicefiscale { get; set; }
         public string partitaiva { get; set; }
+        public string Uri { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 }

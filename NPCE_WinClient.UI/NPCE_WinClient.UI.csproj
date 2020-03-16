@@ -115,6 +115,9 @@
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\OpenServiceDetailViewEvent.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AmbienteDetailView.xaml.cs">
+      <DependentUpon>AmbienteDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AnagraficaDetailView.xaml.cs">
       <DependentUpon>AnagraficaDetailView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\AmbienteDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AnagraficaDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

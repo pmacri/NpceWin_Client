@@ -107,6 +107,14 @@
     <Compile Include="Migrations\202003161415350_Ambiente2.designer.cs">
       <DependentUpon>202003161415350_Ambiente2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003161600556_Ambiente3.cs" />
+    <Compile Include="Migrations\202003161600556_Ambiente3.designer.cs">
+      <DependentUpon>202003161600556_Ambiente3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003161617294_Ambiente34.cs" />
+    <Compile Include="Migrations\202003161617294_Ambiente34.designer.cs">
+      <DependentUpon>202003161617294_Ambiente34.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +171,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003161415350_Ambiente2.resx">
       <DependentUpon>202003161415350_Ambiente2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003161600556_Ambiente3.resx">
+      <DependentUpon>202003161600556_Ambiente3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003161617294_Ambiente34.resx">
+      <DependentUpon>202003161617294_Ambiente34.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

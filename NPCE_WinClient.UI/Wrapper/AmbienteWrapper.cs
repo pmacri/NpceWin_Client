@@ -12,16 +12,121 @@ namespace NPCE_WinClient.UI.Wrapper
         public AmbienteWrapper(Ambiente ambiente): base(ambiente)
         {
         }
-        public int Id { get; set; }
+        public int Id
+        {
+            get { return GetValue<int>(); }
 
-        public string Description { get; set; }
-        public string customerid { get; set; }
-        public string costcenter { get; set; }
-        public string billingcenter { get; set; }
-        public string idsender { get; set; }
-        public string sendersystem { get; set; }
-        public string smuser { get; set; }
-        public string contracttype { get; set; }
-        public string usertype { get; set; }
+            set
+            {
+                SetValue<int>(value);
+            }
+        }
+
+        public string Description
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string customerid
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string costcenter
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string billingcenter
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string idsender
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string sendersystem
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string smuser
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string contracttype
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string usertype
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public string Uri {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string Username {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string Password {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
     }
 }
