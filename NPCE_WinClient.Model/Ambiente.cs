@@ -37,9 +37,14 @@ namespace NPCE_WinClient.Model
         public string contracttype { get; set; }
         public string usertype { get; set; }
         public string codicefiscale { get; set; }
-        public string partitaiva { get; set; }
-        public string Uri { get; set; }
+        public string partitaiva { get; set; }        
         public string Username { get; set; }
         public string Password { get; set; }
+        public string LolUri { get; set; }
+        public string RolUri { get; set; }
+        public string ColUri { get; set; }
+        public string MolUri { get; set; }
+        public string Contratto { get; set; }
     }
 }
+

@@ -47,7 +47,8 @@
     <Compile Include="LookupItem.cs" />
     <Compile Include="Anagrafica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service.cs" />
+    <Compile Include="Servizio.cs" />
+    <Compile Include="TipoServizio.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

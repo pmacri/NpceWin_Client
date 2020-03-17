@@ -103,8 +103,7 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
-
-        public string Uri {
+        public string Contratto {
             get { return GetValue<string>(); }
 
             set
@@ -121,6 +120,43 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
         public string Password {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public string LolUri
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string RolUri
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string ColUri
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public string MolUri
+        {
             get { return GetValue<string>(); }
 
             set

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,11 @@ namespace NPCE_WinClient.Model
 {
     public class Anagrafica
     {
+
+        public Anagrafica()
+        {
+            ServizioDestinatari = new Collection<Servizio>();
+        }
         public int Id { get; set; }
 
         [Required]
@@ -30,5 +36,7 @@ namespace NPCE_WinClient.Model
         public string Stato { get; set; }
         public bool IsMittente { get; set; }
         public bool IsDefaultMittente { get; set; }
+        // Servizi
+        public ICollection<Servizio> ServizioDestinatari { get; set; }
     }
 }

@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.Model
 {
-    public class Service
+    public class TipoServizio
     {
+
         public int Id { get; set; }
-        public Guid IdRichiesta { get; set; }
-        public DateTime CreationTime { get; set; }
-        public string State { get; set; }
+
+        public string Descrizione { get; set; }
+
     }
 }

@@ -194,7 +194,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NPCE_WinClient.DataAccess\NPCE_WinClient.DataAccess.csproj">
       <Project>{72B6B9AC-96B2-40B9-9151-7B1CE73A1A59}</Project>
