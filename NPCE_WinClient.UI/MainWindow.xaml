@@ -49,6 +49,10 @@
                         <TextBlock Text="{Binding Title, Mode=TwoWay}"></TextBlock>
                         <TextBlock Text="*" Visibility="{Binding HasChanges, 
                             Converter={StaticResource booleanToVisibilityConverter}}"></TextBlock>
+                        <Button Command="{Binding CloseDetailViewCommand}"
+                                VerticalContentAlignment="Top" Content="X" Margin="2" FontSize="20">
+                            
+                        </Button>
                         
                     </StackPanel>
                 </DataTemplate>

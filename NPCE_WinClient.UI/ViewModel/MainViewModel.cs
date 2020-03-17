@@ -54,6 +54,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 .Subscribe(OnOpenDetailEvent);
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>()
                 .Subscribe(AfterDetailDeleted);
+            _eventAggregator.GetEvent<AfterDetailClosedEvent>()
+                .Subscribe(AfterDetailClosed);
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
 
@@ -104,10 +106,15 @@ namespace NPCE_WinClient.UI.ViewModel
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args )
         {
             // The corrisponding view will be hidden
-            var detailViewModel = DetailViewModels.SingleOrDefault(vm => vm.Id == args.Id &&
-          vm.GetType().Name == args.ViewModelName);
+            RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
 
-            if (detailViewModel == null)
+        private void RemoveDetailViewModel(int id, string viewModelname)
+        {
+            var detailViewModel = DetailViewModels.SingleOrDefault(vm => vm.Id == id &&
+                      vm.GetType().Name == viewModelname);
+
+            if (detailViewModel != null)
             {
                 DetailViewModels.Remove(detailViewModel);
             }
@@ -121,7 +128,9 @@ namespace NPCE_WinClient.UI.ViewModel
             });
         }
 
-
-
+        private void AfterDetailClosed(AfterDetailClosedEventArgs args)
+        {
+            RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
     }
 }

@@ -15,13 +15,11 @@ namespace NPCE_WinClient.UI.ViewModel
     public class AmbienteDetailViewModel : DetailViewModelBase, IAmbienteDetailViewModel 
     {
         private readonly IAmbienteRepository _ambienteRepository;
-        private readonly IMessageDialogService _messageDialogService;
 
         public AmbienteDetailViewModel(IAmbienteRepository ambienteRepository, IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService): base(eventAggregator)
+            IMessageDialogService messageDialogService): base(eventAggregator, messageDialogService)
         {
             _ambienteRepository = ambienteRepository;
-            _messageDialogService = messageDialogService;
         }
         public override async Task LoadAsync(int? id)
         {
@@ -87,7 +85,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override async void OnDeleteExecute()
         {
-            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the ambiente {Ambiente.Description}",
+            var result = MessageDialogService.ShowOKCancelDialog($"Do you really want to cancel the ambiente {Ambiente.Description}",
                                                                   "Question");
             if (result == MessageDialogResult.Cancel)
             {

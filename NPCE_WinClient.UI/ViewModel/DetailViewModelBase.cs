@@ -1,8 +1,10 @@
 ﻿namespace NPCE_WinClient.UI.ViewModel
 {
     using NPCE_WinClient.UI.Event;
+    using NPCE_WinClient.UI.View.Services;
     using Prism.Commands;
     using Prism.Events;
+    using System;
     using System.Threading.Tasks;
     using System.Windows.Input;
 
@@ -17,12 +19,15 @@
 
         protected readonly IEventAggregator EventAggregator;
 
-        public DetailViewModelBase(IEventAggregator eventAggregator)
+        public DetailViewModelBase(IEventAggregator eventAggregator, IMessageDialogService messageDialogService)
         {
             EventAggregator = eventAggregator;
             SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
             DeleteCommand = new DelegateCommand(OnDeleteExecute);
+            CloseDetailViewCommand = new DelegateCommand(OnCloseDetailViewExecute);
+            MessageDialogService = messageDialogService;
         }
+
 
         public abstract Task LoadAsync(int? id);
 
@@ -30,24 +35,24 @@
 
         public ICommand DeleteCommand { get; private set; }
 
+        public ICommand CloseDetailViewCommand { get; set; }
+
+        protected readonly IMessageDialogService MessageDialogService;
 
         public string Title
         {
             get { return _title; }
-            set { 
+            set
+            {
                 _title = value;
                 OnPropertyChanged();
             }
         }
-
-
-
         public int Id
         {
             get { return _id; }
             protected set { _id = value; }
         }
-
 
         public bool HasChanges
         {
@@ -68,6 +73,20 @@
         protected abstract bool OnSaveCanExecute();
 
         protected abstract void OnSaveExecute();
+
+        protected virtual void OnCloseDetailViewExecute()
+        {
+
+            if (HasChanges)
+            {
+               var result= MessageDialogService.ShowOKCancelDialog("You made changes. Close this dialog ?", "Question");
+
+                if (result == MessageDialogResult.Cancel) return;
+            }
+            EventAggregator.GetEvent<AfterDetailClosedEvent>()
+                .Publish(new AfterDetailClosedEventArgs { Id = this.Id, ViewModelName = this.GetType().Name }
+                );
+        }
 
         protected virtual void RaiseDetailDeletedEvent(int modelId)
         {
@@ -91,4 +110,4 @@
     }
 }
 
- 
+

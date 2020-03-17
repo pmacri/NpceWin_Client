@@ -16,17 +16,15 @@ namespace NPCE_WinClient.UI.ViewModel
     public class DocumentoDetailViewModel : DetailViewModelBase, IDocumentoDetailViewModel
     {
         private IDocumentoRepository _documentoRepository;
-        private IMessageDialogService _messageDialogService;
         private IFileService _fileService;
         private DocumentoWrapper _documento;
 
 
         public DocumentoDetailViewModel(IDocumentoRepository documentoRepository, IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
-            IFileService fileService) : base(eventAggregator)
+            IFileService fileService) : base(eventAggregator, messageDialogService)
         {
             _documentoRepository = documentoRepository;
-            _messageDialogService = messageDialogService;
             _fileService = fileService;
             SelectDocumentCommand = new DelegateCommand(OnSelectDocumentExecute);
 
@@ -101,7 +99,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override async void OnDeleteExecute()
         {
-            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the document {Documento.Tag} {Documento.FileName}",
+            var result = MessageDialogService.ShowOKCancelDialog($"Do you really want to cancel the document {Documento.Tag} {Documento.FileName}",
                                                                    "Question");
             if (result == MessageDialogResult.Cancel)
             {

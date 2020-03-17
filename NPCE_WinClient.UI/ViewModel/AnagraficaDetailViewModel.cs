@@ -19,13 +19,11 @@ namespace NPCE_WinClient.UI.ViewModel
     {
         private AnagraficaWrapper _anagrafica;
         private IAnagraficaRepository _AnagraficaRepository;
-        private readonly IMessageDialogService _messageDialogService;
 
         public AnagraficaDetailViewModel(IAnagraficaRepository AnagraficaRepository, IEventAggregator eventAggregator,
-            IMessageDialogService messageDialogService): base(eventAggregator)
+            IMessageDialogService messageDialogService): base(eventAggregator, messageDialogService)
         {
             _AnagraficaRepository = AnagraficaRepository;
-            _messageDialogService = messageDialogService;
             
         }
         protected override async void OnSaveExecute()
@@ -97,7 +95,7 @@ namespace NPCE_WinClient.UI.ViewModel
         }
         protected override async void OnDeleteExecute()
         {
-            var result = _messageDialogService.ShowOKCancelDialog($"Do you really want to cancel the anagrafica {Anagrafica.Nome} {Anagrafica.Cognome}",
+            var result = MessageDialogService.ShowOKCancelDialog($"Do you really want to cancel the anagrafica {Anagrafica.Nome} {Anagrafica.Cognome}",
                                                                    "Question");
             if (result == MessageDialogResult.Cancel)
             {
