@@ -13,7 +13,7 @@ namespace NPCE_WinClient.Model
 
         public Anagrafica()
         {
-            ServizioDestinatari = new Collection<Servizio>();
+            Servizi = new Collection<Servizio>();
         }
         public int Id { get; set; }
 
@@ -37,6 +37,6 @@ namespace NPCE_WinClient.Model
         public bool IsMittente { get; set; }
         public bool IsDefaultMittente { get; set; }
         // Servizi
-        public ICollection<Servizio> ServizioDestinatari { get; set; }
+        public ICollection<Servizio> Servizi { get; set; }
     }
 }

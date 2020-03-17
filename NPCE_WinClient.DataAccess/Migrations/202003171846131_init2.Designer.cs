@@ -7,13 +7,13 @@ namespace NPCE_WinClient.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class CognomeRequired : IMigrationMetadata
+    public sealed partial class init2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CognomeRequired));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003111041080_CognomeRequired"; }
+            get { return "202003171846131_init2"; }
         }
         
         string IMigrationMetadata.Source

@@ -12,7 +12,7 @@ namespace NPCE_WinClient.Model
     {
         public Servizio()
         {
-            ServizioDestinatari = new Collection<Anagrafica>();
+            Anagrafiche = new Collection<Anagrafica>();
             Documenti = new Collection<Documento>();
         }
 
@@ -27,15 +27,8 @@ namespace NPCE_WinClient.Model
         public TipoServizio TipoServizio { get; set; }
         public int TipoServizioId { get; set; }
         
-        // Mittente
-        public Anagrafica Mittente { get; set; }
-        
-        [ForeignKey("Mittente")]
-        public int MittenteId { get; set; }
-
-        // Destinatari
-        public ICollection<Anagrafica> ServizioDestinatari { get; set; }
-
+        // Destinatari + Mittente
+        public ICollection<Anagrafica> Anagrafiche { get; set; }
         // Documenti
         public ICollection<Documento> Documenti { get; set; }
 

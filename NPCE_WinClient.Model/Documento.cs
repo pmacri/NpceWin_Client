@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,10 @@ namespace NPCE_WinClient.Model
 {
     public class Documento
     {
+        public Documento()
+        {
+            Servizi = new Collection<Servizio>();
+        }
         public int Id { get; set; }
 
         public string FileName { get; set; }
@@ -21,5 +26,7 @@ namespace NPCE_WinClient.Model
 
         [Required]
         public string Tag { get; set; }
+
+        public ICollection<Servizio> Servizi { get; set; }
     }
 }

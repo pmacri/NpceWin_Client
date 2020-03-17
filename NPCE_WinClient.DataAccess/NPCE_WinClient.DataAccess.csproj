@@ -51,69 +51,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202003071141335_reset.cs" />
-    <Compile Include="Migrations\202003071141335_reset.designer.cs">
-      <DependentUpon>202003071141335_reset.cs</DependentUpon>
+    <Compile Include="Migrations\202003171838090_init.cs" />
+    <Compile Include="Migrations\202003171838090_init.designer.cs">
+      <DependentUpon>202003171838090_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003071148521_Initial.cs" />
-    <Compile Include="Migrations\202003071148521_Initial.designer.cs">
-      <DependentUpon>202003071148521_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202003171846131_init2.cs" />
+    <Compile Include="Migrations\202003171846131_init2.designer.cs">
+      <DependentUpon>202003171846131_init2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003071152120_Initial2.cs" />
-    <Compile Include="Migrations\202003071152120_Initial2.designer.cs">
-      <DependentUpon>202003071152120_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003081747132_IsMittente.cs" />
-    <Compile Include="Migrations\202003081747132_IsMittente.designer.cs">
-      <DependentUpon>202003081747132_IsMittente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003111041080_CognomeRequired.cs" />
-    <Compile Include="Migrations\202003111041080_CognomeRequired.designer.cs">
-      <DependentUpon>202003111041080_CognomeRequired.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121220115_RefactoringViewModel2.cs" />
-    <Compile Include="Migrations\202003121220115_RefactoringViewModel2.designer.cs">
-      <DependentUpon>202003121220115_RefactoringViewModel2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003121335576_RefactoringViewModel3.cs" />
-    <Compile Include="Migrations\202003121335576_RefactoringViewModel3.designer.cs">
-      <DependentUpon>202003121335576_RefactoringViewModel3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003141639105_DocumentoAdded.cs" />
-    <Compile Include="Migrations\202003141639105_DocumentoAdded.designer.cs">
-      <DependentUpon>202003141639105_DocumentoAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003141641198_DocumentoAdded1.cs" />
-    <Compile Include="Migrations\202003141641198_DocumentoAdded1.designer.cs">
-      <DependentUpon>202003141641198_DocumentoAdded1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003141759091_DocumentoAdded2.cs" />
-    <Compile Include="Migrations\202003141759091_DocumentoAdded2.designer.cs">
-      <DependentUpon>202003141759091_DocumentoAdded2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003141808120_DocumentoAdded3.cs" />
-    <Compile Include="Migrations\202003141808120_DocumentoAdded3.designer.cs">
-      <DependentUpon>202003141808120_DocumentoAdded3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003141834350_DocumentoAdded4.cs" />
-    <Compile Include="Migrations\202003141834350_DocumentoAdded4.designer.cs">
-      <DependentUpon>202003141834350_DocumentoAdded4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003161401003_Ambiente.cs" />
-    <Compile Include="Migrations\202003161401003_Ambiente.designer.cs">
-      <DependentUpon>202003161401003_Ambiente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003161415350_Ambiente2.cs" />
-    <Compile Include="Migrations\202003161415350_Ambiente2.designer.cs">
-      <DependentUpon>202003161415350_Ambiente2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003161600556_Ambiente3.cs" />
-    <Compile Include="Migrations\202003161600556_Ambiente3.designer.cs">
-      <DependentUpon>202003161600556_Ambiente3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003161617294_Ambiente34.cs" />
-    <Compile Include="Migrations\202003161617294_Ambiente34.designer.cs">
-      <DependentUpon>202003161617294_Ambiente34.cs</DependentUpon>
+    <Compile Include="Migrations\202003171850512_init3.cs" />
+    <Compile Include="Migrations\202003171850512_init3.designer.cs">
+      <DependentUpon>202003171850512_init3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
@@ -130,53 +78,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003071141335_reset.resx">
-      <DependentUpon>202003071141335_reset.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003171838090_init.resx">
+      <DependentUpon>202003171838090_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003071148521_Initial.resx">
-      <DependentUpon>202003071148521_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003171846131_init2.resx">
+      <DependentUpon>202003171846131_init2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003071152120_Initial2.resx">
-      <DependentUpon>202003071152120_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003081747132_IsMittente.resx">
-      <DependentUpon>202003081747132_IsMittente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003111041080_CognomeRequired.resx">
-      <DependentUpon>202003111041080_CognomeRequired.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121220115_RefactoringViewModel2.resx">
-      <DependentUpon>202003121220115_RefactoringViewModel2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003121335576_RefactoringViewModel3.resx">
-      <DependentUpon>202003121335576_RefactoringViewModel3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003141639105_DocumentoAdded.resx">
-      <DependentUpon>202003141639105_DocumentoAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003141641198_DocumentoAdded1.resx">
-      <DependentUpon>202003141641198_DocumentoAdded1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003141759091_DocumentoAdded2.resx">
-      <DependentUpon>202003141759091_DocumentoAdded2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003141808120_DocumentoAdded3.resx">
-      <DependentUpon>202003141808120_DocumentoAdded3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003141834350_DocumentoAdded4.resx">
-      <DependentUpon>202003141834350_DocumentoAdded4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003161401003_Ambiente.resx">
-      <DependentUpon>202003161401003_Ambiente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003161415350_Ambiente2.resx">
-      <DependentUpon>202003161415350_Ambiente2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003161600556_Ambiente3.resx">
-      <DependentUpon>202003161600556_Ambiente3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003161617294_Ambiente34.resx">
-      <DependentUpon>202003161617294_Ambiente34.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003171850512_init3.resx">
+      <DependentUpon>202003171850512_init3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

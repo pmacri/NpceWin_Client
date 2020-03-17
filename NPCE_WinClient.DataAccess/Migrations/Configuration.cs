@@ -38,7 +38,7 @@
                 {
                     Nome = "Paolo",
                     Cognome = "Rossi",
-                    RagioneSociale="Paolo Rossi SpA",
+                    RagioneSociale = "Paolo Rossi SpA",
                     DUG = "Via",
                     Citta = "ROMA",
                     Cap = "00144",

@@ -7,13 +7,13 @@ namespace NPCE_WinClient.DataAccess.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class Ambiente34 : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Ambiente34));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003161617294_Ambiente34"; }
+            get { return "202003171825529_init"; }
         }
         
         string IMigrationMetadata.Source
