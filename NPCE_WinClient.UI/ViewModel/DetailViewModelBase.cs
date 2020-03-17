@@ -10,6 +10,10 @@
     public abstract class DetailViewModelBase : ViewModelBase, IDetailViewModel
     {
         private bool _hasChanges;
+        private int _id;
+        private string _title;
+
+
 
         protected readonly IEventAggregator EventAggregator;
 
@@ -25,6 +29,25 @@
         public ICommand SaveCommand { get; private set; }
 
         public ICommand DeleteCommand { get; private set; }
+
+
+        public string Title
+        {
+            get { return _title; }
+            set { 
+                _title = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public int Id
+        {
+            get { return _id; }
+            protected set { _id = value; }
+        }
+
 
         public bool HasChanges
         {

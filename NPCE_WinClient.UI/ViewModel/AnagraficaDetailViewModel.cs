@@ -31,6 +31,8 @@ namespace NPCE_WinClient.UI.ViewModel
         protected override async void OnSaveExecute()
         {
             await _AnagraficaRepository.SaveAsync();
+            Id = Anagrafica.Id;
+
             HasChanges = _AnagraficaRepository.HasChanges();
             RaiseDetailSavedEvent(Anagrafica.Id, $"{Anagrafica.Nome} {Anagrafica.Cognome}");
         }       
@@ -48,6 +50,12 @@ namespace NPCE_WinClient.UI.ViewModel
             var anagrafica = (id.HasValue)
                 ? await _AnagraficaRepository.GetByIdAsync(id.Value)
                 : CreateNewAnagrafica();
+            Id = anagrafica.Id;
+            InitializeAnagrafica(anagrafica);
+        }
+
+        private void InitializeAnagrafica(Anagrafica anagrafica)
+        {
             Anagrafica = new AnagraficaWrapper(anagrafica);
             Anagrafica.PropertyChanged += (s, e) =>
             {
@@ -59,6 +67,11 @@ namespace NPCE_WinClient.UI.ViewModel
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
+
+                if ((e.PropertyName == nameof(Anagrafica.Cognome)) || (e.PropertyName == nameof(Anagrafica.Nome)))
+                {
+                    SetTitle();
+                }
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
@@ -67,7 +80,15 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 Anagrafica.Cognome = "";
             }
+
+            SetTitle();
         }
+
+        private void SetTitle()
+        {
+            Title = $"{Anagrafica.Nome} {Anagrafica.Cognome}";
+        }
+
         private Anagrafica CreateNewAnagrafica()
         {
             var anagrafica = new Anagrafica();

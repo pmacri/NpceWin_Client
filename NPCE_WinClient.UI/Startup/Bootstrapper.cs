@@ -40,9 +40,13 @@ namespace NPCE_WinClient.UI.Startup
 
 
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
-            builder.RegisterType<AnagraficaDetailViewModel>().As<IAnagraficaDetailViewModel>();
-            builder.RegisterType<DocumentoDetailViewModel>().As<IDocumentoDetailViewModel>();
-            builder.RegisterType<AmbienteDetailViewModel>().As<IAmbienteDetailViewModel>();
+
+            builder.RegisterType<AnagraficaDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(AnagraficaDetailViewModel));
+            builder.RegisterType<DocumentoDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(DocumentoDetailViewModel));
+            builder.RegisterType<AmbienteDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(AmbienteDetailViewModel));
 
             return builder.Build();
         }

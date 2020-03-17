@@ -6,5 +6,6 @@ namespace NPCE_WinClient.UI.ViewModel
     {
         Task LoadAsync(int? id);
         bool HasChanges { get; }
+        int Id { get; }
     }
 }

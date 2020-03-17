@@ -28,7 +28,13 @@ namespace NPCE_WinClient.UI.ViewModel
             var ambiente = (id.HasValue)
                ? await _ambienteRepository.GetByIdAsync(id.Value)
                : CreateNewAmbiente();
+            Id = ambiente.Id;
 
+            InitializeAmbiente(ambiente);
+        }
+
+        private void InitializeAmbiente(Ambiente ambiente)
+        {
             Ambiente = new AmbienteWrapper(ambiente);
 
             Ambiente.PropertyChanged += (s, e) =>
@@ -41,6 +47,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
+
+                if (e.PropertyName== nameof(Ambiente.Description)) SetTitle();
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
@@ -49,6 +57,13 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 Ambiente.Description = "";
             }
+
+            SetTitle();
+        }
+
+        private void SetTitle()
+        {
+            Title = $"{Ambiente.Description}";
         }
 
         private AmbienteWrapper _ambiente;
@@ -91,6 +106,7 @@ namespace NPCE_WinClient.UI.ViewModel
         protected override async void OnSaveExecute()
         {
             await _ambienteRepository.SaveAsync();
+            Id = Ambiente.Id;
             HasChanges = _ambienteRepository.HasChanges();
             RaiseDetailSavedEvent(Ambiente.Id, $"{Ambiente.Description}");
         }

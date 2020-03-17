@@ -56,6 +56,12 @@ namespace NPCE_WinClient.UI.ViewModel
             var documento = (id.HasValue)
                 ? await _documentoRepository.GetByIdAsync(id.Value)
                 : CreateNewDocumento();
+            Id = documento.Id;
+            InitializaDocumento(documento);
+        }
+
+        private void InitializaDocumento(Documento documento)
+        {
             Documento = new DocumentoWrapper(documento);
             Documento.PropertyChanged += (s, e) =>
             {
@@ -67,6 +73,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 {
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }
+                if (e.PropertyName== nameof(Documento.Tag)) SetTitle();
             };
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
@@ -75,6 +82,14 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 Documento.Tag = "";
             }
+
+            SetTitle();
+        }
+
+        private void SetTitle()
+        {
+            Title = $"{Documento.Tag}";
+
         }
 
         private Documento CreateNewDocumento()
@@ -105,6 +120,7 @@ namespace NPCE_WinClient.UI.ViewModel
         protected override async  void OnSaveExecute()
         {
             await _documentoRepository.SaveAsync();
+            Id = Documento.Id;
             HasChanges = _documentoRepository.HasChanges();
             RaiseDetailSavedEvent(Documento.Id, $"{Documento.Tag} {Documento.FileName}");
         }

@@ -1,4 +1,5 @@
-﻿using NPCE_WinClient.Model;
+﻿using Autofac.Features.Indexed;
+using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Event;
 using NPCE_WinClient.UI.View.Services;
@@ -17,32 +18,34 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class MainViewModel: ViewModelBase
     {
+        private IIndex<string, IDetailViewModel> _detailViewModelCreator;
         private IEventAggregator _eventAggregator;
         private IMessageDialogService _messageDialogservice;
-        private Func<IAnagraficaDetailViewModel> _anagraficaDetailViewModelCreator;
-        private Func<IDocumentoDetailViewModel> _documentoDetailViewModelCreator;
-        private Func<IAmbienteDetailViewModel> _ambienteDetailViewModelCreator;
-        private IDetailViewModel _detailViewModel;
+        
+        private IDetailViewModel _selectedDetailViewModel;
 
         public INavigationViewModel NavigationViewModel { get;}
 
-        public IDetailViewModel DetailViewModel
+        public ObservableCollection<IDetailViewModel> DetailViewModels { get; }
+
+        public IDetailViewModel SelectedDetailViewModel
         {
-            get { return _detailViewModel; }
+            get { return _selectedDetailViewModel; }
             set { 
-                _detailViewModel = value;
+                _selectedDetailViewModel = value;
                 OnPropertyChanged();
             }
         }
 
 
-        public MainViewModel(INavigationViewModel navigationViewModel, 
-                            Func<IAnagraficaDetailViewModel> anagraficaDetailViewModelCreator,
-                            Func<IDocumentoDetailViewModel> documentoDetailViewModelCreator,
-                            Func<IAmbienteDetailViewModel> ambienteDetailViewModelCreator,
+        public MainViewModel(INavigationViewModel navigationViewModel,
+                            IIndex<string, IDetailViewModel> detailViewModelCreator,
                             IEventAggregator eventAggregator,
                             IMessageDialogService messageDialogservice)
         {
+
+            _detailViewModelCreator = detailViewModelCreator;
+
             _eventAggregator = eventAggregator;
 
             _messageDialogservice = messageDialogservice;
@@ -52,10 +55,7 @@ namespace NPCE_WinClient.UI.ViewModel
             _eventAggregator.GetEvent<AfterDetailDeletedEvent>()
                 .Subscribe(AfterDetailDeleted);
 
-            _anagraficaDetailViewModelCreator = anagraficaDetailViewModelCreator;
-            _documentoDetailViewModelCreator = documentoDetailViewModelCreator;
-
-            _ambienteDetailViewModelCreator = ambienteDetailViewModelCreator;
+            DetailViewModels = new ObservableCollection<IDetailViewModel>();
 
             NavigationViewModel = navigationViewModel;
 
@@ -74,8 +74,20 @@ namespace NPCE_WinClient.UI.ViewModel
         // In questo secondo caso viene passato null come parametro
         private async void OnOpenDetailEvent(OpenDetailViewEventargs args)
         {
+
+           var detailViewModel=  DetailViewModels.SingleOrDefault(vm => vm.Id == args.Id &&
+           vm.GetType().Name == args.ViewModelName);
+
+            if (detailViewModel == null)
+            {
+                detailViewModel = _detailViewModelCreator[args.ViewModelName] ;
+                await detailViewModel.LoadAsync(args.Id);
+                DetailViewModels.Add(detailViewModel);
+            }
+
+
             // Verificare se il view model corrente HasChanges
-            if (DetailViewModel!=null && DetailViewModel.HasChanges)
+            if (SelectedDetailViewModel!=null && SelectedDetailViewModel.HasChanges)
             {
                var result = _messageDialogservice.ShowOKCancelDialog("You've made changes. Navigate away ?", "Question");
 
@@ -85,26 +97,20 @@ namespace NPCE_WinClient.UI.ViewModel
                 }
             }
 
-            // Additional switches for others view models
-            switch(args.ViewModelName)
-            {
-                case nameof(AnagraficaDetailViewModel) :
-                    DetailViewModel = _anagraficaDetailViewModelCreator();
-                    break;
-                case nameof(DocumentoDetailViewModel):
-                    DetailViewModel = _documentoDetailViewModelCreator();
-                    break;
-                case nameof(AmbienteDetailViewModel):
-                    DetailViewModel = _ambienteDetailViewModelCreator();
-                    break;
-            }
-            await DetailViewModel.LoadAsync(args.Id);
+            SelectedDetailViewModel = detailViewModel;
+            
         }
 
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args )
         {
             // The corrisponding view will be hidden
-            DetailViewModel = null;
+            var detailViewModel = DetailViewModels.SingleOrDefault(vm => vm.Id == args.Id &&
+          vm.GetType().Name == args.ViewModelName);
+
+            if (detailViewModel == null)
+            {
+                DetailViewModels.Remove(detailViewModel);
+            }
         }
 
         private void OnCreateNewDetailExecute(Type viewModelType)
