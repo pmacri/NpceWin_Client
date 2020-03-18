@@ -18,6 +18,9 @@
         <DataTemplate DataType="{x:Type viewModel:AmbienteDetailViewModel}">
             <view:AmbienteDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ServizioDetailViewModel}">
+            <view:ServizioDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -36,6 +39,8 @@
                           CommandParameter="{x:Type viewModel:DocumentoDetailViewModel}"/>
                 <MenuItem Header="New Ambiente" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AmbienteDetailViewModel}"/>
+                <MenuItem Header="New servizio" Command="{Binding CreateNewDetailCommand}"
+                          CommandParameter="{x:Type viewModel:ServizioDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>
@@ -53,7 +58,6 @@
                                 VerticalContentAlignment="Top" Content="X" Margin="2" FontSize="20">
                             
                         </Button>
-                        
                     </StackPanel>
                 </DataTemplate>
             </TabControl.ItemTemplate>

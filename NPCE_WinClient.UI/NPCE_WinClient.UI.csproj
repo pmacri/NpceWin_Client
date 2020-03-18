@@ -103,6 +103,8 @@
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
     <Compile Include="Data\Repositories\IAmbienteRepository.cs" />
+    <Compile Include="Data\Repositories\ITipoServizioRepository.cs" />
+    <Compile Include="Data\Repositories\ServizioRepository.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
@@ -116,12 +118,14 @@
     <Compile Include="ViewModel\IDetailViewModel.cs" />
     <Compile Include="ViewModel\IDocumentoDetailViewModel.cs" />
     <Compile Include="ViewModel\INavigationViewModel.cs" />
-    <Compile Include="ViewModel\IServiceDetailViewModel.cs" />
+    <Compile Include="ViewModel\IServizioDetailViewModel.cs" />
+    <Compile Include="Data\Repositories\IServizioRepository.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaDetailViewModel.cs" />
     <Compile Include="ViewModel\NavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\OpenServiceDetailViewEvent.cs" />
+    <Compile Include="ViewModel\ServizioDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AmbienteDetailView.xaml.cs">
       <DependentUpon>AmbienteDetailView.xaml</DependentUpon>
@@ -139,11 +143,15 @@
     <Compile Include="View\Services\IFileService.cs" />
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialogService.cs" />
+    <Compile Include="View\ServizioDetailView.xaml.cs">
+      <DependentUpon>ServizioDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wrapper\AmbienteWrapper.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
     <Compile Include="Wrapper\DocumentoWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrapper\ServizioWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -170,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServizioDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

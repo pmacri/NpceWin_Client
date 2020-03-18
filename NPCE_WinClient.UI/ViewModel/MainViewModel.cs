@@ -82,7 +82,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             if (detailViewModel == null)
             {
-                detailViewModel = _detailViewModelCreator[args.ViewModelName] ;
+                detailViewModel = _detailViewModelCreator[args.ViewModelName];
                 await detailViewModel.LoadAsync(args.Id);
                 DetailViewModels.Add(detailViewModel);
             }

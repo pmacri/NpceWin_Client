@@ -75,7 +75,6 @@ namespace NPCE_WinClient.UI.ViewModel
             }
         }
 
-
         private Ambiente CreateNewAmbiente()
         {
             var ambiente = new Ambiente();

@@ -18,13 +18,10 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            //context.Services.AddOrUpdate(s => s.IdRichiesta,
-            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" },
-            //    new Model.Service { IdRichiesta = Guid.NewGuid(), CreationTime = DateTime.Now, State = "Prepared" }
-            //    );
+            context.TipoServizio.AddOrUpdate(ts => ts.Descrizione,
+                new Model.TipoServizio { Descrizione="Posta4" },
+                new Model.TipoServizio { Descrizione = "Posta1" }
+                );
 
             var allAnagrafiche = context.Anagrafica.ToList();
 

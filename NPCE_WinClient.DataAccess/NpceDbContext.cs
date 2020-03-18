@@ -20,6 +20,8 @@ namespace NPCE_WinClient.DataAccess
         public DbSet<Documento> Documento { get; set; }
 
         public DbSet<Ambiente> Ambiente { get; set; }
+
+        public DbSet<TipoServizio> TipoServizio { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
