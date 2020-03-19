@@ -6,7 +6,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
 {
     public interface IServizioRepository: IGenericRepository<Servizio>
     {
-        IEnumerable<Anagrafica> GetAll();
+        IEnumerable<Anagrafica> GetAllAnagrafiche();
 
     }
 }

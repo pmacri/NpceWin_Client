@@ -14,7 +14,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
         {
         }
 
-        public IEnumerable<Anagrafica> GetAll()
+        public IEnumerable<Anagrafica> GetAllAnagrafiche()
         {
             return Context.Anagrafica.ToList();
         }

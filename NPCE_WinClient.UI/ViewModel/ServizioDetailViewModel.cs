@@ -70,7 +70,7 @@ namespace NPCE_WinClient.UI.ViewModel
                  : CreateNewServizio();
             Id = servizio.Id;
             InitializeServizio(servizio);
-            _allAnagrafiche = _servizioRepository.GetAll();            
+            _allAnagrafiche = _servizioRepository.GetAllAnagrafiche();            
             SetupControls();           
         }
 
@@ -154,7 +154,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override bool OnSaveCanExecute()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         protected override void OnSaveExecute()
@@ -163,9 +163,31 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         public ServizioWrapper Servizio { get; set; }
-        public Anagrafica Mittente { get; set; }
-        public ObservableCollection<Anagrafica> Mittenti { get; set; }
 
+        Anagrafica _mittente;
+        public Anagrafica Mittente {
+            get {
+                return _mittente;
+            }
+            set
+            {
+                _mittente = value;
+                if (_mittente!=null)
+                {
+                    _mittente.IsMittente = true;
+                    var previousMittente = Servizio.Model.Anagrafiche.SingleOrDefault(m => m.IsMittente == true);
+                    if(previousMittente !=null)
+                    {
+                        Servizio.Model.Anagrafiche.Remove(previousMittente);                       
+                    }
+                    Servizio.Model.Anagrafiche.Add(_mittente);
+                    HasChanges = _servizioRepository.HasChanges();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+
+            }
+        }
+        public ObservableCollection<Anagrafica> Mittenti { get; set; }
         public ObservableCollection<Anagrafica> DestinatariAdded { get; set; }
 
         private Anagrafica _selectedDestinatarioAdded;
