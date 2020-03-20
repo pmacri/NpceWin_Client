@@ -18,5 +18,15 @@ namespace NPCE_WinClient.UI.Data.Repositories
         {
             return Context.Anagrafica.ToList();
         }
+
+        public IEnumerable<Documento> GetAllDocumenti()
+        {
+            return Context.Documento.ToList();
+        }
+
+        public IEnumerable<TipoServizio> GetAllTipiServizio()
+        {
+            return Context.TipoServizio.ToList();
+        }
     }
 }

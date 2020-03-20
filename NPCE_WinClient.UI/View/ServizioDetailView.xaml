@@ -11,20 +11,40 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="49*"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="256"/>
             <RowDefinition Height="Auto"></RowDefinition>
 
         </Grid.RowDefinitions>
-        <ComboBox x:Name="cmbMittente" HorizontalAlignment="Left" 
-                  Margin="10 10" VerticalAlignment="Top" Width="120" 
+
+        <StackPanel>
+            <TextBlock Text="Mittente" Margin="10 0"/>
+            <ComboBox x:Name="cmbMittente" HorizontalAlignment="Left" 
+                  Margin="10,10,0,0" VerticalAlignment="Top" Width="120" 
                   ItemsSource="{Binding Mittenti}"
                   DisplayMemberPath="Cognome"
-                  SelectedItem="{Binding Mittente}" Text="Mittente"/>
-        <Grid Grid.Column="1"  Margin="10">
+                  SelectedItem="{Binding Mittente}" Text="Mittente" Height="22"/>            
+        </StackPanel>       
+        
+        
+        <StackPanel Grid.Column="1" Orientation="Vertical">
+            <TextBlock Text="Tipo Servizio" Margin="10 0"/>
+            <ComboBox x:Name="cmbTipoServizio"  HorizontalAlignment="Left" 
+                  Margin="10,10,0,0" VerticalAlignment="Top" Width="120" 
+                  ItemsSource="{Binding TipiServizio}"
+                  DisplayMemberPath="Descrizione"
+                  SelectedItem="{Binding TipoServizio}" Text="Mittente" Height="22"/>
+
+        </StackPanel>
+        
+
+        <Grid  Margin="10,10,10,10.333" Grid.Row="1">
             <Grid.Resources>
                 <DataTemplate DataType="{x:Type model:Anagrafica}">
                     <TextBlock><Run Text="{Binding Cognome}"/> <Run Text="{Binding Nome}"/></TextBlock>
@@ -55,9 +75,40 @@
                 SelectedItem="{Binding SelectedDestinatarioAvailable}" Grid.Column="2"/>
         </Grid>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.Column="2">
-            <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
-            <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
+        <Grid  Margin="10,10,10,10.333" Grid.Row="1" Grid.Column="1">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type model:Documento}">
+                    <TextBlock><Run Text="{Binding Tag}"/></TextBlock>
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Documenti"/>
+            <ListView Grid.Row="1" Grid.Column="0" ItemsSource="{Binding DocumentiAdded}"
+                SelectedItem="{Binding SelectedDocumentoAdded}"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Button Content="&lt;&lt;" Margin="10" Command="{Binding AddDocumentoCommand}"/>
+                <Button Content="&gt;&gt;" Margin="10 0 10 10" Command="{Binding RemoveDocumentoCommand}"/>
+            </StackPanel>
+
+            <Label Content="Documenti Available" Grid.Column="2"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding DocumentiAvailable}"
+                SelectedItem="{Binding SelectedDocumentoAvailable}" Grid.Column="2"/>
+        </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,214.667,0,0.333" Grid.ColumnSpan="3">
+            <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+            <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}" HorizontalAlignment="Center"/>
         </StackPanel>
 
     </Grid>

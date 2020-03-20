@@ -63,6 +63,18 @@
     <Compile Include="Migrations\202003171850512_init3.designer.cs">
       <DependentUpon>202003171850512_init3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003191148537_dummy.cs" />
+    <Compile Include="Migrations\202003191148537_dummy.designer.cs">
+      <DependentUpon>202003191148537_dummy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003191151021_dummy2.cs" />
+    <Compile Include="Migrations\202003191151021_dummy2.designer.cs">
+      <DependentUpon>202003191151021_dummy2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003191152565_dummy3.cs" />
+    <Compile Include="Migrations\202003191152565_dummy3.designer.cs">
+      <DependentUpon>202003191152565_dummy3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +98,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003171850512_init3.resx">
       <DependentUpon>202003171850512_init3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191148537_dummy.resx">
+      <DependentUpon>202003191148537_dummy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191151021_dummy2.resx">
+      <DependentUpon>202003191151021_dummy2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191152565_dummy3.resx">
+      <DependentUpon>202003191152565_dummy3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

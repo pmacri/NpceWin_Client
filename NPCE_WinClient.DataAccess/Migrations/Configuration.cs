@@ -18,10 +18,10 @@
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
-            context.TipoServizio.AddOrUpdate(ts => ts.Descrizione,
-                new Model.TipoServizio { Descrizione="Posta4" },
-                new Model.TipoServizio { Descrizione = "Posta1" }
-                );
+            //context.TipoServizio.AddOrUpdate(ts => ts.Descrizione,
+            //    new Model.TipoServizio { Descrizione="Posta4" },
+            //    new Model.TipoServizio { Descrizione = "Posta1" }
+            //    );
 
             var allAnagrafiche = context.Anagrafica.ToList();
 
