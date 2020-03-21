@@ -109,6 +109,9 @@
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Npce\Helper.cs" />
+    <Compile Include="Npce\RecuperaIdRichiestaLol.cs" />
+    <Compile Include="Npce\InvioLol.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\AmbienteDetailViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
