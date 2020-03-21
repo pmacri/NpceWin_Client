@@ -15,6 +15,9 @@ namespace NPCE_WinClient.DataAccess
         {
 
         }
+
+
+        public DbSet<Servizio> Servizio { get; set; }
         public DbSet<Anagrafica> Anagrafica { get; set; }
 
         public DbSet<Documento> Documento { get; set; }

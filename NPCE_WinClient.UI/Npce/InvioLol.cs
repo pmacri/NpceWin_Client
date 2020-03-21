@@ -20,14 +20,13 @@ namespace NPCE_WinClient.UI.Npce
             _ambiente = ambiente;
             _servizio = servizio;
             _idRichiesta = idRichiesta;
-            Execute();
             
         }
 
-        private void Execute()
+        public void Execute()
         {
             var helper = new Helper();
-            _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri);
+            _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri, _ambiente.Username, _ambiente.Password);
             LOLSubmit lolSubmit = new LOLSubmit();
             SetMittente(lolSubmit);
             SetDestinatari(lolSubmit);
@@ -39,6 +38,12 @@ namespace NPCE_WinClient.UI.Npce
             var property = new HttpRequestMessageProperty();
             property.Headers.Add("customerid", _ambiente.customerid);
             property.Headers.Add("smuser", _ambiente.smuser);
+            property.Headers.Add("costcenter", _ambiente.costcenter);
+            property.Headers.Add("billingcenter", _ambiente.billingcenter);
+            property.Headers.Add("idsender", _ambiente.idsender);
+            property.Headers.Add("contracttype", _ambiente.contracttype);
+            property.Headers.Add("sendersystem", _ambiente.sendersystem);
+            property.Headers.Add("usertype", _ambiente.usertype);
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = property;
 
             var result = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
@@ -50,6 +55,8 @@ namespace NPCE_WinClient.UI.Npce
             var opzioni = new LOLSubmitOpzioni();
 
             opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize =  OpzionidiStampaPageSize.A4 };
+
+            lolSubmit.Opzioni = opzioni;
         }
 
         private void SetDocumenti(LOLSubmit lolSubmit)
@@ -69,7 +76,7 @@ namespace NPCE_WinClient.UI.Npce
 
         private reference.Documento NewDocumento(Model.Documento documento)
         {
-            return new reference.Documento { MD5 = GetMD5(documento), Immagine = documento.Content };
+            return new reference.Documento { MD5 = GetMD5(documento), Immagine = documento.Content, TipoDocumento=documento.Extension };
         }
 
         private string GetMD5(Model.Documento documento)
@@ -83,17 +90,23 @@ namespace NPCE_WinClient.UI.Npce
 
         private void SetDestinatari(LOLSubmit lolSubmit)
         {
+
+            int count = 0;
+
             var destinatariServizioList = _servizio.Anagrafiche.Where(d => d.IsMittente == true).ToList();
 
             var listDestinatari = new List<Destinatario>();
 
             foreach (var destinatarioServizio in destinatariServizioList)
             {
+                count++;
                 Destinatario newDestinatario = NewDestinatario(destinatarioServizio);
                 listDestinatari.Add(newDestinatario);
             }
 
             lolSubmit.Destinatari = listDestinatari.ToArray();
+
+            lolSubmit.NumeroDestinatari = count;
 
         }
 

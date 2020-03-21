@@ -18,7 +18,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
             Context.Set<TEntity>().Add(model);
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public virtual async Task<TEntity> GetByIdAsync(int id)
         {
             return await Context.Set<TEntity>().FindAsync(id);
         }
@@ -31,13 +31,11 @@ namespace NPCE_WinClient.UI.Data.Repositories
         public void Remove(TEntity model)
         {
             Context.Set<TEntity>().Remove(model);
-
         }
 
         public async Task SaveAsync()
         {
             await Context.SaveChangesAsync();
-
         }
     }
 }

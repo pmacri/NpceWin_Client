@@ -1,9 +1,8 @@
 ﻿using NPCE_WinClient.DataAccess;
 using NPCE_WinClient.Model;
-using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Data.Repositories
@@ -27,6 +26,11 @@ namespace NPCE_WinClient.UI.Data.Repositories
         public IEnumerable<TipoServizio> GetAllTipiServizio()
         {
             return Context.TipoServizio.ToList();
+        }
+
+        public override async Task<Servizio> GetByIdAsync(int id)
+        {
+            return await Context.Servizio.Include(s => s.Anagrafiche).Include(s => s.Documenti).SingleAsync(s => s.Id == id);
         }
     }
 }

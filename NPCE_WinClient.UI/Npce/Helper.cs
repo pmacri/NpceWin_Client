@@ -9,7 +9,7 @@ namespace NPCE_WinClient.UI.Npce
 {
     public class Helper
     {
-        public T GetProxy<T>(string endpointAddress)
+        public T GetProxy<T>(string endpointAddress, string username, string password)
         {
             BasicHttpBinding myBinding = new BasicHttpBinding();
             myBinding.SendTimeout = TimeSpan.FromMinutes(3);
@@ -17,8 +17,12 @@ namespace NPCE_WinClient.UI.Npce
             EndpointAddress myEndpoint = new EndpointAddress(endpointAddress);
 
             ChannelFactory<T> myChannelFactory = new ChannelFactory<T>(myBinding, myEndpoint);
+
+            myChannelFactory.Credentials.UserName.UserName = username;
+            myChannelFactory.Credentials.UserName.Password = password;
             // Create a channel
             T wcfClient = myChannelFactory.CreateChannel();
+            
             return wcfClient;
         }
     }

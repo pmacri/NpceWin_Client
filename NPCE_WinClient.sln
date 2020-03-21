@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.Model", "NPC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.DataAccess", "NPCE_WinClient.DataAccess\NPCE_WinClient.DataAccess.csproj", "{72B6B9AC-96B2-40B9-9151-7B1CE73A1A59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.Test", "Npce_WinClient.Test\NPCE_WinClient.Test.csproj", "{87465079-50DA-4469-A4F1-C6E6773FFAC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{72B6B9AC-96B2-40B9-9151-7B1CE73A1A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72B6B9AC-96B2-40B9-9151-7B1CE73A1A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72B6B9AC-96B2-40B9-9151-7B1CE73A1A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87465079-50DA-4469-A4F1-C6E6773FFAC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87465079-50DA-4469-A4F1-C6E6773FFAC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87465079-50DA-4469-A4F1-C6E6773FFAC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87465079-50DA-4469-A4F1-C6E6773FFAC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -14,24 +14,38 @@ namespace NPCE_WinClient.UI.Npce
         private readonly Ambiente _ambiente;
         private readonly Servizio _servizio;
         LOLServiceSoap _proxy;
-        public RecuperaIdRichiestaLol(Ambiente ambiente, Servizio servizio)
+        public RecuperaIdRichiestaLol(Ambiente ambiente)
         {
             _ambiente = ambiente;
-            _servizio = servizio;
-            Execute();            
         }
 
-        private void Execute()
+        public string Execute()
         {
             var helper = new Helper();
-            _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri);
+            _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri, _ambiente.Username, _ambiente.Password);
+
+            
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
             var property = new HttpRequestMessageProperty();
+
             property.Headers.Add("customerid", _ambiente.customerid);
             property.Headers.Add("smuser", _ambiente.smuser);
+            property.Headers.Add("costcenter", _ambiente.costcenter);
+            property.Headers.Add("billingcenter", _ambiente.billingcenter);
+            property.Headers.Add("idsender", _ambiente.idsender);
+            property.Headers.Add("contracttype", _ambiente.contracttype);
+            property.Headers.Add("sendersystem", _ambiente.sendersystem);
+            property.Headers.Add("usertype", _ambiente.usertype);
+
+
+
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = property;
+
+            
             var result = _proxy.RecuperaIdRichiesta();
+
+            return result.IDRichiesta;
         }
     }
 }
