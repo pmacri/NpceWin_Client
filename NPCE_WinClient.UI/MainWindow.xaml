@@ -39,7 +39,7 @@
                           CommandParameter="{x:Type viewModel:DocumentoDetailViewModel}"/>
                 <MenuItem Header="New Ambiente" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:AmbienteDetailViewModel}"/>
-                <MenuItem Header="New servizio" Command="{Binding CreateNewDetailCommand}"
+                <MenuItem Header="New Servizio" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:ServizioDetailViewModel}"/>
             </MenuItem>
         </Menu>

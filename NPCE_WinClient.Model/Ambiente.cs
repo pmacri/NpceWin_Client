@@ -34,6 +34,9 @@ namespace NPCE_WinClient.Model
         public string ColUri { get; set; }
         public string MolUri { get; set; }
         public string Contratto { get; set; }
+
+        public string contractid { get; set; }
+        public string customer { get; set; }
     }
 }
 

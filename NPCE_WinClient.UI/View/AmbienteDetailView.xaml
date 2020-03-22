@@ -22,6 +22,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
@@ -70,24 +72,37 @@
         <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Ambiente.codicefiscale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="10" Text="Partita Iva"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="11" Text="{Binding Ambiente.partitaiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+
+        <TextBlock Grid.Row="10" Text="Contract Id"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="11" Text="{Binding Ambiente.contractid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="10" Grid.Column="1" Text="Uri"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding Ambiente.Uri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="10" Grid.Column="1" Text="Customer"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding Ambiente.customer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="12" Text="Username"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="13" Text="{Binding Ambiente.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+
+
+
+
+        <TextBlock Grid.Row="12" Text="Partita Iva"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="13" Text="{Binding Ambiente.partitaiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="12" Grid.Column="1" Text="Password"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="13" Grid.Column="1" Text="{Binding Ambiente.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="12" Grid.Column="1" Text="Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="13" Grid.Column="1" Text="{Binding Ambiente.Uri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="14" Text="Username"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Text="{Binding Ambiente.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="14" Grid.Column="1" Text="Password"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Grid.Column="1" Text="{Binding Ambiente.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
         
 
-        <StackPanel Grid.Row="15" Grid.ColumnSpan="2"  Orientation="Horizontal">
+        <StackPanel Grid.Row="17" Grid.ColumnSpan="2"  Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>
