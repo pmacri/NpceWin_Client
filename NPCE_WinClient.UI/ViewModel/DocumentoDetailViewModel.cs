@@ -49,12 +49,12 @@ namespace NPCE_WinClient.UI.ViewModel
 
         public ICommand SelectDocumentCommand { get; private set; }
 
-        public override async Task LoadAsync(int? id)
+        public override async Task LoadAsync(int id)
         {
-            var documento = (id.HasValue)
-                ? await _documentoRepository.GetByIdAsync(id.Value)
+            var documento = (id>0)
+                ? await _documentoRepository.GetByIdAsync(id)
                 : CreateNewDocumento();
-            Id = documento.Id;
+            Id = id;
             InitializaDocumento(documento);
         }
 

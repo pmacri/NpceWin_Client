@@ -21,12 +21,12 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             _ambienteRepository = ambienteRepository;
         }
-        public override async Task LoadAsync(int? id)
+        public override async Task LoadAsync(int id)
         {
-            var ambiente = (id.HasValue)
-               ? await _ambienteRepository.GetByIdAsync(id.Value)
+            var ambiente = (id > 0)
+               ? await _ambienteRepository.GetByIdAsync(id)
                : CreateNewAmbiente();
-            Id = ambiente.Id;
+            Id = id;
 
             InitializeAmbiente(ambiente);
         }

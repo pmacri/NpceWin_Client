@@ -120,10 +120,12 @@ namespace NPCE_WinClient.UI.ViewModel
             }
         }
 
+        private int nextNewItemId;
         private void OnCreateNewDetailExecute(Type viewModelType)
         {
             OnOpenDetailEvent(new OpenDetailViewEventargs
             {
+                Id = nextNewItemId--,
                 ViewModelName = viewModelType.Name
             });
         }

@@ -13,7 +13,7 @@ namespace NPCE_WinClient.UI.Event
 
     public class OpenDetailViewEventargs
     {
-        public int? Id { get; set; }
+        public int Id { get; set; }
 
         public string ViewModelName { get; set; }
     }

@@ -130,12 +130,12 @@ namespace NPCE_WinClient.UI.ViewModel
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
-        public override async Task LoadAsync(int? id)
+        public override async Task LoadAsync(int id)
         {
-            Servizio servizio = (id.HasValue)
-                 ? await _servizioRepository.GetByIdAsync(id.Value)
+            Servizio servizio = (id > 0)
+                 ? await _servizioRepository.GetByIdAsync(id)
                  : CreateNewServizio();
-            Id = servizio.Id;
+            Id = id;
             InitializeServizio(servizio);
 
             _allAnagrafiche = _servizioRepository.GetAllAnagrafiche();

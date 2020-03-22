@@ -43,12 +43,12 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-        public override async Task LoadAsync(int? id)
+        public override async Task LoadAsync(int id)
         {
-            var anagrafica = (id.HasValue)
-                ? await _AnagraficaRepository.GetByIdAsync(id.Value)
+            var anagrafica = id>0
+                ? await _AnagraficaRepository.GetByIdAsync(id)
                 : CreateNewAnagrafica();
-            Id = anagrafica.Id;
+            Id = id;
             InitializeAnagrafica(anagrafica);
         }
 
