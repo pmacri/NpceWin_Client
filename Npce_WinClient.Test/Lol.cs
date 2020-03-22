@@ -46,13 +46,12 @@ namespace Npce_WinClient.Test
             Servizio servizio;
             var servizioRepository = new ServizioRepository(new NpceDbContext());
 
-            servizio = await servizioRepository.GetByIdAsync(9);
+            servizio = await servizioRepository.GetByIdAsync(10);
 
             return servizio;
         }
 
         [TestMethod]
-
         public void Invio()
         {
             Ambiente ambiente = null;

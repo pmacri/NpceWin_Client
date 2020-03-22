@@ -9,7 +9,7 @@ using reference = NPCE_WinClient.Services.Lol;
 
 namespace NPCE_WinClient.UI.Npce
 {
-    public class InvioLol
+    public class InvioLol: NpceOperationBase
     {
         private readonly Ambiente _ambiente;
         private readonly Servizio _servizio;
@@ -28,6 +28,7 @@ namespace NPCE_WinClient.UI.Npce
             var helper = new Helper();
             _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri, _ambiente.Username, _ambiente.Password);
             LOLSubmit lolSubmit = new LOLSubmit();
+
             SetMittente(lolSubmit);
             SetDestinatari(lolSubmit);
             SetDocumenti(lolSubmit);
@@ -35,15 +36,7 @@ namespace NPCE_WinClient.UI.Npce
 
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
-            var property = new HttpRequestMessageProperty();
-            property.Headers.Add("customerid", _ambiente.customerid);
-            property.Headers.Add("smuser", _ambiente.smuser);
-            property.Headers.Add("costcenter", _ambiente.costcenter);
-            property.Headers.Add("billingcenter", _ambiente.billingcenter);
-            property.Headers.Add("idsender", _ambiente.idsender);
-            property.Headers.Add("contracttype", _ambiente.contracttype);
-            property.Headers.Add("sendersystem", _ambiente.sendersystem);
-            property.Headers.Add("usertype", _ambiente.usertype);
+            var property = GetHttpHeaders(_ambiente);            
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = property;
 
             var result = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
