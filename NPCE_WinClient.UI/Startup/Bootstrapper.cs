@@ -51,6 +51,8 @@ namespace NPCE_WinClient.UI.Startup
                 .Keyed<IDetailViewModel>(nameof(AmbienteDetailViewModel));
             builder.RegisterType<ServizioDetailViewModel>()
                 .Keyed<IDetailViewModel>(nameof(ServizioDetailViewModel));
+            builder.RegisterType<ServiceOperationsDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(ServiceOperationsDetailViewModel));
 
             return builder.Build();
         }

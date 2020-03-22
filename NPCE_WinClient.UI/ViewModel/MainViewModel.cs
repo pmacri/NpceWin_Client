@@ -62,10 +62,15 @@ namespace NPCE_WinClient.UI.ViewModel
             NavigationViewModel = navigationViewModel;
 
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
+
+            OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
         }
 
-        
+      
+
         public ICommand CreateNewDetailCommand { get; set; }
+        public DelegateCommand<Type> OpenSingleDetailViewCommand { get; }
+
         public async Task LoadAllAsync()
         {
             await NavigationViewModel.LoadAsync();
@@ -133,6 +138,15 @@ namespace NPCE_WinClient.UI.ViewModel
         private void AfterDetailClosed(AfterDetailClosedEventArgs args)
         {
             RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
+
+        private void OnOpenSingleDetailExecute(Type viewModelType)
+        {
+            OnOpenDetailEvent(new OpenDetailViewEventargs
+            {
+                Id = -1,
+                ViewModelName = viewModelType.Name
+            });
         }
     }
 }

@@ -21,6 +21,9 @@
         <DataTemplate DataType="{x:Type viewModel:ServizioDetailViewModel}">
             <view:ServizioDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ServiceOperationsDetailViewModel}">
+            <view:ServiceOperationsDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -41,6 +44,10 @@
                           CommandParameter="{x:Type viewModel:AmbienteDetailViewModel}"/>
                 <MenuItem Header="New Servizio" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:ServizioDetailViewModel}"/>
+            </MenuItem>
+            <MenuItem Header="Operations">
+                <MenuItem Header="Service Operations" Command="{Binding OpenSingleDetailViewCommand}"
+                          CommandParameter="{x:Type viewModel:ServiceOperationsDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>

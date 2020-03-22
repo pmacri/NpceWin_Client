@@ -115,6 +115,7 @@
     <Compile Include="Npce\RecuperaIdRichiestaLol.cs" />
     <Compile Include="Npce\InvioLol.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModel\IServiceOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\AmbienteDetailViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
     <Compile Include="ViewModel\DocumentoDetailViewModel.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="ViewModel\NavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\OpenServiceDetailViewEvent.cs" />
+    <Compile Include="ViewModel\ServiceOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\ServizioDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="View\AmbienteDetailView.xaml.cs">
@@ -150,6 +152,9 @@
     <Compile Include="View\Services\MessageDialogService.cs" />
     <Compile Include="View\ServizioDetailView.xaml.cs">
       <DependentUpon>ServizioDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServiceOperationsView.xaml.cs">
+      <DependentUpon>ServiceOperationsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wrapper\AmbienteWrapper.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
@@ -187,6 +192,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ServizioDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServiceOperationsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
