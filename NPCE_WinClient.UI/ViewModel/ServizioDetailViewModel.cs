@@ -16,14 +16,17 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class ServizioDetailViewModel : DetailViewModelBase, IServizioDetailViewModel
     {
+        private readonly IStatoServizioRepository _statoServizioRepository;
         private readonly IServizioRepository _servizioRepository;
         private IEnumerable<Anagrafica> _allAnagrafiche;
         private IEnumerable<TipoServizio> _allTipi;
         private IEnumerable<Documento> _allDocumenti;
 
         public ServizioDetailViewModel(IEventAggregator eventAggregator, IMessageDialogService messageDialogService,
-            IServizioRepository servizioRepository) : base(eventAggregator, messageDialogService)
+            IServizioRepository servizioRepository,
+            IStatoServizioRepository statoServizioRepository) : base(eventAggregator, messageDialogService)
         {
+            _statoServizioRepository = statoServizioRepository;
             _servizioRepository = servizioRepository;
             Mittenti = new ObservableCollection<Anagrafica>();
             DocumentiAdded = new ObservableCollection<Documento>();
@@ -254,6 +257,8 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override async void OnSaveExecute()
         {
+            var statoCreated = _statoServizioRepository.GetByDescription("Created");
+            Servizio.Model.StatoServizio = statoCreated;
             await _servizioRepository.SaveAsync();
             Id = Servizio.Id;
             HasChanges = _servizioRepository.HasChanges();
@@ -286,7 +291,6 @@ namespace NPCE_WinClient.UI.ViewModel
 
             }
         }
-
         public TipoServizio TipoServizio
 
         {

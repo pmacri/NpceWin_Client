@@ -35,6 +35,7 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
 
             builder.RegisterType<AnagraficaRepository>().As<IAnagraficaRepository>();
+            builder.RegisterType<StatoServizioRepository>().As<IStatoServizioRepository>();
             builder.RegisterType<DocumentoRepository>().As<IDocumentoRepository>();
             builder.RegisterType<AmbienteRepository>().As<IAmbienteRepository>();
             builder.RegisterType<ServizioRepository>().As<IServizioRepository>();

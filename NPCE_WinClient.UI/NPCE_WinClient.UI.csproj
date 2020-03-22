@@ -103,6 +103,7 @@
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Lookups\LookupService.cs" />
     <Compile Include="Data\Repositories\IAmbienteRepository.cs" />
+    <Compile Include="Data\Repositories\IStatoServizio.cs" />
     <Compile Include="Data\Repositories\ITipoServizioRepository.cs" />
     <Compile Include="Data\Repositories\ServizioRepository.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />

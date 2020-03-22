@@ -95,6 +95,10 @@
     <Compile Include="Migrations\202003221036136_AmbienteOtherHeaders.designer.cs">
       <DependentUpon>202003221036136_AmbienteOtherHeaders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003221621545_StatSevizio.cs" />
+    <Compile Include="Migrations\202003221621545_StatSevizio.designer.cs">
+      <DependentUpon>202003221621545_StatSevizio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +146,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003221036136_AmbienteOtherHeaders.resx">
       <DependentUpon>202003221036136_AmbienteOtherHeaders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003221621545_StatSevizio.resx">
+      <DependentUpon>202003221621545_StatSevizio.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
