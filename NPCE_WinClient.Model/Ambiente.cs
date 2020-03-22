@@ -5,17 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//httpRequestProperty.Headers.Add("customerid", Cliente.CustomerId);
-//                    httpRequestProperty.Headers.Add("costcenter", Cliente.CentroDiCosto);
-//                    httpRequestProperty.Headers.Add("billingcenter", Cliente.CentroDiFatturazione);
-//                    httpRequestProperty.Headers.Add("idsender", Cliente.IdSender);
-//                    httpRequestProperty.Headers.Add("sendersystem", Cliente.SenderSystem);
-//                    httpRequestProperty.Headers.Add("smuser", Cliente.SmUser);
-//                    httpRequestProperty.Headers.Add("contracttype", Cliente.TipoContratto);
-//                    httpRequestProperty.Headers.Add("usertype", Cliente.TipoUtente);
-//                    httpRequestProperty.Headers.Add("codicefiscale", Cliente.CodiceFiscale);
-//                    httpRequestProperty.Headers.Add("partitaiva", Cliente.PartitaIva);
-
 namespace NPCE_WinClient.Model
 {
     public class Ambiente

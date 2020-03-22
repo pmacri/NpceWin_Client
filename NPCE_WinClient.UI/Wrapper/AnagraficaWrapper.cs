@@ -164,22 +164,6 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
-        public bool IsMittente
-        {
-            get { return GetValue<bool>(); }
-
-            set
-            {
-                SetValue<bool>(value);
-            }
-        }
-        public bool IsDefaultMittente {
-            get { return GetValue<bool>(); }
-
-            set
-            {
-                SetValue<bool>(value);
-            }
-        }
+        public bool IsMittente { get; set; }
     }
 }

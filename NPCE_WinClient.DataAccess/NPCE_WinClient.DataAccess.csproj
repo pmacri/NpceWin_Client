@@ -79,6 +79,18 @@
     <Compile Include="Migrations\202003211251071_aa.designer.cs">
       <DependentUpon>202003211251071_aa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003221015300_DefaultMittente.cs" />
+    <Compile Include="Migrations\202003221015300_DefaultMittente.designer.cs">
+      <DependentUpon>202003221015300_DefaultMittente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003221018476_IMittente.cs" />
+    <Compile Include="Migrations\202003221018476_IMittente.designer.cs">
+      <DependentUpon>202003221018476_IMittente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003221022295_IMittente2.cs" />
+    <Compile Include="Migrations\202003221022295_IMittente2.designer.cs">
+      <DependentUpon>202003221022295_IMittente2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +126,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003211251071_aa.resx">
       <DependentUpon>202003211251071_aa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003221015300_DefaultMittente.resx">
+      <DependentUpon>202003221015300_DefaultMittente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003221018476_IMittente.resx">
+      <DependentUpon>202003221018476_IMittente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003221022295_IMittente2.resx">
+      <DependentUpon>202003221022295_IMittente2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
