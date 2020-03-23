@@ -38,7 +38,7 @@
                                     Binding="{Binding Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Column="1" Grid.Row="1" Content="Invio" Command="{Binding InvioCommand}">
+        <Button Grid.Column="1" Grid.Row="3" Content="Invio" Command="{Binding InvioCommand}">
             
         </Button>
 

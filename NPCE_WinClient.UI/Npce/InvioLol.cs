@@ -9,7 +9,7 @@ using reference = NPCE_WinClient.Services.Lol;
 
 namespace NPCE_WinClient.UI.Npce
 {
-    public class InvioLol: NpceOperationBase
+    public class InvioLol : NpceOperationBase
     {
         private readonly Ambiente _ambiente;
         private readonly Servizio _servizio;
@@ -20,10 +20,10 @@ namespace NPCE_WinClient.UI.Npce
             _ambiente = ambiente;
             _servizio = servizio;
             _idRichiesta = idRichiesta;
-            
+
         }
 
-        public void Execute()
+        public NpceOperationResult Execute()
         {
             var helper = new Helper();
             _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri, _ambiente.Username, _ambiente.Password);
@@ -36,18 +36,19 @@ namespace NPCE_WinClient.UI.Npce
 
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
-            var property = GetHttpHeaders(_ambiente);            
-            OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = property;
+            var headers = GetHttpHeaders(_ambiente);
+            OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = headers;
 
-            var result = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
+            var invioResult = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
 
+            return CreateResult(NpceOperation.Invio, invioResult.CEResult);
         }
 
         private void SetOpzioni(LOLSubmit lolSubmit)
         {
             var opzioni = new LOLSubmitOpzioni();
 
-            opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize =  OpzionidiStampaPageSize.A4 };
+            opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize = OpzionidiStampaPageSize.A4 };
 
             lolSubmit.Opzioni = opzioni;
         }
@@ -69,7 +70,7 @@ namespace NPCE_WinClient.UI.Npce
 
         private reference.Documento NewDocumento(Model.Documento documento)
         {
-            return new reference.Documento { MD5 = GetMD5(documento), Immagine = documento.Content, TipoDocumento=documento.Extension };
+            return new reference.Documento { MD5 = GetMD5(documento), Immagine = documento.Content, TipoDocumento = documento.Extension };
         }
 
         private string GetMD5(Model.Documento documento)
@@ -160,7 +161,7 @@ namespace NPCE_WinClient.UI.Npce
                 RagioneSociale = mittenteServizio.RagioneSociale
             };
 
-            mittente.Nominativo = nominativo;           
+            mittente.Nominativo = nominativo;
 
             lolSubmit.Mittente = mittente;
 

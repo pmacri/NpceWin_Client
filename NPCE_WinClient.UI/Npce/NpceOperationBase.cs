@@ -1,4 +1,5 @@
 ﻿using NPCE_WinClient.Model;
+using NPCE_WinClient.Services.Lol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,5 +28,24 @@ namespace NPCE_WinClient.UI.Npce
 
             return property;
         }    
+
+        protected virtual NpceOperationResult CreateResult(NpceOperation operation, CEResult ceResult)
+        {
+            var result = new NpceOperationResult();
+            result.Operation = operation;
+            result.Success = int.Parse(ceResult.Code) == 0 ? true : false;
+
+            if (!result.Success)
+            {
+                result.Errors = new List<Error>();
+                result.Errors.Add( new Error {  Code= ceResult.Code, Description = ceResult.Description});
+            }
+
+
+
+            return result;
+
+        }
     }
+
 }

@@ -20,6 +20,7 @@ namespace NPCE_WinClient.UI.ViewModel
     {
         private IAmbienteRepository _ambienteRepository;
         private IServizioRepository _servizioRepository;
+        private IMessageDialogService _messageDialogService;
         private AmbienteWrapper ambiente;
 
         public ServiceOperationsDetailViewModel(IEventAggregator eventAggregator,
@@ -30,6 +31,7 @@ namespace NPCE_WinClient.UI.ViewModel
             Title = "Service Operations";
             _ambienteRepository = ambienteRepository;
             _servizioRepository = servizioRepository;
+            _messageDialogService = messageDialogService;
 
             Ambienti = new ObservableCollection<AmbienteWrapper>();
 
@@ -50,7 +52,20 @@ namespace NPCE_WinClient.UI.ViewModel
 
             var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
 
-            invioOperation.Execute();
+            var result = invioOperation.Execute();
+
+            string message;
+
+            if (result.Success)
+            {
+                message = $"Operazione {result.Operation.ToString()} completata con successo";
+            }
+            else
+            {
+                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\n Description: {result.Errors[0].Description}";
+            }
+
+            _messageDialogService.ShowOKCancelDialog(message, "Info");
         }
 
         public ICommand InvioCommand { get; set; }
