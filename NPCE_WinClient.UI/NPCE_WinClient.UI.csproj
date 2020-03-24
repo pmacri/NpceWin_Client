@@ -92,6 +92,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\NPCE_WinClient.Services.Rol\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Data\Lookups\IAmbienteLookupDataService.cs" />
     <Compile Include="Data\Lookups\IAnagraficaLookupDataService.cs" />
     <Compile Include="Data\Lookups\IDocumentoLookupDataService.cs" />
@@ -111,11 +116,13 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Npce\Helper.cs" />
+    <Compile Include="Npce\InvioRol.cs" />
     <Compile Include="Npce\NpceOperationBase.cs" />
     <Compile Include="Npce\NpceOperationResult.cs" />
     <Compile Include="Npce\NpceOperations.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaLol.cs" />
     <Compile Include="Npce\InvioLol.cs" />
+    <Compile Include="Npce\RecuperaIdRichiestaRol.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\IServiceOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\AmbienteDetailViewModel.cs" />
@@ -302,6 +309,124 @@
     <None Include="Connected Services\NPCE_WinClient.Services.Lol\NPCE_WinClient.UI.NPCE_WinClient.Services.Lol.ValorizzaSingleResult.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.AnnullaOrdineResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.AnnullaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.AnnullaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ConfermaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.GetStatoIdRichiestaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.GetStatoOrdineResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.InvioDocResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.InvioResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.NascondiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.NomiUPUCountries.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.PostConfermaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.PreConfermaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.PreConfermaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaArResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaBollettiniInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaBollettiniPAInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaDCSResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaDestinatariResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaEnquiryResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaIdRichiestaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaInfoResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaNumeriRaccomandataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaNumeriRaccomandataResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaRicevutaAccettazioneResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaStatiResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.RecuperaStatiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ScambiaRichiestaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.StatoInviiPerDataResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.StatoInviiPerIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.StatoInviiPerIDResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.StatoInviiPerNumeroResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.StatoInviiPerNumeroResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.StatoInviiResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.UPUCountry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ValidaBollettiniResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ValidaDestinatariResults.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ValorizzaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ValorizzaResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\NPCE_WinClient.UI.NPCE_WinClient.Services.Rol.ValorizzaSingleResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\RolService.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -326,6 +451,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\NPCE_WinClient.Services.Lol\" />
+    <WCFMetadataStorage Include="Connected Services\NPCE_WinClient.Services.Rol\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\NPCE_WinClient.Services.Lol\configuration91.svcinfo" />
@@ -335,6 +461,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\NPCE_WinClient.Services.Lol\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\NPCE_WinClient.Services.Rol\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

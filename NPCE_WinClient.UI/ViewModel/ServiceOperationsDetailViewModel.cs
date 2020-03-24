@@ -48,18 +48,24 @@ namespace NPCE_WinClient.UI.ViewModel
             // Impostare sul servizio il suo TipoServizio
             _servizioRepository.UpdateTipoServizioAsync(Servizio.Id, TipoServizio.Id);
 
-            
-            var operation = new RecuperaIdRichiestaLol(Ambiente.Model);
+            NpceOperationResult result = null;
 
-            var idRichiesta = operation.Execute();
+            switch (TipoServizio.Descrizione)
+            {
+                case "Posta1":
+                case "Posta4":
+                    {
+                        result = await InvioLolExecute();
+                    }
+                    break;
 
-            var idServizio = Servizio.Id;
+                case "Raccomandata":
+                    {
+                        result = await InvioRolExecute();
+                    }
+                    break;
+            }
 
-            var servizio =await _servizioRepository.GetByIdAsync(idServizio);
-
-            var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
-
-            var result = invioOperation.Execute();
 
             string message;
 
@@ -75,8 +81,40 @@ namespace NPCE_WinClient.UI.ViewModel
             _messageDialogService.ShowOKCancelDialog(message, "Info");
 
             Servizio.IdRichiesta = result.IdRichiesta;
-            
+
             OnSaveExecute();
+        }
+
+        private async Task<NpceOperationResult> InvioLolExecute()
+        {
+            var operation = new RecuperaIdRichiestaLol(Ambiente.Model);
+
+            var idRichiesta = operation.Execute();
+
+            var idServizio = Servizio.Id;
+
+            var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+
+            var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
+
+            var result = invioOperation.Execute();
+            return result;
+        }
+
+        private async Task<NpceOperationResult> InvioRolExecute()
+        {
+            var operation = new RecuperaIdRichiestaRol(Ambiente.Model);
+
+            var idRichiesta = operation.Execute();
+
+            var idServizio = Servizio.Id;
+
+            var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+
+            var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
+
+            var result = invioOperation.Execute();
+            return result;
         }
 
         public ICommand InvioCommand { get; set; }
@@ -164,7 +202,8 @@ namespace NPCE_WinClient.UI.ViewModel
         public AmbienteWrapper Ambiente
         {
             get { return ambienteWrapper; }
-            set { 
+            set
+            {
                 ambienteWrapper = value;
                 OnPropertyChanged();
             }

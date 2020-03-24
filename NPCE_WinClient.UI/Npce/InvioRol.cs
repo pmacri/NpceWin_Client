@@ -1,22 +1,22 @@
 ﻿using NPCE_WinClient.DataAccess;
 using NPCE_WinClient.Model;
-using NPCE_WinClient.Services.Lol;
+using NPCE_WinClient.Services.Rol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using reference = NPCE_WinClient.Services.Lol;
+using reference = NPCE_WinClient.Services;
 
 namespace NPCE_WinClient.UI.Npce
 {
-    public class InvioLol : NpceOperationBase
+    public class InvioRol : NpceOperationBase
     {
         private readonly Ambiente _ambiente;
         private readonly Servizio _servizio;
         private readonly string _idRichiesta;
-        LOLServiceSoap _proxy;
-        public InvioLol(Ambiente ambiente, Servizio servizio, string idRichiesta)
+        ROLServiceSoap _proxy;
+        public InvioRol(Ambiente ambiente, Servizio servizio, string idRichiesta)
         {
             _ambiente = ambiente;
             _servizio = servizio;
@@ -26,47 +26,43 @@ namespace NPCE_WinClient.UI.Npce
         public NpceOperationResult Execute()
         {
             var helper = new Helper();
-            _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri, _ambiente.Username, _ambiente.Password);
-            LOLSubmit lolSubmit = new LOLSubmit();
+            _proxy = helper.GetProxy<ROLServiceSoap>(_ambiente.RolUri, _ambiente.Username, _ambiente.Password);
+            ROLSubmit rolSubmit = new ROLSubmit();
 
-            SetMittente(lolSubmit);
-            SetDestinatari(lolSubmit);
-            SetDocumenti(lolSubmit);
-            SetOpzioni(lolSubmit);
-            if (_servizio.TipoServizio.Descrizione=="Posta1")
-            {
-                SetPosta1(lolSubmit);
-            }           
+            SetMittente(rolSubmit);
+            SetDestinatari(rolSubmit);
+            SetDocumenti(rolSubmit);
+            SetOpzioni(rolSubmit);
+            
 
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
             var headers = GetHttpHeaders(_ambiente);
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = headers;
 
-            var invioResult = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
+            var invioResult = _proxy.Invio(_idRichiesta, string.Empty, rolSubmit);
 
-            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Code, invioResult.IDRichiesta);
+            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Description, invioResult.IDRichiesta);
         }
 
-        private void SetPosta1(LOLSubmit lolSubmit)
-        {
-            lolSubmit.DescrizioneLettera = new DescrizioneLettera { TipoLettera = "Posta1" };
-        }
+        
 
-        private void SetOpzioni(LOLSubmit lolSubmit)
+
+
+        private void SetOpzioni(ROLSubmit rolSubmit)
         {
-            var opzioni = new LOLSubmitOpzioni();
+            var opzioni = new ROLSubmitOpzioni();
 
             opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize = OpzionidiStampaPageSize.A4 };
 
-            lolSubmit.Opzioni = opzioni;
+            rolSubmit.Opzioni = opzioni;
         }
 
-        private void SetDocumenti(LOLSubmit lolSubmit)
+        private void SetDocumenti(ROLSubmit rolSubmit)
         {
 
-            Services.Lol.Documento newDocumento;
-            var listDocumenti = new List<reference.Documento>();
+            Services.Rol.Documento newDocumento;
+            var listDocumenti = new List<reference.Rol.Documento>();
 
             foreach (var documento in _servizio.Documenti)
             {
@@ -74,12 +70,12 @@ namespace NPCE_WinClient.UI.Npce
                 listDocumenti.Add(newDocumento);
             }
 
-            lolSubmit.Documento = listDocumenti.ToArray();
+            rolSubmit.Documento = listDocumenti.ToArray();
         }
 
-        private reference.Documento NewDocumento(Model.Documento documento)
+        private reference.Rol.Documento NewDocumento(Model.Documento documento)
         {
-            return new reference.Documento { MD5 = GetMD5(documento), Immagine = documento.Content, TipoDocumento = documento.Extension };
+            return new reference.Rol.Documento { MD5 = GetMD5(documento), Immagine = documento.Content, TipoDocumento = documento.Extension };
         }
 
         private string GetMD5(Model.Documento documento)
@@ -91,7 +87,7 @@ namespace NPCE_WinClient.UI.Npce
             }
         }
 
-        private void SetDestinatari(LOLSubmit lolSubmit)
+        private void SetDestinatari(ROLSubmit rolSubmit)
         {
 
             int count = 0;
@@ -107,9 +103,9 @@ namespace NPCE_WinClient.UI.Npce
                 listDestinatari.Add(newDestinatario);
             }
 
-            lolSubmit.Destinatari = listDestinatari.ToArray();
+            rolSubmit.Destinatari = listDestinatari.ToArray();
 
-            lolSubmit.NumeroDestinatari = count;
+            rolSubmit.NumeroDestinatari = count;
 
         }
 
@@ -143,7 +139,7 @@ namespace NPCE_WinClient.UI.Npce
             return destinatario;
         }
 
-        private void SetMittente(LOLSubmit lolSubmit)
+        private void SetMittente(ROLSubmit rolSubmit)
         {
 
             var mittenteServizio = _servizio.Anagrafiche.Single(d => d.IsMittente == true);
@@ -172,7 +168,7 @@ namespace NPCE_WinClient.UI.Npce
 
             mittente.Nominativo = nominativo;
 
-            lolSubmit.Mittente = mittente;
+            rolSubmit.Mittente = mittente;
 
         }
     }

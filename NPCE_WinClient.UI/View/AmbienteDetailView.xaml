@@ -24,6 +24,10 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
@@ -92,16 +96,24 @@
         <TextBox Grid.Row="13" Grid.Column="1" Text="{Binding Ambiente.LolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="14" Text="Username"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="15" Text="{Binding Ambiente.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="14" Text="ROL Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Text="{Binding Ambiente.RolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="14" Grid.Column="1" Text="Password"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="15" Grid.Column="1" Text="{Binding Ambiente.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="14" Grid.Column="1" Text="Mol Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Grid.Column="1" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="16" Text="Username"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="17" Text="{Binding Ambiente.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="16" Grid.Column="1" Text="Password"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="17" Grid.Column="1" Text="{Binding Ambiente.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
         
 
-        <StackPanel Grid.Row="17" Grid.ColumnSpan="2"  Orientation="Horizontal">
+        <StackPanel Grid.Row="19" Grid.ColumnSpan="2"  Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}"/>
         </StackPanel>
