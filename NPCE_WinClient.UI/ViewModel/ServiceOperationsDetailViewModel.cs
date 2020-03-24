@@ -40,11 +40,15 @@ namespace NPCE_WinClient.UI.ViewModel
 
             Servizi = new ObservableCollection<ServizioWrapper>();
 
-            InvioCommand = new DelegateCommand(OnInvioExceute);
+            InvioCommand = new DelegateCommand(OnInvioExecute);
         }
 
-        private async void OnInvioExceute()
+        private async void OnInvioExecute()
         {
+            // Impostare sul servizio il suo TipoServizio
+            _servizioRepository.UpdateTipoServizioAsync(Servizio.Id, TipoServizio.Id);
+
+            
             var operation = new RecuperaIdRichiestaLol(Ambiente.Model);
 
             var idRichiesta = operation.Execute();
@@ -69,6 +73,10 @@ namespace NPCE_WinClient.UI.ViewModel
             }
 
             _messageDialogService.ShowOKCancelDialog(message, "Info");
+
+            Servizio.IdRichiesta = result.IdRichiesta;
+            
+            OnSaveExecute();
         }
 
         public ICommand InvioCommand { get; set; }
@@ -115,14 +123,13 @@ namespace NPCE_WinClient.UI.ViewModel
                 Servizi.Add(wrapper);
             }
 
-
             // Tipi servizio
             TipiServizio.Clear();
+
             foreach (var tipo in _allTipi)
             {
                 TipiServizio.Add(tipo);
             }
-
         }
 
         private void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -143,16 +150,17 @@ namespace NPCE_WinClient.UI.ViewModel
             throw new NotImplementedException();
         }
 
-        protected override void OnSaveExecute()
+        protected override async void OnSaveExecute()
         {
-            throw new NotImplementedException();
+            await _servizioRepository.SaveAsync();
+            await LoadAsync(-1);
         }
 
         public ObservableCollection<AmbienteWrapper> Ambienti { get; set; }
 
         private AmbienteWrapper ambienteWrapper;
-        private TipoServizio _tipoServizio;
 
+        private TipoServizio _tipoServizio;
         public AmbienteWrapper Ambiente
         {
             get { return ambienteWrapper; }
@@ -161,8 +169,6 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
         public TipoServizio TipoServizio
         {
             get
@@ -189,9 +195,7 @@ namespace NPCE_WinClient.UI.ViewModel
             get;
             set;
         }
-
         public ObservableCollection<ServizioWrapper> Servizi { get; set; }
-
         public ServizioWrapper Servizio { get; set; }
     }
 }

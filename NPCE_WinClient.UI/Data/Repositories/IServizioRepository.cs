@@ -9,6 +9,6 @@ namespace NPCE_WinClient.UI.Data.Repositories
         IEnumerable<Anagrafica> GetAllAnagrafiche();
         IEnumerable<TipoServizio> GetAllTipiServizio();
         IEnumerable<Documento> GetAllDocumenti();
-
+        void UpdateTipoServizioAsync(int idServizio, int idTipoServizio);
     }
 }

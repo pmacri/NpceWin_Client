@@ -22,6 +22,7 @@ namespace NPCE_WinClient.Model
         public bool Colore { get; set; }
         public bool ArchiviazioneDigitale { get; set; }
         public bool Autoconferma { get; set; }
+        public string IdRichiesta { get; set; }
 
         // Navigation
         public TipoServizio TipoServizio { get; set; }

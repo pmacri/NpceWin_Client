@@ -12,6 +12,8 @@ namespace NPCE_WinClient.UI.Npce
 
         public bool Success { get; set; }
 
+        public string IdRichiesta { get; set; }
+
         public List<Error> Errors { get; set; }
     }
 }

@@ -67,6 +67,23 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<bool>(value);
             }
         }
+        public string IdRichiesta
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+        public TipoServizio TipoServizio {
+            get { return GetValue<TipoServizio>(); }
+
+            set
+            {
+                SetValue<TipoServizio>(value);
+            }
+        }
 
         //public ICollection<Anagrafica> Anagrafiche { get; set; }
 

@@ -29,19 +29,19 @@ namespace NPCE_WinClient.UI.Npce
             return property;
         }    
 
-        protected virtual NpceOperationResult CreateResult(NpceOperation operation, CEResult ceResult)
+        protected virtual NpceOperationResult CreateResult(NpceOperation operation, CEResult ceResult, string idRichiesta)
         {
             var result = new NpceOperationResult();
             result.Operation = operation;
             result.Success = int.Parse(ceResult.Code) == 0 ? true : false;
+
+            result.IdRichiesta = idRichiesta;
 
             if (!result.Success)
             {
                 result.Errors = new List<Error>();
                 result.Errors.Add( new Error {  Code= ceResult.Code, Description = ceResult.Description});
             }
-
-
 
             return result;
 
