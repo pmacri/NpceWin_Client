@@ -29,7 +29,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
 
         public StatoServizio GetByDescription(string description)
         {
-            return _context.StatoServizio.FirstOrDefault(ss => ss.Descrizione == description);
+            return _context.StatoServizio.AsNoTracking().FirstOrDefault(ss => ss.Descrizione == description);
         }
     }
 }

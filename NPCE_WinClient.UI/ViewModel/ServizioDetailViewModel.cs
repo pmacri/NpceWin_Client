@@ -19,7 +19,6 @@ namespace NPCE_WinClient.UI.ViewModel
         private readonly IStatoServizioRepository _statoServizioRepository;
         private readonly IServizioRepository _servizioRepository;
         private IEnumerable<Anagrafica> _allAnagrafiche;
-        private IEnumerable<TipoServizio> _allTipi;
         private IEnumerable<Documento> _allDocumenti;
 
         public ServizioDetailViewModel(IEventAggregator eventAggregator, IMessageDialogService messageDialogService,
