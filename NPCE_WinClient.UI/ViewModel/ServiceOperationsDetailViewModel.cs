@@ -219,11 +219,11 @@ namespace NPCE_WinClient.UI.ViewModel
                 _tipoServizio = value;
                 if (_tipoServizio != null)
                 {
-                    if (Servizio.Model.TipoServizio == null)
-                    {
-                        Servizio.Model.TipoServizio = new TipoServizio();
-                        Servizio.Model.TipoServizio = _tipoServizio;
-                    }
+                    //if ( (Servizio) && (Servizio.Model.TipoServizio == null))
+                    //{
+                    //    Servizio.Model.TipoServizio = new TipoServizio();
+                    //    Servizio.Model.TipoServizio = _tipoServizio;
+                    //}
                     HasChanges = _servizioRepository.HasChanges();
                     ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
                 }

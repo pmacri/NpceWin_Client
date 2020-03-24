@@ -17,11 +17,12 @@
         <GroupBox Header="Ambienti">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" 
                       VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Ambienti}">
+                <ItemsControl Margin="10" ItemsSource="{Binding Ambienti}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button Content="{Binding DisplayMember}"
-                                Command="{Binding OpenAmbienteDetailViewCommand}">
+                                Command="{Binding OpenAmbienteDetailViewCommand}"
+                                    FontSize="16">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
                                         <Grid x:Name="grid">
@@ -50,10 +51,10 @@
         <GroupBox Header="Anagrafiche" Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" 
                       VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Anagrafiche}">
+                <ItemsControl Margin="10" ItemsSource="{Binding Anagrafiche}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Content="{Binding DisplayMember}"
+                            <Button FontSize="16" Content="{Binding DisplayMember}"
                                 Command="{Binding OpenAnagraficaDetailViewCommand}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
@@ -82,11 +83,11 @@
 
         <GroupBox Header="Documenti" Grid.Row="2">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" 
-                      VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding Documenti}">
+                      VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left">
+                <ItemsControl Margin="10"  ItemsSource="{Binding Documenti}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Content="{Binding DisplayMember}"
+                            <Button FontSize="16" Content="{Binding DisplayMember}"
                                 Command="{Binding OpenDocumentoDetailViewCommand}">
                                 <Button.Template>
                                     <ControlTemplate TargetType="Button">
