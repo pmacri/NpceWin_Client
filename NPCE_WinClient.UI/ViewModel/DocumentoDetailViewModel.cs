@@ -1,4 +1,5 @@
-﻿using NPCE_WinClient.Model;
+﻿using FriendOrganizer.UI.View.Services;
+using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
 using NPCE_WinClient.UI.View.Services;
 using NPCE_WinClient.UI.Wrapper;
@@ -99,7 +100,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override async void OnDeleteExecute()
         {
-            var result = MessageDialogService.ShowOKCancelDialog($"Do you really want to cancel the document {Documento.Tag} {Documento.FileName}",
+            var result = await MessageDialogService.ShowOkCancelDialogAsync($"Do you really want to cancel the document {Documento.Tag} {Documento.FileName}",
                                                                    "Question");
             if (result == MessageDialogResult.Cancel)
             {

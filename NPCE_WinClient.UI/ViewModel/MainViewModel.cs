@@ -1,4 +1,5 @@
 ﻿using Autofac.Features.Indexed;
+using FriendOrganizer.UI.View.Services;
 using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Event;
@@ -96,7 +97,7 @@ namespace NPCE_WinClient.UI.ViewModel
             // Verificare se il view model corrente HasChanges
             if (SelectedDetailViewModel!=null && SelectedDetailViewModel.HasChanges)
             {
-               var result = _messageDialogservice.ShowOKCancelDialog("You've made changes. Navigate away ?", "Question");
+               var result = await _messageDialogservice.ShowOkCancelDialogAsync("You've made changes. Navigate away ?", "Question");
 
                 if (result == MessageDialogResult.Cancel)
                 {

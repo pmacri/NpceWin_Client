@@ -78,7 +78,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\n Description: {result.Errors[0].Description}";
             }
 
-            _messageDialogService.ShowOKCancelDialog(message, "Info");
+            await _messageDialogService.ShowOkCancelDialogAsync(message, "Info");
 
             Servizio.IdRichiesta = result.IdRichiesta;
 

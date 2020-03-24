@@ -1,22 +1,33 @@
-﻿using System;
+﻿using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
+using NPCE_WinClient.UI;
+using NPCE_WinClient.UI.View.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NPCE_WinClient.UI.View.Services
+namespace FriendOrganizer.UI.View.Services
 {
     public class MessageDialogService : IMessageDialogService
     {
-        public MessageDialogResult ShowOKCancelDialog(string text, string caption)
+        private MetroWindow MetroWindow => (MetroWindow)App.Current.MainWindow;
+        public async Task<MessageDialogResult> ShowOkCancelDialogAsync(string text, string title)
         {
-            var result = MessageBox.Show(text, caption, MessageBoxButton.OKCancel);
+            var result =
+              await MetroWindow.ShowMessageAsync(title, text, MessageDialogStyle.AffirmativeAndNegative);
 
-            return result == MessageBoxResult.OK
-                ? MessageDialogResult.OK
-                : MessageDialogResult.Cancel;
+            return result == MahApps.Metro.Controls.Dialogs.MessageDialogResult.Affirmative
+              ? MessageDialogResult.OK
+              : MessageDialogResult.Cancel;
         }
+        public async Task ShowInfoDialogAsync(string text)
+        {
+            await MetroWindow.ShowMessageAsync("Info", text);
+        }
+
     }
     public enum MessageDialogResult
     {

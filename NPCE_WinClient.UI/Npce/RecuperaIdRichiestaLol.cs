@@ -12,7 +12,6 @@ namespace NPCE_WinClient.UI.Npce
     public class RecuperaIdRichiestaLol
     {
         private readonly Ambiente _ambiente;
-        private readonly Servizio _servizio;
         LOLServiceSoap _proxy;
         public RecuperaIdRichiestaLol(Ambiente ambiente)
         {

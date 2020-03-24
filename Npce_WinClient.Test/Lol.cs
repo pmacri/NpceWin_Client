@@ -17,7 +17,6 @@ namespace Npce_WinClient.Test
         public void RecuperaIdRichiesta()
         {
             Ambiente ambiente = null;
-            Servizio servizio = null;
 
             ambiente = new Ambiente
             {

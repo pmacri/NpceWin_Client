@@ -1,5 +1,6 @@
 ﻿namespace NPCE_WinClient.UI.ViewModel
 {
+    using FriendOrganizer.UI.View.Services;
     using NPCE_WinClient.UI.Event;
     using NPCE_WinClient.UI.View.Services;
     using Prism.Commands;
@@ -74,12 +75,12 @@
 
         protected abstract void OnSaveExecute();
 
-        protected virtual void OnCloseDetailViewExecute()
+        protected virtual async void OnCloseDetailViewExecute()
         {
 
             if (HasChanges)
             {
-               var result= MessageDialogService.ShowOKCancelDialog("You made changes. Close this dialog ?", "Question");
+               var result= await MessageDialogService.ShowOkCancelDialogAsync("You made changes. Close this dialog ?", "Question");
 
                 if (result == MessageDialogResult.Cancel) return;
             }

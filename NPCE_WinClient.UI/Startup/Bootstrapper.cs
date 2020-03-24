@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using FriendOrganizer.UI.View.Services;
 using NPCE_WinClient.DataAccess;
 using NPCE_WinClient.UI.Data;
 using NPCE_WinClient.UI.Data.Lookups;
