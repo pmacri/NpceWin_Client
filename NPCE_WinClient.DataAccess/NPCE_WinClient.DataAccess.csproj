@@ -99,6 +99,10 @@
     <Compile Include="Migrations\202003221621545_StatSevizio.designer.cs">
       <DependentUpon>202003221621545_StatSevizio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003240927075_Tiposervizionullable.cs" />
+    <Compile Include="Migrations\202003240927075_Tiposervizionullable.designer.cs">
+      <DependentUpon>202003240927075_Tiposervizionullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -149,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003221621545_StatSevizio.resx">
       <DependentUpon>202003221621545_StatSevizio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003240927075_Tiposervizionullable.resx">
+      <DependentUpon>202003240927075_Tiposervizionullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

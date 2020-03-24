@@ -33,15 +33,7 @@
         </StackPanel>       
         
         
-        <StackPanel Grid.Column="1" Orientation="Vertical">
-            <TextBlock Text="Tipo Servizio" Margin="10 0"/>
-            <ComboBox x:Name="cmbTipoServizio"  HorizontalAlignment="Left" 
-                  Margin="10,10,0,0" VerticalAlignment="Top" Width="120" 
-                  ItemsSource="{Binding TipiServizio}"
-                  DisplayMemberPath="Descrizione"
-                  SelectedItem="{Binding TipoServizio}" Text="Mittente" Height="22"/>
-
-        </StackPanel>
+        
         
 
         <Grid  Margin="10,10,10,10.333" Grid.Row="1">

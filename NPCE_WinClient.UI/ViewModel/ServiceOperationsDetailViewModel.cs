@@ -21,7 +21,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private IAmbienteRepository _ambienteRepository;
         private IServizioRepository _servizioRepository;
         private IMessageDialogService _messageDialogService;
-        private AmbienteWrapper ambiente;
+        private IEnumerable<TipoServizio> _allTipi;
 
         public ServiceOperationsDetailViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
@@ -29,6 +29,9 @@ namespace NPCE_WinClient.UI.ViewModel
             IServizioRepository servizioRepository) : base(eventAggregator, messageDialogService)
         {
             Title = "Service Operations";
+
+            TipiServizio = new ObservableCollection<TipoServizio>();
+
             _ambienteRepository = ambienteRepository;
             _servizioRepository = servizioRepository;
             _messageDialogService = messageDialogService;
@@ -72,6 +75,9 @@ namespace NPCE_WinClient.UI.ViewModel
 
         public async override Task LoadAsync(int id)
         {
+
+            _allTipi = _servizioRepository.GetAllTipiServizio();
+
             Id = id;
             var ambienti = await _ambienteRepository.GetAllAsync();
 
@@ -109,6 +115,14 @@ namespace NPCE_WinClient.UI.ViewModel
                 Servizi.Add(wrapper);
             }
 
+
+            // Tipi servizio
+            TipiServizio.Clear();
+            foreach (var tipo in _allTipi)
+            {
+                TipiServizio.Add(tipo);
+            }
+
         }
 
         private void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -137,6 +151,7 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<AmbienteWrapper> Ambienti { get; set; }
 
         private AmbienteWrapper ambienteWrapper;
+        private TipoServizio _tipoServizio;
 
         public AmbienteWrapper Ambiente
         {
@@ -145,6 +160,34 @@ namespace NPCE_WinClient.UI.ViewModel
                 ambienteWrapper = value;
                 OnPropertyChanged();
             }
+        }
+
+
+        public TipoServizio TipoServizio
+        {
+            get
+            {
+                return _tipoServizio;
+            }
+            set
+            {
+                _tipoServizio = value;
+                if (_tipoServizio != null)
+                {
+                    if (Servizio.Model.TipoServizio == null)
+                    {
+                        Servizio.Model.TipoServizio = new TipoServizio();
+                        Servizio.Model.TipoServizio = _tipoServizio;
+                    }
+                    HasChanges = _servizioRepository.HasChanges();
+                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                }
+            }
+        }
+        public ObservableCollection<TipoServizio> TipiServizio
+        {
+            get;
+            set;
         }
 
         public ObservableCollection<ServizioWrapper> Servizi { get; set; }

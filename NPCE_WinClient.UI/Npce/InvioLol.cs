@@ -1,4 +1,5 @@
-﻿using NPCE_WinClient.Model;
+﻿using NPCE_WinClient.DataAccess;
+using NPCE_WinClient.Model;
 using NPCE_WinClient.Services.Lol;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace NPCE_WinClient.UI.Npce
         private readonly Ambiente _ambiente;
         private readonly Servizio _servizio;
         private readonly string _idRichiesta;
+        private readonly NpceDbContext _context;
         LOLServiceSoap _proxy;
         public InvioLol(Ambiente ambiente, Servizio servizio, string idRichiesta)
         {
             _ambiente = ambiente;
             _servizio = servizio;
             _idRichiesta = idRichiesta;
-
         }
 
         public NpceOperationResult Execute()
@@ -33,6 +34,10 @@ namespace NPCE_WinClient.UI.Npce
             SetDestinatari(lolSubmit);
             SetDocumenti(lolSubmit);
             SetOpzioni(lolSubmit);
+            if (_servizio.TipoServizio.Descrizione=="Posta1")
+            {
+                SetPosta1(lolSubmit);
+            }           
 
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
@@ -43,6 +48,13 @@ namespace NPCE_WinClient.UI.Npce
 
             return CreateResult(NpceOperation.Invio, invioResult.CEResult);
         }
+
+        private void SetPosta1(LOLSubmit lolSubmit)
+        {
+            lolSubmit.DescrizioneLettera = new DescrizioneLettera { TipoLettera = "Posta1" };
+        }
+
+        
 
         private void SetOpzioni(LOLSubmit lolSubmit)
         {

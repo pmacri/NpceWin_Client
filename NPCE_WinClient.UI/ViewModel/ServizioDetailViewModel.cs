@@ -31,7 +31,7 @@ namespace NPCE_WinClient.UI.ViewModel
             Mittenti = new ObservableCollection<Anagrafica>();
             DocumentiAdded = new ObservableCollection<Documento>();
             DocumentiAvailable = new ObservableCollection<Documento>();
-            TipiServizio = new ObservableCollection<TipoServizio>();
+            
 
             DestinatariAdded = new ObservableCollection<Anagrafica>();
             DestinatariAvailable = new ObservableCollection<Anagrafica>();
@@ -142,7 +142,6 @@ namespace NPCE_WinClient.UI.ViewModel
             InitializeServizio(servizio);
 
             _allAnagrafiche = _servizioRepository.GetAllAnagrafiche();
-            _allTipi = _servizioRepository.GetAllTipiServizio();
             _allDocumenti = _servizioRepository.GetAllDocumenti();
 
             SetupControls();
@@ -178,12 +177,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 DestinatariAvailable.Add(destAvailable);
             }
 
-            // Tipi servizio
-            TipiServizio.Clear();
-            foreach (var tipo in _allTipi)
-            {
-                TipiServizio.Add(tipo);
-            }
+            
 
             // Documenti
             DocumentiAvailable.Clear();
@@ -291,30 +285,9 @@ namespace NPCE_WinClient.UI.ViewModel
 
             }
         }
-        public TipoServizio TipoServizio
-
-        {
-            get
-            {
-                return _tipoServizio;
-            }
-            set
-            {
-                _tipoServizio = value;
-                if (_tipoServizio != null)
-                {
-                    Servizio.Model.TipoServizio = _tipoServizio;
-                    HasChanges = _servizioRepository.HasChanges();
-                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
-                }
-            }
-        }
+       
         public ObservableCollection<Anagrafica> Mittenti { get; set; }
         public ObservableCollection<Documento> Documenti { get; set; }
-        public ObservableCollection<TipoServizio> TipiServizio {
-            get;
-            set;
-        }
         public ObservableCollection<Anagrafica> DestinatariAdded { get; set; }
         public ObservableCollection<Documento> DocumentiAdded { get; set; }
         public ObservableCollection<Documento> DocumentiAvailable { get; set; }
