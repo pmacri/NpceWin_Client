@@ -107,6 +107,10 @@
     <Compile Include="Migrations\202003241334114_IdRichiesta.designer.cs">
       <DependentUpon>202003241334114_IdRichiesta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003252212003_restart.cs" />
+    <Compile Include="Migrations\202003252212003_restart.designer.cs">
+      <DependentUpon>202003252212003_restart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003241334114_IdRichiesta.resx">
       <DependentUpon>202003241334114_IdRichiesta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003252212003_restart.resx">
+      <DependentUpon>202003252212003_restart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
