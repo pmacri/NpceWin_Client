@@ -28,6 +28,9 @@ namespace NPCE_WinClient.Model
         public TipoServizio TipoServizio { get; set; }
         public int? TipoServizioId { get; set; }
 
+        public Opzioni  Opzioni { get; set; }
+        public int? OpzioniId { get; set; }
+
         public StatoServizio StatoServizio { get; set; }
         public int StatoServizioId { get; set; }
 
