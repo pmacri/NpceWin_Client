@@ -18,6 +18,8 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+        <StackPanel>
+         <TextBlock Text="Ambiente" Margin="10 0"/>
         <ComboBox x:Name="comboBox" Grid.Row="0" Grid.ColumnSpan="2"
                   HorizontalAlignment="Left" 
                   Margin="10,29,0,0"                   
@@ -26,6 +28,7 @@
                   ItemsSource="{Binding Ambienti}"
                   DisplayMemberPath="Description"
                   SelectedItem="{Binding Ambiente}"/>
+        </StackPanel>
 
         <StackPanel Grid.Column="2" Orientation="Vertical">
             <TextBlock Text="Tipo Servizio" Margin="10 0"/>
