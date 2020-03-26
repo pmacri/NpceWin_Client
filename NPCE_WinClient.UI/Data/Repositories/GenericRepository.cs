@@ -19,7 +19,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
             Context.Set<TEntity>().Add(model);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAllAsync()
+        public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await Context.Set<TEntity>().ToListAsync();
         }

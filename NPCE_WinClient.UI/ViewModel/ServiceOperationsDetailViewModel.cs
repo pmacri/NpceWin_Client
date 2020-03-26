@@ -20,13 +20,15 @@ namespace NPCE_WinClient.UI.ViewModel
     {
         private IAmbienteRepository _ambienteRepository;
         private IServizioRepository _servizioRepository;
+        private IStatoServizioRepository _statoServizioRepository;
         private IMessageDialogService _messageDialogService;
         private IEnumerable<TipoServizio> _allTipi;
 
         public ServiceOperationsDetailViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
             IAmbienteRepository ambienteRepository,
-            IServizioRepository servizioRepository) : base(eventAggregator, messageDialogService)
+            IServizioRepository servizioRepository,
+            IStatoServizioRepository statoServizioRepository) : base(eventAggregator, messageDialogService)
         {
             Title = "Service Operations";
 
@@ -34,6 +36,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             _ambienteRepository = ambienteRepository;
             _servizioRepository = servizioRepository;
+            _statoServizioRepository = statoServizioRepository;
             _messageDialogService = messageDialogService;
 
             Ambienti = new ObservableCollection<AmbienteWrapper>();
@@ -81,6 +84,9 @@ namespace NPCE_WinClient.UI.ViewModel
             await _messageDialogService.ShowOkCancelDialogAsync(message, "Info");
 
             Servizio.IdRichiesta = result.IdRichiesta;
+
+            var statoCreated = _statoServizioRepository.GetByDescription("Inviato");
+            Servizio.Model.StatoServizioId = statoCreated.Id;
 
             OnSaveExecute();
         }

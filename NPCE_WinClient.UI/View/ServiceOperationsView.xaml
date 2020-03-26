@@ -54,6 +54,11 @@
                                     Width="Auto" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     Binding="{Binding IdRichiesta,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Stato" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding StatoServizio.Descrizione,UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button Grid.Column="1" Grid.Row="3" Content="Invio" Command="{Binding InvioCommand}">            

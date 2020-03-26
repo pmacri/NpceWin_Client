@@ -72,7 +72,7 @@
                 );
 
             context.StatoServizio.AddOrUpdate(ss => ss.Descrizione,
-                new Model.StatoServizio { Descrizione = "Created" }
+                new Model.StatoServizio { Descrizione = "Salvato" }
                 );
         }
     }

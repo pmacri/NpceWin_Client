@@ -251,8 +251,8 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override async void OnSaveExecute()
         {
-            var statoCreated = _statoServizioRepository.GetByDescription("Created");
-            Servizio.Model.StatoServizio = statoCreated;
+            var statoCreated = _statoServizioRepository.GetByDescription("Salvato");
+            Servizio.StatoServizioId = statoCreated.Id;
             await _servizioRepository.SaveAsync();
             Id = Servizio.Id;
             HasChanges = _servizioRepository.HasChanges();
