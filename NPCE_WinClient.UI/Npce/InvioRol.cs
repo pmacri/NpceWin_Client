@@ -45,18 +45,17 @@ namespace NPCE_WinClient.UI.Npce
             return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Description, invioResult.IDRichiesta);
         }
 
-        
-
-
-
         private void SetOpzioni(ROLSubmit rolSubmit)
         {
             var opzioni = new ROLSubmitOpzioni();
 
-            opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize = OpzionidiStampaPageSize.A4 };
-
+            opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize = OpzionidiStampaPageSize.A4 ,
+                FronteRetro = _servizio.FronteRetro ? "true" : "false",
+                BW = _servizio.Colore ? "false" : "true"
+            };
             rolSubmit.Opzioni = opzioni;
         }
+
 
         private void SetDocumenti(ROLSubmit rolSubmit)
         {
