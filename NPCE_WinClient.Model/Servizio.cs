@@ -18,18 +18,18 @@ namespace NPCE_WinClient.Model
 
         public int Id { get; set; }
         public bool AvvisoRicevimento { get; set; }
-        public bool FronteRetro { get; set; }
-        public bool Colore { get; set; }
         public bool ArchiviazioneDigitale { get; set; }
         public bool Autoconferma { get; set; }
         public string IdRichiesta { get; set; }
+        public bool AttestazioneConsegna { get; set; }
+        public bool FronteRetro { get; set; }
+        public bool Colore { get; set; }
 
         // Navigation
         public TipoServizio TipoServizio { get; set; }
         public int? TipoServizioId { get; set; }
 
-        public Opzioni  Opzioni { get; set; }
-        public int? OpzioniId { get; set; }
+       
 
         public StatoServizio StatoServizio { get; set; }
         public int StatoServizioId { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NPCE_WinClient.UI.Wrapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,6 @@ namespace NPCE_WinClient.UI.View
         {
             InitializeComponent();
         }
+        
     }
 }

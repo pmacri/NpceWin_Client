@@ -8,8 +8,8 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="473.333"></ColumnDefinition>
-            <ColumnDefinition Width="Auto" MinWidth="326.667"></ColumnDefinition>
+            <ColumnDefinition Width="462.667"></ColumnDefinition>
+            <ColumnDefinition Width="Auto" MinWidth="337.333"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="61.333"></RowDefinition>
@@ -17,7 +17,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Margin="0,0,0,0">
+        <StackPanel Margin="0,0,313,0.333" Grid.ColumnSpan="2">
             <TextBlock Text="Ambiente" Margin="10 0"/>
             <ComboBox x:Name="comboBox" Grid.Row="0" Grid.ColumnSpan="2"
                   HorizontalAlignment="Left" 
@@ -29,20 +29,19 @@
                   SelectedItem="{Binding Ambiente}"/>
         </StackPanel>
 
-        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="19.667,0,0,0.333">
+        <StackPanel Grid.Column="1" Orientation="Vertical" Margin="18.333,0,0,0.333">
             <TextBlock Text="Tipo Servizio" Margin="10 0"/>
             <ComboBox x:Name="cmbTipoServizio"  HorizontalAlignment="Left" 
-                  VerticalAlignment="Top" Width="120" 
+                  VerticalAlignment="Top" 
                   ItemsSource="{Binding TipiServizio}"
                   DisplayMemberPath="Descrizione"
-                  SelectedItem="{Binding TipoServizio}" Text="Mittente" Height="22"/>
+                  SelectedItem="{Binding TipoServizio}" Text="Mittente" Height="22" Width="200"/>
 
         </StackPanel>
 
         <DataGrid ItemsSource="{Binding Servizi}"
                   SelectedItem="{Binding Servizio,Mode=TwoWay}"
-                  AutoGenerateColumns="False" RowHeaderWidth="0" Margin="0" 
-                  Grid.Row="1" IsReadOnly="True">
+                  AutoGenerateColumns="False" RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" 
                                     Width="Auto" 
@@ -64,7 +63,38 @@
                                     Binding="{Binding StatoServizio.Descrizione,UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="3" Content="Invio" Command="{Binding InvioCommand}" Margin="308,0,1.333,0"/>
+        <Button Grid.Row="3" Content="Invio" Command="{Binding InvioCommand}" Margin="168,0,165.667,0" HorizontalAlignment="Center" Width="129"/>
+
+        <!--Opzioni-->
+        <GroupBox x:Name="groupBoxOpzioni" Header="Opzioni" HorizontalAlignment="Left" Height="204" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="443">
+            <Grid HorizontalAlignment="Left" Height="125" Margin="46,35,-0.333,0" VerticalAlignment="Top" Width="409" RenderTransformOrigin="0.251,-0.216">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="53*"/>
+                    <RowDefinition Height="72*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Colore"></TextBlock>
+                    <CheckBox IsChecked="{Binding Servizio.Colore,Mode=TwoWay}"></CheckBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <TextBlock Text="Fronte/Retro"></TextBlock>
+                    <CheckBox  IsChecked="{Binding Servizio.FronteRetro,Mode=TwoWay}"></CheckBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock Text="AR"></TextBlock>
+                    <CheckBox  IsChecked="{Binding Servizio.AvvisoRicevimento,Mode=TwoWay}"></CheckBox>
+                </StackPanel>
+
+
+            </Grid>
+        </GroupBox>
 
     </Grid>
 </UserControl>

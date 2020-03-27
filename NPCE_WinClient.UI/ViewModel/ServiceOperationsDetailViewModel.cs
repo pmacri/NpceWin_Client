@@ -51,6 +51,12 @@ namespace NPCE_WinClient.UI.ViewModel
             // Impostare sul servizio il suo TipoServizio
             _servizioRepository.UpdateTipoServizioAsync(Servizio.Id, TipoServizio.Id);
 
+            //if (Servizio.Opzioni== null)
+
+            //{
+            //    Servizio.Opzioni = new Opzioni { Colore = }
+            //}
+
             NpceOperationResult result = null;
 
             switch (TipoServizio.Descrizione)
@@ -68,8 +74,6 @@ namespace NPCE_WinClient.UI.ViewModel
                     }
                     break;
             }
-
-
             string message;
 
             if (result.Success)
@@ -104,6 +108,7 @@ namespace NPCE_WinClient.UI.ViewModel
             var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
 
             var result = invioOperation.Execute();
+
             return result;
         }
 
@@ -150,7 +155,19 @@ namespace NPCE_WinClient.UI.ViewModel
             }
 
             var servizi = await _servizioRepository.GetAllAsync();
+            InitializeServizi(servizi);
 
+            // Tipi servizio
+            TipiServizio.Clear();
+
+            foreach (var tipo in _allTipi)
+            {
+                TipiServizio.Add(tipo);
+            }
+        }
+
+        private void InitializeServizi(IEnumerable<Servizio> servizi)
+        {
             foreach (var wrapper in Servizi)
             {
                 wrapper.PropertyChanged -= Wrapper_PropertyChanged;
@@ -161,19 +178,12 @@ namespace NPCE_WinClient.UI.ViewModel
             foreach (var servizio in servizi)
             {
                 var wrapper = new ServizioWrapper(servizio);
-
+               
                 wrapper.PropertyChanged += Wrapper_PropertyChanged;
 
                 Servizi.Add(wrapper);
             }
-
-            // Tipi servizio
-            TipiServizio.Clear();
-
-            foreach (var tipo in _allTipi)
-            {
-                TipiServizio.Add(tipo);
-            }
+            
         }
 
         private void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -241,6 +251,16 @@ namespace NPCE_WinClient.UI.ViewModel
             set;
         }
         public ObservableCollection<ServizioWrapper> Servizi { get; set; }
-        public ServizioWrapper Servizio { get; set; }
+
+        ServizioWrapper _servizio;
+        public ServizioWrapper Servizio
+        {
+            get { return _servizio; }
+
+            set {
+                _servizio = value;
+                OnPropertyChanged("Servizio");
+            }
+        }
     }
 }

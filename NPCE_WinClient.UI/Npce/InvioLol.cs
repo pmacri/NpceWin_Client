@@ -33,10 +33,10 @@ namespace NPCE_WinClient.UI.Npce
             SetDestinatari(lolSubmit);
             SetDocumenti(lolSubmit);
             SetOpzioni(lolSubmit);
-            if (_servizio.TipoServizio.Descrizione=="Posta1")
+            if (_servizio.TipoServizio.Descrizione == "Posta1")
             {
                 SetPosta1(lolSubmit);
-            }           
+            }
 
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
@@ -57,9 +57,19 @@ namespace NPCE_WinClient.UI.Npce
         {
             var opzioni = new LOLSubmitOpzioni();
 
-            opzioni.OpzionidiStampa = new OpzionidiStampa { PageSize = OpzionidiStampaPageSize.A4 };
+            opzioni.OpzionidiStampa = new OpzionidiStampa
+            {
+                PageSize = OpzionidiStampaPageSize.A4,
+                FronteRetro = GetFronteRetroDescription(_servizio.FronteRetro),
+                BW = _servizio.Colore ? "false" : "true"
+            };
 
             lolSubmit.Opzioni = opzioni;
+        }
+
+        private string GetFronteRetroDescription(bool fronteRetro)
+        {
+            if (fronteRetro) return "true"; else return "false";
         }
 
         private void SetDocumenti(LOLSubmit lolSubmit)

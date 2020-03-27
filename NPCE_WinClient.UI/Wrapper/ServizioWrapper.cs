@@ -76,13 +76,21 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
-
         public int StatoServizioId {
             get { return GetValue<int>(); }
 
             set
             {
                 SetValue<int>(value);
+            }
+        }
+        public bool AttestazioneConsegna
+        {
+            get { return GetValue<bool>(); }
+
+            set
+            {
+                SetValue<bool>(value);
             }
         }
         public TipoServizio TipoServizio {
