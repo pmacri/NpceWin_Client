@@ -77,19 +77,19 @@
                     <RowDefinition Height="72*"/>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Colore"></TextBlock>
-                    <CheckBox IsChecked="{Binding Servizio.Colore,Mode=TwoWay}"></CheckBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock Text="Colore" Width="80" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBlock>
+                    <CheckBox IsChecked="{Binding Servizio.Colore,Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left"></CheckBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Column="1">
-                    <TextBlock Text="Fronte/Retro"></TextBlock>
-                    <CheckBox  IsChecked="{Binding Servizio.FronteRetro,Mode=TwoWay}"></CheckBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" Margin="20 0 0 0">
+                    <TextBlock Text="Fronte/Retro" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80"></TextBlock>
+                    <CheckBox  VerticalAlignment="Top"  IsChecked="{Binding Servizio.FronteRetro,Mode=TwoWay}"></CheckBox>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" Grid.Row="1">
-                    <TextBlock Text="AR"></TextBlock>
-                    <CheckBox  IsChecked="{Binding Servizio.AvvisoRicevimento,Mode=TwoWay}"></CheckBox>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="1">
+                    <TextBlock Text="AR" Width="80" VerticalAlignment="Top" HorizontalAlignment="Right"></TextBlock>
+                    <CheckBox VerticalAlignment="Top"  IsChecked="{Binding Servizio.AvvisoRicevimento,Mode=TwoWay}"></CheckBox>
                 </StackPanel>
 
 
