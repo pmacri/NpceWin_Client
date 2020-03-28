@@ -29,6 +29,7 @@ namespace NPCE_WinClient.UI.ViewModel
             _statoServizioRepository = statoServizioRepository;
             _servizioRepository = servizioRepository;
             Mittenti = new ObservableCollection<Anagrafica>();
+           
             DocumentiAdded = new ObservableCollection<Documento>();
             DocumentiAvailable = new ObservableCollection<Documento>();
             
@@ -36,14 +37,51 @@ namespace NPCE_WinClient.UI.ViewModel
             DestinatariAdded = new ObservableCollection<Anagrafica>();
             DestinatariAvailable = new ObservableCollection<Anagrafica>();
 
+            DestinatariArAdded = new ObservableCollection<Anagrafica>();
+            DestinatariArAvailable = new ObservableCollection<Anagrafica>();
+
             DocumentiAdded = new ObservableCollection<Documento>();
             DocumentiAvailable = new ObservableCollection<Documento>();
 
             AddDestinatarioCommand = new DelegateCommand(OnAddDestinatarioExecute, OnAddDestinatarioCanExecute);
             RemoveDestinatarioCommand = new DelegateCommand(OnRemoveDestinatarioExecute, OnRemoveDestinatarioCanExecute);
 
+            AddDestinatarioArCommand = new DelegateCommand(OnAddDestinatarioArExecute, OnAddDestinatarioArCanExecute);
+            RemoveDestinatarioARCommand = new DelegateCommand(OnRemoveDestinatarioArExecute, OnRemoveDestinatarioArCanExecute);
+
             AddDocumentoCommand = new DelegateCommand(OnAddDocumentoExecute, OnAddDocumentoCanExecute);
             RemoveDocumentoCommand = new DelegateCommand(OnRemoveDocumentExecute, OnRemoveDocumentCanExecute);
+        }
+
+        private bool OnRemoveDestinatarioArCanExecute()
+        {
+            return SelectedDestinatarioArAdded != null;
+        }
+
+        private void OnRemoveDestinatarioArExecute()
+        {
+            var destinatarioToRemove = SelectedDestinatarioArAdded;
+            Servizio.Model.Anagrafiche.Remove(destinatarioToRemove);
+            DestinatariAdded.Remove(destinatarioToRemove);
+            DestinatariAvailable.Add(destinatarioToRemove);
+            HasChanges = _servizioRepository.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+        }
+
+        private bool OnAddDestinatarioArCanExecute()
+        {
+            return _selectedDestinatarioArAvailable != null;
+        }
+
+        private void OnAddDestinatarioArExecute()
+        {
+            var destinatarioToAdd = SelectedDestinatarioARAvailable;
+            destinatarioToAdd.IsDestinatarioAR = true;
+            Servizio.Model.Anagrafiche.Add(destinatarioToAdd);
+            DestinatariArAvailable.Remove(destinatarioToAdd);
+            DestinatariArAdded.Add(destinatarioToAdd);
+            HasChanges = _servizioRepository.HasChanges();
+            ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
 
         private bool OnRemoveDocumentCanExecute()
@@ -153,6 +191,10 @@ namespace NPCE_WinClient.UI.ViewModel
             var addedDestinatari = _allAnagrafiche.Where(a => serviceDestinatariIds.Contains(a.Id)).ToList();
             var availableDestinatari = _allAnagrafiche.Except(addedDestinatari).ToList();
 
+            var serviceDestinatariArIds = Servizio.Model.Anagrafiche.Where(a => a.IsMittente == false && a.IsDestinatarioAR==true).Select(a => a.Id).ToList();
+            var addedDestinatariAr = _allAnagrafiche.Where(a => serviceDestinatariArIds.Contains(a.Id)).ToList();
+            var availableDestinatariAr = _allAnagrafiche.Except(addedDestinatariAr).ToList();
+
             var serviceDocumentiIds = Servizio.Model.Documenti.Select(a => a.Id).ToList();
             var addedDocumenti = _allDocumenti.Where(a => serviceDocumentiIds.Contains(a.Id)).ToList();
             var availableDocumenti = _allDocumenti.Except(addedDocumenti).ToList();
@@ -177,7 +219,21 @@ namespace NPCE_WinClient.UI.ViewModel
                 DestinatariAvailable.Add(destAvailable);
             }
 
-            
+            DestinatariArAdded.Clear();
+
+            DestinatariArAvailable.Clear();
+
+            foreach (var addedDest in addedDestinatariAr)
+            {
+                DestinatariArAdded.Add(addedDest);
+            }
+
+            foreach (var destAvailable in availableDestinatariAr)
+            {
+                DestinatariArAvailable.Add(destAvailable);
+            }
+
+
 
             // Documenti
             DocumentiAvailable.Clear();
@@ -309,11 +365,6 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         private Anagrafica _selectedDestinatarioAvailable;
-
-        private Documento _selectDocumentoAvailable;
-
-        private Documento _selectDocumentoAdded;
-
         public Anagrafica SelectedDestinatarioAvailable
         {
             get
@@ -328,10 +379,58 @@ namespace NPCE_WinClient.UI.ViewModel
                 ((DelegateCommand)AddDestinatarioCommand).RaiseCanExecuteChanged();
             }
         }
+
+
+        private Anagrafica _selectedDestinatarioArAdded;
+        public Anagrafica SelectedDestinatarioArAdded
+        {
+            get
+            {
+                return _selectedDestinatarioArAdded;
+            }
+
+            set
+            {
+                _selectedDestinatarioArAdded = value;
+                OnPropertyChanged();
+                ((DelegateCommand)RemoveDestinatarioCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+        private Anagrafica _selectedDestinatarioArAvailable;
+        public Anagrafica SelectedDestinatarioARAvailable
+        {
+            get
+            {
+                return _selectedDestinatarioArAvailable;
+            }
+
+            set
+            {
+                _selectedDestinatarioArAvailable = value;
+                OnPropertyChanged();
+                ((DelegateCommand)AddDestinatarioArCommand).RaiseCanExecuteChanged();
+            }
+        }
+
+
+
+
+        private Documento _selectDocumentoAvailable;
+
+        private Documento _selectDocumentoAdded;
+
         public ObservableCollection<Anagrafica> DestinatariAvailable { get; set; }
+        public ObservableCollection<Anagrafica> DestinatariArAdded { get; private set; }
+        public ObservableCollection<Anagrafica> DestinatariArAvailable { get; }
         public ICommand AddDestinatarioCommand { get; set; }
         public ICommand RemoveDestinatarioCommand { get; set; }
         public ICommand AddDocumentoCommand { get; set; }
         public ICommand RemoveDocumentoCommand { get; set; }
+
+        public ICommand AddDestinatarioArCommand { get; set; }
+        public ICommand RemoveDestinatarioArCommand { get; set; }
+
+        public ICommand RemoveDestinatarioARCommand { get; set; }
     }
 }

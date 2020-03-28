@@ -93,6 +93,40 @@
                 SelectedItem="{Binding SelectedDocumentoAvailable}" Grid.Column="2"/>
         </Grid>
 
+
+        <Grid  Margin="10,10,10,10.333" Grid.Row="2">
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type model:Anagrafica}">
+                    <TextBlock><Run Text="{Binding Cognome}"/> <Run Text="{Binding Nome}"/></TextBlock>
+                </DataTemplate>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Content="Destinatari Ar"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding DestinatariArAdded}"
+                SelectedItem="{Binding SelectedDestinatarioArAdded}"/>
+
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Button Content="&lt;&lt;" Margin="10" Command="{Binding AddDestinatarioArCommand}"/>
+                <Button Content="&gt;&gt;" Margin="10 0 10 10" Command="{Binding RemoveDestinatarioARCommand}"/>
+            </StackPanel>
+
+            <Label Content="Destinatari AR Available" Grid.Column="2"/>
+            <ListView Grid.Row="1" ItemsSource="{Binding DestinatariArAvailable}"
+                SelectedItem="{Binding SelectedDestinatarioARAvailable}" Grid.Column="2" Width="200"/>
+        </Grid>
+
+
+
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,214.667,0,0.333" Grid.ColumnSpan="3">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}" HorizontalAlignment="Center"/>

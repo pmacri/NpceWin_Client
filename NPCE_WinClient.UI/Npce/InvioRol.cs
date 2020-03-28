@@ -33,7 +33,11 @@ namespace NPCE_WinClient.UI.Npce
             SetDestinatari(rolSubmit);
             SetDocumenti(rolSubmit);
             SetOpzioni(rolSubmit);
-            
+            if (_servizio.Anagrafiche.Any(d => d.IsDestinatarioAR))
+            {
+                SetDestinatariAr(rolSubmit);
+            }
+
 
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
@@ -43,6 +47,37 @@ namespace NPCE_WinClient.UI.Npce
             var invioResult = _proxy.Invio(_idRichiesta, string.Empty, rolSubmit);
 
             return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Description, invioResult.IDRichiesta);
+        }
+
+        private void SetDestinatariAr(ROLSubmit rolSubmit)
+        {
+
+            rolSubmit.DatiRicevuta = new DatiRicevuta();
+            foreach (var destAr in _servizio.Anagrafiche.Where(d => d.IsDestinatarioAR))
+            {
+                var nominativo = new Nominativo
+                {
+                    Nome = destAr.Nome,
+                    Cognome = destAr.Cognome,
+                    Indirizzo = new Indirizzo
+                    {
+                        DUG = destAr.DUG,
+                        Toponimo = destAr.Toponimo,
+                        Esponente = destAr.Esponente,
+                        NumeroCivico = destAr.NumeroCivico
+                    },
+                    CAP = destAr.Cap,
+                    CasellaPostale = destAr.CasellaPostale,
+                    Citta = destAr.Citta,
+                    ComplementoIndirizzo = destAr.ComplementoIndirizzo,
+                    ComplementoNominativo = destAr.ComplementoNominativo,
+                    Provincia = destAr.Provincia,
+                    Stato = destAr.Stato,
+                    RagioneSociale = destAr.RagioneSociale
+                };
+
+                rolSubmit.DatiRicevuta.Nominativo = nominativo;
+            }
         }
 
         private void SetOpzioni(ROLSubmit rolSubmit)

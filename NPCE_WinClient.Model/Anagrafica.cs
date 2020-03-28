@@ -34,8 +34,9 @@ namespace NPCE_WinClient.Model
         public string CasellaPostale { get; set; }
         public string Provincia { get; set; }
         public string Stato { get; set; }
-
         public bool IsMittente { get; set; }
+        public bool IsDestinatarioAR { get; set; }
+
         // Servizi
         public ICollection<Servizio> Servizi { get; set; }
     }

@@ -165,5 +165,6 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
         public bool IsMittente { get; set; }
+        public bool IsDestinatarioAR { get; set; }
     }
 }

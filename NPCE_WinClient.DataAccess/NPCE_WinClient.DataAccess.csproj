@@ -115,6 +115,10 @@
     <Compile Include="Migrations\202003261654341_Opzioni.designer.cs">
       <DependentUpon>202003261654341_Opzioni.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003281128490_DestinatarioAr.cs" />
+    <Compile Include="Migrations\202003281128490_DestinatarioAr.designer.cs">
+      <DependentUpon>202003281128490_DestinatarioAr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -177,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003261654341_Opzioni.resx">
       <DependentUpon>202003261654341_Opzioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003281128490_DestinatarioAr.resx">
+      <DependentUpon>202003281128490_DestinatarioAr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -122,7 +122,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             var servizio = await _servizioRepository.GetByIdAsync(idServizio);
 
-            var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
+            var invioOperation = new InvioRol(Ambiente.Model, servizio, idRichiesta);
 
             var result = invioOperation.Execute();
             return result;
