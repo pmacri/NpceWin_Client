@@ -43,19 +43,18 @@ namespace NPCE_WinClient.UI.ViewModel
 
             Servizi = new ObservableCollection<ServizioWrapper>();
 
-            InvioCommand = new DelegateCommand(OnInvioExecute);
+            InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
+        }
+
+        private bool OnInvioCanExecute()
+        {
+            return (TipoServizio != null && Ambiente != null && Servizio != null && Servizio.StatoServizio.Descrizione=="Salvato");
         }
 
         private async void OnInvioExecute()
         {
             // Impostare sul servizio il suo TipoServizio
             _servizioRepository.UpdateTipoServizioAsync(Servizio.Id, TipoServizio.Id);
-
-            //if (Servizio.Opzioni== null)
-
-            //{
-            //    Servizio.Opzioni = new Opzioni { Colore = }
-            //}
 
             NpceOperationResult result = null;
 
@@ -222,6 +221,7 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 ambienteWrapper = value;
                 OnPropertyChanged();
+                ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
             }
         }
         public TipoServizio TipoServizio
@@ -235,13 +235,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 _tipoServizio = value;
                 if (_tipoServizio != null)
                 {
-                    //if ( (Servizio) && (Servizio.Model.TipoServizio == null))
-                    //{
-                    //    Servizio.Model.TipoServizio = new TipoServizio();
-                    //    Servizio.Model.TipoServizio = _tipoServizio;
-                    //}
                     HasChanges = _servizioRepository.HasChanges();
-                    ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
                 }
             }
         }
@@ -260,6 +255,7 @@ namespace NPCE_WinClient.UI.ViewModel
             set {
                 _servizio = value;
                 OnPropertyChanged("Servizio");
+                ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
             }
         }
     }
