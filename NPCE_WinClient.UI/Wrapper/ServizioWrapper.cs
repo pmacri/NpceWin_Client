@@ -76,6 +76,24 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
+        public string GuidUtente {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public string IdOrdine
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
         public int StatoServizioId {
             get { return GetValue<int>(); }
 

@@ -24,6 +24,8 @@ namespace NPCE_WinClient.Model
         public bool AttestazioneConsegna { get; set; }
         public bool FronteRetro { get; set; }
         public bool Colore { get; set; }
+        public string GuidUtente { get; set; }
+        public string IdOrdine { get; set; }
 
         // Navigation
         public TipoServizio TipoServizio { get; set; }

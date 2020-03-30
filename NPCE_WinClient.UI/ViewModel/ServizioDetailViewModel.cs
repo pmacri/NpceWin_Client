@@ -62,8 +62,8 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             var destinatarioToRemove = SelectedDestinatarioArAdded;
             Servizio.Model.Anagrafiche.Remove(destinatarioToRemove);
-            DestinatariAdded.Remove(destinatarioToRemove);
-            DestinatariAvailable.Add(destinatarioToRemove);
+            DestinatariArAdded.Remove(destinatarioToRemove);
+            DestinatariArAvailable.Add(destinatarioToRemove);
             HasChanges = _servizioRepository.HasChanges();
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
@@ -393,7 +393,7 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 _selectedDestinatarioArAdded = value;
                 OnPropertyChanged();
-                ((DelegateCommand)RemoveDestinatarioCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)RemoveDestinatarioARCommand).RaiseCanExecuteChanged();
             }
         }
 

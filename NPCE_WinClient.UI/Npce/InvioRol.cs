@@ -12,15 +12,10 @@ namespace NPCE_WinClient.UI.Npce
 {
     public class InvioRol : NpceOperationBase
     {
-        private readonly Ambiente _ambiente;
-        private readonly Servizio _servizio;
-        private readonly string _idRichiesta;
         ROLServiceSoap _proxy;
-        public InvioRol(Ambiente ambiente, Servizio servizio, string idRichiesta)
+        public InvioRol(Ambiente ambiente, Servizio servizio, string idRichiesta): base(ambiente, servizio,idRichiesta)
         {
-            _ambiente = ambiente;
-            _servizio = servizio;
-            _idRichiesta = idRichiesta;
+           
         }
 
         public NpceOperationResult Execute()
@@ -38,15 +33,13 @@ namespace NPCE_WinClient.UI.Npce
                 SetDestinatariAr(rolSubmit);
             }
 
-
-
             var fake = new OperationContextScope((IContextChannel)_proxy);
             var headers = GetHttpHeaders(_ambiente);
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = headers;
 
             var invioResult = _proxy.Invio(_idRichiesta, string.Empty, rolSubmit);
 
-            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Description, invioResult.IDRichiesta);
+            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Description, invioResult.IDRichiesta,null, invioResult.GuidUtente);
         }
 
         private void SetDestinatariAr(ROLSubmit rolSubmit)

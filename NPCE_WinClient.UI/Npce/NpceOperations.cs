@@ -8,6 +8,8 @@ namespace NPCE_WinClient.UI.Npce
 {
     public enum NpceOperation
     {
-        Invio
+        Invio,
+        PreConferma,
+        PreConfermaWithAutoconfirm
     }
 }

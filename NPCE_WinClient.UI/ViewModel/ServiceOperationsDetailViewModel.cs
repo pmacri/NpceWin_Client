@@ -44,6 +44,71 @@ namespace NPCE_WinClient.UI.ViewModel
             Servizi = new ObservableCollection<ServizioWrapper>();
 
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
+
+            PreConfermaCommand = new DelegateCommand(OnPreConfermaExecute, OnPreConfermaCanExecute);
+        }
+
+        private async void OnPreConfermaExecute()
+        {
+
+            NpceOperationResult result = null;
+
+            switch (TipoServizio.Descrizione)
+            {
+                case "Posta1":
+                case "Posta4":
+                    {
+                        result = PreConfermaLolExecute();
+                    }
+                    break;
+
+                //case "Raccomandata":
+                //    {
+                //        result = await PreConfermaRolExecute();
+                //    }
+                //    break;
+            }
+            string message;
+
+            if (result.Success)
+            {
+                message = $"Operazione {result.Operation.ToString()} completata con successo";
+            }
+            else
+            {
+                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\n Description: {result.Errors[0].Description}";
+            }
+
+            await _messageDialogService.ShowOkCancelDialogAsync(message, "Info");
+
+            
+
+            if (result.Success)
+            {
+                Servizio.IdRichiesta = result.IdRichiesta;
+                Servizio.IdOrdine = result.IdOrdine;
+
+                // TODO: AutoConferma
+                var statoCreated = _statoServizioRepository.GetByDescription("Confermato");
+                Servizio.Model.StatoServizioId = statoCreated.Id;
+                OnSaveExecute();
+            }
+           
+        }
+
+        private NpceOperationResult PreConfermaLolExecute()
+        {
+
+            var preConfermaOperation = new PreConfermaLol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, true);
+
+            var result = preConfermaOperation.Execute();
+
+            return result;
+        }
+
+        private bool OnPreConfermaCanExecute()
+        {
+            return (TipoServizio != null && Ambiente != null && Servizio != null && Servizio.StatoServizio.Descrizione == "Inviato");
         }
 
         private bool OnInvioCanExecute()
@@ -88,10 +153,16 @@ namespace NPCE_WinClient.UI.ViewModel
 
             Servizio.IdRichiesta = result.IdRichiesta;
 
+            Servizio.GuidUtente = result.GuidUtente;
+
+            Servizio.IdOrdine = result.IdOrdine;
+
             var statoCreated = _statoServizioRepository.GetByDescription("Inviato");
             Servizio.Model.StatoServizioId = statoCreated.Id;
-
             OnSaveExecute();
+
+            TipoServizio.Id = Servizio.TipoServizio.Id;
+
         }
 
         private async Task<NpceOperationResult> InvioLolExecute()
@@ -128,41 +199,47 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         public ICommand InvioCommand { get; set; }
+        public DelegateCommand PreConfermaCommand { get; }
 
         public async override Task LoadAsync(int id)
         {
-
-            _allTipi = _servizioRepository.GetAllTipiServizio();
-
-            Id = id;
-            var ambienti = await _ambienteRepository.GetAllAsync();
-
-            foreach (var wrapper in Ambienti)
+            if (TipoServizio == null)
             {
-                wrapper.PropertyChanged -= Wrapper_PropertyChanged;
+                _allTipi = _servizioRepository.GetAllTipiServizio();
+                TipiServizio.Clear();
+
+                foreach (var tipo in _allTipi)
+                {
+                    TipiServizio.Add(tipo);
+                }
+            }
+            if (Ambiente == null)
+            {
+                var ambienti = await _ambienteRepository.GetAllAsync();
+
+                foreach (var wrapper in Ambienti)
+                {
+                    wrapper.PropertyChanged -= Wrapper_PropertyChanged;
+                }
+
+                Ambienti.Clear();
+
+                foreach (var ambiente in ambienti)
+                {
+                    var wrapper = new AmbienteWrapper(ambiente);
+
+                    wrapper.PropertyChanged += Wrapper_PropertyChanged;
+
+                    Ambienti.Add(wrapper);
+                }
             }
 
-            Ambienti.Clear();
-
-            foreach (var ambiente in ambienti)
-            {
-                var wrapper = new AmbienteWrapper(ambiente);
-
-                wrapper.PropertyChanged += Wrapper_PropertyChanged;
-
-                Ambienti.Add(wrapper);
-            }
+            Id = id;           
 
             var servizi = await _servizioRepository.GetAllAsync();
             InitializeServizi(servizi);
 
-            // Tipi servizio
-            TipiServizio.Clear();
-
-            foreach (var tipo in _allTipi)
-            {
-                TipiServizio.Add(tipo);
-            }
+            
         }
 
         private void InitializeServizi(IEnumerable<Servizio> servizi)
@@ -222,6 +299,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 ambienteWrapper = value;
                 OnPropertyChanged();
                 ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)PreConfermaCommand).RaiseCanExecuteChanged();
             }
         }
         public TipoServizio TipoServizio
@@ -237,6 +315,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 {
                     HasChanges = _servizioRepository.HasChanges();
                     ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)PreConfermaCommand).RaiseCanExecuteChanged();
                 }
             }
         }
@@ -256,6 +335,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 _servizio = value;
                 OnPropertyChanged("Servizio");
                 ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)PreConfermaCommand).RaiseCanExecuteChanged();
             }
         }
     }

@@ -41,7 +41,9 @@
 
         <DataGrid ItemsSource="{Binding Servizi}"
                   SelectedItem="{Binding Servizio,Mode=TwoWay}"
-                  AutoGenerateColumns="False" RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" Grid.RowSpan="2">
+                  AutoGenerateColumns="False" 
+                  RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" 
+                  Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" 
                                     Width="Auto" 
@@ -61,10 +63,18 @@
                                     Width="Auto" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     Binding="{Binding StatoServizio.Descrizione,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Ordine" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding IdOrdine,UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="3" Content="Invio" Command="{Binding InvioCommand}" Margin="168,0,165.667,0" HorizontalAlignment="Center" Width="129"/>
-
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button  Content="Invio" Command="{Binding InvioCommand}" Margin="5 0" Width="100"/>
+            <Button  Content="PreConferma" Command="{Binding PreConfermaCommand}" Margin="5 0" Width="130"/>
+        </StackPanel>
+        
         <!--Opzioni-->
         <GroupBox x:Name="groupBoxOpzioni" Header="Opzioni" HorizontalAlignment="Left" Height="204" Margin="10,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="443">
             <Grid HorizontalAlignment="Left" Height="125" Margin="46,35,-0.333,0" VerticalAlignment="Top" Width="409" RenderTransformOrigin="0.251,-0.216">

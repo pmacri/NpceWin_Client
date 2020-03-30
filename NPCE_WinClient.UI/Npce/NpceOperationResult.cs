@@ -14,6 +14,10 @@ namespace NPCE_WinClient.UI.Npce
 
         public string IdRichiesta { get; set; }
 
+        public string IdOrdine { get; set; }
+
+        public string GuidUtente { get; set; }
+
         public List<Error> Errors { get; set; }
     }
 }

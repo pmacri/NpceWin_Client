@@ -12,15 +12,9 @@ namespace NPCE_WinClient.UI.Npce
 {
     public class InvioLol : NpceOperationBase
     {
-        private readonly Ambiente _ambiente;
-        private readonly Servizio _servizio;
-        private readonly string _idRichiesta;
         LOLServiceSoap _proxy;
-        public InvioLol(Ambiente ambiente, Servizio servizio, string idRichiesta)
+        public InvioLol(Ambiente ambiente, Servizio servizio, string idRichiesta):base(ambiente, servizio, idRichiesta)
         {
-            _ambiente = ambiente;
-            _servizio = servizio;
-            _idRichiesta = idRichiesta;
         }
 
         public NpceOperationResult Execute()
@@ -45,7 +39,7 @@ namespace NPCE_WinClient.UI.Npce
 
             var invioResult = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
 
-            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Code, invioResult.IDRichiesta);
+            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Code, invioResult.IDRichiesta,null, invioResult.GuidUtente);
         }
 
         private void SetPosta1(LOLSubmit lolSubmit)

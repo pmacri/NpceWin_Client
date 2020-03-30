@@ -10,7 +10,18 @@ using System.Threading.Tasks;
 namespace NPCE_WinClient.UI.Npce
 {
     public class NpceOperationBase
+
     {
+
+        protected readonly Ambiente _ambiente;
+        protected readonly Servizio _servizio;
+        protected readonly string _idRichiesta;
+
+        public NpceOperationBase(Ambiente ambiente, Servizio servizio, string idRichiesta)
+        {
+            _ambiente = ambiente;
+            _idRichiesta = idRichiesta;
+            _servizio = servizio;        }
         protected virtual HttpRequestMessageProperty GetHttpHeaders(Ambiente ambiente)
         {
             var property = new HttpRequestMessageProperty();
@@ -29,14 +40,18 @@ namespace NPCE_WinClient.UI.Npce
             return property;
         }    
 
-        protected virtual NpceOperationResult CreateResult(NpceOperation operation, string codeCEResult, string descriptionCEResult, 
-                                                           string idRichiesta)
+        protected virtual NpceOperationResult CreateResult(NpceOperation operation, string codeCEResult,
+                                                           string descriptionCEResult, string idRichiesta, 
+                                                           string idOrdine,
+                                                           string guidUtente)
         {
             var result = new NpceOperationResult();
             result.Operation = operation;
             result.Success = int.Parse(codeCEResult) == 0 ? true : false;
 
             result.IdRichiesta = idRichiesta;
+            result.IdOrdine = idOrdine;
+            result.GuidUtente = guidUtente;
 
             if (!result.Success)
             {
