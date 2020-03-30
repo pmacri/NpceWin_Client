@@ -130,6 +130,7 @@
     <Compile Include="Npce\NpceOperationResult.cs" />
     <Compile Include="Npce\NpceOperations.cs" />
     <Compile Include="Npce\PreConfermaLol.cs" />
+    <Compile Include="Npce\PreConfermaRol.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaLol.cs" />
     <Compile Include="Npce\InvioLol.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaRol.cs" />

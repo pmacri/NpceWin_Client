@@ -62,11 +62,11 @@ namespace NPCE_WinClient.UI.ViewModel
                     }
                     break;
 
-                //case "Raccomandata":
-                //    {
-                //        result = await PreConfermaRolExecute();
-                //    }
-                //    break;
+                case "Raccomandata":
+                    {
+                        result = PreConfermaRolExecute();
+                    }
+                    break;
             }
             string message;
 
@@ -94,6 +94,15 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnSaveExecute();
             }
            
+        }
+
+        private NpceOperationResult PreConfermaRolExecute()
+        {
+            var preConfermaOperation = new PreConfermaRol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, true);
+
+            var result = preConfermaOperation.Execute();
+
+            return result;
         }
 
         private NpceOperationResult PreConfermaLolExecute()
@@ -151,17 +160,20 @@ namespace NPCE_WinClient.UI.ViewModel
 
             await _messageDialogService.ShowOkCancelDialogAsync(message, "Info");
 
-            Servizio.IdRichiesta = result.IdRichiesta;
+            if (result.Success)
+                {
+                Servizio.IdRichiesta = result.IdRichiesta;
 
-            Servizio.GuidUtente = result.GuidUtente;
+                Servizio.GuidUtente = result.GuidUtente;
 
-            Servizio.IdOrdine = result.IdOrdine;
+                Servizio.IdOrdine = result.IdOrdine;
 
-            var statoCreated = _statoServizioRepository.GetByDescription("Inviato");
-            Servizio.Model.StatoServizioId = statoCreated.Id;
-            OnSaveExecute();
+                var statoCreated = _statoServizioRepository.GetByDescription("Inviato");
+                Servizio.Model.StatoServizioId = statoCreated.Id;
+                OnSaveExecute();
 
-            TipoServizio.Id = Servizio.TipoServizio.Id;
+                TipoServizio.Id = Servizio.TipoServizio.Id;
+            }
 
         }
 
