@@ -89,7 +89,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 Servizio.IdOrdine = result.IdOrdine;
 
                 // TODO: AutoConferma
-                var statoCreated = _statoServizioRepository.GetByDescription("Confermato");
+                var statoCreated = AutoConfirm ? _statoServizioRepository.GetByDescription("Confermato") : _statoServizioRepository.GetByDescription("PreConfermato");
                 Servizio.Model.StatoServizioId = statoCreated.Id;
                 OnSaveExecute();
             }
@@ -98,7 +98,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private NpceOperationResult PreConfermaRolExecute()
         {
-            var preConfermaOperation = new PreConfermaRol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, true);
+            var preConfermaOperation = new PreConfermaRol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, AutoConfirm);
 
             var result = preConfermaOperation.Execute();
 
@@ -108,7 +108,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private NpceOperationResult PreConfermaLolExecute()
         {
 
-            var preConfermaOperation = new PreConfermaLol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, true);
+            var preConfermaOperation = new PreConfermaLol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, AutoConfirm);
 
             var result = preConfermaOperation.Execute();
 
@@ -350,5 +350,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 ((DelegateCommand)PreConfermaCommand).RaiseCanExecuteChanged();
             }
         }
+
+        public bool AutoConfirm { get; set; }
     }
 }
