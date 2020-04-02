@@ -93,8 +93,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 DetailViewModels.Add(detailViewModel);
             }
 
-
-            // Verificare se il view model corrente HasChanges
+            // Prima di aggiornare il ViewModel corrente Verificare se il view model corrente HasChanges
             if (SelectedDetailViewModel!=null && SelectedDetailViewModel.HasChanges)
             {
                var result = await _messageDialogservice.ShowOkCancelDialogAsync("You've made changes. Navigate away ?", "Question");
