@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ambiente.cs" />
+    <Compile Include="Bollettino.cs" />
     <Compile Include="Documento.cs" />
     <Compile Include="LookupItem.cs" />
     <Compile Include="Anagrafica.cs" />
     <Compile Include="Opzioni.cs" />
+    <Compile Include="PaginaBollettino.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servizio.cs" />
     <Compile Include="StatoServizio.cs" />

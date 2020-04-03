@@ -1,6 +1,7 @@
 ﻿using FriendOrganizer.UI.View.Services;
 using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
+using NPCE_WinClient.UI.Event;
 using NPCE_WinClient.UI.View.Services;
 using NPCE_WinClient.UI.Wrapper;
 using Prism.Commands;
@@ -17,6 +18,7 @@ namespace NPCE_WinClient.UI.ViewModel
 {
     public class ServizioDetailViewModel : DetailViewModelBase, IServizioDetailViewModel
     {
+        private readonly IEventAggregator _eventAggregator;
         private readonly IStatoServizioRepository _statoServizioRepository;
         private readonly IServizioRepository _servizioRepository;
         private IEnumerable<Anagrafica> _allAnagrafiche;
@@ -26,6 +28,8 @@ namespace NPCE_WinClient.UI.ViewModel
             IServizioRepository servizioRepository,
             IStatoServizioRepository statoServizioRepository) : base(eventAggregator, messageDialogService)
         {
+
+            _eventAggregator = eventAggregator;
             _statoServizioRepository = statoServizioRepository;
             _servizioRepository = servizioRepository;
             Mittenti = new ObservableCollection<Anagrafica>();
@@ -51,6 +55,14 @@ namespace NPCE_WinClient.UI.ViewModel
 
             AddDocumentoCommand = new DelegateCommand(OnAddDocumentoExecute, OnAddDocumentoCanExecute);
             RemoveDocumentoCommand = new DelegateCommand(OnRemoveDocumentExecute, OnRemoveDocumentCanExecute);
+
+            OpenPagineBollettinoCommand = new DelegateCommand(OnOpenPagineBollettinoExecute);
+                       
+        }
+
+        private void OnOpenPagineBollettinoExecute()
+        {
+            _eventAggregator.GetEvent<OpenDetailViewEvent>().Publish(new OpenDetailViewEventargs { Id = Servizio.Id, ViewModelName = typeof(PagineBollettinoDetailViewModel).Name });
         }
 
         private bool OnRemoveDestinatarioArCanExecute()
@@ -413,9 +425,6 @@ namespace NPCE_WinClient.UI.ViewModel
             }
         }
 
-
-
-
         private Documento _selectDocumentoAvailable;
 
         private Documento _selectDocumentoAdded;
@@ -427,7 +436,7 @@ namespace NPCE_WinClient.UI.ViewModel
         public ICommand RemoveDestinatarioCommand { get; set; }
         public ICommand AddDocumentoCommand { get; set; }
         public ICommand RemoveDocumentoCommand { get; set; }
-
+        public DelegateCommand OpenPagineBollettinoCommand { get; private set; }
         public ICommand AddDestinatarioArCommand { get; set; }
         public ICommand RemoveDestinatarioArCommand { get; set; }
 

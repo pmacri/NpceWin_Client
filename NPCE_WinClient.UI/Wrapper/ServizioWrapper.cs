@@ -1,6 +1,7 @@
 ﻿using NPCE_WinClient.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace NPCE_WinClient.UI.Wrapper
     {
         public ServizioWrapper(Servizio servizio) : base(servizio)
         {
-
+            PagineBollettini = new ObservableCollection<PaginaBollettino>();
         }
         public int Id {
             
@@ -84,7 +85,6 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
-
         public string IdOrdine
         {
             get { return GetValue<string>(); }
@@ -128,8 +128,14 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<StatoServizio>(value);
             }
         }
+        public ICollection<PaginaBollettino> PagineBollettini
+        {
+            get { return GetValue<ICollection<PaginaBollettino>>(); }
 
-        //public ICollection<Anagrafica> Anagrafiche { get; set; }
-
+            set
+            {
+                SetValue<ICollection<PaginaBollettino>>(value);
+            }
+        }
     }
 }

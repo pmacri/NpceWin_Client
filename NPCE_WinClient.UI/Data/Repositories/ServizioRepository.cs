@@ -30,7 +30,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
 
         public override async Task<Servizio> GetByIdAsync(int id)
         {
-            var servizio = await Context.Servizio.Include(s => s.Anagrafiche).Include(s => s.Documenti).Include(s => s.TipoServizio).Include(s => s.StatoServizio).SingleAsync(s => s.Id == id);
+            var servizio = await Context.Servizio.Include(s => s.Anagrafiche).Include(s => s.Documenti).Include(s => s.TipoServizio).Include(s => s.StatoServizio).Include(s => s.PagineBollettini).SingleAsync(s => s.Id == id);
             return servizio;
         }
 
@@ -51,8 +51,7 @@ namespace NPCE_WinClient.UI.Data.Repositories
                 await Context.SaveChangesAsync();
             }
             
-            
-            
         }
+        
     }
 }

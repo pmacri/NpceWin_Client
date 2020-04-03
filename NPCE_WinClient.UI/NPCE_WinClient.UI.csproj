@@ -135,6 +135,7 @@
     <Compile Include="Npce\InvioLol.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaRol.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModel\IPagineBollettinoDetailViewModel.cs" />
     <Compile Include="ViewModel\IServiceOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\AmbienteDetailViewModel.cs" />
     <Compile Include="ViewModel\DetailViewModelBase.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="ViewModel\NavigationItemViewModel.cs" />
     <Compile Include="ViewModel\NavigationViewModel.cs" />
     <Compile Include="ViewModel\OpenServiceDetailViewEvent.cs" />
+    <Compile Include="ViewModel\PagineBollettinoDetailViewModel.cs" />
     <Compile Include="ViewModel\ServiceOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\ServizioDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
@@ -166,6 +168,9 @@
     <Compile Include="View\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\PagineBollettinoDetailView.xaml.cs">
+      <DependentUpon>PagineBollettinoDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Services\FileService.cs" />
     <Compile Include="View\Services\IFileService.cs" />
     <Compile Include="View\Services\IMessageDialogService.cs" />
@@ -178,10 +183,12 @@
     </Compile>
     <Compile Include="Wrapper\AmbienteWrapper.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
+    <Compile Include="Wrapper\BollettinoWrapper.cs" />
     <Compile Include="Wrapper\DocumentoWrapper.cs" />
     <Compile Include="Wrapper\ModelWrapper.cs" />
     <Compile Include="Wrapper\NotifyDataErrorInfoBase.cs" />
     <Compile Include="Wrapper\OpzioniWrapper.cs" />
+    <Compile Include="Wrapper\PaginaBollettinoWrapper.cs" />
     <Compile Include="Wrapper\ServizioWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -209,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PagineBollettinoDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -439,6 +450,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\NPCE_WinClient.Services.Rol\RolService.wsdl" />
+    <None Include="NPCE_WinClient.UI.ViewModel.PagineBollettinoDetailViewModel.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -16,17 +16,19 @@ namespace NPCE_WinClient.DataAccess
 
         }
 
-
         public DbSet<Servizio> Servizio { get; set; }
-
         public DbSet<StatoServizio> StatoServizio { get; set; }
         public DbSet<Anagrafica> Anagrafica { get; set; }
-
         public DbSet<Documento> Documento { get; set; }
 
         public DbSet<Ambiente> Ambiente { get; set; }
 
+        public DbSet<PaginaBollettino> PaginaBollettino { get; set; }
+
+        public DbSet<Bollettino> Bollettino { get; set; }
+
         public DbSet<TipoServizio> TipoServizio { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

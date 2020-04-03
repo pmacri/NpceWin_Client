@@ -26,6 +26,9 @@
         <DataTemplate DataType="{x:Type viewModel:ServiceOperationsDetailViewModel}">
             <view:ServiceOperationsDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:PagineBollettinoDetailViewModel}">
+            <view:PagineBollettinoDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

@@ -38,12 +38,8 @@ namespace NPCE_WinClient.UI.ViewModel
                     Id = Id,
                     ViewModelName = _detailViewModelName
                 });
-
         }
-
         public int Id { get; set; }
-
-
         public string DisplayMember
         {
             get { return _displayMember; }
@@ -53,10 +49,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public ICommand OpenAnagraficaDetailViewCommand { get; }
         public ICommand OpenDocumentoDetailViewCommand { get; }
         public ICommand OpenAmbienteDetailViewCommand { get; }
-
     }
 }

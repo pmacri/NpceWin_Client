@@ -14,6 +14,7 @@ namespace NPCE_WinClient.Model
         {
             Anagrafiche = new Collection<Anagrafica>();
             Documenti = new Collection<Documento>();
+            PagineBollettini= new Collection<PaginaBollettino>();
         }
 
         public int Id { get; set; }
@@ -40,6 +41,8 @@ namespace NPCE_WinClient.Model
         public ICollection<Anagrafica> Anagrafiche { get; set; }
         // Documenti
         public ICollection<Documento> Documenti { get; set; }
+
+        public ICollection<PaginaBollettino> PagineBollettini { get; set; }
 
     }
 }
