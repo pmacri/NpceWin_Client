@@ -6,113 +6,139 @@
              xmlns:local="clr-namespace:NPCE_WinClient.UI.View"
              mc:Ignorable="d" d:DesignWidth="800" Height="483.249">
     <Grid>
-        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <ListView  x:Name="listViewPagineBollettini"
+                ItemsSource="{Binding Servizio.PagineBollettini, 
+                Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{ Binding PaginaBollettinoSelected}"
+                Width="200" HorizontalAlignment="Left">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding=
+                          "{Binding Path=Description}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+        <Button x:Name="button" Content="Add Pagina"
+                Grid.Column="1" HorizontalAlignment="Left" 
+                Command="{Binding NuovaPaginaCommand}"
+                Margin="20"
+                VerticalAlignment="Top" 
+                Width="157" Height="40"/>
+
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False"
+                ItemsSource="{Binding PaginaBollettinoSelected.Bollettini, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                SelectedItem="{Binding SelectedBollettino}" Grid.Row="1" IsReadOnly="True">
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Intestatatario" Binding="{Binding IntestatoA}"/>
+                <DataGridTextColumn Header="Eseguito Da" Binding="{Binding EseguitoDaNominativo}"/>
+                <DataGridTextColumn Header="Importo" Binding="{Binding ImportoEuro}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            
+            <Button x:Name="btnNuovoBollettino" Content="Add Bollettino" HorizontalAlignment="Left"
+              Grid.Row="1" VerticalAlignment="Top" Width="157" Margin="20"
+              Command="{Binding NuovoBollettinoCommand}" Height="40"/>
+
+            <Button x:Name="btnEliminaBollettino" Content="Delete Bollettino" 
+                    HorizontalAlignment="Left" Margin="20"
+              Grid.Row="1" VerticalAlignment="Top" Width="157"
+              Command="{Binding EliminaBollettinoCommand}" Height="40"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2" Name="GridNuovoBollettino">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="589*"/>
-                <ColumnDefinition Width="211*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="125*"/>
-                <RowDefinition Height="141*"/>
-                <RowDefinition Height="30*"/>
-                <RowDefinition Height="38*"/>
-                <RowDefinition Height="84*"/>
-                <RowDefinition Height="65*"/>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button x:Name="button" Content="Add Pagina" 
-                    Grid.Column="1" HorizontalAlignment="Left" Margin="25.667,41,0,0" 
-                    Command="{Binding NuovaPaginaCommand}" VerticalAlignment="Top" Width="157" Height="40"/>
-            <ListView x:Name="listView" 
-                      ItemsSource="{Binding Servizio.PagineBollettini, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{ Binding PaginaBollettinoSelected}" Margin="0,0,0.333,0.333">
-                <ListView.View>
-                    <GridView >
-                        <GridViewColumn DisplayMemberBinding=
-                          "{Binding Path=Description}" />
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False"
-                      ItemsSource="{Binding PaginaBollettinoSelected.Bollettini, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding Bollettino}" Margin="0,125,0.333,0" Grid.RowSpan="2">
-                <DataGrid.Columns >
-                    <DataGridTextColumn Header="Intestatatario" Binding="{Binding IntestatoA}"/>
-                    <DataGridTextColumn Header="Intestatatario" Binding="{Binding EseguitoDaNominativo}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button x:Name="btnNuovoBollettino" Content="New Bollettino" Grid.Column="1" HorizontalAlignment="Left" 
-                    Margin="25.667,93.667,0,0" Grid.Row="1" VerticalAlignment="Top" Width="157"
-                    Command="{Binding NuovoBollettinoCommand}" Height="40"/>
-            <Grid Grid.Row="2" Margin="0,5,0,0" Grid.RowSpan="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                </Grid.RowDefinitions>
-                <TextBlock Text="Intestato A"/>
-                <TextBox x:Name="TextIntestatoA" 
-                     HorizontalAlignment="Left" Height="120" Grid.Row="1"
-                     Text="{Binding Bollettino.IntestatoA}" Width="200"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Tipi Bollettino"></TextBlock>
+                <ComboBox Text="Tipo Bollettino" Margin="5 0" SelectedValue="{Binding Bollettino.Tipo}" ItemsSource="{Binding TipiBollettino}">                    
+                </ComboBox>
+            </StackPanel>
 
-                <Button Name="SalvaBollettino" Content="Salva" Margin="100 0 0 0" Grid.Column="3" Command="{ Binding SalvaBollettinoCommand}"></Button>
+            <TextBlock Text="Intestato A" Margin="5,5,0,0" Grid.Row="1"/>
+            <TextBox x:Name="TextIntestatoA"
+             HorizontalAlignment="Left" Grid.Row="2" Margin="5,5,0,0"
+             Text="{Binding Bollettino.IntestatoA}" Width="200"/>
 
-                <TextBlock Text="CC Num." Grid.Column="1" Margin="5 0 0 0"/>
-                <TextBox x:Name="TextContoCorrente" Grid.Column="1" Margin="5 0 0 0"
-                     HorizontalAlignment="Left" Height="23" Grid.Row="1"
-                     Text="{Binding Bollettino.NumeroContoCorrente}" VerticalAlignment="Top"/>
+            <TextBlock Text="CC Num." Grid.Column="1" Margin="5 0 0 0" Grid.Row="1"/>
+            <TextBox x:Name="TextContoCorrente" Grid.Column="1" Margin="5 0 0 0"
+             HorizontalAlignment="Left" Height="23" Grid.Row="2"
+             Text="{Binding Bollettino.NumeroContoCorrente}" VerticalAlignment="Top"/>
 
-                <Button Name="DiscardBollettino" Width="100" Margin="100 0 0 0" Grid.Row="1" Grid.Column="3" Content="Annulla" Command="{ Binding DiscardBollettinoCommand}"></Button>
+            <TextBlock Text="Aut. Stampa in proprio" Grid.Row="1" Grid.Column="2"/>
+            <TextBox x:Name="TextAutorizzazioneStampaInProprio"
+             HorizontalAlignment="Left" Height="23" Grid.Row="2"
+             Text="{Binding Bollettino.NumeroAutorizzazioneStampaInProprio}" 
+                            Width="200"  
+                            VerticalAlignment="Top"
+                            Grid.Column="2"/>
 
-                <TextBlock Text="Aut. Stampa in proprio" Grid.Column="2"/>
-                <TextBox x:Name="TextAutorizzazioneStampaInProprio" 
-                     HorizontalAlignment="Left" Height="23" Grid.Row="1"
-                     Text="{Binding Bollettino.NumeroAutorizzazioneStampaInProprio}" Width="200"  VerticalAlignment="Top" 
-                         Grid.Column="2"/>
+            <TextBlock Text="Nominativo" Grid.Row="3" Margin="5,10,0,0"/>
+            <TextBox x:Name="TextEseguitoDaNominativo"
+             HorizontalAlignment="Left" Height="23" Grid.Row="4"
+             Text="{Binding Bollettino.EseguitoDaNominativo}" VerticalAlignment="Top" Margin="5,10,0,0"/>
 
-                <TextBlock Text="Nominativo" Grid.Row="2" Margin="5,10,0,0"/>
-                <TextBox x:Name="TextEseguitoDaNominativo" 
-                     HorizontalAlignment="Left" Height="23" Grid.Row="3" 
-                     Text="{Binding Bollettino.EseguitoDaNominativo}" VerticalAlignment="Top" Margin="5,10,0,0"/>
+            <TextBlock Text="Indirizzo"  Grid.Row="3" Grid.Column="1" Margin="5,5,0,0"/>
+            <TextBox x:Name="TextEseguitoDaIndirizzo" Grid.Column="1" Margin="5,5,0,0"
+             HorizontalAlignment="Left" Height="23" Grid.Row="4"
+             Text="{Binding Bollettino.EseguitoDaIndirizzo}" VerticalAlignment="Top"/>
 
-                <TextBlock Text="Indirizzo"  Grid.Row="2" Grid.Column="1" Margin="5,5,0,0"/>
-                <TextBox x:Name="TextEseguitoDaIndirizzo" Grid.Column="1" Margin="5,5,0,0"
-                     HorizontalAlignment="Left" Height="23" Grid.Row="3"
-                     Text="{Binding Bollettino.EseguitoDaIndirizzo}" VerticalAlignment="Top"/>
+            <TextBlock Text="Cap" Grid.Column="2" Grid.Row="3" Margin="5,5,0,0"/>
+            <TextBox x:Name="TextEseguitoDaCap" Grid.Column="2" Margin="5,5,0,0"
+             HorizontalAlignment="Left" Height="23" Grid.Row="4"
+             Text="{Binding Bollettino.EseguitoDaCap}" VerticalAlignment="Top" Width="120"/>
 
-                <TextBlock Text="Cap" Grid.Column="2" Grid.Row="2" Margin="5,5,0,0"/>
-                <TextBox x:Name="TextEseguitoDaCap" Grid.Column="2" Margin="5,5,0,0"
-                     HorizontalAlignment="Left" Height="23" Grid.Row="3"
-                     Text="{Binding Bollettino.EseguitoDaCap}" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Text="Località" Grid.Column="0" Grid.Row="5" Margin="5,5,0,0"/>
+            <TextBox x:Name="TextEseguitoLocalita" Grid.Column="0" Margin="5,5,0,0"
+             HorizontalAlignment="Left" Grid.Row="6"
+             Text="{Binding Bollettino.EseguitoDaLocalita}" VerticalAlignment="Top" Width="120"/>
 
-                <TextBlock Text="Località" Grid.Column="0" Grid.Row="4" Margin="5,5,0,0"/>
-                <TextBox x:Name="TextEseguitoLocalita" Grid.Column="0" Margin="5,5,0,0"
-                     HorizontalAlignment="Left" Height="23" Grid.Row="5"
-                     Text="{Binding Bollettino.EseguitoDaLocalita}" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Text="Importo" Grid.Column="1" Grid.Row="5" Margin="5,5,0,0"/>
+            <TextBox x:Name="TextImporto" Grid.Column="1" Margin="5,5,0,0"
+             HorizontalAlignment="Left" Grid.Row="6"
+             Text="{Binding Bollettino.ImportoEuro}" VerticalAlignment="Top" Width="120"/>
 
-                <TextBlock Text="Importo" Grid.Column="1" Grid.Row="4" Margin="5,5,0,0"/>
-                <TextBox x:Name="TextImporto" Grid.Column="1" Margin="5,5,0,0"
-                     HorizontalAlignment="Left" Height="40" Grid.Row="5"
-                     Text="{Binding Bollettino.ImportoEuro}" VerticalAlignment="Top" Width="120"/>
+            <TextBlock Text="Codice Cliente" Grid.Column="2" Grid.Row="5" Margin="5,5,0,0"/>
+            <TextBox x:Name="TextCodiceCliente" Grid.Column="2" Margin="5,5,0,0"
+             HorizontalAlignment="Left" Grid.Row="6"
+             Text="{Binding Bollettino.CodiceCliente}" VerticalAlignment="Top" Width="120"/>
+            
+        </Grid>
 
-                <TextBlock Text="Codice Cliente" Grid.Column="2" Grid.Row="4" Margin="5,5,0,0"/>
-                <TextBox x:Name="TextCodiceCliente" Grid.Column="2" Margin="5,5,0,0"
-                     HorizontalAlignment="Left" Height="40" Grid.Row="5"
-                     Text="{Binding Bollettino.CodiceCliente}" VerticalAlignment="Top" Width="120"/>
-            </Grid>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0" >
+            <Button x:Name="Save" Command="{Binding SaveBollettiniCommand}" Content="Save" HorizontalAlignment="Left" Margin="5"/>
+            <Button x:Name="Discard" Command="{Binding DiscardBollettiniCommand}" Content="Discard" HorizontalAlignment="Left" Margin="5"/>
+        </StackPanel>        
 
-            <Button x:Name="SaveButton" Command="{Binding SaveBollettiniCommand}" Content="Save" HorizontalAlignment="Left" 
-                    Margin="5,20,0,0"
-                    Grid.Row="6" VerticalAlignment="Top"/>
-        </Grid >
     </Grid>
+
 </UserControl>

@@ -143,6 +143,10 @@
     <Compile Include="Migrations\202004031502404_PageinaBollettinoDescription.designer.cs">
       <DependentUpon>202004031502404_PageinaBollettinoDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004042117109_BollettinoCausale.cs" />
+    <Compile Include="Migrations\202004042117109_BollettinoCausale.designer.cs">
+      <DependentUpon>202004042117109_BollettinoCausale.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -226,6 +230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004031502404_PageinaBollettinoDescription.resx">
       <DependentUpon>202004031502404_PageinaBollettinoDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004042117109_BollettinoCausale.resx">
+      <DependentUpon>202004042117109_BollettinoCausale.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

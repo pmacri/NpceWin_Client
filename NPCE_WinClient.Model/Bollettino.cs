@@ -19,6 +19,8 @@ namespace NPCE_WinClient.Model
 
         public string IntestatoA { get; set; }
 
+        public string Causale { get; set; }
+
         public string AdditionalInfo { get; set; }
 
         public string NumeroAutorizzazioneStampaInProprio { get; set; }

@@ -21,6 +21,7 @@ namespace NPCE_WinClient.UI.Npce
         {
             var helper = new Helper();
             _proxy = helper.GetProxy<LOLServiceSoap>(_ambiente.LolUri, _ambiente.Username, _ambiente.Password);
+            
             LOLSubmit lolSubmit = new LOLSubmit();
 
             SetMittente(lolSubmit);
@@ -41,6 +42,7 @@ namespace NPCE_WinClient.UI.Npce
             var fake = new OperationContextScope((IContextChannel)_proxy);
             var headers = GetHttpHeaders(_ambiente);
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = headers;
+            OperationContext.Current.Channel.OperationTimeout = TimeSpan.FromMinutes(2);
 
             var invioResult = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
 

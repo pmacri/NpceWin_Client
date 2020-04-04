@@ -28,7 +28,21 @@ namespace NPCE_WinClient.UI.ViewModel
             SaveBollettiniCommand = new DelegateCommand(OnSaveBollettiniExecute);
             DiscardBollettinoCommand = new DelegateCommand(OnDiscardBollettinoExceute);
 
+            EliminaBollettinoCommand = new DelegateCommand(OnEliminaBollettinoExecute, OnEliminaBollettinoCanExecute);
+
             NumeroPaginaCorrente = 0;
+
+            TipiBollettino = new List<string> { "451", "674", "896" };
+        }
+
+        private bool OnEliminaBollettinoCanExecute()
+        {
+            return SelectedBollettino != null;
+        }
+
+        private void OnEliminaBollettinoExecute()
+        {
+            PaginaBollettinoSelected.Bollettini.Remove(Bollettino);
         }
 
         private void OnDiscardBollettinoExceute()
@@ -65,7 +79,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 EseguitoDaNominativo = "Eseguito Da Nominativo",
                 EseguitoDaIndirizzo = "Via Alberto Manzi 36",
                 EseguitoDaLocalita = "Roma",
-                EseguitoDaCap="05100"
+                EseguitoDaCap="05100",
+                Causale="Causale"
             };
             PaginaBollettinoSelected.Bollettini.Add(Bollettino);
         }
@@ -130,8 +145,27 @@ namespace NPCE_WinClient.UI.ViewModel
                 _bollettino = value;
                 OnPropertyChanged("Bollettino");
             } }
+
+        Bollettino _selectedBollettino;
+        public Bollettino SelectedBollettino
+        {
+            get
+            {
+                return _selectedBollettino;
+            }
+            set
+            {
+                _selectedBollettino = value;
+                OnPropertyChanged("SelectedBollettino");
+                ((DelegateCommand)EliminaBollettinoCommand).RaiseCanExecuteChanged();
+            }
+        }
         public ICommand NuovoBollettinoCommand { get; set; }
         public ICommand SaveBollettiniCommand { get; set; }
         public ICommand DiscardBollettinoCommand { get; set; }
+
+        public ICommand EliminaBollettinoCommand { get; set; }
+
+        public IEnumerable<string> TipiBollettino { get; set; }
     }
 }

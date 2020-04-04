@@ -56,6 +56,16 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
+        public string Causale
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
         public string AdditionalInfo
         {
             get { return GetValue<string>(); }
