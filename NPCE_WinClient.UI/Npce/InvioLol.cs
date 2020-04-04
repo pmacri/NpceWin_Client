@@ -13,7 +13,7 @@ namespace NPCE_WinClient.UI.Npce
     public class InvioLol : NpceOperationBase
     {
         LOLServiceSoap _proxy;
-        public InvioLol(Ambiente ambiente, Servizio servizio, string idRichiesta):base(ambiente, servizio, idRichiesta)
+        public InvioLol(Ambiente ambiente, Servizio servizio, string idRichiesta) : base(ambiente, servizio, idRichiesta)
         {
         }
 
@@ -32,6 +32,11 @@ namespace NPCE_WinClient.UI.Npce
                 SetPosta1(lolSubmit);
             }
 
+            if (_servizio.PagineBollettini != null && _servizio.PagineBollettini.Count() > 0)
+            {
+                SetBollettini(lolSubmit);
+            }
+
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
             var headers = GetHttpHeaders(_ambiente);
@@ -39,7 +44,51 @@ namespace NPCE_WinClient.UI.Npce
 
             var invioResult = _proxy.Invio(_idRichiesta, string.Empty, lolSubmit);
 
-            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Code, invioResult.IDRichiesta,null, invioResult.GuidUtente);
+            return CreateResult(NpceOperation.Invio, invioResult.CEResult.Code, invioResult.CEResult.Code, invioResult.IDRichiesta, null, invioResult.GuidUtente);
+        }
+
+        private void SetBollettini(LOLSubmit lolSubmit)
+        {
+            List<reference.PaginaBollettino> pagineBollettiniList = new List<reference.PaginaBollettino>();
+
+            foreach (var paginaBollettino in _servizio.PagineBollettini)
+            {
+                var newPaginaBollettino = CreateNewPaginaBollettino(paginaBollettino);
+
+                pagineBollettiniList.Add(newPaginaBollettino);
+            }
+
+            lolSubmit.PagineBollettini = pagineBollettiniList.ToArray();
+        }
+
+        private reference.PaginaBollettino CreateNewPaginaBollettino(Model.PaginaBollettino paginaBollettino)
+        {
+            var bollettiniList = new List<reference.Bollettino896>();
+            var result = new reference.PaginaBollettino();
+
+            reference.Bollettino896 bollettino896 = null;
+
+            foreach (var bollettino in paginaBollettino.Bollettini)
+            {
+                bollettino896 = new Bollettino896
+                {
+                    AdditionalInfo = bollettino.AdditionalInfo,
+                    Causale = "Causale",
+                    CodiceCliente = bollettino.CodiceCliente,
+                    EseguitoDa = new BollettinoEseguitoDa { Nominativo = bollettino.EseguitoDaNominativo, Indirizzo = bollettino.EseguitoDaIndirizzo, CAP = bollettino.EseguitoDaCap, Localita = bollettino.EseguitoDaLocalita },
+                    ImportoEuro = bollettino.ImportoEuro,
+                    IBAN = bollettino.IBan,
+                    NumeroAutorizzazioneStampaInProprio = bollettino.NumeroAutorizzazioneStampaInProprio,
+                    IntestatoA = bollettino.IntestatoA,
+                    NumeroContoCorrente = bollettino.NumeroContoCorrente
+                };
+
+                bollettiniList.Add(bollettino896);
+            }
+            result.Bollettino = bollettino896;
+
+            return result;
+
         }
 
         private void SetPosta1(LOLSubmit lolSubmit)

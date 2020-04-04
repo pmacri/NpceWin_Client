@@ -26,7 +26,14 @@ namespace NPCE_WinClient.UI.ViewModel
             NuovaPaginaCommand = new DelegateCommand(OnNuovaPaginaExecute);
             NuovoBollettinoCommand = new DelegateCommand(OnNuovoBollettinoExecute, OnNuovoBollettinoCanExecute);
             SaveBollettiniCommand = new DelegateCommand(OnSaveBollettiniExecute);
+            DiscardBollettinoCommand = new DelegateCommand(OnDiscardBollettinoExceute);
+
             NumeroPaginaCorrente = 0;
+        }
+
+        private void OnDiscardBollettinoExceute()
+        {
+            PaginaBollettinoSelected.Bollettini.Remove(Bollettino);
         }
 
         private void OnSaveBollettiniExecute()
@@ -41,7 +48,25 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private void OnNuovoBollettinoExecute()
         {
-            Bollettino = new Bollettino { IntestatoA = "A me asassassasasas" };
+            Bollettino = new Bollettino
+            {
+                //Corretti per Staging
+                //Intestattario = GANASSA GIULIANA
+                //IBAN= IT18U1111199999000000012345
+                //CCN =345345345345
+                IntestatoA = "GANASSA GIULIANA",
+                
+                NumeroContoCorrente = "345345345345",
+                AdditionalInfo = "Additional Info",
+                NumeroAutorizzazioneStampaInProprio = "12345678",
+                IBan = "IT18U1111199999000000012345",
+                ImportoEuro = 10M,
+                CodiceCliente = "123456789012345654",
+                EseguitoDaNominativo = "Eseguito Da Nominativo",
+                EseguitoDaIndirizzo = "Via Alberto Manzi 36",
+                EseguitoDaLocalita = "Roma",
+                EseguitoDaCap="05100"
+            };
             PaginaBollettinoSelected.Bollettini.Add(Bollettino);
         }
 
@@ -106,7 +131,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged("Bollettino");
             } }
         public ICommand NuovoBollettinoCommand { get; set; }
-
         public ICommand SaveBollettiniCommand { get; set; }
+        public ICommand DiscardBollettinoCommand { get; set; }
     }
 }
