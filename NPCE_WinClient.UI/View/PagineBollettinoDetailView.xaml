@@ -8,14 +8,14 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         
@@ -61,9 +61,8 @@
               Command="{Binding EliminaBollettinoCommand}" Height="40"/>
         </StackPanel>
 
-        <Grid Grid.Row="2" Name="GridNuovoBollettino">
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Name="GridNuovoBollettino">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -77,10 +76,12 @@
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Tipi Bollettino"></TextBlock>
-                <ComboBox Text="Tipo Bollettino" Margin="5 0" SelectedValue="{Binding Bollettino.Tipo}" ItemsSource="{Binding TipiBollettino}">                    
+                <ComboBox Text="Tipo Bollettino" Margin="5 0" SelectedValue="{Binding Bollettino.Tipo, Mode=TwoWay}" ItemsSource="{Binding TipiBollettino}">                    
                 </ComboBox>
             </StackPanel>
 
@@ -131,10 +132,14 @@
             <TextBox x:Name="TextCodiceCliente" Grid.Column="2" Margin="5,5,0,0"
              HorizontalAlignment="Left" Grid.Row="6"
              Text="{Binding Bollettino.CodiceCliente}" VerticalAlignment="Top" Width="120"/>
-            
+
+            <TextBlock Text="Causale" Grid.Column="3" Grid.Row="5" Margin="5,5,5,0"/>
+            <TextBox x:Name="TextCausale" Grid.Column="3" Margin="5,5,5,0"
+             HorizontalAlignment="Left" Grid.Row="6"
+             Text="{Binding Bollettino.Causale}" VerticalAlignment="Top"/>
         </Grid>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="0" >
+        <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Bottom" Margin="0 5" >
             <Button x:Name="Save" Command="{Binding SaveBollettiniCommand}" Content="Save" HorizontalAlignment="Left" Margin="5"/>
             <Button x:Name="Discard" Command="{Binding DiscardBollettiniCommand}" Content="Discard" HorizontalAlignment="Left" Margin="5"/>
         </StackPanel>        

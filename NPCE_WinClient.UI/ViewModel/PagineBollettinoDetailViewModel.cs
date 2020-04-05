@@ -42,7 +42,13 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private void OnEliminaBollettinoExecute()
         {
-            PaginaBollettinoSelected.Bollettini.Remove(Bollettino);
+            PaginaBollettinoSelected.Bollettini.Remove(SelectedBollettino);
+            if (PaginaBollettinoSelected.Bollettini.Count==0)
+            {
+                Servizio.PagineBollettini.Remove(PaginaBollettinoSelected);
+                PaginaBollettinoSelected = null;
+                NumeroPaginaCorrente--;
+            }
         }
 
         private void OnDiscardBollettinoExceute()
@@ -57,7 +63,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private bool OnNuovoBollettinoCanExecute()
         {
-            return PaginaBollettinoSelected != null;
+            return ((PaginaBollettinoSelected != null) && (PaginaBollettinoSelected.Bollettini.Count<2));
         }
 
         private void OnNuovoBollettinoExecute()
@@ -80,7 +86,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 EseguitoDaIndirizzo = "Via Alberto Manzi 36",
                 EseguitoDaLocalita = "Roma",
                 EseguitoDaCap="05100",
-                Causale="Causale"
+                Causale="Causale",
+                Tipo="896"
             };
             PaginaBollettinoSelected.Bollettini.Add(Bollettino);
         }
