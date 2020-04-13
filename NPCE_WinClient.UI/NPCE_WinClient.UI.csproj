@@ -119,7 +119,9 @@
     <Compile Include="Data\Repositories\IAmbienteRepository.cs" />
     <Compile Include="Data\Repositories\IStatoServizio.cs" />
     <Compile Include="Data\Repositories\ITipoServizioRepository.cs" />
+    <Compile Include="Data\Repositories\IVisureRepository.cs" />
     <Compile Include="Data\Repositories\ServizioRepository.cs" />
+    <Compile Include="Data\Repositories\VisureRepository.cs" />
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
@@ -156,6 +158,7 @@
     <Compile Include="ViewModel\ServiceOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\ServizioDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="ViewModel\VisuraDetailViewModel.cs" />
     <Compile Include="View\AmbienteDetailView.xaml.cs">
       <DependentUpon>AmbienteDetailView.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,9 @@
     <Compile Include="View\ServiceOperationsView.xaml.cs">
       <DependentUpon>ServiceOperationsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\VisuraDetailView.xaml.cs">
+      <DependentUpon>VisuraDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wrapper\AmbienteWrapper.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
     <Compile Include="Wrapper\BollettinoWrapper.cs" />
@@ -190,6 +196,7 @@
     <Compile Include="Wrapper\OpzioniWrapper.cs" />
     <Compile Include="Wrapper\PaginaBollettinoWrapper.cs" />
     <Compile Include="Wrapper\ServizioWrapper.cs" />
+    <Compile Include="Wrapper\VisuraWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -228,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ServiceOperationsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VisuraDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -147,6 +147,26 @@
     <Compile Include="Migrations\202004042117109_BollettinoCausale.designer.cs">
       <DependentUpon>202004042117109_BollettinoCausale.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004131459065_Visure.cs" />
+    <Compile Include="Migrations\202004131459065_Visure.designer.cs">
+      <DependentUpon>202004131459065_Visure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004131503166_Visure1.cs" />
+    <Compile Include="Migrations\202004131503166_Visure1.designer.cs">
+      <DependentUpon>202004131503166_Visure1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004131505210_Visure2.cs" />
+    <Compile Include="Migrations\202004131505210_Visure2.designer.cs">
+      <DependentUpon>202004131505210_Visure2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004131516316_Visure4.cs" />
+    <Compile Include="Migrations\202004131516316_Visure4.designer.cs">
+      <DependentUpon>202004131516316_Visure4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004131519357_Visure5.cs" />
+    <Compile Include="Migrations\202004131519357_Visure5.designer.cs">
+      <DependentUpon>202004131519357_Visure5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,6 +253,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004042117109_BollettinoCausale.resx">
       <DependentUpon>202004042117109_BollettinoCausale.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131459065_Visure.resx">
+      <DependentUpon>202004131459065_Visure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131503166_Visure1.resx">
+      <DependentUpon>202004131503166_Visure1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131505210_Visure2.resx">
+      <DependentUpon>202004131505210_Visure2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131516316_Visure4.resx">
+      <DependentUpon>202004131516316_Visure4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131519357_Visure5.resx">
+      <DependentUpon>202004131519357_Visure5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

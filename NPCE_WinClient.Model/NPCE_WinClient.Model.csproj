@@ -53,6 +53,11 @@
     <Compile Include="Servizio.cs" />
     <Compile Include="StatoServizio.cs" />
     <Compile Include="TipoServizio.cs" />
+    <Compile Include="Visura.cs" />
+    <Compile Include="VisureCodiceDocumento.cs" />
+    <Compile Include="VisureFormatoDocumento.cs" />
+    <Compile Include="VisureTipoDocumento.cs" />
+    <Compile Include="VisureTipoRecapito.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

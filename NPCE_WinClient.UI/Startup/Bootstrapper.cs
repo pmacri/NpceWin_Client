@@ -40,6 +40,7 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<DocumentoRepository>().As<IDocumentoRepository>();
             builder.RegisterType<AmbienteRepository>().As<IAmbienteRepository>();
             builder.RegisterType<ServizioRepository>().As<IServizioRepository>();
+            builder.RegisterType<VisureRepository>().As<IVisureRepository>();
 
 
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
@@ -56,6 +57,8 @@ namespace NPCE_WinClient.UI.Startup
                 .Keyed<IDetailViewModel>(nameof(ServiceOperationsDetailViewModel));
             builder.RegisterType<PagineBollettinoDetailViewModel>()
                 .Keyed<IDetailViewModel>(nameof(PagineBollettinoDetailViewModel));
+            builder.RegisterType<VisuraDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(VisuraDetailViewModel));
 
             return builder.Build();
         }

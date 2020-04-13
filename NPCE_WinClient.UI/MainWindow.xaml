@@ -29,6 +29,9 @@
         <DataTemplate DataType="{x:Type viewModel:PagineBollettinoDetailViewModel}">
             <view:PagineBollettinoDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:VisuraDetailViewModel}">
+            <view:VisuraDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -49,6 +52,9 @@
                           CommandParameter="{x:Type viewModel:AmbienteDetailViewModel}"/>
                 <MenuItem Header="New Servizio" Command="{Binding CreateNewDetailCommand}"
                           CommandParameter="{x:Type viewModel:ServizioDetailViewModel}"/>
+                <MenuItem Header="New Visura" Command="{Binding CreateNewDetailCommand}"
+                          CommandParameter="{x:Type viewModel:VisuraDetailViewModel}"/>
+
             </MenuItem>
             <MenuItem Header="Operations">
                 <MenuItem Header="Service Operations" Command="{Binding OpenSingleDetailViewCommand}"
