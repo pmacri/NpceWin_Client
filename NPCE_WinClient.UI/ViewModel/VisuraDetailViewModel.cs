@@ -81,12 +81,14 @@ namespace NPCE_WinClient.UI.ViewModel
 
         protected override bool OnSaveCanExecute()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        protected override void OnSaveExecute()
+        protected override async void OnSaveExecute()
         {
-            throw new NotImplementedException();
+            await _visureRepository.SaveAsync();
+            Id = Visura.Id;
+            HasChanges = _visureRepository.HasChanges();
         }
     }
 }

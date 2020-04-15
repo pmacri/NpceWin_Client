@@ -1,13 +1,180 @@
-﻿<UserControl x:Class="NPCE_WinClient.UI.View.VisuraDetailView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NPCE_WinClient.UI.View"
+             xmlns:Wrapper="clr-namespace:NPCE_WinClient.UI.Wrapper" x:Class="NPCE_WinClient.UI.View.VisuraDetailView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+
     <Grid>
-        <TextBlock> Visura Detail View</TextBlock>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="Richiedente" Header="Richiedente">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Margin="5 0" Width="400" >
+                    <TextBlock>Nome</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteNome}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="1" Margin="5 0" Grid.ColumnSpan="2">
+                    <TextBlock>Cognome</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteCognome}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="0" Margin="5 0">
+                    <TextBlock>Indirizzo</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteIndirizzo}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5 0" Grid.ColumnSpan="2">
+                    <TextBlock>Localita</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteLocalita}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin="5 0" Width="50" HorizontalAlignment="Left">
+                    <TextBlock>Cap</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteCap}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="1" Margin="5 0" Width="50" HorizontalAlignment="Left">
+                    <TextBlock>Prefisso</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteTelefonoPrefisso}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="1" Margin="90 0" Width="120" HorizontalAlignment="Left">
+                    <TextBlock>Telefono</TextBlock>
+                    <TextBox Text="{Binding Visura.RichiedenteTelefono}"></TextBox>
+                </StackPanel>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox x:Name="Destinatario" Header="Destinatario" Grid.Row="1" Margin="0 5 0 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Margin="5 0" Width="500" HorizontalAlignment="Left" >
+                    <TextBlock>Nominativo</TextBlock>
+                    <TextBox Text="{Binding Visura.DestinatarioNominativo}"></TextBox>
+                </StackPanel>                
+
+                <StackPanel Grid.Row="1" Width="400" Grid.Column="0" Margin="5 0">
+                    <TextBlock>Localita</TextBlock>
+                    <TextBox Text="{Binding Visura.DestinatarioLocalita}"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="1" Grid.Column="1" Margin="5 0" 
+                            Width="100" HorizontalAlignment="Left" >
+                    <TextBlock>CAP</TextBlock>
+                    <TextBox Text="{Binding Visura.DestinatarioCap}"></TextBox>
+                </StackPanel>               
+
+                <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="3" Margin="5 0" 
+                            Width="300" HorizontalAlignment="Left">
+                    <TextBlock >Email</TextBlock>
+                    <TextBox Text="{Binding Visura.DestinatarioEmail}"></TextBox>
+                </StackPanel>               
+            </Grid>
+
+        </GroupBox>
+        <GroupBox x:Name="Documento" Header="Documento" Grid.Row="2" Margin="0 5 0 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Vertical" Grid.Row="0"  Grid.Column="0" Margin="5 0" 
+                            Width="200" HorizontalAlignment="Left" >
+                    <TextBlock>Nome</TextBlock>
+                    <TextBox Text="{Binding Visura.DocumentoIntestatarioNome}"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="0" Width="400" 
+                            Grid.Column="1"
+                            HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="0 0 5 0">
+                    <TextBlock>Cognome</TextBlock>
+                    <TextBox Text="{Binding Visura.DocumentoIntestatarioCognome}"></TextBox>
+                </StackPanel>
+                
+                <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+                            Margin="5 0" Width="800" HorizontalAlignment="Left" >
+                    <TextBlock>Ragione Sociale</TextBlock>
+                    <TextBox Text="{Binding Visura.DocumentoIntestatarioRagioneSociale}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Grid.Column="0"  Margin="5 0" 
+                            Width="200">
+                    <TextBlock>CCIAA</TextBlock>
+                    <TextBox Text="{Binding Visura.DocumentoIntestatarioCCIAA}"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="1" Margin="5 0" 
+                            Width="200" HorizontalAlignment="Left">
+                    <TextBlock>NREA</TextBlock>
+                    <TextBox Text="{Binding Visura.DocumentoIntestatarioNREA}"></TextBox>
+                </StackPanel>
+                <StackPanel Grid.Row="2" Grid.Column="2" Margin="5 0" 
+                            Width="200" HorizontalAlignment="Left">
+                    <TextBlock>Codice Fiscale</TextBlock>
+                    <TextBox Text="{Binding Visura.DocumentoIntestatarioCodiceFiscale}"></TextBox>
+                </StackPanel>
+
+                <StackPanel Grid.Row="3" Grid.Column="0" Margin="5 0" 
+                            Width="200" HorizontalAlignment="Left">
+                    <TextBlock>Tipo Documento</TextBlock>
+                    <ComboBox></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="1" Margin="5 0" 
+                            Width="400" HorizontalAlignment="Left">
+                    <TextBlock>Codice Documento</TextBlock>
+                    <ComboBox></ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Grid.Column="2" Margin="5 0" 
+                            Width="200" HorizontalAlignment="Left">
+                    <TextBlock>Formato</TextBlock>
+                    <ComboBox></ComboBox>
+                </StackPanel>
+            </Grid>
+
+        </GroupBox>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal"  Grid.ColumnSpan="3">
+            <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
+            <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}" HorizontalAlignment="Center"/>
+        </StackPanel>
+
+
     </Grid>
+
 </UserControl>

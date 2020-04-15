@@ -462,6 +462,7 @@
     </None>
     <None Include="Connected Services\NPCE_WinClient.Services.Rol\RolService.wsdl" />
     <None Include="NPCE_WinClient.UI.ViewModel.PagineBollettinoDetailViewModel.datasource" />
+    <None Include="NPCE_WinClient.UI.Wrapper.VisuraWrapper.datasource" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
