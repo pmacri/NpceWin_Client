@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Wrapper
 {
-   public class VisuraWrapper : ModelWrapper<Visura>
+    public class VisuraWrapper : ModelWrapper<Visura>
     {
-        public VisuraWrapper(Visura model): base(model)
+        public VisuraWrapper(Visura model) : base(model)
         {
 
         }
@@ -33,7 +33,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string RichiedenteCognome {
+        public string RichiedenteCognome
+        {
             get { return GetValue<string>(); }
 
             set
@@ -42,7 +43,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string RichiedenteIndirizzo {
+        public string RichiedenteIndirizzo
+        {
             get { return GetValue<string>(); }
 
             set
@@ -51,7 +53,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string RichiedenteLocalita {
+        public string RichiedenteLocalita
+        {
             get { return GetValue<string>(); }
 
             set
@@ -60,7 +63,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string RichiedenteCap {
+        public string RichiedenteCap
+        {
             get { return GetValue<string>(); }
 
             set
@@ -68,7 +72,8 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
-        public string RichiedentePrefissoTelefono {
+        public string RichiedentePrefissoTelefono
+        {
             get { return GetValue<string>(); }
 
             set
@@ -77,7 +82,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string RichiedenteTelefono {
+        public string RichiedenteTelefono
+        {
             get { return GetValue<string>(); }
 
             set
@@ -87,7 +93,8 @@ namespace NPCE_WinClient.UI.Wrapper
         }
 
         // Destinatario
-        public string DestinatarioNominativo {
+        public string DestinatarioNominativo
+        {
             get { return GetValue<string>(); }
 
             set
@@ -96,7 +103,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DestinatarioLocalita {
+        public string DestinatarioLocalita
+        {
             get { return GetValue<string>(); }
 
             set
@@ -105,7 +113,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DestinatarioCap {
+        public string DestinatarioCap
+        {
             get { return GetValue<string>(); }
 
             set
@@ -114,7 +123,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DestinatarioEmail {
+        public string DestinatarioEmail
+        {
             get { return GetValue<string>(); }
 
             set
@@ -123,7 +133,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public VisureTipoRecapito VisureTipoRecapito {
+        public VisureTipoRecapito VisureTipoRecapito
+        {
             get { return GetValue<VisureTipoRecapito>(); }
 
             set
@@ -133,7 +144,8 @@ namespace NPCE_WinClient.UI.Wrapper
         }
 
         // Documento
-        public string DocumentoIntestatarioNome {
+        public string DocumentoIntestatarioNome
+        {
             get { return GetValue<string>(); }
 
             set
@@ -142,7 +154,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DocumentoIntestatarioCognome {
+        public string DocumentoIntestatarioCognome
+        {
             get { return GetValue<string>(); }
 
             set
@@ -151,7 +164,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DocumentoIntestatarioRagioneSociale {
+        public string DocumentoIntestatarioRagioneSociale
+        {
             get { return GetValue<string>(); }
 
             set
@@ -160,7 +174,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DocumentoIntestatarioCCIAA {
+        public string DocumentoIntestatarioCCIAA
+        {
             get { return GetValue<string>(); }
 
             set
@@ -169,7 +184,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DocumentoIntestatarioNREA {
+        public string DocumentoIntestatarioNREA
+        {
             get { return GetValue<string>(); }
 
             set
@@ -178,7 +194,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public string DocumentoIntestatarioCodiceFiscale {
+        public string DocumentoIntestatarioCodiceFiscale
+        {
             get { return GetValue<string>(); }
 
             set
@@ -187,7 +204,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public VisureTipoDocumento DocumentoTipoDocumento {
+        public VisureTipoDocumento DocumentoTipoDocumento
+        {
             get { return GetValue<VisureTipoDocumento>(); }
 
             set
@@ -196,7 +214,8 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
-        public VisureCodiceDocumento DocumentoCodiceDocumento {
+        public VisureCodiceDocumento DocumentoCodiceDocumento
+        {
             get { return GetValue<VisureCodiceDocumento>(); }
 
             set
@@ -212,6 +231,48 @@ namespace NPCE_WinClient.UI.Wrapper
             set
             {
                 SetValue<VisureFormatoDocumento>(value);
+            }
+        }
+
+        public String VisureTipoDocumentoId
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public String VisureFormatoDocumentoId
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public String VisureCodiceDocumentoId
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+
+
+        public int StatoServizioId
+        {
+            get { return GetValue<int>(); }
+
+            set
+            {
+                SetValue<int>(value);
             }
         }
 

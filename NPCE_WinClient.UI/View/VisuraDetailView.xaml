@@ -56,7 +56,7 @@
 
                 <StackPanel Grid.Row="2" Grid.Column="1" Margin="5 0" Width="50" HorizontalAlignment="Left">
                     <TextBlock>Prefisso</TextBlock>
-                    <TextBox Text="{Binding Visura.RichiedenteTelefonoPrefisso}"></TextBox>
+                    <TextBox Text="{Binding Visura.RichiedentePrefissoTelefono}"></TextBox>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Grid.Column="1" Margin="90 0" Width="120" HorizontalAlignment="Left">
@@ -153,17 +153,26 @@
                 <StackPanel Grid.Row="3" Grid.Column="0" Margin="5 0" 
                             Width="200" HorizontalAlignment="Left">
                     <TextBlock>Tipo Documento</TextBlock>
-                    <ComboBox></ComboBox>
+                    <ComboBox ItemsSource="{Binding TipiDocumento}" 
+                              DisplayMemberPath="Descrizione"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Visura.VisureTipoDocumentoId}"></ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="1" Margin="5 0" 
                             Width="400" HorizontalAlignment="Left">
                     <TextBlock>Codice Documento</TextBlock>
-                    <ComboBox></ComboBox>
+                    <ComboBox ItemsSource="{Binding CodiciDocumento}" 
+                              DisplayMemberPath="Descrizione"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Visura.VisureCodiceDocumentoId}"></ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="2" Margin="5 0" 
                             Width="200" HorizontalAlignment="Left">
                     <TextBlock>Formato</TextBlock>
-                    <ComboBox></ComboBox>
+                    <ComboBox ItemsSource="{Binding FormatiDocumento}" 
+                              DisplayMemberPath="Descrizione"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Visura.VisureFormatoDocumentoId}"></ComboBox>
                 </StackPanel>
             </Grid>
 

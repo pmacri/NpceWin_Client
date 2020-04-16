@@ -10,6 +10,10 @@ namespace NPCE_WinClient.UI.Data.Repositories
 {
     public interface IVisureRepository: IGenericRepository<Visura>
     {
-
+        Task<IEnumerable<VisureTipoDocumento>> GetAllTipiDocumentoAsync();
+        Task<VisureTipoDocumento> GetTipoDocumentoByDescriptionAsync(string description);
+        Task<IEnumerable<VisureFormatoDocumento>> GetAllFormatiDocumentoAsync();
+        Task<VisureFormatoDocumento> GetFormatoDocumentoByDescriptionAsync(string description);
+        Task<IEnumerable<VisureCodiceDocumento>> GetAllCodiciDocumentoAsync();
     }
 }

@@ -47,10 +47,16 @@ namespace NPCE_WinClient.Model
 
         public string DocumentoIntestatarioCodiceFiscale { get; set; }
 
+        public String VisureTipoDocumentoId { get; set; }
+
         public VisureTipoDocumento DocumentoTipoDocumento { get; set; }
 
+        public String VisureCodiceDocumentoId { get; set; }
         public VisureCodiceDocumento DocumentoCodiceDocumento { get; set; }
-
+        public string VisureFormatoDocumentoId { get; set; }
         public VisureFormatoDocumento DocumentoFormatoDocumento { get; set; }
+
+        public StatoServizio StatoVisura { get; set; }
+        public int StatoServizioId { get; set; }
     }
 }

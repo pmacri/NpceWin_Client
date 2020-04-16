@@ -167,6 +167,18 @@
     <Compile Include="Migrations\202004131519357_Visure5.designer.cs">
       <DependentUpon>202004131519357_Visure5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004161739216_FKVisure.cs" />
+    <Compile Include="Migrations\202004161739216_FKVisure.designer.cs">
+      <DependentUpon>202004161739216_FKVisure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004161800180_FKVisure2.cs" />
+    <Compile Include="Migrations\202004161800180_FKVisure2.designer.cs">
+      <DependentUpon>202004161800180_FKVisure2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004161917556_FKVisure3.cs" />
+    <Compile Include="Migrations\202004161917556_FKVisure3.designer.cs">
+      <DependentUpon>202004161917556_FKVisure3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,6 +280,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004131519357_Visure5.resx">
       <DependentUpon>202004131519357_Visure5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004161739216_FKVisure.resx">
+      <DependentUpon>202004161739216_FKVisure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004161800180_FKVisure2.resx">
+      <DependentUpon>202004161800180_FKVisure2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004161917556_FKVisure3.resx">
+      <DependentUpon>202004161917556_FKVisure3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
