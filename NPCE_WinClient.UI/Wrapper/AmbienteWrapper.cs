@@ -165,6 +165,16 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
+        public string VolUri
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
 
         public string contractid {
             get { return GetValue<string>(); }

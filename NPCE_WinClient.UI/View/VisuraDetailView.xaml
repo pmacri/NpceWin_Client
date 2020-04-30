@@ -49,7 +49,7 @@
                     <TextBox Text="{Binding Visura.RichiedenteLocalita}"></TextBox>
                 </StackPanel>
 
-                <StackPanel Grid.Row="2" Grid.Column="0" Margin="5 0" Width="50" HorizontalAlignment="Left">
+                <StackPanel Grid.Row="2" Grid.Column="0" Margin="5 0" Width="70" HorizontalAlignment="Left">
                     <TextBlock>Cap</TextBlock>
                     <TextBox Text="{Binding Visura.RichiedenteCap}"></TextBox>
                 </StackPanel>
@@ -79,10 +79,19 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Margin="5 0" Width="500" HorizontalAlignment="Left" >
+                <StackPanel Orientation="Vertical" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Margin="5 0" Width="500" HorizontalAlignment="Left" >
                     <TextBlock>Nominativo</TextBlock>
                     <TextBox Text="{Binding Visura.DestinatarioNominativo}"></TextBox>
-                </StackPanel>                
+                </StackPanel>
+
+                <StackPanel Grid.Row="0" Grid.Column="2" Margin="5 0" 
+                            Width="200" HorizontalAlignment="Left">
+                    <TextBlock>Tipo Recapito</TextBlock>
+                    <ComboBox ItemsSource="{Binding TipiRecapito}" 
+                              DisplayMemberPath="Descrizione"
+                              SelectedValuePath="Id"
+                              SelectedValue="{Binding Visura.VisureTipoRecapito.Id}"></ComboBox>
+                </StackPanel>
 
                 <StackPanel Grid.Row="1" Width="400" Grid.Column="0" Margin="5 0">
                     <TextBlock>Localita</TextBlock>
@@ -159,7 +168,7 @@
                               SelectedValue="{Binding Visura.VisureTipoDocumentoId}"></ComboBox>
                 </StackPanel>
                 <StackPanel Grid.Row="3" Grid.Column="1" Margin="5 0" 
-                            Width="400" HorizontalAlignment="Left">
+                            Width="150" HorizontalAlignment="Left">
                     <TextBlock>Codice Documento</TextBlock>
                     <ComboBox ItemsSource="{Binding CodiciDocumento}" 
                               DisplayMemberPath="Descrizione"
@@ -181,6 +190,7 @@
         <StackPanel Grid.Row="3" Orientation="Horizontal"  Grid.ColumnSpan="3">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}" HorizontalAlignment="Center"/>
+            <Button Content="Invio" Width="125" Margin="10" Command="{Binding InvioCommand}"/>
         </StackPanel>
 
 

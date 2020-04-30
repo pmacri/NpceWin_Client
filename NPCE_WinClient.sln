@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.Test", "Npce_WinClient.Test\NPCE_WinClient.Test.csproj", "{87465079-50DA-4469-A4F1-C6E6773FFAC7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dll", "Dll", "{B6FC5CFC-710C-4DA8-94F2-003186614B79}"
+	ProjectSection(SolutionItems) = preProject
+		ComunicazioniElettroniche.Common.dll = ComunicazioniElettroniche.Common.dll
+		ComunicazioniElettroniche.Visure.dll = ComunicazioniElettroniche.Visure.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

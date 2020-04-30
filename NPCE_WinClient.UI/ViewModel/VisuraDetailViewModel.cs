@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace NPCE_WinClient.UI.ViewModel
 {
@@ -26,6 +27,17 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             _visureRepository = visureRepository;
             _statoServizioRepository = statoServizioRepository;
+            InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
+        }
+
+        private bool OnInvioCanExecute()
+        {
+            return true;
+        }
+
+        private void OnInvioExecute()
+        {
+            throw new NotImplementedException();
         }
 
         public override async Task LoadAsync(int id)
@@ -40,6 +52,8 @@ namespace NPCE_WinClient.UI.ViewModel
             FormatiDocumento = new ObservableCollection<VisureFormatoDocumento>(await _visureRepository.GetAllFormatiDocumentoAsync());
 
             CodiciDocumento = new ObservableCollection<VisureCodiceDocumento>(await _visureRepository.GetAllCodiciDocumentoAsync());
+
+            TipiRecapito = new ObservableCollection<VisureTipoRecapito>(await _visureRepository.GetAllTipiRecapitoAsync());
 
             InitializaVisura(visura);
 
@@ -115,5 +129,9 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<VisureFormatoDocumento> FormatiDocumento { get; set; }
 
         public ObservableCollection<VisureCodiceDocumento> CodiciDocumento { get; set; }
+
+        public ObservableCollection<VisureTipoRecapito> TipiRecapito { get; set; }
+
+        public ICommand InvioCommand { get; set; }
     }
 }

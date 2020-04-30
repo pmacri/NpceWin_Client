@@ -7,9 +7,9 @@ using NPCE_WinClient.Model;
 
 namespace NPCE_WinClient.UI.Data.Repositories
 {
-    public class VisureRepository: GenericRepository<Visura, NpceDbContext>, IVisureRepository
+    public class VisureRepository : GenericRepository<Visura, NpceDbContext>, IVisureRepository
     {
-        public VisureRepository(NpceDbContext context): base(context)
+        public VisureRepository(NpceDbContext context) : base(context)
         {
 
         }
@@ -17,6 +17,11 @@ namespace NPCE_WinClient.UI.Data.Repositories
         public async Task<IEnumerable<VisureCodiceDocumento>> GetAllCodiciDocumentoAsync()
         {
             return await Context.VisureCodiceDocumento.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<IEnumerable<VisureTipoRecapito>> GetAllTipiRecapitoAsync()
+        {
+            return await Context.VisureTipoRecapito.AsNoTracking().ToListAsync();
         }
 
         public async Task<IEnumerable<VisureFormatoDocumento>> GetAllFormatiDocumentoAsync()
@@ -37,6 +42,13 @@ namespace NPCE_WinClient.UI.Data.Repositories
         public async Task<VisureTipoDocumento> GetTipoDocumentoByDescriptionAsync(string description)
         {
             return await Context.VisureTipoDocumento.Where(td => td.Descrizione == description).FirstAsync();
+        }
+
+        public override async Task<Visura> GetByIdAsync(int id)
+        {
+            return await Context.Visura.Include(v => v.DocumentoTipoDocumento)
+                                       .Where(v => v.Id == id)
+                                       .FirstOrDefaultAsync();
         }
 
     }

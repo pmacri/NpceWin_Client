@@ -41,6 +41,12 @@
     <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="ComunicazioniElettroniche.Common">
+      <HintPath>..\ComunicazioniElettroniche.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ComunicazioniElettroniche.Visure">
+      <HintPath>..\ComunicazioniElettroniche.Visure.dll</HintPath>
+    </Reference>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
     </Reference>
@@ -128,6 +134,7 @@
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Npce\Helper.cs" />
     <Compile Include="Npce\InvioRol.cs" />
+    <Compile Include="Npce\InvioVisuraPIL.cs" />
     <Compile Include="Npce\NpceOperationBase.cs" />
     <Compile Include="Npce\NpceOperationResult.cs" />
     <Compile Include="Npce\NpceOperations.cs" />

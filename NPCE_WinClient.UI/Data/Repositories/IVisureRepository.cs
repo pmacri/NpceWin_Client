@@ -15,5 +15,6 @@ namespace NPCE_WinClient.UI.Data.Repositories
         Task<IEnumerable<VisureFormatoDocumento>> GetAllFormatiDocumentoAsync();
         Task<VisureFormatoDocumento> GetFormatoDocumentoByDescriptionAsync(string description);
         Task<IEnumerable<VisureCodiceDocumento>> GetAllCodiciDocumentoAsync();
+        Task<IEnumerable<VisureTipoRecapito>> GetAllTipiRecapitoAsync();
     }
 }

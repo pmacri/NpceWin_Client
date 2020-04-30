@@ -34,6 +34,8 @@ namespace NPCE_WinClient.Model
 
         public VisureTipoRecapito VisureTipoRecapito { get; set; }
 
+        public string VisureTipoRecapitoId { get; set; }
+
         // Documento
         public string DocumentoIntestatarioNome { get; set; }
 

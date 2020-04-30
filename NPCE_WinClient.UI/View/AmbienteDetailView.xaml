@@ -34,6 +34,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="300"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Tag" Margin="5 5"></TextBlock>
@@ -59,6 +60,10 @@
         <TextBlock Grid.Row="4" Text="Sender System" Grid.Column="1" Margin="5 5"></TextBlock>
         <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Ambiente.sendersystem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
+        
+        <TextBlock Grid.Row="4" Grid.Column="2" Text="Customer"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="5" Grid.Column="2" Text="{Binding Ambiente.customer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
 
         <TextBlock Grid.Row="6" Text="Sm User" Margin="5 5"></TextBlock>
         <TextBox Grid.Row="7"  Text="{Binding Ambiente.smuser, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -68,41 +73,39 @@
         <TextBox Grid.Row="7" Grid.Column="1" Text="{Binding Ambiente.contracttype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="8" Text="User Type" Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="9"  Text="{Binding Ambiente.usertype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 Margin="5 5"/>
+        <TextBlock Grid.Row="6" Grid.Column="2" Text="User Type" Margin="5 5" HorizontalAlignment="Left"></TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="3" HorizontalAlignment="Left" Text="{Binding Ambiente.usertype, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5" Width="100"/>
 
         <TextBlock Grid.Row="8" Text="Codice Fiscale" Grid.Column="1" Margin="5 5"></TextBlock>
         <TextBox Grid.Row="9" Grid.Column="1" Text="{Binding Ambiente.codicefiscale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
 
-        <TextBlock Grid.Row="10" Text="Contract Id"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="11" Text="{Binding Ambiente.contractid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="8" Text="Contract Id"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="9" Text="{Binding Ambiente.contractid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="10" Grid.Column="1" Text="Customer"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="11" Grid.Column="1" Text="{Binding Ambiente.customer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 Margin="5 5"/>
+        
 
-
-
-
-
-        <TextBlock Grid.Row="12" Text="Partita Iva"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="13" Text="{Binding Ambiente.partitaiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="8" Text="Partita Iva" Grid.Column="2"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="9" Grid.Column="2" Text="{Binding Ambiente.partitaiva, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="12" Grid.Column="1" Text="Lol Uri"  Margin="5 5"></TextBlock>
         <TextBox Grid.Row="13" Grid.Column="1" Text="{Binding Ambiente.LolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="14" Text="ROL Uri"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="15" Text="{Binding Ambiente.RolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="12" Text="ROL Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="13" Text="{Binding Ambiente.RolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="14" Grid.Column="1" Text="Mol Uri"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="15" Grid.Column="1" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="14" Grid.Column="0" Text="Mol Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Grid.Column="0" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="12" Grid.Column="3" Text="Vol Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="13" Grid.Column="2" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="16" Text="Username"  Margin="5 5"></TextBlock>
@@ -111,8 +114,7 @@
 
         <TextBlock Grid.Row="16" Grid.Column="1" Text="Password"  Margin="5 5"></TextBlock>
         <TextBox Grid.Row="17" Grid.Column="1" Text="{Binding Ambiente.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 Margin="5 5"/>
-        
+                 Margin="5 5"/>       
 
         <StackPanel Grid.Row="19" Grid.ColumnSpan="2"  Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>

@@ -179,6 +179,14 @@
     <Compile Include="Migrations\202004161917556_FKVisure3.designer.cs">
       <DependentUpon>202004161917556_FKVisure3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004291405198_VolUri.cs" />
+    <Compile Include="Migrations\202004291405198_VolUri.designer.cs">
+      <DependentUpon>202004291405198_VolUri.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004300901517_TipoRecapito.cs" />
+    <Compile Include="Migrations\202004300901517_TipoRecapito.designer.cs">
+      <DependentUpon>202004300901517_TipoRecapito.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -289,6 +297,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004161917556_FKVisure3.resx">
       <DependentUpon>202004161917556_FKVisure3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004291405198_VolUri.resx">
+      <DependentUpon>202004291405198_VolUri.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004300901517_TipoRecapito.resx">
+      <DependentUpon>202004300901517_TipoRecapito.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
