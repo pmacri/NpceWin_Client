@@ -26,6 +26,7 @@ namespace NPCE_WinClient.UI.Npce
             ce.Header.GUIDMessage = Guid.NewGuid().ToString();
 
             DocumentiRequest documentiRequest = GetDocumentiRequest(_visura);
+
             ce.Body = SerializationUtility.SerializeToXmlElement(documentiRequest);
 
             DocumentiResponse documentiResponse = null;

@@ -105,7 +105,7 @@
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="12" Grid.Column="3" Text="Vol Uri"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="13" Grid.Column="2" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBox Grid.Row="13" Grid.Column="2" Text="{Binding Ambiente.VolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="16" Text="Username"  Margin="5 5"></TextBlock>

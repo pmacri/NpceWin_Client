@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FriendOrganizer.UI.View.Services;
 using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
 using NPCE_WinClient.UI.Npce;
@@ -169,7 +170,9 @@ namespace NPCE_WinClient.UI.ViewModel
                 Servizio.IdOrdine = result.IdOrdine;
 
                 var statoCreated = _statoServizioRepository.GetByDescription("Inviato");
+
                 Servizio.Model.StatoServizioId = statoCreated.Id;
+
                 OnSaveExecute();
 
                 TipoServizio.Id = Servizio.TipoServizio.Id;

@@ -25,7 +25,7 @@ namespace NPCE_WinClient.UI.Startup
             builder.RegisterType<NpceDbContext>().AsSelf();
 
             builder.RegisterType<MainWindow>().AsSelf();
-            builder.RegisterType<MessageDialogService>().As< IMessageDialogService>();
+            builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
             builder.RegisterType<FileService>().As<IFileService>();
 
             builder.RegisterType<MainViewModel>().AsSelf();
@@ -59,6 +59,8 @@ namespace NPCE_WinClient.UI.Startup
                 .Keyed<IDetailViewModel>(nameof(PagineBollettinoDetailViewModel));
             builder.RegisterType<VisuraDetailViewModel>()
                 .Keyed<IDetailViewModel>(nameof(VisuraDetailViewModel));
+            builder.RegisterType<VisureOperationsDetailViewModel>()
+                .Keyed<IDetailViewModel>(nameof(VisureOperationsDetailViewModel));
 
             return builder.Build();
         }

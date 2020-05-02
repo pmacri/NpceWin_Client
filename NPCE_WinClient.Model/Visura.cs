@@ -17,7 +17,6 @@ namespace NPCE_WinClient.Model
         public string RichiedenteIndirizzo { get; set; }
 
         public string RichiedenteLocalita { get; set; }
-
         public string RichiedenteCap { get; set; }
         public string RichiedentePrefissoTelefono { get; set; }
 

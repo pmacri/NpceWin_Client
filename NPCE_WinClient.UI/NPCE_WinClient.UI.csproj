@@ -156,6 +156,7 @@
     <Compile Include="ViewModel\INavigationViewModel.cs" />
     <Compile Include="ViewModel\IServizioDetailViewModel.cs" />
     <Compile Include="Data\Repositories\IServizioRepository.cs" />
+    <Compile Include="ViewModel\IVisureOperationsDetailViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\AnagraficaDetailViewModel.cs" />
     <Compile Include="ViewModel\NavigationItemViewModel.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="ViewModel\ServizioDetailViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Compile Include="ViewModel\VisuraDetailViewModel.cs" />
+    <Compile Include="ViewModel\VisureOperationsDetailViewModel.cs" />
     <Compile Include="View\AmbienteDetailView.xaml.cs">
       <DependentUpon>AmbienteDetailView.xaml</DependentUpon>
     </Compile>
@@ -193,6 +195,9 @@
     </Compile>
     <Compile Include="View\VisuraDetailView.xaml.cs">
       <DependentUpon>VisuraDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VisureOperationsDetailView.xaml.cs">
+      <DependentUpon>VisureOperationsDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wrapper\AmbienteWrapper.cs" />
     <Compile Include="Wrapper\AnagraficaWrapper.cs" />
@@ -246,6 +251,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\VisuraDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VisureOperationsDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

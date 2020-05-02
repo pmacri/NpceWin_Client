@@ -32,6 +32,9 @@
         <DataTemplate DataType="{x:Type viewModel:VisuraDetailViewModel}">
             <view:VisuraDetailView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:VisureOperationsDetailViewModel}">
+            <view:VisureOperationsDetailView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -59,6 +62,8 @@
             <MenuItem Header="Operations">
                 <MenuItem Header="Service Operations" Command="{Binding OpenSingleDetailViewCommand}"
                           CommandParameter="{x:Type viewModel:ServiceOperationsDetailViewModel}"/>
+                <MenuItem Header="Visure Operations" Command="{Binding OpenSingleDetailViewCommand}"
+                          CommandParameter="{x:Type viewModel:VisureOperationsDetailViewModel}"/>
             </MenuItem>
         </Menu>
         <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>

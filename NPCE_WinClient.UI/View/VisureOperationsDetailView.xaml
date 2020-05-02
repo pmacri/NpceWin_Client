@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="NPCE_WinClient.UI.View.VisureOperationsDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NPCE_WinClient.UI.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="0" >
+            <TextBlock Text="Ambiente" Margin="10 0"/>
+            <ComboBox  x:Name="comboBox" 
+                  HorizontalAlignment="Left" 
+                  Margin="10,0,-0.333,0"                   
+                  VerticalAlignment="Top" 
+                  Width="257" Height="22"
+                  ItemsSource="{Binding Ambienti}"
+                  DisplayMemberPath="Description"
+                  SelectedItem="{Binding Ambiente}"/>
+        </StackPanel>
+
+        <DataGrid ItemsSource="{Binding Visure}"
+                  SelectedItem="{Binding Visura,Mode=TwoWay}"
+                  AutoGenerateColumns="False" 
+                  RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" 
+                  Grid.Row="1"  Height="200" VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                
+                <DataGridTextColumn Header="Id" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Richiedente Cognome" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding RichiedenteCognome,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+
+                <DataGridTextColumn Header="Richiedente Nome" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding RichiedenteNome,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Cognome Intestatario" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding DocumentoIntestatarioCognome,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="CCIA" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding DocumentoIntestatarioCCIAA,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="NREA" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding DocumentoIntestatarioNREA,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Codice Fiscale" 
+                                    Width="Auto" 
+                                    ElementStyle="{StaticResource DataGridColumnStyle}"
+                                    Binding="{Binding DocumentoIntestatarioCodiceFiscale,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridTextColumn Header="Documento" 
+                                    Width="Auto"  
+                                    Binding="{Binding VisureCodiceDocumentoId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
+
+            </DataGrid.Columns>
+
+            
+            
+            
+        </DataGrid>
+
+        <!--Buttons-->
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <Button  Content="Invio" Command="{Binding InvioCommand}" Margin="5 0" Width="100"/>
+            <StackPanel Orientation="Horizontal" >
+                <Button  Content="Conferma" Command="{Binding ConfermaCommand}" Margin="5 0" Width="130"/>
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>
