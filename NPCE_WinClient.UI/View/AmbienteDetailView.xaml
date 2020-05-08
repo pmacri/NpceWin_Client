@@ -100,17 +100,25 @@
         <TextBox Grid.Row="13" Text="{Binding Ambiente.RolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="14" Grid.Column="0" Text="Mol Uri"  Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="15" Grid.Column="0" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                 Margin="5 5"/>
+       
 
         <TextBlock Grid.Row="12" Grid.Column="3" Text="Vol Uri"  Margin="5 5"></TextBlock>
         <TextBox Grid.Row="13" Grid.Column="2" Text="{Binding Ambiente.VolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
+        <TextBlock Grid.Row="14" Grid.Column="0" Text="Mol Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Grid.Column="0" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="14" Grid.Column="1" Text="Is Pil"  Margin="5 5"></TextBlock>
+        <CheckBox Grid.Row="15" Grid.Column="1" IsChecked="{Binding Ambiente.IsPil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
         <TextBlock Grid.Row="16" Text="Username"  Margin="5 5"></TextBlock>
         <TextBox Grid.Row="17" Text="{Binding Ambiente.Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
+        
+        
 
         <TextBlock Grid.Row="16" Grid.Column="1" Text="Password"  Margin="5 5"></TextBlock>
         <TextBox Grid.Row="17" Grid.Column="1" Text="{Binding Ambiente.Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 

@@ -192,5 +192,15 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
+
+        public bool IsPil
+        {
+            get { return GetValue<bool>(); }
+
+            set
+            {
+                SetValue<bool>(value);
+            }
+        }
     }
 }

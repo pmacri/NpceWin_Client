@@ -37,6 +37,7 @@ namespace NPCE_WinClient.Model
         public string VolUri { get; set; }
         public string contractid { get; set; }
         public string customer { get; set; }
+        public bool IsPil { get; set; }
     }
 }
 

@@ -112,6 +112,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\Services.Mol\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Data\Lookups\IAmbienteLookupDataService.cs" />
     <Compile Include="Data\Lookups\IAnagraficaLookupDataService.cs" />
     <Compile Include="Data\Lookups\IDocumentoLookupDataService.cs" />
@@ -133,6 +138,7 @@
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Npce\Helper.cs" />
+    <Compile Include="Npce\InvioMol.cs" />
     <Compile Include="Npce\InvioRol.cs" />
     <Compile Include="Npce\InvioVisuraPIL.cs" />
     <Compile Include="Npce\NpceOperationBase.cs" />
@@ -477,6 +483,64 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\NPCE_WinClient.Services.Rol\RolService.wsdl" />
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.AnnullaInvioLottoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.AnnullaInvioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.AnnullaStampaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.CaricamentoLottoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.ConfermaInvioLottoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.ConfermaInvioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.InvioLottoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.InvioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaDocRitiroDigitaleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaDocumentoRepsonse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaEsitiResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaInfoAmministrativeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaInviiResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaServizioPerIdLottoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaServizioPerIdRichiestaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaServizioPerNumeroRaccomandataResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaServizioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaStatoLottoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\NPCE_WinClient.UI.Services.Mol.RecuperaStatoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Mol\RaccomandataMarketService.wsdl" />
     <None Include="NPCE_WinClient.UI.ViewModel.PagineBollettinoDetailViewModel.datasource" />
     <None Include="NPCE_WinClient.UI.Wrapper.VisuraWrapper.datasource" />
     <None Include="packages.config" />
@@ -504,6 +568,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\NPCE_WinClient.Services.Lol\" />
     <WCFMetadataStorage Include="Connected Services\NPCE_WinClient.Services.Rol\" />
+    <WCFMetadataStorage Include="Connected Services\Services.Mol\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\NPCE_WinClient.Services.Lol\configuration91.svcinfo" />
@@ -525,6 +590,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\NPCE_WinClient.Services.Rol\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Services.Mol\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Services.Mol\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Services.Mol\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

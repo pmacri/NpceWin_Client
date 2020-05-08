@@ -105,14 +105,7 @@ namespace NPCE_WinClient.UI.Npce
             return new reference.Rol.Documento { MD5 = GetMD5(documento), Immagine = documento.Content, TipoDocumento = documento.Extension };
         }
 
-        private string GetMD5(Model.Documento documento)
-        {
-            using (System.Security.Cryptography.MD5CryptoServiceProvider cryptoService = new System.Security.Cryptography.MD5CryptoServiceProvider())
-            {
-                byte[] Ret = cryptoService.ComputeHash(documento.Content);
-                return BitConverter.ToString(Ret).Replace("-", "");
-            }
-        }
+        
 
         private void SetDestinatari(ROLSubmit rolSubmit)
         {

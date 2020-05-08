@@ -147,6 +147,13 @@ namespace NPCE_WinClient.UI.ViewModel
                         result = await InvioRolExecute();
                     }
                     break;
+               
+                case "Mol4":
+                case "Mol1":
+                    {
+                        result = await InvioMolExecute();
+                    }
+                    break;
             }
             string message;
 
@@ -212,6 +219,19 @@ namespace NPCE_WinClient.UI.ViewModel
             var result = invioOperation.Execute();
             return result;
         }
+
+        private async Task<NpceOperationResult> InvioMolExecute()
+        {
+            var idServizio = Servizio.Id;
+
+            var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+
+            var invioOperation = new InvioMol(Ambiente.Model, servizio, null);
+
+            var result = invioOperation.Execute();
+            return result;
+        }
+
 
         public ICommand InvioCommand { get; set; }
         public DelegateCommand PreConfermaCommand { get; }

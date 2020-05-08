@@ -47,9 +47,12 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             Visura.VisureTipoRecapito = new VisureTipoRecapito { Id = "DL", Descrizione = "Download" };
 
-            var operation = new InvioVisuraPIL(Visura.Model, Ambiente.Model);
+            if (ambiente.IsPil)
+            {
+                var operation = new InvioVisuraPIL(Visura.Model, Ambiente.Model);
 
-            operation.Execute();
+                operation.Execute();
+            }            
         }
 
         private bool OnInvioCanExcecute()

@@ -62,6 +62,15 @@ namespace NPCE_WinClient.UI.Npce
             return result;
 
         }
+
+        protected string GetMD5(Model.Documento documento)
+        {
+            using (System.Security.Cryptography.MD5CryptoServiceProvider cryptoService = new System.Security.Cryptography.MD5CryptoServiceProvider())
+            {
+                byte[] Ret = cryptoService.ComputeHash(documento.Content);
+                return BitConverter.ToString(Ret).Replace("-", "");
+            }
+        }
     }
 
 }

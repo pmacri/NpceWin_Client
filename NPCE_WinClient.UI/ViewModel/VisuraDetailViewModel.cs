@@ -57,13 +57,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             InitializaVisura(visura);
 
-            //SetupControls();
 
-        }
-
-        private void SetupControls()
-        {
-            throw new NotImplementedException();
         }
 
         private void InitializaVisura(Visura visura)
