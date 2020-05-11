@@ -83,10 +83,14 @@
         <TextBox Grid.Row="7" Grid.Column="3" Text="{Binding Anagrafica.Provincia, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Text="Casella Postale" Grid.ColumnSpan="4" Grid.Row="8" Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="9" Grid.ColumnSpan="4" Text="{Binding Anagrafica.CasellaPostale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Text="Casella Postale" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="8" Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="9" Grid.Column="2" Grid.ColumnSpan="2" Text="{Binding Anagrafica.CasellaPostale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
-        
+
+        <TextBlock Text="Mittente" Grid.ColumnSpan="2" Grid.Row="8" Margin="5 5"></TextBlock>
+        <CheckBox Grid.Row="9" Grid.ColumnSpan="2" IsChecked="{Binding Anagrafica.IsMittente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
 
         <StackPanel Grid.Row="16" Grid.ColumnSpan="3" Orientation="Horizontal">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}"/>

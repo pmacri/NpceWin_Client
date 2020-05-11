@@ -41,8 +41,16 @@
         <TextBox Grid.Row="1"  Text="{Binding Ambiente.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Text="Customer Id" Grid.Column="1" Margin="5 5"></TextBlock>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Ambiente.customerid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Text="Contratto MOL" Margin="5 5" Grid.Column="1"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding Ambiente.ContrattoMOL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Contratto COL" Margin="5 5" Grid.Column="2"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="2"  Text="{Binding Ambiente.ContrattoCOL, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Text="Customer Id"  Grid.Row="2" Grid.Column="2" Margin="5 0"></TextBlock>
+        <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding Ambiente.customerid, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="2" Text="Cost Center" Margin="5 5"></TextBlock>

@@ -187,6 +187,22 @@
     <Compile Include="Migrations\202004300901517_TipoRecapito.designer.cs">
       <DependentUpon>202004300901517_TipoRecapito.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005090910471_contratti.cs" />
+    <Compile Include="Migrations\202005090910471_contratti.designer.cs">
+      <DependentUpon>202005090910471_contratti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005111837224_SecondoTentativo.cs" />
+    <Compile Include="Migrations\202005111837224_SecondoTentativo.designer.cs">
+      <DependentUpon>202005111837224_SecondoTentativo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005111915323_SecondoTentativo2.cs" />
+    <Compile Include="Migrations\202005111915323_SecondoTentativo2.designer.cs">
+      <DependentUpon>202005111915323_SecondoTentativo2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005112043087_SecondoTentativo3.cs" />
+    <Compile Include="Migrations\202005112043087_SecondoTentativo3.designer.cs">
+      <DependentUpon>202005112043087_SecondoTentativo3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -303,6 +319,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004300901517_TipoRecapito.resx">
       <DependentUpon>202004300901517_TipoRecapito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005090910471_contratti.resx">
+      <DependentUpon>202005090910471_contratti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005111837224_SecondoTentativo.resx">
+      <DependentUpon>202005111837224_SecondoTentativo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005111915323_SecondoTentativo2.resx">
+      <DependentUpon>202005111915323_SecondoTentativo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005112043087_SecondoTentativo3.resx">
+      <DependentUpon>202005112043087_SecondoTentativo3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

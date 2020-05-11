@@ -10,5 +10,6 @@ namespace NPCE_WinClient.UI.Data.Repositories
         IEnumerable<TipoServizio> GetAllTipiServizio();
         IEnumerable<Documento> GetAllDocumenti();
         void UpdateTipoServizioAsync(int idServizio, int idTipoServizio);
+        void MakeMittenteDefault(Servizio servizio);
     }
 }

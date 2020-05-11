@@ -103,11 +103,10 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private void OnRemoveDocumentExecute()
         {
-            var documentoToRemove = SelectedDestinatarioAdded;
-
-            Servizio.Model.Anagrafiche.Remove(documentoToRemove);
-            DestinatariAdded.Remove(documentoToRemove);
-            DestinatariAvailable.Add(documentoToRemove);
+            var documentoToRemove = SelectedDocumentoAdded;
+            Servizio.Model.Documenti.Remove(documentoToRemove);
+            DocumentiAdded.Remove(documentoToRemove);
+            DocumentiAvailable.Add(documentoToRemove);
             HasChanges = _servizioRepository.HasChanges();
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
         }
@@ -321,6 +320,7 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             var statoCreated = _statoServizioRepository.GetByDescription("Salvato");
             Servizio.StatoServizioId = statoCreated.Id;
+            _servizioRepository.MakeMittenteDefault(Servizio.Model);
             await _servizioRepository.SaveAsync();
             Id = Servizio.Id;
             HasChanges = _servizioRepository.HasChanges();

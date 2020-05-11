@@ -176,7 +176,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
                 Servizio.IdOrdine = result.IdOrdine;
 
-                var statoCreated = _statoServizioRepository.GetByDescription("Inviato");
+                var statoCreated =Servizio.Autoconferma ? _statoServizioRepository.GetByDescription("Confermato") : _statoServizioRepository.GetByDescription("Inviato");
 
                 Servizio.Model.StatoServizioId = statoCreated.Id;
 

@@ -68,6 +68,16 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<bool>(value);
             }
         }
+
+        public bool SecondoTentativoRecapito
+        {
+            get { return GetValue<bool>(); }
+
+            set
+            {
+                SetValue<bool>(value);
+            }
+        }
         public string IdRichiesta
         {
             get { return GetValue<string>(); }

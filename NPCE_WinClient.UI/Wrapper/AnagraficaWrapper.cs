@@ -164,7 +164,25 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
-        public bool IsMittente { get; set; }
-        public bool IsDestinatarioAR { get; set; }
+
+        public bool IsMittente
+        {
+            get { return GetValue<bool>(); }
+
+            set
+            {
+                SetValue<bool>(value);
+            }
+        }
+
+        public bool IsDestinatarioAR
+        {
+            get { return GetValue<bool>(); }
+
+            set
+            {
+                SetValue<bool>(value);
+            }
+        }
     }
 }

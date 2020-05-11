@@ -36,6 +36,9 @@ namespace NPCE_WinClient.DataAccess
         {
             base.OnModelCreating(modelBuilder);
 
+            //modelBuilder.Entity<Anagrafica>()
+            //    .Ignore(a => a.IsMittente);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 

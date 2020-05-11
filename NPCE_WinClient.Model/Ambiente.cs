@@ -38,6 +38,8 @@ namespace NPCE_WinClient.Model
         public string contractid { get; set; }
         public string customer { get; set; }
         public bool IsPil { get; set; }
+        public string ContrattoMOL { get; set; }
+        public string ContrattoCOL { get; set; }
     }
 }
 

@@ -27,9 +27,10 @@ namespace NPCE_WinClient.UI.Npce
             _proxy = helper.GetProxy<IRaccomandataMarketService>(_ambiente.MolUri, _ambiente.Username, _ambiente.Password);
             InvioRequest molSubmit = new InvioRequest();
 
-            molSubmit.Intestazione = new Intestazione { CodiceContratto = "00000000040000018417", Prodotto = ProdottoPostaEvo.MOL1 };
+            molSubmit.Intestazione = new Intestazione { CodiceContratto = _ambiente.ContrattoMOL, Prodotto = ProdottoPostaEvo.MOL1 };
 
             var marketOnLine = new MarketOnline();
+            marketOnLine.AutoConferma = _servizio.Autoconferma;
 
             SetIntestazione(marketOnLine);
             SetMittente(marketOnLine);
@@ -42,10 +43,7 @@ namespace NPCE_WinClient.UI.Npce
             }
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
-            var headers = GetHttpHeaders(_ambiente);
-
-            headers.Headers["smuser"] = "H2HSTG18";
-            headers.Headers["customerid"] = "3909990439";
+            var headers = GetHttpHeaders(_ambiente);           
 
             OperationContext.Current.OutgoingMessageProperties[HttpRequestMessageProperty.Name] = headers;
 
@@ -79,7 +77,7 @@ namespace NPCE_WinClient.UI.Npce
             {
                 ArchiviazioneDocumenti = false,
                 AttestazioneConsegna = _servizio.AvvisoRicevimento,
-                SecondoTentativoRecapito = false
+                SecondoTentativoRecapito = _servizio.SecondoTentativoRecapito
 
             };
 

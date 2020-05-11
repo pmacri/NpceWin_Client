@@ -202,5 +202,26 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<bool>(value);
             }
         }
+
+        public string ContrattoMOL
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public string ContrattoCOL
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
     }
 }

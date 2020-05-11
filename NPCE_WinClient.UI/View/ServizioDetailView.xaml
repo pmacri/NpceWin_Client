@@ -16,8 +16,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto" MinHeight="256"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"></RowDefinition>
 
         </Grid.RowDefinitions>
@@ -44,12 +45,12 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition />
+                <RowDefinition  Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Label Content="Destinatari"/>
-            <ListView Grid.Row="1" ItemsSource="{Binding DestinatariAdded}"
+            <ListView Grid.Row="1" Width="240" ItemsSource="{Binding DestinatariAdded}"
                 SelectedItem="{Binding SelectedDestinatarioAdded}"/>
 
             <StackPanel Grid.Row="1" Grid.Column="1">
@@ -93,8 +94,7 @@
                 SelectedItem="{Binding SelectedDocumentoAvailable}" Grid.Column="2"/>
         </Grid>
 
-
-        <Grid  Margin="10,10,10,10.333" Grid.Row="2">
+        <Grid  Grid.Row="2" Height="200">
             <Grid.Resources>
                 <DataTemplate DataType="{x:Type model:Anagrafica}">
                     <TextBlock><Run Text="{Binding Cognome}"/> <Run Text="{Binding Nome}"/></TextBlock>
@@ -107,28 +107,27 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Label Content="Destinatari Ar"/>
-            <ListView Grid.Row="1" ItemsSource="{Binding DestinatariArAdded}"
+            <ListView Grid.Row="1" Width="250" ItemsSource="{Binding DestinatariArAdded}"
                 SelectedItem="{Binding SelectedDestinatarioArAdded}"/>
 
-            <StackPanel Grid.Row="1" Grid.Column="1">
+            <StackPanel Grid.Row="1" Grid.Column="1" Height="400">
                 <Button Content="&lt;&lt;" Margin="10" Command="{Binding AddDestinatarioArCommand}"/>
                 <Button Content="&gt;&gt;" Margin="10 0 10 10" Command="{Binding RemoveDestinatarioARCommand}"/>
             </StackPanel>
 
             <Label Content="Destinatari AR Available" Grid.Column="2"/>
-            <ListView Grid.Row="1" ItemsSource="{Binding DestinatariArAvailable}"
+            <ListView Grid.Row="1"  ItemsSource="{Binding DestinatariArAvailable}"
                 SelectedItem="{Binding SelectedDestinatarioARAvailable}" Grid.Column="2" Width="200"/>
         </Grid>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,214.667,0,0.333" Grid.ColumnSpan="3">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Height="60"  Grid.ColumnSpan="3">
             <Button Content="Save" Width="125" Margin="10" Command="{Binding SaveCommand}" VerticalContentAlignment="Stretch" HorizontalAlignment="Center"/>
             <Button Content="Delete" Width="125" Margin="10" Command="{Binding DeleteCommand}" HorizontalAlignment="Center"/>
-            <Button Content="Add PagineBollettini" Width="125" Margin="10" Command="{Binding OpenPagineBollettinoCommand}" HorizontalAlignment="Center"/>
+            <Button Content="Add Pagine Bollettini" Width="250" Margin="10" Command="{Binding OpenPagineBollettinoCommand}" HorizontalAlignment="Center"/>
 
         </StackPanel>
         

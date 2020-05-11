@@ -40,7 +40,7 @@
         </StackPanel>
 
         <DataGrid ItemsSource="{Binding Servizi}"
-                  SelectedItem="{Binding Servizio,Mode=TwoWay}"
+                  SelectedItem="{Binding Servizio}"
                   AutoGenerateColumns="False" 
                   RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" 
                   Grid.RowSpan="2" Height="200" VerticalScrollBarVisibility="Visible">
@@ -49,6 +49,7 @@
                                     Width="Auto" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     Binding="{Binding Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                
                 <DataGridTextColumn Header="Tipo Servizio" 
                                     Width="Auto" 
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
@@ -64,35 +65,50 @@
                                     ElementStyle="{StaticResource DataGridColumnStyle}"
                                     Binding="{Binding StatoServizio.Descrizione,UpdateSourceTrigger=PropertyChanged}"/>
 
-                <DataGridTextColumn Header="Ordine" 
+                <DataGridCheckBoxColumn Header="Autoconferma" 
                                     Width="Auto" 
-                                    ElementStyle="{StaticResource DataGridColumnStyle}"
-                                    Binding="{Binding IdOrdine,UpdateSourceTrigger=PropertyChanged}"/>
+                                   
+                                    Binding="{Binding Autoconferma,UpdateSourceTrigger=PropertyChanged}"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <!--Opzioni-->
-        <GroupBox x:Name="groupBoxOpzioni" Header="Opzioni" HorizontalAlignment="Left" Height="Auto" Margin="5,10,0,0" Grid.Row="2" 
-                  VerticalAlignment="Top" Width="Auto">
-            <Grid HorizontalAlignment="Left" Height="125" Margin="46,35,-0.333,0" VerticalAlignment="Top" Width="409" RenderTransformOrigin="0.251,-0.216">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+        <StackPanel  Orientation="Horizontal" Grid.Row="2">
+            <GroupBox x:Name="groupBoxOpzioni" Header="Opzioni" HorizontalAlignment="Left" Height="Auto" 
+                  Margin="5,20,0,0"  
+                  VerticalAlignment="Top" Width="350">
+                <Grid HorizontalAlignment="Left" Height="125"  VerticalAlignment="Top" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0 10"  HorizontalAlignment="Left" Grid.ColumnSpan="3">
+                            <CheckBox Margin="2 0 10 0" IsChecked="{Binding Servizio.Colore,Mode=TwoWay}" VerticalAlignment="Top" Content="Colore" HorizontalAlignment="Left"></CheckBox>
+                            <CheckBox Margin="30 0"  VerticalAlignment="Top" Content="Fronte/Retro"  IsChecked="{Binding Servizio.FronteRetro,Mode=TwoWay}"></CheckBox>
+                            <CheckBox Margin="20 0" Content="AR" VerticalAlignment="Top"  IsChecked="{Binding Servizio.AvvisoRicevimento,Mode=TwoWay}"></CheckBox>
+                        </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="3">
-                    <CheckBox Margin="-30 0 10 0" IsChecked="{Binding Servizio.Colore,Mode=TwoWay}" VerticalAlignment="Top" Content="Colore" HorizontalAlignment="Left"></CheckBox>
-                    <CheckBox Margin="30 0"  VerticalAlignment="Top" Content="Fronte/Retro"  IsChecked="{Binding Servizio.FronteRetro,Mode=TwoWay}"></CheckBox>
-                    <CheckBox Margin="20 0" Content="AR" VerticalAlignment="Top"  IsChecked="{Binding Servizio.AvvisoRicevimento,Mode=TwoWay}"></CheckBox>
-                </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0 10"  HorizontalAlignment="Left" Grid.Row="2" Grid.ColumnSpan="3">
+                            <CheckBox Margin="2 0 10 0" IsChecked="{Binding Servizio.Autoconferma,Mode=TwoWay}" 
+                                  VerticalAlignment="Top"   
+                                  Content="AutoConferma" HorizontalAlignment="Left"></CheckBox>
+                            <CheckBox Margin="10 0" IsChecked="{Binding Servizio.SecondoTentativoRecapito,Mode=TwoWay}" 
+                                  VerticalAlignment="Top"   
+                                  Content="Secondo tentativo" HorizontalAlignment="Left"></CheckBox>
+                        </StackPanel>
+                    </StackPanel>
+                    
 
-
-            </Grid>
-        </GroupBox>
+                </Grid>
+            </GroupBox>
+           
+        </StackPanel>
+        
 
         
         <!--Buttons-->

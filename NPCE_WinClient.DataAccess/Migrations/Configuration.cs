@@ -99,6 +99,18 @@
                     NumeroCivico = "18",
                     Provincia = "TR",
                     Stato = "ITALIA"
+                },
+                new Model.Anagrafica
+                {
+                    Nome = "DITTA ",
+                    Cognome = "MARKET",
+                    DUG = "Viale",
+                    Citta = "ROMA",
+                    Cap = "00144",
+                    Toponimo = "EUROPA",
+                    NumeroCivico = "180",
+                    Provincia = "RM",
+                    Stato = "ITALIA"
                 }
                 );
 

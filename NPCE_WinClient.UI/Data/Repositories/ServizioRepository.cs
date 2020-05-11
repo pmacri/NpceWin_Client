@@ -53,6 +53,18 @@ namespace NPCE_WinClient.UI.Data.Repositories
             }
             
         }
-        
+
+        public void MakeMittenteDefault(Servizio servizio)
+        {
+            var mittente = servizio.Anagrafiche.FirstOrDefault(a => a.IsMittente == true);
+
+            foreach (var item in Context.Anagrafica.Where(a => a.Id != mittente.Id))
+            {
+                item.IsMittente = false;
+            }
+
+            mittente.IsMittente = true;
+            Context.SaveChanges();
+        }
     }
 }
