@@ -28,6 +28,10 @@ namespace FriendOrganizer.UI.View.Services
             await MetroWindow.ShowMessageAsync("Info", text);
         }
 
+        public Task<ProgressDialogController> ShowProgressAsync(string title, string message)
+        {
+            return MetroWindow.ShowProgressAsync(title, message);
+        }
     }
     public enum MessageDialogResult
     {

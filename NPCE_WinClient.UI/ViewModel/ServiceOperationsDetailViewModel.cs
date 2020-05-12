@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FriendOrganizer.UI.View.Services;
+using MahApps.Metro.Controls.Dialogs;
 using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
 using NPCE_WinClient.UI.Npce;
@@ -24,6 +25,7 @@ namespace NPCE_WinClient.UI.ViewModel
         private IStatoServizioRepository _statoServizioRepository;
         private IMessageDialogService _messageDialogService;
         private IEnumerable<TipoServizio> _allTipi;
+        private ProgressDialogController controller;
 
         public ServiceOperationsDetailViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
@@ -132,6 +134,8 @@ namespace NPCE_WinClient.UI.ViewModel
             _servizioRepository.UpdateTipoServizioAsync(Servizio.Id, TipoServizio.Id);
 
             NpceOperationResult result = null;
+            controller = await _messageDialogService.ShowProgressAsync("Invio", "Elaborazione Invio");
+
 
             switch (TipoServizio.Descrizione)
             {
@@ -154,7 +158,16 @@ namespace NPCE_WinClient.UI.ViewModel
                         result = await InvioMolExecute();
                     }
                     break;
+
+                case "Col4":
+                case "Col1":
+                    {
+                        result = await InvioColExecute();
+                    }
+                    break;
             }
+            await controller.CloseAsync();
+
             string message;
 
             if (result.Success)
@@ -185,6 +198,19 @@ namespace NPCE_WinClient.UI.ViewModel
                 TipoServizio.Id = Servizio.TipoServizio.Id;
             }
 
+        }
+
+        private async Task<NpceOperationResult> InvioColExecute()
+        {
+            var idServizio = Servizio.Id;
+
+            var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+
+            var invioOperation = new InvioCol(Ambiente.Model, servizio, null);
+
+            var result = invioOperation.Execute();
+
+            return result;
         }
 
         private async Task<NpceOperationResult> InvioLolExecute()
@@ -226,7 +252,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             var servizio = await _servizioRepository.GetByIdAsync(idServizio);
 
-            var invioOperation = new InvioMol(Ambiente.Model, servizio, null);
+            var invioOperation = new InvioCol(Ambiente.Model, servizio, null);
 
             var result = invioOperation.Execute();
             return result;

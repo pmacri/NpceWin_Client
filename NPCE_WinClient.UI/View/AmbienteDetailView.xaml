@@ -118,8 +118,12 @@
         <TextBox Grid.Row="15" Grid.Column="0" Text="{Binding Ambiente.MolUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
-        <TextBlock Grid.Row="14" Grid.Column="1" Text="Is Pil"  Margin="5 5"></TextBlock>
-        <CheckBox Grid.Row="15" Grid.Column="1" IsChecked="{Binding Ambiente.IsPil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+        <TextBlock Grid.Row="14" Grid.Column="1" Text="Col Uri"  Margin="5 5"></TextBlock>
+        <TextBox Grid.Row="15" Grid.Column="1" Text="{Binding Ambiente.ColUri, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 Margin="5 5"/>
+
+        <TextBlock Grid.Row="16" Grid.Column="2" Text="Is Pil"  Margin="5 5"></TextBlock>
+        <CheckBox Grid.Row="17" Grid.Column="2" IsChecked="{Binding Ambiente.IsPil, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                  Margin="5 5"/>
 
         <TextBlock Grid.Row="16" Text="Username"  Margin="5 5"></TextBlock>

@@ -7,7 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.UI", "NPCE_W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2285A8FF-89D2-45CB-8340-8443DFEB0378}"
 	ProjectSection(SolutionItems) = preProject
+		ColService.wsdl = ColService.wsdl
+		LolService.wsdl = LolService.wsdl
 		MolService.wsdl = MolService.wsdl
+		RolService.wsdl = RolService.wsdl
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.Model", "NPCE_WinClient.Model\NPCE_WinClient.Model.csproj", "{5308BFB4-CCA8-40CF-9D35-941094C5E6BE}"
