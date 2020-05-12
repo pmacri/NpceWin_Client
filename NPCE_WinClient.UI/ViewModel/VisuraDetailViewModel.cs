@@ -78,10 +78,10 @@ namespace NPCE_WinClient.UI.ViewModel
             ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
 
             // Little trick to trigger validation on a new anagrafica
-            if (Visura.Id == 0)
-            {
-                Visura.DestinatarioNominativo = "";
-            }
+            //if (Visura.Id == 0)
+            //{
+            //    Visura.DestinatarioNominativo = "";
+            //}
 
             SetTitle();
         }
@@ -93,7 +93,29 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private Visura CreateNewVisura()
         {
-            Visura visura = new Visura();
+            Visura visura = new Visura
+            {
+                RichiedenteCognome = "ROSSI",
+                RichiedenteNome = "MARIO",
+                RichiedenteCap = "00144",
+                RichiedenteIndirizzo = "VIALE EUROPA 175",
+                RichiedenteLocalita = "ROMA ",
+                RichiedentePrefissoTelefono = "06",
+                RichiedenteTelefono = "282741",
+
+                DestinatarioCap = "00144",
+                DestinatarioEmail = "casarol7@posteitaliane.it",
+                DestinatarioLocalita = "ROMA",
+                DestinatarioNominativo = "BIANCHI GIULIO",
+
+                DocumentoIntestatarioCCIAA = "RM",
+                DocumentoIntestatarioNREA = "1064345",
+
+                DocumentoIntestatarioCognome="Verdi",
+                DocumentoIntestatarioNome="Emilio"
+               
+            };
+
             _visureRepository.Add(visura);
 
             return visura;

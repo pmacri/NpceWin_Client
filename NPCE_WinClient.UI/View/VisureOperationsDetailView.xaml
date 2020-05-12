@@ -14,7 +14,7 @@
 
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-
+        <StackPanel Orientation="Horizontal">            
         <StackPanel Margin="0" >
             <TextBlock Text="Ambiente" Margin="10 0"/>
             <ComboBox  x:Name="comboBox" 
@@ -26,7 +26,30 @@
                   DisplayMemberPath="Description"
                   SelectedItem="{Binding Ambiente}"/>
         </StackPanel>
+            <StackPanel Margin="0" >
+                <TextBlock Text="AutoConferma" Margin="10 0"/>
+                <CheckBox  x:Name="ChkAutoConferma" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top"
+                           Margin="10 0"
+                  Width="257" Height="22"
+                  IsChecked="{Binding AutoConferma}"
+                  />
+            </StackPanel>
 
+            <StackPanel Margin="0" >
+                <TextBlock Text="Controlla Prezzo" Margin="10 0"/>
+                <CheckBox  x:Name="ChkControllaPrezzo" 
+                  HorizontalAlignment="Left" 
+                  VerticalAlignment="Top" 
+                  Width="40" Height="22"
+                           Margin="10 0"
+                  IsChecked="{Binding ControllaPrezzo}"
+                  />
+            </StackPanel>
+
+
+        </StackPanel>
         <DataGrid ItemsSource="{Binding Visure}"
                   SelectedItem="{Binding Visura,Mode=TwoWay}"
                   AutoGenerateColumns="False" 

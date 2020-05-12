@@ -22,7 +22,6 @@ namespace NPCE_WinClient.UI.ViewModel
         private readonly IAmbienteRepository ambienteRepository;
         private readonly IStatoServizioRepository statoServizioRepository;
         private int idStatoServizioSalvato;
-        private AmbienteWrapper ambiente;
 
         public VisureOperationsDetailViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
@@ -40,22 +39,22 @@ namespace NPCE_WinClient.UI.ViewModel
 
             Visure = new ObservableCollection<VisuraWrapper>();
 
-            InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExcecute);
+            InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
         }
 
         private void OnInvioExecute()
         {
-            Visura.VisureTipoRecapito = new VisureTipoRecapito { Id = "DL", Descrizione = "Download" };
+            //Visura.VisureTipoRecapito = new VisureTipoRecapito { Id = "DL", Descrizione = "Download" };
 
-            if (ambiente.IsPil)
+            if (Ambiente.IsPil)
             {
                 var operation = new InvioVisuraPIL(Visura.Model, Ambiente.Model);
 
-                operation.Execute();
+                operation.Execute(AutoConferma, ControllaPrezzo);
             }            
         }
 
-        private bool OnInvioCanExcecute()
+        private bool OnInvioCanExecute()
         {
             return Visura != null && Visura.StatoServizioId == idStatoServizioSalvato && Ambiente != null;
         }
@@ -161,5 +160,9 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<VisuraWrapper> Visure { get; set; }
 
         public DelegateCommand InvioCommand { get; set; }
+
+        public bool AutoConferma { get; set; }
+
+        public bool ControllaPrezzo { get; set; }
     }
 }

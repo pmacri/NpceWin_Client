@@ -18,7 +18,7 @@ namespace NPCE_WinClient.UI.Npce
     {
         private readonly Visura _visura;
 
-        public void Execute()
+        public void Execute(bool autoConferma, bool controllaPrezzo)
         {
 
             var ce = new ComunicazioniElettroniche.Common.DataContracts.CE();
@@ -26,6 +26,11 @@ namespace NPCE_WinClient.UI.Npce
             ce.Header.GUIDMessage = Guid.NewGuid().ToString();
 
             DocumentiRequest documentiRequest = GetDocumentiRequest(_visura);
+            documentiRequest.ControllaPrezzoDiVendita = controllaPrezzo;
+            documentiRequest.ControllaPrezzoDiVenditaSpecified = true;
+            documentiRequest.Autoconferma = autoConferma;
+            documentiRequest.AutoconfermaSpecified = true;
+
 
             ce.Body = SerializationUtility.SerializeToXmlElement(documentiRequest);
 
@@ -103,7 +108,8 @@ namespace NPCE_WinClient.UI.Npce
                 Canale = _ambiente.sendersystem,
                 Cliente = _ambiente.customerid,
                 IdCdC = "",
-                UserId = _ambiente.smuser
+                UserId = _ambiente.smuser,
+                IdCliente= _ambiente.customerid
             };
         }
 
@@ -137,7 +143,7 @@ namespace NPCE_WinClient.UI.Npce
         {
             result.Recapito = new DocumentiRequestRecapito
             {
-                CodiceRecapito = _visura.VisureTipoRecapito.Id,
+                CodiceRecapito = _visura.VisureTipoRecapitoId,
                 Email = _visura.DestinatarioEmail,
                 Destinatario = new DocumentiRequestRecapitoDestinatario
                 {
