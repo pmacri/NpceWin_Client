@@ -62,6 +62,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="PosteItaliane.OrderManagement.Schema.Code">
+      <HintPath>..\PosteItaliane.OrderManagement.Schema.Code.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -122,6 +125,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\Services.Vol\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Data\Lookups\IAmbienteLookupDataService.cs" />
     <Compile Include="Data\Lookups\IAnagraficaLookupDataService.cs" />
     <Compile Include="Data\Lookups\IDocumentoLookupDataService.cs" />
@@ -155,6 +163,7 @@
     <Compile Include="Npce\RecuperaIdRichiestaLol.cs" />
     <Compile Include="Npce\InvioLol.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaRol.cs" />
+    <Compile Include="Npce\Vol.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\IPagineBollettinoDetailViewModel.cs" />
     <Compile Include="ViewModel\IServiceOperationsDetailViewModel.cs" />
@@ -602,6 +611,22 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\Services.Mol\RaccomandataMarketService.wsdl" />
+    <None Include="Connected Services\Services.Vol\CameraliService.wsdl" />
+    <None Include="Connected Services\Services.Vol\NPCE_WinClient.UI.Services.Vol.ConfermaInvioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Vol\NPCE_WinClient.UI.Services.Vol.InvioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Vol\NPCE_WinClient.UI.Services.Vol.RecuperaDocumentoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Vol\NPCE_WinClient.UI.Services.Vol.RecuperaServizioResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\Services.Vol\NPCE_WinClient.UI.Services.Vol.RecuperaStatoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="NPCE_WinClient.UI.ViewModel.PagineBollettinoDetailViewModel.datasource" />
     <None Include="NPCE_WinClient.UI.Wrapper.VisuraWrapper.datasource" />
     <None Include="packages.config" />
@@ -631,6 +656,7 @@
     <WCFMetadataStorage Include="Connected Services\NPCE_WinClient.Services.Lol\" />
     <WCFMetadataStorage Include="Connected Services\NPCE_WinClient.Services.Rol\" />
     <WCFMetadataStorage Include="Connected Services\Services.Mol\" />
+    <WCFMetadataStorage Include="Connected Services\Services.Vol\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\NPCE_WinClient.Services.Lol\configuration91.svcinfo" />
@@ -676,6 +702,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\NPCE_WinClient.Services.Col\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Services.Vol\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Services.Vol\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\Services.Vol\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

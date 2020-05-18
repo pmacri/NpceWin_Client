@@ -16,21 +16,20 @@ namespace NPCE_WinClient.UI.Npce
 {
     public class InvioVisuraPIL : NpceOperationBase
     {
-        private readonly Visura _visura;
+        //private readonly Visura _visura;
 
-        public void Execute(bool autoConferma, bool controllaPrezzo)
+        public NpceOperationResult Execute(bool autoConferma, bool controllaPrezzo)
         {
 
             var ce = new ComunicazioniElettroniche.Common.DataContracts.CE();
             ce.Header = GetHeaders(_ambiente);
             ce.Header.GUIDMessage = Guid.NewGuid().ToString();
 
-            DocumentiRequest documentiRequest = GetDocumentiRequest(_visura);
+            DocumentiRequest documentiRequest = GetDocumentiRequest();
             documentiRequest.ControllaPrezzoDiVendita = controllaPrezzo;
             documentiRequest.ControllaPrezzoDiVenditaSpecified = true;
             documentiRequest.Autoconferma = autoConferma;
             documentiRequest.AutoconfermaSpecified = true;
-
 
             ce.Body = SerializationUtility.SerializeToXmlElement(documentiRequest);
 
@@ -43,16 +42,18 @@ namespace NPCE_WinClient.UI.Npce
                 {
                     documentiResponse = SerializationUtility.Deserialize<DocumentiResponse>(ce.Body);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    throw (ex);
                 }
             }
+
+            return CreateResult(NpceOperation.Invio, documentiResponse.Result.ResType == TResultResType.I ? "0" : "99", "Invio Ok", documentiResponse.IdentificativoRichiesta, null, null);
+
         }
 
-        public InvioVisuraPIL(Visura visura, Ambiente ambiente) : base(ambiente, null, null)
+        public InvioVisuraPIL(Visura visura, Ambiente ambiente) : base(ambiente, visura, null)
         {
-            _visura = visura;
         }
 
         private ComunicazioniElettroniche.Common.DataContracts.CEHeader GetHeaders(Ambiente ambiente)
@@ -74,12 +75,10 @@ namespace NPCE_WinClient.UI.Npce
             };
         }
 
-        private DocumentiRequest GetDocumentiRequest(Visura visura)
+        private DocumentiRequest GetDocumentiRequest()
         {
             DocumentiRequest result = new DocumentiRequest();
-            result.IdRichiesta = Guid.NewGuid().ToString();
-
-            
+            result.IdRichiesta = Guid.NewGuid().ToString();            
             SetDocumentoIntestatario(result);
             SetRecapito(result);
             SetUserInfo(result);
@@ -149,7 +148,8 @@ namespace NPCE_WinClient.UI.Npce
                 {
                     CAP = _visura.DestinatarioCap,
                     Localita = _visura.DestinatarioLocalita,
-                    NomeCognome = _visura.DestinatarioNominativo
+                    NomeCognome = _visura.DestinatarioNominativo,
+                    Indirizzo = _visura.DestinatarioIndirizzo
                 }
             };
 

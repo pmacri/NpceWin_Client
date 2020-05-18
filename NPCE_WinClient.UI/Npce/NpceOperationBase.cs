@@ -15,13 +15,25 @@ namespace NPCE_WinClient.UI.Npce
 
         protected readonly Ambiente _ambiente;
         protected readonly Servizio _servizio;
+        protected readonly Visura _visura;
         protected readonly string _idRichiesta;
 
-        public NpceOperationBase(Ambiente ambiente, Servizio servizio, string idRichiesta)
+
+        public NpceOperationBase(Ambiente ambiente, string idRichiesta)
         {
             _ambiente = ambiente;
             _idRichiesta = idRichiesta;
-            _servizio = servizio;        }
+        }
+        public NpceOperationBase(Ambiente ambiente, Servizio servizio, string idRichiesta) : this(ambiente, idRichiesta)
+        {
+
+            _servizio = servizio;
+        }
+
+        public NpceOperationBase(Ambiente ambiente, Visura visura, string idRichiesta) : this(ambiente, idRichiesta)
+        {
+            _visura = visura;
+        }
         protected virtual HttpRequestMessageProperty GetHttpHeaders(Ambiente ambiente)
         {
             var property = new HttpRequestMessageProperty();
@@ -38,10 +50,10 @@ namespace NPCE_WinClient.UI.Npce
 
 
             return property;
-        }    
+        }
 
         protected virtual NpceOperationResult CreateResult(NpceOperation operation, string codeCEResult,
-                                                           string descriptionCEResult, string idRichiesta, 
+                                                           string descriptionCEResult, string idRichiesta,
                                                            string idOrdine,
                                                            string guidUtente)
         {
@@ -56,7 +68,7 @@ namespace NPCE_WinClient.UI.Npce
             if (!result.Success)
             {
                 result.Errors = new List<Error>();
-                result.Errors.Add( new Error {  Code= codeCEResult, Description = descriptionCEResult });
+                result.Errors.Add(new Error { Code = codeCEResult, Description = descriptionCEResult });
             }
 
             return result;

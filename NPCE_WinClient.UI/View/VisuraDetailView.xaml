@@ -93,10 +93,20 @@
                               SelectedValue="{Binding Visura.VisureTipoRecapitoId}"></ComboBox>
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" Width="400" Grid.Column="0" Margin="5 0">
+                <StackPanel Grid.Row="1"  Grid.Column="0" Orientation="Horizontal">
+                    
+                <StackPanel  Width="100" Margin="5 0">
                     <TextBlock>Localita</TextBlock>
                     <TextBox Text="{Binding Visura.DestinatarioLocalita}"></TextBox>
                 </StackPanel>
+
+                    <StackPanel  Width="300"  Margin="5 0">
+                        <TextBlock>Indirizzo</TextBlock>
+                        <TextBox Text="{Binding Visura.DestinatarioIndirizzo}"></TextBox>
+                    </StackPanel>
+
+                </StackPanel>
+
                 <StackPanel Grid.Row="1" Grid.Column="1" Margin="5 0" 
                             Width="100" HorizontalAlignment="Left" >
                     <TextBlock>CAP</TextBlock>

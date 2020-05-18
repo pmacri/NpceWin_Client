@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NPCE_WinClient.UI", "NPCE_W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2285A8FF-89D2-45CB-8340-8443DFEB0378}"
 	ProjectSection(SolutionItems) = preProject
+		CameraliService.wsdl = CameraliService.wsdl
 		ColService.wsdl = ColService.wsdl
 		LolService.wsdl = LolService.wsdl
 		MolService.wsdl = MolService.wsdl
@@ -23,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dll", "Dll", "{B6FC5CFC-710
 	ProjectSection(SolutionItems) = preProject
 		ComunicazioniElettroniche.Common.dll = ComunicazioniElettroniche.Common.dll
 		ComunicazioniElettroniche.Visure.dll = ComunicazioniElettroniche.Visure.dll
+		PosteItaliane.OrderManagement.Schema.Code.dll = PosteItaliane.OrderManagement.Schema.Code.dll
 	EndProjectSection
 EndProject
 Global

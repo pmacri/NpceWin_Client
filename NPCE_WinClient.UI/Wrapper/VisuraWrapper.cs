@@ -103,6 +103,16 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
+        public string DestinatarioIndirizzo
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
         public string DestinatarioLocalita
         {
             get { return GetValue<string>(); }
@@ -265,6 +275,16 @@ namespace NPCE_WinClient.UI.Wrapper
         }
 
         public String VisureTipoRecapitoId
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public String IdRichiesta
         {
             get { return GetValue<string>(); }
 

@@ -11,7 +11,7 @@ namespace NPCE_WinClient.Model
 
         public int Id { get; set; }
         public string RichiedenteNome { get; set; }
-
+        public string IdRichiesta { get; set; }
         public string RichiedenteCognome { get; set; }
 
         public string RichiedenteIndirizzo { get; set; }
@@ -30,6 +30,8 @@ namespace NPCE_WinClient.Model
         public string DestinatarioCap { get; set; }
 
         public string DestinatarioEmail { get; set; }
+
+        public string DestinatarioIndirizzo { get; set; }
 
         public VisureTipoRecapito VisureTipoRecapito { get; set; }
 

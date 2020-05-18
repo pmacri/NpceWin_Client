@@ -203,6 +203,14 @@
     <Compile Include="Migrations\202005112043087_SecondoTentativo3.designer.cs">
       <DependentUpon>202005112043087_SecondoTentativo3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005130741089_IdRichiesta1.cs" />
+    <Compile Include="Migrations\202005130741089_IdRichiesta1.designer.cs">
+      <DependentUpon>202005130741089_IdRichiesta1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005151828171_DestinatarioIndirizzo.cs" />
+    <Compile Include="Migrations\202005151828171_DestinatarioIndirizzo.designer.cs">
+      <DependentUpon>202005151828171_DestinatarioIndirizzo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -331,6 +339,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005112043087_SecondoTentativo3.resx">
       <DependentUpon>202005112043087_SecondoTentativo3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005130741089_IdRichiesta1.resx">
+      <DependentUpon>202005130741089_IdRichiesta1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005151828171_DestinatarioIndirizzo.resx">
+      <DependentUpon>202005151828171_DestinatarioIndirizzo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

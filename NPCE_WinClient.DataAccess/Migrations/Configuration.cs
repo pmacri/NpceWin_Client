@@ -32,7 +32,8 @@
                new Model.VisureTipoRecapito { Id = "S", Descrizione = "POSTA PRIORITARIA" },
                new Model.VisureTipoRecapito { Id = "E", Descrizione = "E-MAIL" },
                new Model.VisureTipoRecapito { Id = "R", Descrizione = "RACCOMANDATA" },
-               new Model.VisureTipoRecapito { Id = "D", Descrizione = "DOWNLOAD" }
+               new Model.VisureTipoRecapito { Id = "D", Descrizione = "DOWNLOAD" },
+               new Model.VisureTipoRecapito { Id = "P", Descrizione = "PEC" }
                );
 
             context.VisureCodiceDocumento.AddOrUpdate(fd => fd.Descrizione,

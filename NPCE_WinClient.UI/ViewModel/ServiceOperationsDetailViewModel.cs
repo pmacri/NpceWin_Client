@@ -134,8 +134,6 @@ namespace NPCE_WinClient.UI.ViewModel
             _servizioRepository.UpdateTipoServizioAsync(Servizio.Id, TipoServizio.Id);
 
             NpceOperationResult result = null;
-            controller = await _messageDialogService.ShowProgressAsync("Invio", "Elaborazione Invio");
-
 
             switch (TipoServizio.Descrizione)
             {
@@ -166,7 +164,6 @@ namespace NPCE_WinClient.UI.ViewModel
                     }
                     break;
             }
-            await controller.CloseAsync();
 
             string message;
 

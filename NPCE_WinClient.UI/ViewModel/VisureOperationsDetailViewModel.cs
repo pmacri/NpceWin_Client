@@ -42,16 +42,46 @@ namespace NPCE_WinClient.UI.ViewModel
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
         }
 
-        private void OnInvioExecute()
+        private async void OnInvioExecute()
         {
             //Visura.VisureTipoRecapito = new VisureTipoRecapito { Id = "DL", Descrizione = "Download" };
+            NpceOperationResult result=null;
+            string message;
 
             if (Ambiente.IsPil)
             {
                 var operation = new InvioVisuraPIL(Visura.Model, Ambiente.Model);
 
-                operation.Execute(AutoConferma, ControllaPrezzo);
-            }            
+                result = operation.Execute(AutoConferma, ControllaPrezzo);
+            }
+            else
+            {
+                var vol = new Vol(_ambiente.Model, _visura.Model, null);
+
+                vol.Invio();
+            }
+
+            if (result.Success)
+            {
+                message = $"Operazione {result.Operation.ToString()} completata con successo";
+            }
+            else
+            {
+                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\n Description: {result.Errors[0].Description}";
+            }
+
+            await MessageDialogService.ShowOkCancelDialogAsync(message, "Info");
+
+            if (result.Success)
+            {
+                Visura.IdRichiesta = result.IdRichiesta;
+
+                var statoCreated = AutoConferma ? statoServizioRepository.GetByDescription("Confermato") : statoServizioRepository.GetByDescription("Inviato");
+
+                Visura.Model.StatoServizioId = statoCreated.Id;
+
+                OnSaveExecute();
+            }
         }
 
         private bool OnInvioCanExecute()
@@ -69,9 +99,10 @@ namespace NPCE_WinClient.UI.ViewModel
             throw new NotImplementedException();
         }
 
-        protected override void OnSaveExecute()
+        protected override async void OnSaveExecute()
         {
-            throw new NotImplementedException();
+            await visureRepository.SaveAsync();
+            await LoadAsync(-1);
         }
 
         public override async Task LoadAsync(int id)

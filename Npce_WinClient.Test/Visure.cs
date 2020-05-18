@@ -47,7 +47,7 @@ namespace Npce_WinClient.Test
             
             var operation = new InvioVisuraPIL(visura, ambiente);
 
-            operation.Execute();
+            operation.Execute(true, false);
             
         }
 

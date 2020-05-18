@@ -104,6 +104,17 @@
 
                 </DataGridTextColumn>
 
+                <DataGridTextColumn Header="Id Richiesta" 
+                                    Width="Auto"  
+                                    Binding="{Binding IdRichiesta,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+
+                </DataGridTextColumn>
+
 
             </DataGrid.Columns>
 
