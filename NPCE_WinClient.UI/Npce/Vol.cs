@@ -37,11 +37,24 @@ namespace NPCE_WinClient.UI.Npce
             SetDestinatario(invioRequest);
             SetRichiedente(invioRequest);
             var invioResult = proxy.Invio(invioRequest);
-            
+            var errors = new List<Error>();
+
+            foreach (var err in invioResult.Errori)
+            {
+                errors.Add(new Error
+                {
+                    Code = err.Codice.ToString(),
+                    Description = err.Messaggio.ToString()
+                });
+
+            }
+
             return new NpceOperationResult
             {
                 Success = invioResult.Esito == EsitoPostaEvo.OK,
-                IdRichiesta = invioResult.IdRichiesta
+                IdRichiesta = invioResult.IdRichiesta,
+                ErrorMessage = invioResult.Esito != EsitoPostaEvo.OK ? invioResult.Errori[0].Messaggio.ToString() : string.Empty,
+                Errors = errors
             };
         }
 

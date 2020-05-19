@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://ComunicazioniElettroniche.XOL" elementFormDefault="qualified" targetNamespace="http://ComunicazioniElettroniche.XOL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CEResult">
+    <xs:attribute name="Type" type="xs:string" />
+    <xs:attribute name="Code" type="xs:string" />
+    <xs:attribute name="Description" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Valorizzazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ValorizzazioneServizio" type="tns:ValorizzazioneServizio" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OpzionePagamento" type="tns:OpzionePagamento" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Totale" type="tns:Totale" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImpostaDiBollo" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoTotaleConIdB" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ValorizzazioneServizio">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Richiesta" type="tns:Richiesta" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IDServizio" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumeroPagine" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="OggettoValorizzazione" type="tns:OggettoValorizzazione" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Totale" type="tns:Totale" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImpostaDiBollo" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoTotaleConIdB" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CEResult" type="tns:CEResult" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Richiesta">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IDRichiesta" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="GuidUtente" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OggettoValorizzazione">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Totale" type="tns:Totale" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CodiceMateriale" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DescrizioneCodiceMateriale" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PercentualeIva" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CodiceIva" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Quantita" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoUnitarioTotale" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoUnitarioNetto" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoUnitarioIva" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Totale">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Valuta" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Descrizione" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoTotale" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoNetto" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ImportoIva" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OpzionePagamento">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="PostFatturazione" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DescrizioneTipoPagamento" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IdTipoPagamento" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DatiTransazione">
+    <xs:attribute name="IdTransazione" type="xs:string" />
+    <xs:attribute name="CodiceAutorizzazione" type="xs:string" />
+    <xs:attribute name="DataAutorizzazione" type="xs:dateTime" use="required" />
+  </xs:complexType>
+</xs:schema>

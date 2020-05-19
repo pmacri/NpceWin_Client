@@ -18,6 +18,8 @@ namespace NPCE_WinClient.UI.Npce
 
         public string GuidUtente { get; set; }
 
+        public string ErrorMessage { get; set; }
+
         public List<Error> Errors { get; set; }
     }
 }

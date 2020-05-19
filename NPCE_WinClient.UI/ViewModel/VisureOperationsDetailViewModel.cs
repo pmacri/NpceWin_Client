@@ -58,7 +58,7 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 var vol = new Vol(_ambiente.Model, _visura.Model, null);
 
-                vol.Invio();
+                result = vol.Invio();
             }
 
             if (result.Success)
@@ -67,7 +67,7 @@ namespace NPCE_WinClient.UI.ViewModel
             }
             else
             {
-                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\n Description: {result.Errors[0].Description}";
+                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\nDescription: {result.Errors[0].Description}";
             }
 
             await MessageDialogService.ShowOkCancelDialogAsync(message, "Info");

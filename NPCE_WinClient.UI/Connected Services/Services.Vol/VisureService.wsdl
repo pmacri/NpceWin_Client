@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://ComunicazioniElettroniche.Visure.WS" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VisureService" targetNamespace="http://ComunicazioniElettroniche.Visure.WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="http://ComunicazioniElettroniche.Visure.WS" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://ComunicazioniElettroniche.XOL" />
+      <xs:element name="Invio">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:InvioRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="InvioRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DocumentiRequest" type="tns:RichiestaDocumenti" />
+        </xs:sequence>
+        <xs:attribute name="IdRichiesta" type="xs:string" />
+        <xs:attribute name="Cliente" type="xs:string" />
+        <xs:attribute name="ControllaPrezzoDiVendita" type="xs:boolean" use="required" />
+        <xs:attribute name="Autoconferma" type="xs:boolean" use="required" />
+      </xs:complexType>
+      <xs:complexType name="RichiestaDocumenti">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Richiedente" type="tns:Richiedente" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="Documento" type="tns:RichiestaDocumento" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Recapito" type="tns:Recapito" />
+        </xs:sequence>
+        <xs:attribute name="PDL" type="xs:string" />
+        <xs:attribute name="IdentificativoRichiesta" type="xs:string" />
+        <xs:attribute name="PrezzoVenditaEuroIvaInclusa" type="xs:decimal" use="required" />
+      </xs:complexType>
+      <xs:complexType name="Richiedente">
+        <xs:attribute name="Nome" type="xs:string" />
+        <xs:attribute name="Cognome" type="xs:string" />
+        <xs:attribute name="Indirizzo" type="xs:string" />
+        <xs:attribute name="Localita" type="xs:string" />
+        <xs:attribute name="CAP" type="xs:string" />
+        <xs:attribute name="TelefonoPrefisso" type="xs:string" />
+        <xs:attribute name="Telefono" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="RichiestaDocumento">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Intestatario" type="tns:Intestatario" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="Chiusura" type="tns:DocumentoChiusuraCodice" />
+        </xs:sequence>
+        <xs:attribute name="TipoDocumentoCodice" type="xs:string" />
+        <xs:attribute name="LinguaCodice" type="xs:string" />
+        <xs:attribute name="GenereDocumentoCodice" type="xs:string" />
+        <xs:attribute name="CameraDiCommercioCodice" type="xs:string" />
+        <xs:attribute name="Guid" type="xs:string" />
+        <xs:attribute name="NumeroCopie" type="xs:int" use="required" />
+        <xs:attribute name="Bollo" type="xs:boolean" use="required" />
+      </xs:complexType>
+      <xs:complexType name="Intestatario">
+        <xs:attribute name="Nome" type="xs:string" />
+        <xs:attribute name="Cognome" type="xs:string" />
+        <xs:attribute name="Indirizzo" type="xs:string" />
+        <xs:attribute name="RagioneSociale" type="xs:string" />
+        <xs:attribute name="NumeroREA" type="xs:string" />
+        <xs:attribute name="CodiceFiscaleDittaIndividuale" type="xs:string" />
+        <xs:attribute name="CodiceFiscaleImpresa" type="xs:string" />
+        <xs:attribute name="DataDiNascita" type="xs:date" use="required" />
+        <xs:attribute name="Comune" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="DocumentoChiusuraCodice">
+        <xs:attribute name="Codice" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="Recapito">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Destinatario" type="tns:Destinatario" />
+        </xs:sequence>
+        <xs:attribute name="Email" type="xs:string" />
+        <xs:attribute name="Fax" type="xs:string" />
+        <xs:attribute name="TipoRecapitoCodice" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="Destinatario">
+        <xs:attribute name="NomeCognome" type="xs:string" />
+        <xs:attribute name="Indirizzo" type="xs:string" />
+        <xs:attribute name="Localita" type="xs:string" />
+        <xs:attribute name="CAP" type="xs:string" />
+      </xs:complexType>
+      <xs:element name="InvioResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="InvioResult" type="tns:InvioResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="InvioResult">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q1:CEResult" />
+          <xs:element xmlns:q2="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="Valorizzazione" type="q2:Valorizzazione" />
+        </xs:sequence>
+        <xs:attribute name="IdOrdine" type="xs:string" />
+        <xs:attribute name="IdentificativoRichiesta" type="xs:string" />
+      </xs:complexType>
+      <xs:element name="Conferma">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:ConfermaRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ConfermaRequest">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="OpzionePagamento" type="q3:OpzionePagamento" />
+          <xs:element xmlns:q4="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="DatiTransazione" type="q4:DatiTransazione" />
+        </xs:sequence>
+        <xs:attribute name="IdOrdine" type="xs:string" />
+        <xs:attribute name="DataPagamento" type="xs:dateTime" use="required" />
+      </xs:complexType>
+      <xs:element name="ConfermaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ConfermaResult" type="tns:ConfermaResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="ConfermaResult">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q5:CEResult" />
+        </xs:sequence>
+        <xs:attribute name="IdOrdine" type="xs:string" />
+      </xs:complexType>
+      <xs:element name="RecuperaCamereDiCommercio">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:RecuperaRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="RecuperaRequest">
+        <xs:attribute name="Watermark" type="xs:long" use="required" />
+      </xs:complexType>
+      <xs:element name="RecuperaCamereDiCommercioResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecuperaCamereDiCommercioResult" type="tns:RecuperaCamereDiCommercioResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="RecuperaCamereDiCommercioResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DataSet" type="tns:ArrayOfCameraDiCommercio" />
+          <xs:element xmlns:q6="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q6:CEResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfCameraDiCommercio">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CameraDiCommercio" nillable="true" type="tns:CameraDiCommercio" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CameraDiCommercio">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WatermarkObject">
+            <xs:attribute name="Codice" type="xs:string" />
+            <xs:attribute name="Nome" type="xs:string" />
+            <xs:attribute name="ProvinciaSigla" type="xs:string" />
+            <xs:attribute name="Note" type="xs:string" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="WatermarkObject">
+        <xs:attribute name="Watermark" type="xs:long" use="required" />
+        <xs:attribute name="ValidoDal" type="xs:dateTime" use="required" />
+        <xs:attribute name="ValidoAl" type="xs:dateTime" use="required" />
+      </xs:complexType>
+      <xs:element name="RecuperaTipiDocumenti">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:RecuperaRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecuperaTipiDocumentiResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecuperaTipiDocumentiResult" type="tns:RecuperaTipiDocumentiResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="RecuperaTipiDocumentiResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DataSet" type="tns:ArrayOfTipoDocumento" />
+          <xs:element xmlns:q7="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q7:CEResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfTipoDocumento">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoDocumento" nillable="true" type="tns:TipoDocumento" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TipoDocumento">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WatermarkObject">
+            <xs:attribute name="Codice" type="xs:string" />
+            <xs:attribute name="Nome" type="xs:string" />
+            <xs:attribute name="GenereDocumentoCodice" type="xs:string" />
+            <xs:attribute name="CameraDiCommercioCodice" type="xs:string" />
+            <xs:attribute name="CostoEuro" type="xs:decimal" use="required" />
+            <xs:attribute name="Descrizione" type="xs:string" />
+            <xs:attribute name="AmmetteNessunaChiusura" type="xs:boolean" use="required" />
+            <xs:attribute name="AmmetteNessunaChiusuraQuandoBollo" type="xs:boolean" use="required" />
+            <xs:attribute name="IdGruppoChiusure" type="xs:int" use="required" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="RecuperaTipiDocumentiChiusure">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:RecuperaRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecuperaTipiDocumentiChiusureResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecuperaTipiDocumentiChiusureResult" type="tns:RecuperaTipiDocumentiChiusureResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="RecuperaTipiDocumentiChiusureResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DataSet" type="tns:ArrayOfDocumentoChiusura" />
+          <xs:element xmlns:q8="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q8:CEResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfDocumentoChiusura">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DocumentoChiusura" nillable="true" type="tns:DocumentoChiusura" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DocumentoChiusura">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WatermarkObject">
+            <xs:attribute name="Codice" type="xs:string" />
+            <xs:attribute name="Nome" type="xs:string" />
+            <xs:attribute name="Descrizione" type="xs:string" />
+            <xs:attribute name="IdGruppo" type="xs:int" use="required" />
+            <xs:attribute name="BolloObbligatorio" type="xs:boolean" use="required" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="RecuperaMetodiRecapito">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="request" type="tns:RecuperaRequest" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="RecuperaMetodiRecapitoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecuperaMetodiRecapitoResult" type="tns:RecuperaMetodiRecapitoResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="RecuperaMetodiRecapitoResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DataSet" type="tns:ArrayOfMetodoRecapito" />
+          <xs:element xmlns:q9="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q9:CEResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ArrayOfMetodoRecapito">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="MetodoRecapito" nillable="true" type="tns:MetodoRecapito" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="MetodoRecapito">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:WatermarkObject">
+            <xs:attribute name="Codice" type="xs:string" />
+            <xs:attribute name="Nome" type="xs:string" />
+            <xs:attribute name="GenereDocumentoCodice" type="xs:string" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:element name="RecuperaIdRichiesta">
+        <xs:complexType />
+      </xs:element>
+      <xs:element name="RecuperaIdRichiestaResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="RecuperaIdRichiestaResult" type="tns:RecuperaIdRichiestaResult" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="RecuperaIdRichiestaResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="IDRichiesta" type="xs:string" />
+          <xs:element xmlns:q10="http://ComunicazioniElettroniche.XOL" minOccurs="0" maxOccurs="1" name="CEResult" type="q10:CEResult" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://ComunicazioniElettroniche.XOL" elementFormDefault="qualified" targetNamespace="http://ComunicazioniElettroniche.XOL" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="CEResult">
+        <xs:attribute name="Type" type="xs:string" />
+        <xs:attribute name="Code" type="xs:string" />
+        <xs:attribute name="Description" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="Valorizzazione">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ValorizzazioneServizio" type="tns:ValorizzazioneServizio" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OpzionePagamento" type="tns:OpzionePagamento" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Totale" type="tns:Totale" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImpostaDiBollo" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoTotaleConIdB" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValorizzazioneServizio">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Richiesta" type="tns:Richiesta" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IDServizio" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumeroPagine" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OggettoValorizzazione" type="tns:OggettoValorizzazione" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Totale" type="tns:Totale" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImpostaDiBollo" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoTotaleConIdB" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CEResult" type="tns:CEResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Richiesta">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="IDRichiesta" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GuidUtente" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OggettoValorizzazione">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Totale" type="tns:Totale" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CodiceMateriale" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DescrizioneCodiceMateriale" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="PercentualeIva" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CodiceIva" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Quantita" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoUnitarioTotale" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoUnitarioNetto" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoUnitarioIva" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Totale">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Valuta" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Descrizione" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoTotale" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoNetto" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ImportoIva" type="xs:double" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="OpzionePagamento">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="PostFatturazione" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DescrizioneTipoPagamento" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IdTipoPagamento" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DatiTransazione">
+        <xs:attribute name="IdTransazione" type="xs:string" />
+        <xs:attribute name="CodiceAutorizzazione" type="xs:string" />
+        <xs:attribute name="DataAutorizzazione" type="xs:dateTime" use="required" />
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="Visure_Invio_InputMessage">
+    <wsdl:part name="parameters" element="tns:Invio" />
+  </wsdl:message>
+  <wsdl:message name="Visure_Invio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_Conferma_InputMessage">
+    <wsdl:part name="parameters" element="tns:Conferma" />
+  </wsdl:message>
+  <wsdl:message name="Visure_Conferma_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfermaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaCamereDiCommercio_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaCamereDiCommercio" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaCamereDiCommercio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaCamereDiCommercioResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumenti_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumenti" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumenti_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumentiResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumentiChiusure_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumentiChiusure" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumentiChiusure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumentiChiusureResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaMetodiRecapito_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaMetodiRecapito" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaMetodiRecapito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaMetodiRecapitoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaIdRichiesta_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaIdRichiesta" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaIdRichiesta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaIdRichiestaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Visure">
+    <wsdl:operation name="Invio">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/Invio" message="tns:Visure_Invio_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/InvioResponse" message="tns:Visure_Invio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Conferma">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/Conferma" message="tns:Visure_Conferma_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/ConfermaResponse" message="tns:Visure_Conferma_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaCamereDiCommercio">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaCamereDiCommercio" message="tns:Visure_RecuperaCamereDiCommercio_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaCamereDiCommercioResponse" message="tns:Visure_RecuperaCamereDiCommercio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumenti">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumenti" message="tns:Visure_RecuperaTipiDocumenti_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiResponse" message="tns:Visure_RecuperaTipiDocumenti_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumentiChiusure">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiChiusure" message="tns:Visure_RecuperaTipiDocumentiChiusure_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiChiusureResponse" message="tns:Visure_RecuperaTipiDocumentiChiusure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaMetodiRecapito">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaMetodiRecapito" message="tns:Visure_RecuperaMetodiRecapito_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaMetodiRecapitoResponse" message="tns:Visure_RecuperaMetodiRecapito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaIdRichiesta">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaIdRichiesta" message="tns:Visure_RecuperaIdRichiesta_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaIdRichiestaResponse" message="tns:Visure_RecuperaIdRichiesta_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_Visure" type="tns:Visure">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Invio">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/Invio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Conferma">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/Conferma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaCamereDiCommercio">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaCamereDiCommercio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumenti">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumenti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumentiChiusure">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiChiusure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaMetodiRecapito">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaMetodiRecapito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaIdRichiesta">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaIdRichiesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VisureService">
+    <wsdl:port name="BasicHttpBinding_Visure" binding="tns:BasicHttpBinding_Visure">
+      <soap:address location="http://10.60.19.13/Visure/VisureService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

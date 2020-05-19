@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://ComunicazioniElettroniche.Visure.WS" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="VisureService" targetNamespace="http://ComunicazioniElettroniche.Visure.WS" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://ComunicazioniElettroniche.Visure.WS/Imports">
+      <xsd:import schemaLocation="http://10.60.19.13/Visure/VisureService.svc?xsd=xsd0" namespace="http://ComunicazioniElettroniche.Visure.WS" />
+      <xsd:import schemaLocation="http://10.60.19.13/Visure/VisureService.svc?xsd=xsd1" namespace="http://ComunicazioniElettroniche.XOL" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="Visure_Invio_InputMessage">
+    <wsdl:part name="parameters" element="tns:Invio" />
+  </wsdl:message>
+  <wsdl:message name="Visure_Invio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InvioResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_Conferma_InputMessage">
+    <wsdl:part name="parameters" element="tns:Conferma" />
+  </wsdl:message>
+  <wsdl:message name="Visure_Conferma_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfermaResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaCamereDiCommercio_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaCamereDiCommercio" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaCamereDiCommercio_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaCamereDiCommercioResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumenti_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumenti" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumenti_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumentiResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumentiChiusure_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumentiChiusure" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaTipiDocumentiChiusure_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaTipiDocumentiChiusureResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaMetodiRecapito_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaMetodiRecapito" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaMetodiRecapito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaMetodiRecapitoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaIdRichiesta_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaIdRichiesta" />
+  </wsdl:message>
+  <wsdl:message name="Visure_RecuperaIdRichiesta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperaIdRichiestaResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Visure">
+    <wsdl:operation name="Invio">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/Invio" message="tns:Visure_Invio_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/InvioResponse" message="tns:Visure_Invio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Conferma">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/Conferma" message="tns:Visure_Conferma_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/ConfermaResponse" message="tns:Visure_Conferma_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaCamereDiCommercio">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaCamereDiCommercio" message="tns:Visure_RecuperaCamereDiCommercio_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaCamereDiCommercioResponse" message="tns:Visure_RecuperaCamereDiCommercio_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumenti">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumenti" message="tns:Visure_RecuperaTipiDocumenti_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiResponse" message="tns:Visure_RecuperaTipiDocumenti_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumentiChiusure">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiChiusure" message="tns:Visure_RecuperaTipiDocumentiChiusure_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiChiusureResponse" message="tns:Visure_RecuperaTipiDocumentiChiusure_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaMetodiRecapito">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaMetodiRecapito" message="tns:Visure_RecuperaMetodiRecapito_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaMetodiRecapitoResponse" message="tns:Visure_RecuperaMetodiRecapito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaIdRichiesta">
+      <wsdl:input wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaIdRichiesta" message="tns:Visure_RecuperaIdRichiesta_InputMessage" />
+      <wsdl:output wsaw:Action="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaIdRichiestaResponse" message="tns:Visure_RecuperaIdRichiesta_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_Visure" type="tns:Visure">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Invio">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/Invio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Conferma">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/Conferma" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaCamereDiCommercio">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaCamereDiCommercio" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumenti">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumenti" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaTipiDocumentiChiusure">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaTipiDocumentiChiusure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaMetodiRecapito">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaMetodiRecapito" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperaIdRichiesta">
+      <soap:operation soapAction="http://ComunicazioniElettroniche.Visure.WS/Visure/RecuperaIdRichiesta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VisureService">
+    <wsdl:port name="BasicHttpBinding_Visure" binding="tns:BasicHttpBinding_Visure">
+      <soap:address location="http://10.60.19.13/Visure/VisureService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
