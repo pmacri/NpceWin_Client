@@ -40,6 +40,46 @@ namespace NPCE_WinClient.UI.ViewModel
             Visure = new ObservableCollection<VisuraWrapper>();
 
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
+
+            ConfermaCommand = new DelegateCommand(OnConfermaExecute, OnConfermaCanExecute);
+        }
+
+        private bool OnConfermaCanExecute()
+        {
+            statoInviato = statoServizioRepository.GetByDescription("Inviato");
+            return ( Visura != null && Visura.StatoServizioId == statoInviato.Id);
+        }
+
+        private async void OnConfermaExecute()
+        {
+            NpceOperationResult result = null;
+            string message;
+
+            var vol = new Vol(_ambiente.Model, _visura.Model, null);
+
+            result = vol.Conferma();
+
+            if (result.Success)
+            {
+                message = $"Operazione {result.Operation.ToString()} completata con successo";
+            }
+            else
+            {
+                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\nDescription: {result.Errors[0].Description}";
+            }
+
+            await MessageDialogService.ShowOkCancelDialogAsync(message, "Info");
+
+            if (result.Success)
+            {
+                Visura.IdRichiesta = result.IdRichiesta;
+
+                var newState = statoServizioRepository.GetByDescription("Confermato");
+
+                Visura.Model.StatoServizioId = newState.Id;
+
+                OnSaveExecute();
+            } 
         }
 
         private async void OnInvioExecute()
@@ -76,7 +116,7 @@ namespace NPCE_WinClient.UI.ViewModel
             {
                 Visura.IdRichiesta = result.IdRichiesta;
 
-                var statoCreated = AutoConferma ? statoServizioRepository.GetByDescription("Confermato") : statoServizioRepository.GetByDescription("Inviato");
+                statoCreated = AutoConferma ? statoServizioRepository.GetByDescription("Confermato") : statoServizioRepository.GetByDescription("Inviato");
 
                 Visura.Model.StatoServizioId = statoCreated.Id;
 
@@ -129,6 +169,7 @@ namespace NPCE_WinClient.UI.ViewModel
             Id = id;
 
             var visure = await visureRepository.GetAllAsync();
+
             InitializeVisure(visure);
         }
 
@@ -177,6 +218,9 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         VisuraWrapper _visura;
+        private StatoServizio statoCreated;
+        private StatoServizio statoInviato;
+
         public VisuraWrapper Visura { get
             {
                 return _visura;
@@ -185,12 +229,15 @@ namespace NPCE_WinClient.UI.ViewModel
                 _visura = value;
                 OnPropertyChanged();
                 ((DelegateCommand)InvioCommand).RaiseCanExecuteChanged();
+                ((DelegateCommand)ConfermaCommand).RaiseCanExecuteChanged();
             }
         }
 
         public ObservableCollection<VisuraWrapper> Visure { get; set; }
 
         public DelegateCommand InvioCommand { get; set; }
+
+        public DelegateCommand ConfermaCommand { get; set; }
 
         public bool AutoConferma { get; set; }
 

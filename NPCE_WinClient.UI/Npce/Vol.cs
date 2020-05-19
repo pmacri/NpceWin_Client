@@ -16,6 +16,7 @@ namespace NPCE_WinClient.UI.Npce
         ICameraliService proxy;
         HttpRequestMessageProperty headers;
         InvioRequest invioRequest;
+        private ConfermaInvioRequest confermaRequest;
 
         public Vol(Ambiente ambiente, Visura visura, string idRichiesta) : base(ambiente, visura, idRichiesta)
         {
@@ -58,7 +59,35 @@ namespace NPCE_WinClient.UI.Npce
             };
         }
 
-        
+        public NpceOperationResult Conferma()
+        {
+            SetHeaders();
+            confermaRequest = new ConfermaInvioRequest();
+            confermaRequest.IdRichiesta = _visura.IdRichiesta;
+
+            var confermaResult = proxy.Conferma(confermaRequest);
+            var errors = new List<Error>();
+
+            foreach (var err in confermaResult.Errori)
+            {
+                errors.Add(new Error
+                {
+                    Code = err.Codice.ToString(),
+                    Description = err.Messaggio.ToString()
+                });
+
+            }
+
+            return new NpceOperationResult
+            {
+                Success = confermaResult.Esito == EsitoPostaEvo.OK,
+                IdRichiesta = confermaResult.IdTicket,
+                ErrorMessage = confermaResult.Esito != EsitoPostaEvo.OK ? confermaResult.Errori[0].Messaggio.ToString() : string.Empty,
+                Errors = errors
+            };
+        }
+
+
 
         private void SetRichiedente(InvioRequest invioRequest)
         {
