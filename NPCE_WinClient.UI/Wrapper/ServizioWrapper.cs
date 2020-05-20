@@ -112,6 +112,18 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<int>(value);
             }
         }
+
+        public int AmbienteId
+        {
+            get { return GetValue<int>(); }
+
+            set
+            {
+                SetValue<int>(value);
+            }
+        }
+
+
         public bool AttestazioneConsegna
         {
             get { return GetValue<bool>(); }

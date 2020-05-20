@@ -55,7 +55,8 @@ namespace NPCE_WinClient.UI.Npce
                 Success = invioResult.Esito == EsitoPostaEvo.OK,
                 IdRichiesta = invioResult.IdRichiesta,
                 ErrorMessage = invioResult.Esito != EsitoPostaEvo.OK ? invioResult.Errori[0].Messaggio.ToString() : string.Empty,
-                Errors = errors
+                Errors = errors,
+                IdOrdine= invioResult.IdTicket
             };
         }
 

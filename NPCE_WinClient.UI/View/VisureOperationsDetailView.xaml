@@ -24,7 +24,9 @@
                   Width="257" Height="22"
                   ItemsSource="{Binding Ambienti}"
                   DisplayMemberPath="Description"
-                  SelectedItem="{Binding Ambiente}"/>
+                  SelectedItem="{Binding Ambiente}" 
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding Visura.AmbienteId}"/>
         </StackPanel>
             <StackPanel Margin="0" >
                 <TextBlock Text="AutoConferma" Margin="10 0"/>

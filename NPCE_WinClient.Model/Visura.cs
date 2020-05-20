@@ -12,6 +12,8 @@ namespace NPCE_WinClient.Model
         public int Id { get; set; }
         public string RichiedenteNome { get; set; }
         public string IdRichiesta { get; set; }
+
+        public string IdOrdine { get; set; }
         public string RichiedenteCognome { get; set; }
 
         public string RichiedenteIndirizzo { get; set; }
@@ -61,5 +63,6 @@ namespace NPCE_WinClient.Model
 
         public StatoServizio StatoVisura { get; set; }
         public int StatoServizioId { get; set; }
+        public int AmbienteId { get; set; }
     }
 }

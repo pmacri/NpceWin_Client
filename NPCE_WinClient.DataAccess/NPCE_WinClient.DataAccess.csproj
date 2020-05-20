@@ -211,6 +211,18 @@
     <Compile Include="Migrations\202005151828171_DestinatarioIndirizzo.designer.cs">
       <DependentUpon>202005151828171_DestinatarioIndirizzo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005191801503_AmbienteId.cs" />
+    <Compile Include="Migrations\202005191801503_AmbienteId.designer.cs">
+      <DependentUpon>202005191801503_AmbienteId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005191803514_AmbienteId2.cs" />
+    <Compile Include="Migrations\202005191803514_AmbienteId2.designer.cs">
+      <DependentUpon>202005191803514_AmbienteId2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005200726001_IdOrdine.cs" />
+    <Compile Include="Migrations\202005200726001_IdOrdine.designer.cs">
+      <DependentUpon>202005200726001_IdOrdine.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -345,6 +357,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005151828171_DestinatarioIndirizzo.resx">
       <DependentUpon>202005151828171_DestinatarioIndirizzo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005191801503_AmbienteId.resx">
+      <DependentUpon>202005191801503_AmbienteId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005191803514_AmbienteId2.resx">
+      <DependentUpon>202005191803514_AmbienteId2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005200726001_IdOrdine.resx">
+      <DependentUpon>202005200726001_IdOrdine.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,6 +23,26 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<int>(value);
             }
         }
+
+        public int AmbienteId
+        {
+            get { return GetValue<int>(); }
+
+            set
+            {
+                SetValue<int>(value);
+            }
+        }
+
+        public string IdOrdine
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
         public string RichiedenteNome
         {
             get { return GetValue<string>(); }

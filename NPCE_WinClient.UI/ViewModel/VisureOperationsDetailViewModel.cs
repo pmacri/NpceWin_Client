@@ -55,9 +55,21 @@ namespace NPCE_WinClient.UI.ViewModel
             NpceOperationResult result = null;
             string message;
 
-            var vol = new Vol(_ambiente.Model, _visura.Model, null);
+            if (Ambiente.IsPil)
+            {
+                var confermaPil = new ConfermaVisuraPil(Visura.Model, Ambiente.Model);
 
-            result = vol.Conferma();
+                result = confermaPil.Execute();
+                
+            }
+            else
+            {
+                var vol = new Vol(_ambiente.Model, _visura.Model, null);
+
+                result = vol.Conferma();
+            }
+
+           
 
             if (result.Success)
             {
@@ -77,6 +89,7 @@ namespace NPCE_WinClient.UI.ViewModel
                 var newState = statoServizioRepository.GetByDescription("Confermato");
 
                 Visura.Model.StatoServizioId = newState.Id;
+
 
                 OnSaveExecute();
             } 
@@ -119,6 +132,9 @@ namespace NPCE_WinClient.UI.ViewModel
                 statoCreated = AutoConferma ? statoServizioRepository.GetByDescription("Confermato") : statoServizioRepository.GetByDescription("Inviato");
 
                 Visura.Model.StatoServizioId = statoCreated.Id;
+
+                Visura.AmbienteId = Ambiente.Id;
+                Visura.IdOrdine = result.IdOrdine;
 
                 OnSaveExecute();
             }

@@ -25,7 +25,6 @@ namespace NPCE_WinClient.UI.ViewModel
         private IStatoServizioRepository _statoServizioRepository;
         private IMessageDialogService _messageDialogService;
         private IEnumerable<TipoServizio> _allTipi;
-        private ProgressDialogController controller;
 
         public ServiceOperationsDetailViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,

@@ -10,6 +10,7 @@ namespace NPCE_WinClient.UI.Npce
     {
         Invio,
         PreConferma,
-        PreConfermaWithAutoconfirm
+        PreConfermaWithAutoconfirm,
+        Conferma
     }
 }

@@ -150,6 +150,7 @@
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
+    <Compile Include="Npce\ConfermaVisuraPil.cs" />
     <Compile Include="Npce\Helper.cs" />
     <Compile Include="Npce\InvioCol.cs" />
     <Compile Include="Npce\InvioMol.cs" />

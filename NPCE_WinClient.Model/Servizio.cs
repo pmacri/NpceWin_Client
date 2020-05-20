@@ -38,6 +38,8 @@ namespace NPCE_WinClient.Model
         public StatoServizio StatoServizio { get; set; }
         public int StatoServizioId { get; set; }
 
+        public int AmbienteId { get; set; }
+
         // Destinatari + Mittente
         public ICollection<Anagrafica> Anagrafiche { get; set; }
         // Documenti
