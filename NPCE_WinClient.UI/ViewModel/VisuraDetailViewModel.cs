@@ -7,6 +7,7 @@ using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace NPCE_WinClient.UI.ViewModel
     {
         private readonly IVisureRepository _visureRepository;
         private readonly IStatoServizioRepository _statoServizioRepository;
+        private ObservableCollection<VisureCodiceDocumento> allCodiciDocumento;
 
         public VisuraWrapper Visura { get; private set; }
 
@@ -29,6 +31,8 @@ namespace NPCE_WinClient.UI.ViewModel
             _statoServizioRepository = statoServizioRepository;
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
         }
+
+       
 
         private bool OnInvioCanExecute()
         {
@@ -51,7 +55,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             FormatiDocumento = new ObservableCollection<VisureFormatoDocumento>(await _visureRepository.GetAllFormatiDocumentoAsync());
 
-            CodiciDocumento = new ObservableCollection<VisureCodiceDocumento>(await _visureRepository.GetAllCodiciDocumentoAsync());
+            allCodiciDocumento = new ObservableCollection<VisureCodiceDocumento>(await _visureRepository.GetAllCodiciDocumentoAsync());
 
             TipiRecapito = new ObservableCollection<VisureTipoRecapito>(await _visureRepository.GetAllTipiRecapitoAsync());
 
@@ -144,10 +148,36 @@ namespace NPCE_WinClient.UI.ViewModel
 
         public ObservableCollection<VisureFormatoDocumento> FormatiDocumento { get; set; }
 
-        public ObservableCollection<VisureCodiceDocumento> CodiciDocumento { get; set; }
+        ObservableCollection<VisureCodiceDocumento> codiciDocumento;
+        public ObservableCollection<VisureCodiceDocumento> CodiciDocumento { 
+            get
+            {
+                return codiciDocumento;
+            }
+
+            set {
+                codiciDocumento = value;
+                OnPropertyChanged("CodiciDocumento");
+            }
+        }
 
         public ObservableCollection<VisureTipoRecapito> TipiRecapito { get; set; }
 
         public ICommand InvioCommand { get; set; }
+
+        public ICommand TipoDocumentoChanged { get; set; }
+
+        private string tipoDocumentoSelected;
+
+        public string TipoDocumentoSelected
+        {
+            get { return tipoDocumentoSelected; }
+            set { 
+                tipoDocumentoSelected = value;
+                Visura.VisureTipoDocumentoId = tipoDocumentoSelected;
+                CodiciDocumento = new ObservableCollection<VisureCodiceDocumento>(allCodiciDocumento.Where(c => c.VisureTipoDocumentoId == tipoDocumentoSelected));
+            }
+        }
+
     }
 }

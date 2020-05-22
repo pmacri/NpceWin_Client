@@ -12,5 +12,8 @@ namespace NPCE_WinClient.Model
         public string Id { get; set; }
 
         public string Descrizione { get; set; }
+
+        public string VisureTipoDocumentoId { get; set; }
+        
     }
 }

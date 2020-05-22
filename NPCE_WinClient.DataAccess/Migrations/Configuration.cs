@@ -37,21 +37,21 @@
                );
 
             context.VisureCodiceDocumento.AddOrUpdate(fd => fd.Descrizione,
-               new Model.VisureCodiceDocumento { Id = "CART", Descrizione = "CART" },
-               new Model.VisureCodiceDocumento { Id = "CRIA", Descrizione = "CRIA" },
-               new Model.VisureCodiceDocumento { Id = "CRIM", Descrizione = "CRIM" },
-               new Model.VisureCodiceDocumento { Id = "CRIS", Descrizione = "CRIS" },
+               new Model.VisureCodiceDocumento { Id = "CART", Descrizione = "CART", VisureTipoDocumentoId="C" },
+               new Model.VisureCodiceDocumento { Id = "CRIA", Descrizione = "CRIA", VisureTipoDocumentoId = "C" },
+               new Model.VisureCodiceDocumento { Id = "CRIM", Descrizione = "CRIM", VisureTipoDocumentoId = "C" },
+               new Model.VisureCodiceDocumento { Id = "CRIS", Descrizione = "CRIS", VisureTipoDocumentoId = "C" },
 
-            new Model.VisureCodiceDocumento { Id = "ATTI", Descrizione = "ATTI" },
-            new Model.VisureCodiceDocumento { Id = "BICM", Descrizione = "BICM" },
-            new Model.VisureCodiceDocumento { Id = "FASC", Descrizione = "FASC" },
-            new Model.VisureCodiceDocumento { Id = "RIPR", Descrizione = "RIPR" },
-            new Model.VisureCodiceDocumento { Id = "SCPE", Descrizione = "SCPE" },
-            new Model.VisureCodiceDocumento { Id = "SCSC", Descrizione = "SCSC" },
-            new Model.VisureCodiceDocumento { Id = "SCSO", Descrizione = "SCSO" },
-            new Model.VisureCodiceDocumento { Id = "TRSF", Descrizione = "TRSF" },
-            new Model.VisureCodiceDocumento { Id = "VISO", Descrizione = "VISO" },
-            new Model.VisureCodiceDocumento { Id = "VISS", Descrizione = "VISS" }
+            new Model.VisureCodiceDocumento { Id = "ATTI", Descrizione = "ATTI", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "BICM", Descrizione = "BICM", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "FASC", Descrizione = "FASC", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "RIPR", Descrizione = "RIPR", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "SCPE", Descrizione = "SCPE", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "SCSC", Descrizione = "SCSC", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "SCSO", Descrizione = "SCSO", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "TRSF", Descrizione = "TRSF", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "VISO", Descrizione = "VISO", VisureTipoDocumentoId = "V" },
+            new Model.VisureCodiceDocumento { Id = "VISS", Descrizione = "VISS", VisureTipoDocumentoId = "V" }
             );
 
 
