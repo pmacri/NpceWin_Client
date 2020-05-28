@@ -50,7 +50,7 @@ namespace NPCE_WinClient.UI.Npce
                 }
             }
 
-            return CreateResult(NpceOperation.Invio, documentiResponse.Result.ResType == TResultResType.I ? "0" : "99", "Conferma Ok", documentiResponse.IdentificativoRichiesta, documentiResponse?.OrderResponse?.IdOrder, null);
+            return CreateResult(NpceOperation.Invio, documentiResponse.Result.ResType == TResultResType.I ? "0" : "99", documentiResponse.Result.Description.Substring(0,500)?? "Invio Ok", documentiResponse.IdentificativoRichiesta, documentiResponse?.OrderResponse?.IdOrder, null);
 
         }
 
