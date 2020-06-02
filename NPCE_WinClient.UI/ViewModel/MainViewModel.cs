@@ -65,9 +65,28 @@ namespace NPCE_WinClient.UI.ViewModel
             CreateNewDetailCommand = new DelegateCommand<Type>(OnCreateNewDetailExecute);
 
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
+
+            SettingsCommand = new DelegateCommand(OnSettingsExecute);
         }
 
-      
+        private void OnSettingsExecute()
+        {
+            IsSettingsFlyoutOpen = true;
+        }
+
+        public bool IsSettingsFlyoutOpen
+        {
+            get { return isSettingsFlyoutOpen; }
+            set
+            {
+                if (value.Equals(isSettingsFlyoutOpen)) return;
+                isSettingsFlyoutOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public ICommand SettingsCommand { get; set; }
 
         public ICommand CreateNewDetailCommand { get; set; }
         public DelegateCommand<Type> OpenSingleDetailViewCommand { get; }
@@ -126,6 +145,8 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         private int nextNewItemId;
+        private bool isSettingsFlyoutOpen;
+
         private void OnCreateNewDetailExecute(Type viewModelType)
         {
             OnOpenDetailEvent(new OpenDetailViewEventargs

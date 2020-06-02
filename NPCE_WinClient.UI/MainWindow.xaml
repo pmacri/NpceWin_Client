@@ -36,13 +36,32 @@
             <view:VisureOperationsDetailView/>
         </DataTemplate>
     </Window.Resources>
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout
+                Position="Right"
+                AreAnimationsEnabled="True"
+                Header="Settings"
+                Theme="Inverse"
+                IsModal="False"
+                IsOpen="{Binding IsSettingsFlyoutOpen, Mode=TwoWay}">
+                <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Command="{Binding SettingsCommand}">Settings</Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Menu Grid.ColumnSpan="2" FontSize="20">
@@ -66,9 +85,7 @@
                           CommandParameter="{x:Type viewModel:VisureOperationsDetailViewModel}"/>
             </MenuItem>
         </Menu>
-        <view:NavigationView Grid.Row ="1" DataContext="{Binding NavigationViewModel}"></view:NavigationView>
         <TabControl Grid.Row="1" 
-                        Grid.Column="1" 
                         ItemsSource="{Binding DetailViewModels}"
                         SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}">
             <TabControl.ItemContainerStyle>
