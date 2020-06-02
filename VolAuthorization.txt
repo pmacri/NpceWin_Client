@@ -1,0 +1,5 @@
+Tabella Contratti
+
+- Colonna User_Id		 = Header smuser
+- Colonna Partner		 = Header CustomerID
+- TipoOffertaCommerciale = "POLH2H"

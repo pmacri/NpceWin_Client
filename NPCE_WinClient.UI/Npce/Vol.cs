@@ -101,6 +101,7 @@ namespace NPCE_WinClient.UI.Npce
                 Localita = _visura.RichiedenteLocalita,
                 Telefono = _visura.RichiedenteTelefono,
                 TelefonoPrefisso = _visura.RichiedentePrefissoTelefono
+                
             };
         }
 
@@ -114,6 +115,7 @@ namespace NPCE_WinClient.UI.Npce
                 Localita = _visura.DestinatarioLocalita,
                 Nominativo = _visura.DestinatarioNominativo,
                 TipoRecapito = MapTipoRecapito(_visura.VisureTipoRecapitoId)
+                
 
             };
         }
@@ -123,11 +125,11 @@ namespace NPCE_WinClient.UI.Npce
             switch (visureTipoRecapitoId)
             {
                 case "E": return TipoRecapito.E;
-                case "DL": return TipoRecapito.D;
+                case "D": return TipoRecapito.D;
                 case "R": return TipoRecapito.R;
                 case "S": return TipoRecapito.S;
                     // TODO Pec
-                case "P": return TipoRecapito.D;
+                case "P": return TipoRecapito.E;
                 default: return TipoRecapito.E;
             }
         }
@@ -140,7 +142,7 @@ namespace NPCE_WinClient.UI.Npce
             documento.TipoDocumento = MapTipoDocumento(_visura.VisureTipoDocumentoId);
             documento.Formato = MapFormato(_visura.VisureFormatoDocumentoId);
             // TODO
-            documento.Bollo = false;
+            documento.Bollo = true;
             documento.Chiusura = string.Empty;
             documento.Intestatario = MapIntestatatario(_visura);
             invioRequest.Documento = documento;

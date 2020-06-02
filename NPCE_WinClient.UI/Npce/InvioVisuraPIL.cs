@@ -50,7 +50,7 @@ namespace NPCE_WinClient.UI.Npce
                 }
             }
 
-            return CreateResult(NpceOperation.Invio, documentiResponse.Result.ResType == TResultResType.I ? "0" : "99", documentiResponse.Result.Description.Substring(0,500)?? "Invio Ok", documentiResponse.IdentificativoRichiesta, documentiResponse?.OrderResponse?.IdOrder, null);
+            return CreateResult(NpceOperation.Invio, documentiResponse.Result.ResType == TResultResType.I ? "0" : "99", documentiResponse.Result.Description?.Substring(0, Math.Min(documentiResponse.Result.Description.Length, 500)) ?? "Invio Ok", documentiResponse.IdentificativoRichiesta, documentiResponse?.OrderResponse?.IdOrder, null);
 
         }
 
@@ -125,13 +125,18 @@ namespace NPCE_WinClient.UI.Npce
             documento.Formato = _visura.VisureFormatoDocumentoId;
             documento.CameraDiCommercioCodice = _visura.DocumentoIntestatarioCCIAA;
             documento.NumeroCopie = 1;
+
+            var codiceFiscaleDittaIndividuale = _visura.DocumentoIntestatarioCodiceFiscale?.Length == 19 ? _visura.DocumentoIntestatarioCodiceFiscale : string.Empty;
+            var codiceFiscaleImpresa = _visura.DocumentoIntestatarioCodiceFiscale?.Length == 11 ? _visura.DocumentoIntestatarioCodiceFiscale : string.Empty;
             documento.Intestatario = new DocumentiRequestDocumentoIntestatario
             {
-                CodiceFiscaleDittaIndividuale = _visura.DocumentoIntestatarioCodiceFiscale,
+                CodiceFiscaleDittaIndividuale = codiceFiscaleDittaIndividuale,
                 Cognome = _visura.DocumentoIntestatarioCognome,
                 Nome = _visura.DocumentoIntestatarioNome,
                 RagioneSociale = _visura.DocumentoIntestatarioRagioneSociale,
-                NumeroREA = _visura.DocumentoIntestatarioNREA
+                NumeroREA = _visura.DocumentoIntestatarioNREA,
+                CodiceFiscaleImpresa= codiceFiscaleImpresa
+
             };
 
             documentiList.Add(documento);
