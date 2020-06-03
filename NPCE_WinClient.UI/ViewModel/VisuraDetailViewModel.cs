@@ -116,7 +116,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 DocumentoIntestatarioNREA = "1064345",
 
                 DocumentoIntestatarioCognome="Verdi",
-                DocumentoIntestatarioNome="Emilio"
+                DocumentoIntestatarioNome="Emilio",
+                DocumentoIntestatarioCodiceFiscale="MCRPQL64T08F537U"
                
             };
 
