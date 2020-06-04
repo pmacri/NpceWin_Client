@@ -16,7 +16,7 @@
 
         <GroupBox Header="Ambienti">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" 
-                      VerticalScrollBarVisibility="Auto">
+                      VerticalScrollBarVisibility="Auto" HorizontalAlignment="Left">
                 <ItemsControl Margin="10" ItemsSource="{Binding Ambienti}" HorizontalAlignment="Left">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>

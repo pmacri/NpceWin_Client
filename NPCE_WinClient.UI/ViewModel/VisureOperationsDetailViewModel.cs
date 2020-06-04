@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NPCE_WinClient.UI.ViewModel
 {
@@ -42,6 +43,13 @@ namespace NPCE_WinClient.UI.ViewModel
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
 
             ConfermaCommand = new DelegateCommand(OnConfermaExecute, OnConfermaCanExecute);
+
+            CopyIdRichiestaCommand = new DelegateCommand<VisuraWrapper>(OnCopyIdRichiestaExecute);
+        }
+
+        private void OnCopyIdRichiestaExecute(VisuraWrapper visura)
+        {
+            Clipboard.SetText(visura.IdRichiesta);
         }
 
         private bool OnConfermaCanExecute()
@@ -252,6 +260,8 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<VisuraWrapper> Visure { get; set; }
 
         public DelegateCommand InvioCommand { get; set; }
+
+        public DelegateCommand<VisuraWrapper> CopyIdRichiestaCommand { get; set; }
 
         public DelegateCommand ConfermaCommand { get; set; }
 

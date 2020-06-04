@@ -56,7 +56,7 @@
                   SelectedItem="{Binding Visura,Mode=TwoWay}"
                   AutoGenerateColumns="False" 
                   RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" 
-                  Grid.Row="1"  Height="200" VerticalScrollBarVisibility="Visible">
+                  Grid.Row="1"  Height="400" VerticalScrollBarVisibility="Visible">
             <DataGrid.Columns>
                 
                 <DataGridTextColumn Header="Id" 
@@ -116,6 +116,18 @@
                     </DataGridTextColumn.ElementStyle>
 
                 </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Copy Id Richiesta" FontSize="8"
+                                    Command="{Binding DataContext.CopyIdRichiestaCommand, 
+                                                            RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                            CommandParameter="{Binding}"
+                                    Margin="5" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
 
             </DataGrid.Columns>

@@ -59,12 +59,12 @@ namespace NPCE_WinClient.UI.ViewModel
 
             TipiRecapito = new ObservableCollection<VisureTipoRecapito>(await _visureRepository.GetAllTipiRecapitoAsync());
 
-            InitializaVisura(visura);
+            InitializeVisura(visura);
 
 
         }
 
-        private void InitializaVisura(Visura visura)
+        private void InitializeVisura(Visura visura)
         {
             Visura = new VisuraWrapper(visura);
             Visura.PropertyChanged += (s, e) =>
