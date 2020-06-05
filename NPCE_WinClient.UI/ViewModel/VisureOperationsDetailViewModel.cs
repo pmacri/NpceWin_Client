@@ -92,7 +92,6 @@ namespace NPCE_WinClient.UI.ViewModel
 
             if (result.Success)
             {
-                Visura.IdRichiesta = result.IdRichiesta;
 
                 var newState = statoServizioRepository.GetByDescription("Confermato");
 

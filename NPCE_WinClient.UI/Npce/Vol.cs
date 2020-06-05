@@ -82,7 +82,6 @@ namespace NPCE_WinClient.UI.Npce
             return new NpceOperationResult
             {
                 Success = confermaResult.Esito == EsitoPostaEvo.OK,
-                IdRichiesta = confermaResult.IdTicket,
                 ErrorMessage = confermaResult.Esito != EsitoPostaEvo.OK ? confermaResult.Errori[0].Messaggio.ToString() : string.Empty,
                 Errors = errors
             };
