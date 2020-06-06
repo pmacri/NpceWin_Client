@@ -149,6 +149,7 @@
     <Compile Include="Event\AfterDetailClosedEvent.cs" />
     <Compile Include="Event\AfterDetailDeletedEvent.cs" />
     <Compile Include="Event\AfterDetailSavedEvent.cs" />
+    <Compile Include="Event\EditVisuraEvent.cs" />
     <Compile Include="Event\OpenDetailViewEvent.cs" />
     <Compile Include="Npce\ConfermaVisuraPil.cs" />
     <Compile Include="Npce\Helper.cs" />

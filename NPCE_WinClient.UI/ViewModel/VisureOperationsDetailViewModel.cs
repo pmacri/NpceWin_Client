@@ -1,6 +1,7 @@
 ﻿using FriendOrganizer.UI.View.Services;
 using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
+using NPCE_WinClient.UI.Event;
 using NPCE_WinClient.UI.Npce;
 using NPCE_WinClient.UI.View.Services;
 using NPCE_WinClient.UI.Wrapper;
@@ -45,6 +46,13 @@ namespace NPCE_WinClient.UI.ViewModel
             ConfermaCommand = new DelegateCommand(OnConfermaExecute, OnConfermaCanExecute);
 
             CopyIdRichiestaCommand = new DelegateCommand<VisuraWrapper>(OnCopyIdRichiestaExecute);
+
+            EditVisuraCommand = new DelegateCommand<VisuraWrapper>(OnEditVisuraExecute);
+        }
+
+        private void OnEditVisuraExecute(VisuraWrapper visura)
+        {
+            EventAggregator.GetEvent<EditVisuraEvent>().Publish(new EditVisuraEventArgs { IdVisura = visura.Id });
         }
 
         private void OnCopyIdRichiestaExecute(VisuraWrapper visura)
@@ -261,6 +269,8 @@ namespace NPCE_WinClient.UI.ViewModel
         public DelegateCommand InvioCommand { get; set; }
 
         public DelegateCommand<VisuraWrapper> CopyIdRichiestaCommand { get; set; }
+
+        public DelegateCommand<VisuraWrapper> EditVisuraCommand { get; set; }        
 
         public DelegateCommand ConfermaCommand { get; set; }
 

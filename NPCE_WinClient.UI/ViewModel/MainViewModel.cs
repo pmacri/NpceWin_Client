@@ -24,11 +24,8 @@ namespace NPCE_WinClient.UI.ViewModel
         private IMessageDialogService _messageDialogservice;
         
         private IDetailViewModel _selectedDetailViewModel;
-
         public INavigationViewModel NavigationViewModel { get;}
-
         public ObservableCollection<IDetailViewModel> DetailViewModels { get; }
-
         public IDetailViewModel SelectedDetailViewModel
         {
             get { return _selectedDetailViewModel; }
@@ -37,8 +34,6 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged();
             }
         }
-
-
         public MainViewModel(INavigationViewModel navigationViewModel,
                             IIndex<string, IDetailViewModel> detailViewModelCreator,
                             IEventAggregator eventAggregator,
@@ -57,6 +52,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 .Subscribe(AfterDetailDeleted);
             _eventAggregator.GetEvent<AfterDetailClosedEvent>()
                 .Subscribe(AfterDetailClosed);
+            _eventAggregator.GetEvent<EditVisuraEvent>()
+               .Subscribe(EditVisura);
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
 
@@ -67,6 +64,15 @@ namespace NPCE_WinClient.UI.ViewModel
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
 
             SettingsCommand = new DelegateCommand(OnSettingsExecute);
+        }
+
+        private void EditVisura(EditVisuraEventArgs visura)
+        {
+            OnOpenDetailEvent(new OpenDetailViewEventargs
+            {
+                Id = visura.IdVisura,
+                ViewModelName = typeof(VisuraDetailViewModel).Name
+            }); 
         }
 
         private void OnSettingsExecute()

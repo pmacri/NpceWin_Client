@@ -140,6 +140,7 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             var statoCreated = _statoServizioRepository.GetByDescription("Salvato");
             Visura.StatoServizioId = statoCreated.Id;
+            Visura.IdRichiesta = null;
             await _visureRepository.SaveAsync();
             Id = Visura.Id;
             HasChanges = _visureRepository.HasChanges();
