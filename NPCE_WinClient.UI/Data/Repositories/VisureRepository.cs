@@ -44,6 +44,10 @@ namespace NPCE_WinClient.UI.Data.Repositories
             return await Context.VisureTipoDocumento.Where(td => td.Descrizione == description).FirstAsync();
         }
 
+        public override async Task<IEnumerable<Visura>> GetAllAsync()
+        {
+            return await Context.Set<Visura>().OrderByDescending(v => v.Id).ToListAsync();
+        }
         public override async Task<Visura> GetByIdAsync(int id)
         {
             return await Context.Visura.Include(v => v.DocumentoTipoDocumento)
