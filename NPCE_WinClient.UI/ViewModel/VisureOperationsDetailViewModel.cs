@@ -244,7 +244,19 @@ namespace NPCE_WinClient.UI.ViewModel
                 newWrapper.PropertyChanged += Wrapper_PropertyChanged;
                 Visure.Add(newWrapper); 
             }
-            OnPropertyChanged("Visure");
+           // OnPropertyChanged("Visure");
+        }
+
+        public void DeleteVisura(int visuraId)
+        {
+            var item = Visure.Where(v => v.Id == visuraId).FirstOrDefault();
+
+            if (item != null)
+            {
+                Visure.Remove(item);
+            }
+            
+            //OnPropertyChanged("Visure");
         }
 
         private void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)

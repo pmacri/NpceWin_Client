@@ -150,6 +150,15 @@ namespace NPCE_WinClient.UI.ViewModel
         private void AfterDetailDeleted(AfterDetailDeletedEventArgs args )
         {
             // The corrisponding view will be hidden
+            if (args.ViewModelName == typeof(VisuraDetailViewModel).Name)
+            {
+                var detailViewModel = DetailViewModels.SingleOrDefault(vm => vm.GetType().Name == typeof(VisureOperationsDetailViewModel).Name);
+                if (detailViewModel!=null)
+                {
+                    var operationsViewModel = detailViewModel as VisureOperationsDetailViewModel;
+                    operationsViewModel.DeleteVisura(args.Id);
+                }
+            }
             RemoveDetailViewModel(args.Id, args.ViewModelName);
         }
 

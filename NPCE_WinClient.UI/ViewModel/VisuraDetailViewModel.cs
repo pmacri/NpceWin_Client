@@ -1,4 +1,5 @@
-﻿using NPCE_WinClient.Model;
+﻿using FriendOrganizer.UI.View.Services;
+using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
 using NPCE_WinClient.UI.Event;
 using NPCE_WinClient.UI.View.Services;
@@ -131,9 +132,17 @@ namespace NPCE_WinClient.UI.ViewModel
             return visura;
         }
 
-        protected override void OnDeleteExecute()
+        protected override async void OnDeleteExecute()
         {
-            throw new NotImplementedException();
+            var result = await MessageDialogService.ShowOkCancelDialogAsync($"Do you really want to cancel the visura ?",
+                                                                  "Question");
+            if (result == MessageDialogResult.Cancel)
+            {
+                return;
+            }
+            _visureRepository.Remove(Visura.Model);
+            await _visureRepository.SaveAsync();
+            RaiseDetailDeletedEvent(Visura.Id);
         }
 
         protected override bool OnSaveCanExecute()
