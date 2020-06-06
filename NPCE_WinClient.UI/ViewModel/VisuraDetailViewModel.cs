@@ -1,15 +1,13 @@
 ﻿using NPCE_WinClient.Model;
 using NPCE_WinClient.UI.Data.Repositories;
+using NPCE_WinClient.UI.Event;
 using NPCE_WinClient.UI.View.Services;
 using NPCE_WinClient.UI.Wrapper;
 using Prism.Commands;
 using Prism.Events;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -32,7 +30,7 @@ namespace NPCE_WinClient.UI.ViewModel
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
         }
 
-       
+
 
         private bool OnInvioCanExecute()
         {
@@ -61,6 +59,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
             InitializeVisura(visura);
 
+            SetTitle(id);
 
         }
 
@@ -87,12 +86,18 @@ namespace NPCE_WinClient.UI.ViewModel
             //    Visura.DestinatarioNominativo = "";
             //}
 
-            SetTitle();
         }
 
-        private void SetTitle()
+        private void SetTitle(int id)
         {
-            Title = "Nuova Visura";
+            if (id<=0)
+            {
+                Title = "Nuova Visura";
+            }
+            else
+            {
+                Title = $"Edit Visura {id.ToString()}";
+            }
         }
 
         private Visura CreateNewVisura()
@@ -115,10 +120,10 @@ namespace NPCE_WinClient.UI.ViewModel
                 DocumentoIntestatarioCCIAA = "RM",
                 DocumentoIntestatarioNREA = "1064345",
 
-                DocumentoIntestatarioCognome="Verdi",
-                DocumentoIntestatarioNome="Emilio",
-                DocumentoIntestatarioCodiceFiscale="MCRPQL64T08F537U"
-               
+                DocumentoIntestatarioCognome = "Verdi",
+                DocumentoIntestatarioNome = "Emilio",
+                DocumentoIntestatarioCodiceFiscale = "MCRPQL64T08F537U"
+
             };
 
             _visureRepository.Add(visura);
@@ -144,6 +149,7 @@ namespace NPCE_WinClient.UI.ViewModel
             await _visureRepository.SaveAsync();
             Id = Visura.Id;
             HasChanges = _visureRepository.HasChanges();
+            EventAggregator.GetEvent<VisuraSavedEvent>().Publish(new VisuraSavedEventArgs { Visura = Visura.Model });
         }
 
         public ObservableCollection<VisureTipoDocumento> TipiDocumento { get; set; }
@@ -151,13 +157,15 @@ namespace NPCE_WinClient.UI.ViewModel
         public ObservableCollection<VisureFormatoDocumento> FormatiDocumento { get; set; }
 
         ObservableCollection<VisureCodiceDocumento> codiciDocumento;
-        public ObservableCollection<VisureCodiceDocumento> CodiciDocumento { 
+        public ObservableCollection<VisureCodiceDocumento> CodiciDocumento
+        {
             get
             {
                 return codiciDocumento;
             }
 
-            set {
+            set
+            {
                 codiciDocumento = value;
                 OnPropertyChanged("CodiciDocumento");
             }
@@ -174,7 +182,8 @@ namespace NPCE_WinClient.UI.ViewModel
         public string TipoDocumentoSelected
         {
             get { return tipoDocumentoSelected; }
-            set { 
+            set
+            {
                 tipoDocumentoSelected = value;
                 Visura.VisureTipoDocumentoId = tipoDocumentoSelected;
                 CodiciDocumento = new ObservableCollection<VisureCodiceDocumento>(allCodiciDocumento.Where(c => c.VisureTipoDocumentoId == tipoDocumentoSelected));

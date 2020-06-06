@@ -52,7 +52,7 @@
 
 
         </StackPanel>
-        <DataGrid ItemsSource="{Binding Visure}"
+        <DataGrid ItemsSource="{Binding Visure, Mode=TwoWay}"
                   SelectedItem="{Binding Visura,Mode=TwoWay}"
                   AutoGenerateColumns="False" 
                   RowHeaderWidth="0" Margin="0,61,3.667,0" IsReadOnly="True" 

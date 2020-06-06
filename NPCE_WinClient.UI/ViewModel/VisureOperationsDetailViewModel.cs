@@ -57,7 +57,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private void OnCopyIdRichiestaExecute(VisuraWrapper visura)
         {
-            Clipboard.SetText(visura.IdRichiesta);
+            Clipboard.SetText(visura.IdRichiesta?? string.Empty);
         }
 
         private bool OnConfermaCanExecute()
@@ -223,6 +223,28 @@ namespace NPCE_WinClient.UI.ViewModel
 
                 Visure.Add(wrapper);
             }
+
+        }
+
+        public void UpdateVisure(Visura visura)
+        {
+            var item = Visure.Where(v => v.Id == visura.Id).FirstOrDefault();
+
+            if (item== null)
+            {
+                var wrapper = new VisuraWrapper(visura);
+                wrapper.PropertyChanged += Wrapper_PropertyChanged;
+                Visure.Add(wrapper);
+            }
+            else
+            {
+                item.PropertyChanged -= Wrapper_PropertyChanged;
+                Visure.Remove(item);
+                var newWrapper = new VisuraWrapper(visura);
+                newWrapper.PropertyChanged += Wrapper_PropertyChanged;
+                Visure.Add(newWrapper); 
+            }
+            OnPropertyChanged("Visure");
         }
 
         private void Wrapper_PropertyChanged(object sender, PropertyChangedEventArgs e)

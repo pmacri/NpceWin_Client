@@ -54,6 +54,8 @@ namespace NPCE_WinClient.UI.ViewModel
                 .Subscribe(AfterDetailClosed);
             _eventAggregator.GetEvent<EditVisuraEvent>()
                .Subscribe(EditVisura);
+            _eventAggregator.GetEvent<VisuraSavedEvent>()
+                .Subscribe(VisuraSaved);
 
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
 
@@ -64,6 +66,18 @@ namespace NPCE_WinClient.UI.ViewModel
             OpenSingleDetailViewCommand = new DelegateCommand<Type>(OnOpenSingleDetailExecute);
 
             SettingsCommand = new DelegateCommand(OnSettingsExecute);
+        }
+
+        private void VisuraSaved(VisuraSavedEventArgs arg)
+        {
+            var detailViewModel = DetailViewModels.SingleOrDefault(vm => vm.GetType().Name == typeof(VisureOperationsDetailViewModel).Name);
+
+            if (detailViewModel != null)
+            {
+                var visureOperationViewModel = detailViewModel as VisureOperationsDetailViewModel;
+                visureOperationViewModel.UpdateVisure(arg.Visura);
+                //await visureOperationViewModel.LoadAsync(-1);
+            }
         }
 
         private void EditVisura(EditVisuraEventArgs visura)

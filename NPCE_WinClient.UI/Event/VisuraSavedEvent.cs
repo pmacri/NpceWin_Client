@@ -1,4 +1,4 @@
-﻿using NPCE_WinClient.UI.Wrapper;
+﻿using NPCE_WinClient.Model;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -8,13 +8,11 @@ using System.Threading.Tasks;
 
 namespace NPCE_WinClient.UI.Event
 {
-
     public class VisuraSavedEvent : PubSubEvent<VisuraSavedEventArgs>
     {
     }
-
     public class VisuraSavedEventArgs
     {
-        public VisuraWrapper Visura;
+        public Visura Visura { get; set; }
     }
 }
