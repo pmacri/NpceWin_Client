@@ -146,7 +146,7 @@ namespace NPCE_WinClient.UI.ViewModel
 
                 statoCreated = AutoConferma ? statoServizioRepository.GetByDescription("Confermato") : statoServizioRepository.GetByDescription("Inviato");
 
-                Visura.Model.StatoServizioId = statoCreated.Id;
+                Visura.Model.StatoServizioId = statoInviato.Id;
 
                 Visura.AmbienteId = Ambiente.Id;
                 Visura.IdOrdine = result.IdOrdine;

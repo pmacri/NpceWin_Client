@@ -125,18 +125,18 @@ namespace NPCE_WinClient.UI.Npce
             documento.Formato = _visura.VisureFormatoDocumentoId;
             documento.CameraDiCommercioCodice = _visura.DocumentoIntestatarioCCIAA;
             documento.NumeroCopie = 1;
+            documento.NumeroCopieSpecified = true;
 
-            var codiceFiscaleDittaIndividuale = _visura.DocumentoIntestatarioCodiceFiscale?.Length == 19 ? _visura.DocumentoIntestatarioCodiceFiscale : string.Empty;
+            var codiceFiscaleDittaIndividuale = _visura.DocumentoIntestatarioCodiceFiscale?.Length == 16 ? _visura.DocumentoIntestatarioCodiceFiscale : string.Empty;
             var codiceFiscaleImpresa = _visura.DocumentoIntestatarioCodiceFiscale?.Length == 11 ? _visura.DocumentoIntestatarioCodiceFiscale : string.Empty;
             documento.Intestatario = new DocumentiRequestDocumentoIntestatario
             {
-                CodiceFiscaleDittaIndividuale = codiceFiscaleDittaIndividuale,
+                CodiceFiscaleDittaIndividuale = codiceFiscaleDittaIndividuale,                
                 Cognome = _visura.DocumentoIntestatarioCognome,
                 Nome = _visura.DocumentoIntestatarioNome,
                 RagioneSociale = _visura.DocumentoIntestatarioRagioneSociale,
                 NumeroREA = _visura.DocumentoIntestatarioNREA,
                 CodiceFiscaleImpresa= codiceFiscaleImpresa
-
             };
 
             documentiList.Add(documento);

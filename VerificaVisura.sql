@@ -1,6 +1,7 @@
 ﻿SELECT r.id IdRichiesta, 
         rd.ID IdDocumento,
-		R.IdRichiesta GuidRichiesta
+		R.IdRichiesta GuidRichiesta,
+		r.codicestatocorrente StatoRichiesta
       ,[CodiceStatoCorrenteDocumento] StatoDocumento
       ,[DataStatoCorrenteDocumento]
       ,[URLDocumento]
@@ -11,4 +12,4 @@
   inner join Richieste r on (r.Id=rd.IDRichiesta)
   inner join TipiRecapiti tr on (tr.ID= r.IDTipoRecapito)
   left outer join DocumentiInfo di on (di.RichiesteDocumentiId=rd.ID)
-  where r.IdRichiesta = 'd1ab0000-2d01-c0b1-0000-0000000005b1'
+  where r.IdRichiesta = '3889fc5d-dd1b-4dd5-9783-2df781c19cd3'

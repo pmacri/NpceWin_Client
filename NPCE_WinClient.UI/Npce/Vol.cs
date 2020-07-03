@@ -155,7 +155,7 @@ namespace NPCE_WinClient.UI.Npce
                 CodiceFiscale = visura.DocumentoIntestatarioCodiceFiscale,
                 Cognome = visura.DocumentoIntestatarioCognome,
                 Nome = visura.DocumentoIntestatarioNome,
-                NREA = Convert.ToInt32(visura.DocumentoIntestatarioNREA),
+                NREA = string.IsNullOrEmpty(visura.DocumentoIntestatarioNREA)  ? (int?)null : Convert.ToInt32(visura.DocumentoIntestatarioNREA),
                 RagioneSociale = visura.DocumentoIntestatarioRagioneSociale
             };
         }
