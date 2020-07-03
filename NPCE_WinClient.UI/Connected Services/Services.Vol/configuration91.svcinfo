@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="fpNbcoY5BWnTVW1P/L0zxjcZsoE=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="FwR+zSYXimBztKVImAjyVbfyEzw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="basicHttp2">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="basicHttp2" contract="Services.Vol.ICameraliService" bindingType="basicHttpBinding" address="http://camerali.web/CameraliService.svc" bindingConfiguration="basicHttp2">
+    <endpoint name="basicHttp2" contract="Services.Vol.ICameraliService" bindingType="basicHttpBinding" address="http://localhost/Camerali/CameraliService.svc" bindingConfiguration="basicHttp2">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://camerali.web/CameraliService.svc</serializedValue>
+          <serializedValue>http://localhost/Camerali/CameraliService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

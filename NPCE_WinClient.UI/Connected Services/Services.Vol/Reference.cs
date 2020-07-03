@@ -530,7 +530,7 @@ namespace NPCE_WinClient.Services.Vol {
         private NPCE_WinClient.Services.Vol.CodiceDocumento CodiceDocumentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private NPCE_WinClient.Services.Vol.Formato FormatoField;
+        private System.Nullable<NPCE_WinClient.Services.Vol.Formato> FormatoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NPCE_WinClient.Services.Vol.Intestatario IntestatarioField;
@@ -588,7 +588,7 @@ namespace NPCE_WinClient.Services.Vol {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public NPCE_WinClient.Services.Vol.Formato Formato {
+        public System.Nullable<NPCE_WinClient.Services.Vol.Formato> Formato {
             get {
                 return this.FormatoField;
             }
@@ -792,6 +792,9 @@ namespace NPCE_WinClient.Services.Vol {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         D = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        P = 4,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1220,6 +1223,9 @@ namespace NPCE_WinClient.Services.Vol {
     public partial class InvioResponse : NPCE_WinClient.Services.Vol.PostaEvoResponse {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private NPCE_WinClient.Services.Vol.DatiIntestatarioValidati DatiIntestatarioValidatiField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NPCE_WinClient.Services.Vol.Destinatario DestinatarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1236,6 +1242,19 @@ namespace NPCE_WinClient.Services.Vol {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private NPCE_WinClient.Services.Vol.ValorizzazioneServizio ValorizzazioneField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public NPCE_WinClient.Services.Vol.DatiIntestatarioValidati DatiIntestatarioValidati {
+            get {
+                return this.DatiIntestatarioValidatiField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DatiIntestatarioValidatiField, value) != true)) {
+                    this.DatiIntestatarioValidatiField = value;
+                    this.RaisePropertyChanged("DatiIntestatarioValidati");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public NPCE_WinClient.Services.Vol.Destinatario Destinatario {
@@ -1329,6 +1348,7 @@ namespace NPCE_WinClient.Services.Vol {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.TipoDocumento))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.Richiedente))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.InvioResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.DatiIntestatarioValidati))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.ValorizzazioneServizio))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.ConfermaInvioRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(NPCE_WinClient.Services.Vol.ConfermaInvioResponse))]
@@ -1417,6 +1437,147 @@ namespace NPCE_WinClient.Services.Vol {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         KO = 1,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DatiIntestatarioValidati", Namespace="http://comunicazionielettroniche.posteitaliane.it/camerali/data")]
+    [System.SerializableAttribute()]
+    public partial class DatiIntestatarioValidati : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CCIAAField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CodiceFiscaleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CognomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DataDiNascitaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int NREAField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NomeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RagioneSocialeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CCIAA {
+            get {
+                return this.CCIAAField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CCIAAField, value) != true)) {
+                    this.CCIAAField = value;
+                    this.RaisePropertyChanged("CCIAA");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string CodiceFiscale {
+            get {
+                return this.CodiceFiscaleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CodiceFiscaleField, value) != true)) {
+                    this.CodiceFiscaleField = value;
+                    this.RaisePropertyChanged("CodiceFiscale");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Cognome {
+            get {
+                return this.CognomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CognomeField, value) != true)) {
+                    this.CognomeField = value;
+                    this.RaisePropertyChanged("Cognome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DataDiNascita {
+            get {
+                return this.DataDiNascitaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DataDiNascitaField, value) != true)) {
+                    this.DataDiNascitaField = value;
+                    this.RaisePropertyChanged("DataDiNascita");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int NREA {
+            get {
+                return this.NREAField;
+            }
+            set {
+                if ((this.NREAField.Equals(value) != true)) {
+                    this.NREAField = value;
+                    this.RaisePropertyChanged("NREA");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Nome {
+            get {
+                return this.NomeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NomeField, value) != true)) {
+                    this.NomeField = value;
+                    this.RaisePropertyChanged("Nome");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RagioneSociale {
+            get {
+                return this.RagioneSocialeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RagioneSocialeField, value) != true)) {
+                    this.RagioneSocialeField = value;
+                    this.RaisePropertyChanged("RagioneSociale");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

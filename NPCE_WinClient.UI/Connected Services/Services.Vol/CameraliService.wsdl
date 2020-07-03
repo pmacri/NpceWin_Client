@@ -148,6 +148,7 @@
           <xs:enumeration value="E" />
           <xs:enumeration value="R" />
           <xs:enumeration value="D" />
+          <xs:enumeration value="P" />
         </xs:restriction>
       </xs:simpleType>
       <xs:element name="TipoRecapito" nillable="true" type="tns:TipoRecapito" />
@@ -156,7 +157,7 @@
           <xs:element minOccurs="0" name="Bollo" type="xs:boolean" />
           <xs:element minOccurs="0" name="Chiusura" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="CodiceDocumento" type="tns:CodiceDocumento" />
-          <xs:element minOccurs="0" name="Formato" type="tns:Formato" />
+          <xs:element minOccurs="0" name="Formato" nillable="true" type="tns:Formato" />
           <xs:element xmlns:q2="http://comunicazionielettroniche.posteitaliane/camerali/data" minOccurs="0" name="Intestatario" nillable="true" type="q2:Intestatario" />
           <xs:element minOccurs="0" name="TipoDocumento" type="tns:TipoDocumento" />
         </xs:sequence>
@@ -212,6 +213,7 @@
         <xs:complexContent mixed="false">
           <xs:extension xmlns:q3="http://comunicazionielettroniche.posteitaliane.it/postaevo/data" base="q3:PostaEvoResponse">
             <xs:sequence>
+              <xs:element minOccurs="0" name="DatiIntestatarioValidati" nillable="true" type="tns:DatiIntestatarioValidati" />
               <xs:element minOccurs="0" name="Destinatario" nillable="true" type="tns:Destinatario" />
               <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:Documento" />
               <xs:element minOccurs="0" name="IdRichiesta" nillable="true" type="xs:string" />
@@ -223,6 +225,18 @@
         </xs:complexContent>
       </xs:complexType>
       <xs:element name="InvioResponse" nillable="true" type="tns:InvioResponse" />
+      <xs:complexType name="DatiIntestatarioValidati">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CCIAA" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CodiceFiscale" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Cognome" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DataDiNascita" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NREA" type="xs:int" />
+          <xs:element minOccurs="0" name="Nome" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RagioneSociale" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="DatiIntestatarioValidati" nillable="true" type="tns:DatiIntestatarioValidati" />
       <xs:complexType name="ValorizzazioneServizio">
         <xs:sequence>
           <xs:element minOccurs="0" name="IdRichiesta" nillable="true" type="xs:string" />
@@ -543,7 +557,7 @@
   </wsdl:binding>
   <wsdl:service name="CameraliService">
     <wsdl:port name="basicHttp" binding="tns:basicHttp">
-      <soap:address location="http://camerali.web/CameraliService.svc" />
+      <soap:address location="http://localhost/Camerali/CameraliService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -126,10 +126,9 @@ namespace NPCE_WinClient.UI.Npce
                 case "E": return TipoRecapito.E;
                 case "D": return TipoRecapito.D;
                 case "R": return TipoRecapito.R;
-                case "S": return TipoRecapito.S;
-                    // TODO Pec
-                case "P": return TipoRecapito.E;
-                default: return TipoRecapito.E;
+                case "S": return TipoRecapito.S;                 
+                case "P": return TipoRecapito.P;
+                default:  return TipoRecapito.E;
             }
         }
 
