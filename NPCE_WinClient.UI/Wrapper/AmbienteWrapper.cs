@@ -67,6 +67,29 @@ namespace NPCE_WinClient.UI.Wrapper
                 SetValue<string>(value);
             }
         }
+
+        public string codicefiscale
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public string partitaiva
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+
+
         public string sendersystem
         {
             get { return GetValue<string>(); }

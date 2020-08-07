@@ -3,3 +3,11 @@ Tabella Contratti
 - Colonna User_Id		 = Header smuser
 - Colonna Partner		 = Header CustomerID
 - TipoOffertaCommerciale = "POLH2H"
+
+select a.partner CustomerId, a.nome,c.contract_billing,
+
+       p.product_text, c.CodiceUtenzaCRM UserId from anagrafica a inner join Contratti c on (c.Id_Anagrafica = a.Id_anagrafica and c.To_Date>= getdate()) inner join relcontrattoprodotti rel on (rel.Id_Contratto = c.Id_Contratto) inner join prodotti p on (rel.id_prodotto =p.id_prodotto) where --p.product_text = 'RACCOMANDATA MARKET ONLINE'
+
+p.product_text = 'POSTA CONTEST ONLINE'
+
+order by CustomerId

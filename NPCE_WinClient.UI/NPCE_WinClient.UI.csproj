@@ -44,6 +44,13 @@
     <Reference Include="ComunicazioniElettroniche.Common">
       <HintPath>..\ComunicazioniElettroniche.Common.dll</HintPath>
     </Reference>
+    <Reference Include="ComunicazioniElettroniche.Common.Frontend, Version=1.0.0.0, Culture=neutral, PublicKeyToken=39b043fe05412c92, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ComunicazioniElettroniche.Common.Frontend.dll</HintPath>
+    </Reference>
+    <Reference Include="ComunicazioniElettroniche.LOL.Web">
+      <HintPath>..\ComunicazioniElettroniche.LOL.Web.dll</HintPath>
+    </Reference>
     <Reference Include="ComunicazioniElettroniche.Visure">
       <HintPath>..\ComunicazioniElettroniche.Visure.dll</HintPath>
     </Reference>
@@ -158,6 +165,7 @@
     <Compile Include="Npce\InvioMol.cs" />
     <Compile Include="Npce\InvioRol.cs" />
     <Compile Include="Npce\InvioVisuraPIL.cs" />
+    <Compile Include="Npce\LetteraPil.cs" />
     <Compile Include="Npce\NpceOperationBase.cs" />
     <Compile Include="Npce\NpceOperationResult.cs" />
     <Compile Include="Npce\NpceOperations.cs" />

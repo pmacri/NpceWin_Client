@@ -6,11 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using Bollettino451 = NPCE_WinClient.Services.Col.Bollettino451;
+using Bollettino674 = NPCE_WinClient.Services.Col.Bollettino674;
+using Bollettino896 = NPCE_WinClient.Services.Col.Bollettino896;
+using BollettinoBase = NPCE_WinClient.Services.Col.BollettinoBase;
+using BollettinoEseguitoDa = NPCE_WinClient.Services.Col.BollettinoEseguitoDa;
 using Destinatario = NPCE_WinClient.Services.Col.Destinatario;
 using Documento = NPCE_WinClient.Services.Col.Documento;
 using Intestazione = NPCE_WinClient.Services.Col.Intestazione;
 using InvioRequest = NPCE_WinClient.Services.Col.InvioRequest;
 using Mittente = NPCE_WinClient.Services.Col.Mittente;
+using PaginaBollettino = NPCE_WinClient.Services.Col.PaginaBollettino;
+using PaginaBollettinoBase = NPCE_WinClient.Services.Col.PaginaBollettinoBase;
+using PaginaDueBollettini = NPCE_WinClient.Services.Col.PaginaDueBollettini;
 using ProdottoPostaEvo = NPCE_WinClient.Services.Col.ProdottoPostaEvo;
 
 namespace NPCE_WinClient.UI.Npce
@@ -43,7 +51,12 @@ namespace NPCE_WinClient.UI.Npce
             SetDestinatari(postaContest);
             SetDocumenti(postaContest);
             SetOpzioni(postaContest);
-           
+
+            if (_servizio.PagineBollettini != null && _servizio.PagineBollettini.Count() > 0)
+            {
+                SetBollettini(postaContest);
+            }
+
 
             var fake = new OperationContextScope((IContextChannel)_proxy);
             var headers = GetHttpHeaders(_ambiente);
@@ -55,6 +68,165 @@ namespace NPCE_WinClient.UI.Npce
             var invioResult = _proxy.Invio(colSubmit);
 
             return CreateResult(NpceOperation.Invio, invioResult.Esito.ToString() == "OK" ? "0" : "99", invioResult.Esito.ToString(), invioResult.IdRichiesta, null, null);
+        }
+
+        private void SetBollettini(PostaContest postaContest)
+        {
+            List<Services.Col.PaginaBollettino> pagineBollettiniList = new List<Services.Col.PaginaBollettino>();
+
+            List<PaginaDueBollettini> pagineDueBollettiniList = new List<PaginaDueBollettini>();
+
+            foreach (var paginaBollettino in _servizio.PagineBollettini)
+            {
+                CreatePaginaBollettino(paginaBollettino, pagineBollettiniList, pagineDueBollettiniList);
+
+            }
+
+            List<PaginaBollettino> finalBollettiniList = new List<PaginaBollettino>();
+
+            finalBollettiniList.AddRange(pagineBollettiniList);
+            finalBollettiniList.AddRange(pagineDueBollettiniList);
+
+            postaContest.Bollettini = finalBollettiniList.ToArray();
+        }
+
+        private void CreatePaginaBollettino(Model.PaginaBollettino paginaBollettino,
+                                                                     List<PaginaBollettino> pagineBollettiniList,
+                                                                     List<PaginaDueBollettini> pagineDueBollettiniList)
+        {
+            if (paginaBollettino.Bollettini.Count == 1)
+            {
+                pagineBollettiniList.Add(CreaPaginaUnBollettino(paginaBollettino));
+            }
+
+            else
+            {
+                pagineDueBollettiniList.Add(CreaPaginaDueBollettini(paginaBollettino));
+            }
+
+        }
+
+        private PaginaDueBollettini CreaPaginaDueBollettini(Model.PaginaBollettino paginaBollettino)
+        {
+            var result = new PaginaDueBollettini();
+
+            switch (paginaBollettino.Bollettini.First().Tipo)
+            {
+                case "896":
+                    BollettinoBase bollettino896 = CreaBollettino896(paginaBollettino.Bollettini.First());
+                    result.Bollettino = bollettino896;
+                    break;
+                case "674":
+                    BollettinoBase bollettino674 = CreaBollettino674(paginaBollettino.Bollettini.First());
+                    result.Bollettino = bollettino674;
+                    break;
+                case "451":
+                    BollettinoBase bollettino451 = CreaBollettino451(paginaBollettino.Bollettini.First());
+                    result.Bollettino = bollettino451;
+                    break;
+                default:
+                    break;
+            }
+
+            AddBollettino2(paginaBollettino.Bollettini.Skip(1).First(), result);
+
+            return result;
+        }
+
+        private void AddBollettino2(Bollettino bollettino, PaginaDueBollettini result)
+        {
+            switch (bollettino.Tipo)
+            {
+                case "896":
+                    BollettinoBase bollettino896 = CreaBollettino896(bollettino);
+                    result.Bollettino2 = bollettino896;
+                    break;
+                case "674":
+                    BollettinoBase bollettino674 = CreaBollettino674(bollettino);
+                    result.Bollettino2 = bollettino674;
+                    break;
+                case "451":
+                    BollettinoBase bollettino451 = CreaBollettino451(bollettino);
+                    result.Bollettino2 = bollettino451;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private BollettinoBase CreateBollettino2(Model.PaginaBollettino paginaBollettino)
+        {
+            throw new NotImplementedException();
+        }
+
+        private PaginaBollettino CreaPaginaUnBollettino(Model.PaginaBollettino paginaBollettino)
+        {
+            var result = new PaginaBollettino();
+
+            switch (paginaBollettino.Bollettini.First().Tipo)
+            {
+                case "896":
+                    BollettinoBase bollettino896 = CreaBollettino896(paginaBollettino.Bollettini.First());
+                    result.Bollettino = bollettino896;
+                    break;
+                case "674":
+                    BollettinoBase bollettino674 = CreaBollettino674(paginaBollettino.Bollettini.First());
+                    result.Bollettino = bollettino674;
+                    break;
+                case "451":
+                    BollettinoBase bollettino451 = CreaBollettino451(paginaBollettino.Bollettini.First());
+                    result.Bollettino = bollettino451;
+                    break;
+                default:
+                    break;
+            }
+
+            return result;
+        }
+
+        private BollettinoBase CreaBollettino451(Bollettino bollettino)
+        {
+            return new Bollettino451
+            {
+                AdditionalInfo = bollettino.AdditionalInfo,
+                Causale = "Causale",
+                EseguitoDa = new BollettinoEseguitoDa { Nominativo = bollettino.EseguitoDaNominativo, Indirizzo = bollettino.EseguitoDaIndirizzo, CAP = bollettino.EseguitoDaCap, Localita = bollettino.EseguitoDaLocalita },
+                ImportoEuro = bollettino.ImportoEuro,
+                IBAN = bollettino.IBan,
+                NumeroAutorizzazioneStampaInProprio = bollettino.NumeroAutorizzazioneStampaInProprio,
+                IntestatoA = bollettino.IntestatoA,
+                NumeroContoCorrente = bollettino.NumeroContoCorrente
+            };
+        }
+
+        private BollettinoBase CreaBollettino674(Bollettino bollettino)
+        {
+            return new Bollettino674
+            {
+                AdditionalInfo = bollettino.AdditionalInfo,
+                Causale = "Causale",
+                EseguitoDa = new BollettinoEseguitoDa { Nominativo = bollettino.EseguitoDaNominativo, Indirizzo = bollettino.EseguitoDaIndirizzo, CAP = bollettino.EseguitoDaCap, Localita = bollettino.EseguitoDaLocalita },
+                IBAN = bollettino.IBan,
+                NumeroAutorizzazioneStampaInProprio = bollettino.NumeroAutorizzazioneStampaInProprio,
+                IntestatoA = bollettino.IntestatoA,
+                NumeroContoCorrente = bollettino.NumeroContoCorrente
+            };
+        }
+
+        private Bollettino896 CreaBollettino896(Bollettino bollettino)
+        {
+            return new Bollettino896
+            {
+                AdditionalInfo = bollettino.AdditionalInfo,
+                Causale = "Causale",
+                CodiceCliente = bollettino.CodiceCliente,
+                EseguitoDa = new BollettinoEseguitoDa { Nominativo = bollettino.EseguitoDaNominativo, Indirizzo = bollettino.EseguitoDaIndirizzo, CAP = bollettino.EseguitoDaCap, Localita = bollettino.EseguitoDaLocalita },
+                ImportoEuro = bollettino.ImportoEuro,
+                IBAN = bollettino.IBan,
+                NumeroAutorizzazioneStampaInProprio = bollettino.NumeroAutorizzazioneStampaInProprio,
+                IntestatoA = bollettino.IntestatoA,
+                NumeroContoCorrente = bollettino.NumeroContoCorrente
+            };
         }
 
         private void SetIntestazione(PostaContest postaContest)

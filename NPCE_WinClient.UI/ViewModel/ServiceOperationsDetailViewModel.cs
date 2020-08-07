@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitLOL;
 using FriendOrganizer.UI.View.Services;
 using MahApps.Metro.Controls.Dialogs;
 using NPCE_WinClient.Model;
@@ -109,10 +110,20 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private NpceOperationResult PreConfermaLolExecute()
         {
+            NpceOperationResult result;
 
-            var preConfermaOperation = new PreConfermaLol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, AutoConfirm);
+            if (Ambiente.IsPil)
+            {
+                var letteraPil = new LetteraPil(_servizio.Model, Ambiente.Model);
 
-            var result = preConfermaOperation.Execute();
+                result = letteraPil.PreConferma(_servizio.IdRichiesta, AutoConfirm);
+            }
+            else
+            {
+                var preConfermaOperation = new PreConfermaLol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, AutoConfirm);
+
+                result = preConfermaOperation.Execute();
+            }
 
             return result;
         }
@@ -211,17 +222,29 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private async Task<NpceOperationResult> InvioLolExecute()
         {
-            var operation = new RecuperaIdRichiestaLol(Ambiente.Model);
+            NpceOperationResult result = null;
 
-            var idRichiesta = operation.Execute();
+            if (Ambiente.IsPil)
+            {
+                var operation = new LetteraPil(Servizio.Model, Ambiente.Model);
 
-            var idServizio = Servizio.Id;
+                result = operation.Invio();
+            }
+            else
+            {
+                var operation = new RecuperaIdRichiestaLol(Ambiente.Model);
 
-            var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+                var idRichiesta = operation.Execute();
 
-            var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
+                var idServizio = Servizio.Id;
 
-            var result = invioOperation.Execute();
+                var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+
+                var invioOperation = new InvioLol(Ambiente.Model, servizio, idRichiesta);
+
+                result = invioOperation.Execute();
+            }
+            
 
             return result;
         }
@@ -253,7 +276,6 @@ namespace NPCE_WinClient.UI.ViewModel
             var result = invioOperation.Execute();
             return result;
         }
-
 
         public ICommand InvioCommand { get; set; }
         public DelegateCommand PreConfermaCommand { get; }

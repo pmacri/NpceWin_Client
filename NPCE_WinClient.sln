@@ -25,6 +25,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dll", "Dll", "{B6FC5CFC-710C-4DA8-94F2-003186614B79}"
 	ProjectSection(SolutionItems) = preProject
 		ComunicazioniElettroniche.Common.dll = ComunicazioniElettroniche.Common.dll
+		ComunicazioniElettroniche.Common.Frontend.dll = ComunicazioniElettroniche.Common.Frontend.dll
+		ComunicazioniElettroniche.LOL.Web.dll = ComunicazioniElettroniche.LOL.Web.dll
 		ComunicazioniElettroniche.Visure.dll = ComunicazioniElettroniche.Visure.dll
 		PosteItaliane.OrderManagement.Schema.Code.dll = PosteItaliane.OrderManagement.Schema.Code.dll
 	EndProjectSection
