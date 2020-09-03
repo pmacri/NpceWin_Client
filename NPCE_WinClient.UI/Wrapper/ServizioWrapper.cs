@@ -123,6 +123,36 @@ namespace NPCE_WinClient.UI.Wrapper
             }
         }
 
+        public string TipoArchiviazione
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public string TipoArchiviazioneSelected
+        {
+            get { return GetValue<string>(); }
+
+            set
+            {
+                SetValue<string>(value);
+            }
+        }
+
+        public int AnniArchiviazione
+        {
+            get { return GetValue<int>(); }
+
+            set
+            {
+                SetValue<int>(value);
+            }
+        }
+
 
         public bool AttestazioneConsegna
         {

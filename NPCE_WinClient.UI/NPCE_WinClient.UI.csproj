@@ -51,6 +51,12 @@
     <Reference Include="ComunicazioniElettroniche.LOL.Web">
       <HintPath>..\ComunicazioniElettroniche.LOL.Web.dll</HintPath>
     </Reference>
+    <Reference Include="ComunicazioniElettroniche.PostaEvo.Assembly.External">
+      <HintPath>..\ComunicazioniElettroniche.PostaEvo.Assembly.External.dll</HintPath>
+    </Reference>
+    <Reference Include="ComunicazioniElettroniche.ROL.Web">
+      <HintPath>..\ComunicazioniElettroniche.ROL.Web.dll</HintPath>
+    </Reference>
     <Reference Include="ComunicazioniElettroniche.Visure">
       <HintPath>..\ComunicazioniElettroniche.Visure.dll</HintPath>
     </Reference>
@@ -169,11 +175,15 @@
     <Compile Include="Npce\NpceOperationBase.cs" />
     <Compile Include="Npce\NpceOperationResult.cs" />
     <Compile Include="Npce\NpceOperations.cs" />
+    <Compile Include="Npce\PostaEvoPil.cs" />
     <Compile Include="Npce\PreConfermaLol.cs" />
     <Compile Include="Npce\PreConfermaRol.cs" />
+    <Compile Include="Npce\RaccomandataDestinatario.cs" />
+    <Compile Include="Npce\RaccomandataPil.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaLol.cs" />
     <Compile Include="Npce\InvioLol.cs" />
     <Compile Include="Npce\RecuperaIdRichiestaRol.cs" />
+    <Compile Include="Npce\ServizioPil.cs" />
     <Compile Include="Npce\Vol.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="ViewModel\IPagineBollettinoDetailViewModel.cs" />

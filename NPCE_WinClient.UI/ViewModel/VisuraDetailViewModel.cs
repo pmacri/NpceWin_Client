@@ -149,7 +149,6 @@ namespace NPCE_WinClient.UI.ViewModel
         {
             return true;
         }
-
         protected override async void OnSaveExecute()
         {
             var statoCreated = _statoServizioRepository.GetByDescription("Salvato");
@@ -160,9 +159,7 @@ namespace NPCE_WinClient.UI.ViewModel
             HasChanges = _visureRepository.HasChanges();
             EventAggregator.GetEvent<VisuraSavedEvent>().Publish(new VisuraSavedEventArgs { Visura = Visura.Model });
         }
-
         public ObservableCollection<VisureTipoDocumento> TipiDocumento { get; set; }
-
         public ObservableCollection<VisureFormatoDocumento> FormatiDocumento { get; set; }
 
         ObservableCollection<VisureCodiceDocumento> codiciDocumento;
@@ -179,15 +176,11 @@ namespace NPCE_WinClient.UI.ViewModel
                 OnPropertyChanged("CodiciDocumento");
             }
         }
-
         public ObservableCollection<VisureTipoRecapito> TipiRecapito { get; set; }
-
         public ICommand InvioCommand { get; set; }
-
         public ICommand TipoDocumentoChanged { get; set; }
 
         private string tipoDocumentoSelected;
-
         public string TipoDocumentoSelected
         {
             get { return tipoDocumentoSelected; }
@@ -198,6 +191,5 @@ namespace NPCE_WinClient.UI.ViewModel
                 CodiciDocumento = new ObservableCollection<VisureCodiceDocumento>(allCodiciDocumento.Where(c => c.VisureTipoDocumentoId == tipoDocumentoSelected));
             }
         }
-
     }
 }

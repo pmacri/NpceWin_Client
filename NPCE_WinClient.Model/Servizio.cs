@@ -29,6 +29,9 @@ namespace NPCE_WinClient.Model
         public string GuidUtente { get; set; }
         public string IdOrdine { get; set; }
 
+        public string TipoArchiviazione { get; set; } // NESSUNA, SEMPLICE, STORICA
+        public int AnniArchiviazione { get; set; }
+
         // Navigation
         public TipoServizio TipoServizio { get; set; }
         public int? TipoServizioId { get; set; }

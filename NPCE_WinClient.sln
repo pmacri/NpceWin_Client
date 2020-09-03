@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dll", "Dll", "{B6FC5CFC-710
 		ComunicazioniElettroniche.Common.dll = ComunicazioniElettroniche.Common.dll
 		ComunicazioniElettroniche.Common.Frontend.dll = ComunicazioniElettroniche.Common.Frontend.dll
 		ComunicazioniElettroniche.LOL.Web.dll = ComunicazioniElettroniche.LOL.Web.dll
+		ComunicazioniElettroniche.PostaEvo.Assembly.External.dll = ComunicazioniElettroniche.PostaEvo.Assembly.External.dll
+		ComunicazioniElettroniche.ROL.Web.dll = ComunicazioniElettroniche.ROL.Web.dll
 		ComunicazioniElettroniche.Visure.dll = ComunicazioniElettroniche.Visure.dll
 		PosteItaliane.OrderManagement.Schema.Code.dll = PosteItaliane.OrderManagement.Schema.Code.dll
 	EndProjectSection

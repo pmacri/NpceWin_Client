@@ -56,7 +56,7 @@ namespace NPCE_WinClient.UI.Npce
 
         private void SetIntestazione(MarketOnline marketOnLine)
         {
-            
+           
         }
 
         private void SetDestinatariAr(MarketOnline marketOnLine)
@@ -138,7 +138,7 @@ namespace NPCE_WinClient.UI.Npce
                 Cap = destinatarioServizio.Cap,
                 ComplementoIndirizzo = destinatarioServizio.ComplementoIndirizzo,
                 ComplementoNominativo = destinatarioServizio.ComplementoNominativo,
-                Indirizzo = string.Concat(destinatarioServizio.DUG, destinatarioServizio.Toponimo, destinatarioServizio.Esponente),
+                Indirizzo = string.Concat(destinatarioServizio.DUG, destinatarioServizio.Toponimo, " ", destinatarioServizio.NumeroCivico, destinatarioServizio.Esponente),
                 Comune = destinatarioServizio.Citta,
                 Frazione = destinatarioServizio.Frazione,
                 Nazione = destinatarioServizio.Stato ?? "Italia",
@@ -149,14 +149,14 @@ namespace NPCE_WinClient.UI.Npce
         private void SetMittente(MarketOnline marketOnLine)
         {
             var mittenteServizio = _servizio.Anagrafiche.Single(d => d.IsMittente == true);
-            var nominativo = mittenteServizio.RagioneSociale ?? string.Concat(mittenteServizio.Cognome, mittenteServizio.Nome);
+            var nominativo = mittenteServizio.RagioneSociale ?? string.Concat(mittenteServizio.Cognome, " ", mittenteServizio.Nome);
             marketOnLine.Mittente = new Mittente
             {
                 Nominativo = nominativo,
                 Cap = mittenteServizio.Cap,
                 ComplementoIndirizzo = mittenteServizio.ComplementoIndirizzo,
                 ComplementoNominativo = mittenteServizio.ComplementoNominativo,
-                Indirizzo = string.Concat(mittenteServizio.DUG, mittenteServizio.Toponimo, mittenteServizio.Esponente),
+                Indirizzo = string.Concat(mittenteServizio.DUG, mittenteServizio.Toponimo," ", mittenteServizio.NumeroCivico, mittenteServizio.Esponente),
                 Comune = mittenteServizio.Citta,
                 Frazione = mittenteServizio.Frazione,
                 Nazione = mittenteServizio.Stato ?? "Italia",

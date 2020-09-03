@@ -80,6 +80,12 @@ namespace NPCE_WinClient.UI.Npce
         private DocumentiRequest GetDocumentiRequest()
         {
             DocumentiRequest result = new DocumentiRequest();
+
+            if (_ambiente.sendersystem.Equals("ATS186", StringComparison.OrdinalIgnoreCase))
+            {
+                result.ClientIdentificativoRichiesta = DateTime.Now.ToString();
+            }
+
             result.IdRichiesta = Guid.NewGuid().ToString();            
             SetDocumentoIntestatario(result);
             SetRecapito(result);

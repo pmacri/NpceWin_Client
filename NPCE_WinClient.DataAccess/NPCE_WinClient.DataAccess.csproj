@@ -227,6 +227,10 @@
     <Compile Include="Migrations\202005222102533_TipoDocumentoId.designer.cs">
       <DependentUpon>202005222102533_TipoDocumentoId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008091646049_Archiviazione.cs" />
+    <Compile Include="Migrations\202008091646049_Archiviazione.designer.cs">
+      <DependentUpon>202008091646049_Archiviazione.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NpceDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -373,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005222102533_TipoDocumentoId.resx">
       <DependentUpon>202005222102533_TipoDocumentoId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008091646049_Archiviazione.resx">
+      <DependentUpon>202008091646049_Archiviazione.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

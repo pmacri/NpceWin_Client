@@ -4,15 +4,11 @@ using ComunicazioniElettroniche.Common.Proxy;
 using ComunicazioniElettroniche.Common.Serialization;
 using ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitLOL;
 using ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitResponse;
-using ComunicazioniElettroniche.LOL.Web.DataContracts;
-using ComunicazioniElettroniche.LOL.Web.ServiceContracts;
+using ComunicazioniElettroniche.ROL.Web.BusinessEntities.InvioSubmitROL;
 using NPCE_WinClient.Model;
-using PosteItaliane.OrderManagement.Schema.SchemaDefinition;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Destinatario = ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitLOL.Destinatario;
 using Indirizzo = ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitLOL.Indirizzo;
 using LetteraDestinatario = ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitLOL.LetteraDestinatario;
@@ -20,41 +16,24 @@ using Nominativo = ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmi
 
 namespace NPCE_WinClient.UI.Npce
 {
-    public class LetteraPil : NpceOperationBase
+    public class LetteraPil : ServizioPil
     {
-        public LetteraPil(Model.Servizio lettera, Ambiente ambiente) : base(ambiente, lettera, null)
+        public LetteraPil(Model.Servizio lettera, Ambiente ambiente) : base(ambiente, lettera, System.Guid.NewGuid().ToString())
         {
+           
         }
 
-        public NpceOperationResult Invio()
+        public override NpceOperationResult Conferma()
         {
-            var ce = new CE();
-            ce.Header = new CEHeader();
-            ce.Header.GUIDMessage = Guid.NewGuid().ToString();
-            ce.Header = new CEHeader
-            {
-                BillingCenter = _ambiente.billingcenter,
-                CodiceFiscale = _ambiente.codicefiscale,
-                ContractId = _ambiente.contractid,
-                ContractType = _ambiente.contracttype,
-                CostCenter = _ambiente.costcenter,
-                Customer = _ambiente.customer,
-                IdCRM = string.Empty,
-                SenderSystem = _ambiente.sendersystem,
-                UserId = _ambiente.smuser,
-                PartitaIva = _ambiente.partitaiva,
-                IDSender = string.Empty,
-                UserType = _ambiente.usertype
-            };
-
-            var idRichiesta = Guid.NewGuid().ToString();
-            ce.Header.GUIDMessage = idRichiesta;
+            throw new NotImplementedException();
+        }
+        public override NpceOperationResult Invio()
+        {
+            CE ce = GetCE();
 
             LetteraSubmit letteraBE = SetLetteraBE();
-
-            letteraBE.IdRichiesta = idRichiesta;
+            letteraBE.IdRichiesta = _idRichiesta;
             LetteraResponse letteraResult = null;
-
 
             ce.Body = SerializationUtility.SerializeToXmlElement(letteraBE);
 
@@ -65,7 +44,6 @@ namespace NPCE_WinClient.UI.Npce
                 try
                 {
                     letteraResult = SerializationUtility.Deserialize<LetteraResponse>(ce.Body);
-
                 }
                 catch (Exception ex)
                 {
@@ -74,85 +52,6 @@ namespace NPCE_WinClient.UI.Npce
             }
 
             return CreateResult(NpceOperation.Invio, ce.Result.ResType == TResultResType.I ? "0" : "99", ce.Result.Description?.Substring(0, Math.Min(ce.Result.Description.Length, 500)) ?? "Invio Ok", letteraResult.IdRichiesta, null, null);
-        }
-
-        public NpceOperationResult PreConferma(string idRichiesta, bool autoconfirm)
-        {
-            OrderRequest orderRequest = new PosteItaliane.OrderManagement.Schema.SchemaDefinition.OrderRequest();
-            OrderResponse orderResponse = null;
-            var ce = new CE();
-            ce.Header = new CEHeader();
-            ce.Header.GUIDMessage = Guid.NewGuid().ToString();
-            ce.Header = new CEHeader
-            {
-                BillingCenter = _ambiente.billingcenter,
-                CodiceFiscale = _ambiente.codicefiscale,
-                ContractId = _ambiente.contractid,
-                ContractType = _ambiente.contracttype,
-                CostCenter = _ambiente.costcenter,
-                Customer = _ambiente.customer,
-                IdCRM = string.Empty,
-                SenderSystem = _ambiente.sendersystem,
-                UserId = _ambiente.smuser,
-                PartitaIva = _ambiente.partitaiva,
-                IDSender = string.Empty,
-                UserType = _ambiente.usertype
-            };
-
-            ce.Header.GUIDMessage = idRichiesta;
-
-            orderRequest.ServiceInstance = new OrderRequestServiceInstance[1];
-            orderRequest.ForceOrderCreation = true;
-
-            orderRequest.ServiceInstance[0] = new OrderRequestServiceInstance();
-            orderRequest.ServiceInstance[0].GUIDMessage = idRichiesta;
-
-
-            ce.Body = SerializationUtility.SerializeToXmlElement(orderRequest);
-
-            using (WsCEClient client = new WsCEClient())
-            {
-                client.Endpoint.Address = new System.ServiceModel.EndpointAddress(_ambiente.LolUri);
-                client.SubmitRequest(ref ce);
-                try
-                {
-                    orderResponse = SerializationUtility.Deserialize<OrderResponse>(ce.Body);
-
-                }
-                catch (Exception ex)
-                {
-                    throw (ex);
-                }
-
-                var idOrdine = orderResponse.IdOrder;
-
-
-                if (autoconfirm)
-                {
-                    // solo postFatturazione
-                    ComunicazioniElettroniche.Common.Frontend.DataContracts.OpzionePagamento op = new OpzionePagamento();
-                    op.DescrizioneTipoPagamento = string.Empty; // puo' essere solo postfatturazione
-                    op.IdTipoPagamento = string.Empty;
-
-                    for (int i = 0; i < orderResponse.PaymentTypes.Length; i++)
-                    {
-                        if (orderResponse.PaymentTypes[i].PostPayment)
-                        {
-                            op.DescrizioneTipoPagamento = orderResponse.PaymentTypes[i].TypeDescription;
-                            op.IdTipoPagamento = orderResponse.PaymentTypes[i].TypeId;
-                            op.PostFatturazione = true;
-                            break;
-                        }
-                    }
-                    // Prepare confirm request
-                    ConfirmOrder confirm = new ConfirmOrder { IdOrder = idOrdine, PaymentType = new PaymentType { TypeId = op.IdTipoPagamento, PostPayment = true } };
-                    ce.Body = SerializationUtility.SerializeToXmlElement(confirm);
-                    client.SubmitRequest(ref ce);
-                }
-
-            }
-
-            return CreateResult(NpceOperation.PreConfermaWithAutoconfirm, ce.Result.ResType == TResultResType.I ? "0" : "99", ce.Result.Description?.Substring(0, Math.Min(ce.Result.Description.Length, 500)) ?? "Invio Ok", orderResponse.IdOrder, null, null);
         }
 
         private void SetPosta1(LetteraSubmit lolSubmit)
@@ -172,6 +71,7 @@ namespace NPCE_WinClient.UI.Npce
             LetteraSubmit letteraBE = new LetteraSubmit();
 
             letteraBE.NumeroDestinatari = _servizio.Anagrafiche.Where(d => d.IsMittente == false).Count();
+            SetOpzioni(letteraBE);
             SetMittente(letteraBE);
             SetDestinatari(letteraBE);
             SetDocumenti(letteraBE);
@@ -179,6 +79,25 @@ namespace NPCE_WinClient.UI.Npce
 
             return letteraBE;
         }
+
+        private void SetOpzioni(LetteraSubmit letteraBE)
+        {
+            var opzioni = new ComunicazioniElettroniche.LOL.Web.BusinessEntities.InvioSubmitLOL.Opzioni();
+
+            opzioni.DataStampa = DateTime.Now;
+            
+            opzioni.ArchiviazioneDocumenti = _servizio.TipoArchiviazione;
+
+            if (_servizio.AnniArchiviazione > 0)
+            {
+                opzioni.AnniArchiviazione = _servizio.AnniArchiviazione;
+                opzioni.AnniArchiviazioneSpecified = true;
+            }
+
+            letteraBE.Opzioni = opzioni;
+        }
+
+
 
         private void SetDocumenti(LetteraSubmit lolSubmit)
         {
@@ -283,6 +202,8 @@ namespace NPCE_WinClient.UI.Npce
                 RagioneSociale = destinatarioServizio.RagioneSociale
             };
 
+
+            // TODO
             destinatario.IdLettera = lolSubmit.IdRichiesta;
 
             int countDestinatari = (lolSubmit.LetteraDestinatario == null) ? 0 : lolSubmit.LetteraDestinatario.Count();

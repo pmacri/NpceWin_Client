@@ -26,6 +26,8 @@ namespace NPCE_WinClient.UI.ViewModel
         private IStatoServizioRepository _statoServizioRepository;
         private IMessageDialogService _messageDialogService;
         private IEnumerable<TipoServizio> _allTipi;
+        private string tipoArchiviazioneSelected;
+
 
         public ServiceOperationsDetailViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
@@ -48,7 +50,91 @@ namespace NPCE_WinClient.UI.ViewModel
 
             InvioCommand = new DelegateCommand(OnInvioExecute, OnInvioCanExecute);
 
+            ConfermaCommand = new DelegateCommand(OnConfermaExecute, OnConfermaCanExecute);
+
             PreConfermaCommand = new DelegateCommand(OnPreConfermaExecute, OnPreConfermaCanExecute);
+
+            TipiArchiviazione = new ObservableCollection<string>();
+            TipiArchiviazione.Add("NESSUNA");
+            TipiArchiviazione.Add("SEMPLICE");
+            TipiArchiviazione.Add("STORICA");
+
+        }
+
+        private bool OnConfermaCanExecute()
+        {
+            return true;
+        }
+
+        private void OnConfermaExecute()
+        {
+            NpceOperationResult result = null;
+
+            switch (TipoServizio.Descrizione)
+            {
+                //case "Posta1":
+                //case "Posta4":
+                //    {
+                //        result = ConfermaLolExecute();
+                //    }
+                //    break;
+
+                //case "Raccomandata":
+                //    {
+                //        result = ConfermaRolExecute();
+                //    }
+                //    break;
+                case "Mol1":
+                case "MOL4":
+                case "COL1":
+                case "COL4":
+                    {
+                        result =  ConfermaPostaEvo();
+                    }
+                    break;
+            }
+            string message;
+
+            if (result.Success)
+            {
+                message = $"Operazione {result.Operation.ToString()} completata con successo";
+            }
+            else
+            {
+                message = $"Si è verificato il seguente errore:\nCode: {result.Errors[0].Code}\n Description: {result.Errors[0].Description}";
+            }
+
+             _messageDialogService.ShowOkCancelDialogAsync(message, "Info");
+
+            if (result.Success)
+            {
+                Servizio.IdRichiesta = result.IdRichiesta;
+                Servizio.IdOrdine = result.IdOrdine;
+                // TODO: AutoConferma
+                var statoCreated = AutoConfirm ? _statoServizioRepository.GetByDescription("Confermato") : _statoServizioRepository.GetByDescription("PreConfermato");
+                Servizio.Model.StatoServizioId = statoCreated.Id;
+                OnSaveExecute();
+            }
+        }
+
+        private NpceOperationResult ConfermaPostaEvo()
+        {
+            NpceOperationResult result;
+
+            if (Ambiente.IsPil)
+            {
+                var postaEvoPil = new PostaEvoPil(_servizio.Model, Ambiente.Model);
+
+                result =  postaEvoPil.Conferma();
+            }
+            else
+            {
+                var preConfermaOperation = new PreConfermaLol(Ambiente.Model, Servizio.Model, Servizio.IdRichiesta, Servizio.GuidUtente, AutoConfirm);
+
+                result = preConfermaOperation.Execute();
+            }
+
+            return result;
         }
 
         private async void OnPreConfermaExecute()
@@ -226,9 +312,9 @@ namespace NPCE_WinClient.UI.ViewModel
 
             if (Ambiente.IsPil)
             {
-                var operation = new LetteraPil(Servizio.Model, Ambiente.Model);
+                ServizioPil servizioPil = new LetteraPil(Servizio.Model, Ambiente.Model);
 
-                result = operation.Invio();
+                result = servizioPil.Invio();
             }
             else
             {
@@ -251,33 +337,61 @@ namespace NPCE_WinClient.UI.ViewModel
 
         private async Task<NpceOperationResult> InvioRolExecute()
         {
-            var operation = new RecuperaIdRichiestaRol(Ambiente.Model);
+            NpceOperationResult result = null;
 
-            var idRichiesta = operation.Execute();
+            if (Ambiente.IsPil)
+            {
+                ServizioPil servizioPil = new RaccomandataPil(Servizio.Model, Ambiente.Model);
 
-            var idServizio = Servizio.Id;
+                result = servizioPil.Invio();
+            }
+            else
+            {
+                var operation = new RecuperaIdRichiestaRol(Ambiente.Model);
 
-            var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+                var idRichiesta = operation.Execute();
 
-            var invioOperation = new InvioRol(Ambiente.Model, servizio, idRichiesta);
+                var idServizio = Servizio.Id;
 
-            var result = invioOperation.Execute();
+                var servizio = await _servizioRepository.GetByIdAsync(idServizio);
+
+                var invioOperation = new InvioRol(Ambiente.Model, servizio, idRichiesta);
+
+                result = invioOperation.Execute();
+            }
+            
             return result;
         }
 
         private async Task<NpceOperationResult> InvioMolExecute()
         {
+
+            NpceOperationResult result = null;
+
             var idServizio = Servizio.Id;
 
             var servizio = await _servizioRepository.GetByIdAsync(idServizio);
 
-            var invioOperation = new InvioCol(Ambiente.Model, servizio, null);
+            if (Ambiente.IsPil)
+            {
+                ServizioPil servizioPil = new PostaEvoPil(Servizio.Model, Ambiente.Model);
 
-            var result = invioOperation.Execute();
+                result = servizioPil.Invio();
+            }
+            else
+            {
+                InvioMol invioOperation = new InvioMol(Ambiente.Model, servizio, null);
+
+                result = invioOperation.Execute();
+            }
+            
             return result;
         }
 
         public ICommand InvioCommand { get; set; }
+
+        public ICommand ConfermaCommand { get; set; }
+
         public DelegateCommand PreConfermaCommand { get; }
 
         public async override Task LoadAsync(int id)
@@ -419,5 +533,28 @@ namespace NPCE_WinClient.UI.ViewModel
         }
 
         public bool AutoConfirm { get; set; }
+
+        public ObservableCollection<string> TipiArchiviazione { get; set; }
+
+        public string TipoArchiviazioneSelected
+        {
+            get { return tipoArchiviazioneSelected; }
+            set
+            {
+                tipoArchiviazioneSelected = value;
+                Servizio.TipoArchiviazione = tipoArchiviazioneSelected;
+            }
+        }
+
+        private int anniArchiviazione;
+        public int AnniArchiviazione
+        {
+            get { return anniArchiviazione; }
+            set { 
+                anniArchiviazione = value;
+                Servizio.AnniArchiviazione = anniArchiviazione;            
+            }
+        }
+
     }
 }

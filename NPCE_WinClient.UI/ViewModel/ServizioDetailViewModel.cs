@@ -57,7 +57,9 @@ namespace NPCE_WinClient.UI.ViewModel
             RemoveDocumentoCommand = new DelegateCommand(OnRemoveDocumentExecute, OnRemoveDocumentCanExecute);
 
             OpenPagineBollettinoCommand = new DelegateCommand(OnOpenPagineBollettinoExecute);
-                       
+
+          
+
         }
 
         private void OnOpenPagineBollettinoExecute()
@@ -353,7 +355,6 @@ namespace NPCE_WinClient.UI.ViewModel
 
             }
         }
-       
         public ObservableCollection<Anagrafica> Mittenti { get; set; }
         public ObservableCollection<Documento> Documenti { get; set; }
         public ObservableCollection<Anagrafica> DestinatariAdded { get; set; }
@@ -392,7 +393,6 @@ namespace NPCE_WinClient.UI.ViewModel
             }
         }
 
-
         private Anagrafica _selectedDestinatarioArAdded;
         public Anagrafica SelectedDestinatarioArAdded
         {
@@ -428,7 +428,6 @@ namespace NPCE_WinClient.UI.ViewModel
         private Documento _selectDocumentoAvailable;
 
         private Documento _selectDocumentoAdded;
-
         public ObservableCollection<Anagrafica> DestinatariAvailable { get; set; }
         public ObservableCollection<Anagrafica> DestinatariArAdded { get; private set; }
         public ObservableCollection<Anagrafica> DestinatariArAvailable { get; }
@@ -439,7 +438,6 @@ namespace NPCE_WinClient.UI.ViewModel
         public DelegateCommand OpenPagineBollettinoCommand { get; private set; }
         public ICommand AddDestinatarioArCommand { get; set; }
         public ICommand RemoveDestinatarioArCommand { get; set; }
-
         public ICommand RemoveDestinatarioARCommand { get; set; }
     }
 }
